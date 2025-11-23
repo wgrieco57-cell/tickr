@@ -1,0 +1,2922 @@
+{
+       "tickers": [
+        {     
+      "ticker": "BA",
+      "company": "The Boeing Company",
+      "sector": "Industrials",
+      "questions": {
+        "level_1": [
+          "I'm an aerospace company that manufactures commercial airplanes and defense systems.",
+          "I'm one of the world's largest aircraft manufacturers competing globally.",
+          "I design and build commercial jets, military aircraft, and space systems.",
+          "My aircraft are used by airlines worldwide for passenger and cargo transportation.",
+          "I'm a major defense contractor supplying military equipment to governments globally."
+        ],
+        "level_2": [
+          "My commercial airplane division produces narrow-body and wide-body jets for airlines.",
+          "I manufacture military aircraft, helicopters, satellites, and defense systems.",
+          "My business includes commercial aviation, defense, space, and global services.",
+          "I compete with Airbus as one of only two major commercial aircraft manufacturers.",
+          "I provide aftermarket support and services for aircraft throughout their lifecycle."
+        ],
+        "level_3": [
+          "I was founded by William Boeing in Seattle, Washington, in 1916.",
+          "I'm headquartered in Arlington, Virginia, after moving from Chicago in 2022.",
+          "I merged with McDonnell Douglas in 1997, consolidating the U.S. aerospace industry.",
+          "My commercial aircraft are assembled primarily in Washington state and South Carolina.",
+          "I've been a component of the Dow Jones Industrial Average since 1987."
+        ],
+        "level_4": [
+          "I faced a major crisis with my 737 MAX aircraft grounded worldwide from 2019 to 2020.",
+          "I built the 747 jumbo jet, known as the 'Queen of the Skies,' first flying in 1969.",
+          "I manufactured the B-17 Flying Fortress bomber used extensively in World War II.",
+          "I'm the prime contractor for the International Space Station and NASA's Space Launch System.",
+          "I acquired Rockwell's aerospace and defense units in 1996 for $3.2 billion."
+        ],
+        "level_5": [
+          "My ticker symbol BA is listed on the New York Stock Exchange.",
+          "I executed a 2-for-1 stock split in June 1997, one of several in my history.",
+          "My 707 jet launched in 1958 ushered in the modern jet age for commercial aviation.",
+          "I employed over 170,000 people worldwide at my peak before recent workforce reductions.",
+          "My founder built his first airplane, the B&W Seaplane, in 1916 near Seattle."
+        ]
+      }
+    },
+    {
+      "ticker": "CAT",
+      "company": "Caterpillar Inc.",
+      "sector": "Industrials",
+      "questions": {
+        "level_1": [
+          "I'm the world's largest construction equipment manufacturer.",
+          "I produce heavy machinery for construction, mining, and agriculture.",
+          "My yellow machines are recognized on construction sites worldwide.",
+          "I manufacture diesel engines, gas turbines, and industrial equipment.",
+          "I'm an American corporation that's a leader in heavy equipment and engines."
+        ],
+        "level_2": [
+          "My products include bulldozers, excavators, wheel loaders, and mining trucks.",
+          "I provide construction equipment, mining machinery, diesel engines, and gas turbines.",
+          "My business benefits from infrastructure spending, commodity prices, and construction activity.",
+          "I offer equipment rental, financing, and aftermarket parts and service.",
+          "My machines are used in construction, mining, quarrying, and infrastructure projects globally."
+        ],
+        "level_3": [
+          "I was formed through the merger of Holt Manufacturing and C. L. Best Tractor in 1925.",
+          "I'm headquartered in Irving, Texas, after moving from Peoria, Illinois, in 2022.",
+          "My name comes from the 'Caterpillar' tread design invented by Benjamin Holt in 1904.",
+          "I went public on the New York Stock Exchange in 1929, shortly before the Great Depression.",
+          "My distinctive yellow color scheme became standard in the 1930s."
+        ],
+        "level_4": [
+          "I acquired Bucyrus International for $8.6 billion in 2011, expanding mining equipment capabilities.",
+          "I've been a component of the Dow Jones Industrial Average since 1991.",
+          "I manufactured military tractors and tanks during World War II.",
+          "I operate the largest network of equipment dealers in the world with thousands of locations.",
+          "I've increased dividends for over 30 consecutive years, making me a dividend aristocrat."
+        ],
+        "level_5": [
+          "My ticker symbol CAT is listed on the New York Stock Exchange.",
+          "I executed a 2-for-1 stock split in April 2005, one of several splits in my history.",
+          "My D11 bulldozer is the largest in the world, weighing over 230,000 pounds.",
+          "I sold over 2 million machines worldwide since my founding nearly a century ago.",
+          "My founder Benjamin Holt's tracked tractor was inspired by observation that wide tracks distributed weight better."
+        ]
+      }
+    },
+    {
+      "ticker": "GE",
+      "company": "General Electric Company",
+      "sector": "Industrials",
+      "questions": {
+        "level_1": [
+          "I'm an industrial conglomerate focusing on aviation, healthcare, and power.",
+          "I manufacture jet engines, medical imaging equipment, and power generation systems.",
+          "I'm one of America's most iconic industrial companies with over 130 years of history.",
+          "I was once the world's most valuable company before splitting into separate businesses.",
+          "I've undergone massive restructuring, divesting financial services and multiple divisions."
+        ],
+        "level_2": [
+          "My aviation division produces jet engines for commercial and military aircraft.",
+          "I manufacture medical imaging equipment including MRI, CT, and ultrasound systems.",
+          "My power division creates gas and steam turbines for electricity generation.",
+          "I provide equipment and services for aviation, healthcare, and energy industries.",
+          "I've divested my appliance, lighting, financial services, and other businesses to focus on core industrials."
+        ],
+        "level_3": [
+          "I was founded by Thomas Edison in 1892 through a merger creating my original company.",
+          "I'm headquartered in Boston, Massachusetts, after moving from Connecticut in 2016.",
+          "I was a component of the Dow Jones Industrial Average from 1907 to 2018, the longest tenure.",
+          "I split into three separate companies in 2024: GE Aerospace, GE HealthCare, and GE Vernova.",
+          "My former CEO Jack Welch led me from 1981 to 2001 during my most successful era."
+        ],
+        "level_4": [
+          "I spun off GE HealthCare as a separate public company in January 2023.",
+          "I separated GE Vernova (energy business) in April 2024, completing my breakup.",
+          "I sold NBC Universal to Comcast between 2009 and 2013, exiting media.",
+          "I sold GE Appliances to Haier in 2016 for $5.6 billion.",
+          "I nearly collapsed during the 2008 financial crisis due to GE Capital's exposure."
+        ],
+        "level_5": [
+          "My ticker symbol GE is listed on the New York Stock Exchange.",
+          "I executed a 1-for-8 reverse stock split in August 2021 to boost share price.",
+          "I was removed from the Dow Jones Industrial Average in June 2018 after 111 years.",
+          "My market cap once exceeded $600 billion in 2000, making me the world's most valuable company.",
+          "I acquired RCA in 1986 for $6.3 billion, gaining NBC television network."
+        ]
+      }
+    },
+    {
+      "ticker": "GM",
+      "company": "General Motors Company",
+      "sector": "Consumer Cyclical",
+      "questions": {
+        "level_1": [
+          "I'm one of the largest automotive manufacturers in the world.",
+          "I design, manufacture, and sell vehicles under multiple brand names.",
+          "I'm an American automaker producing cars, trucks, and SUVs globally.",
+          "I'm investing heavily in electric vehicles and autonomous driving technology.",
+          "I went through bankruptcy and government bailout during the financial crisis."
+        ],
+        "level_2": [
+          "My brands include Chevrolet, GMC, Cadillac, and Buick in the United States.",
+          "I manufacture trucks, SUVs, crossovers, and electric vehicles.",
+          "My business spans North America, China, and other international markets.",
+          "I operate a self-driving subsidiary developing autonomous vehicle technology.",
+          "I'm transitioning my product lineup toward electric and autonomous vehicles."
+        ],
+        "level_3": [
+          "I was founded by William C. Durant in Flint, Michigan, in 1908.",
+          "I'm headquartered in Detroit, Michigan, in the Renaissance Center.",
+          "I filed for bankruptcy in 2009 and received a government bailout during the financial crisis.",
+          "I went public again in November 2010 after emerging from bankruptcy.",
+          "My CEO Mary Barra is the first female CEO of a major global automaker."
+        ],
+        "level_4": [
+          "I discontinued the Pontiac, Saturn, Hummer, and Saab brands after bankruptcy.",
+          "I sold my European Opel and Vauxhall brands to PSA Group in 2017.",
+          "I launched the Chevrolet Volt plug-in hybrid in 2010 and Bolt EV in 2016.",
+          "I announced plans to phase out gasoline-powered vehicles by 2035.",
+          "I was removed from the Dow Jones Industrial Average in June 2009 during bankruptcy."
+        ],
+        "level_5": [
+          "My ticker symbol GM is listed on the New York Stock Exchange.",
+          "I was the world's largest automaker for 77 consecutive years until 2008.",
+          "My bankruptcy in 2009 was the fourth-largest in U.S. history at $82 billion in assets.",
+          "I acquired Cruise Automation for $1 billion in 2016 for autonomous vehicle technology.",
+          "My 'old GM' common stock became worthless in bankruptcy, with 'new GM' stock issued in 2010."
+        ]
+      }
+    },
+    {
+      "ticker": "F",
+      "company": "Ford Motor Company",
+      "sector": "Consumer Cyclical",
+      "questions": {
+        "level_1": [
+          "I'm one of America's oldest and largest automotive manufacturers.",
+          "I produce cars, trucks, SUVs, and commercial vehicles globally.",
+          "I'm known for pioneering mass production techniques in automobile manufacturing.",
+          "My pickup trucks are the best-selling vehicles in America for decades.",
+          "I'm investing heavily in electric vehicles to compete in the future automotive market."
+        ],
+        "level_2": [
+          "My F-Series pickup trucks have been America's best-selling vehicles for over 40 years.",
+          "I manufacture the Mustang sports car, one of America's most iconic vehicles.",
+          "My brands include Ford and Lincoln in the North American market.",
+          "I operate globally with manufacturing facilities on multiple continents.",
+          "I'm transitioning toward electric vehicles including an electric F-150 and Mustang."
+        ],
+        "level_3": [
+          "I was founded by Henry Ford in Dearborn, Michigan, in 1903.",
+          "I'm headquartered in Dearborn, Michigan, where my founder established the company.",
+          "I pioneered the assembly line manufacturing technique with the Model T.",
+          "I'm still partially controlled by the Ford family through special voting shares.",
+          "I survived the 2008-2009 financial crisis without bankruptcy or government bailout."
+        ],
+        "level_4": [
+          "I introduced the Model T in 1908, which revolutionized transportation and became the first affordable car.",
+          "I launched the Mustang in 1964, creating the 'pony car' category.",
+          "I sold Jaguar, Land Rover, Aston Martin, and Volvo brands to focus on Ford and Lincoln.",
+          "I introduced the electric F-150 Lightning pickup truck in 2022.",
+          "I established a $5 daily wage in 1914, doubling worker pay and creating a middle class."
+        ],
+        "level_5": [
+          "My ticker symbol F is listed on the New York Stock Exchange.",
+          "I went public in 1956, though my company was founded in 1903.",
+          "I produced over 15 million Model T vehicles between 1908 and 1927.",
+          "I executed a 1-for-2 reverse stock split in April 2000 to consolidate shares.",
+          "My Rouge Plant in Dearborn was the largest integrated factory in the world when it opened in 1928."
+        ]
+      }
+    },
+    {
+      "ticker": "HON",
+      "company": "Honeywell International Inc.",
+      "sector": "Industrials",
+      "questions": {
+        "level_1": [
+          "I'm a diversified technology and manufacturing company serving multiple industries.",
+          "I produce aerospace systems, building technologies, and industrial solutions.",
+          "I manufacture everything from thermostats to jet engines and industrial software.",
+          "I'm a multinational conglomerate operating in aerospace, buildings, and performance materials.",
+          "I create products for homes, buildings, aircraft, and industrial facilities."
+        ],
+        "level_2": [
+          "My aerospace division produces aircraft engines, cockpit systems, and avionics.",
+          "I manufacture building automation systems, thermostats, and fire safety equipment.",
+          "My products include turbochargers, advanced materials, and chemical processing equipment.",
+          "I provide industrial automation, safety equipment, and productivity solutions.",
+          "My business serves aerospace, buildings, industrial, and energy sectors."
+        ],
+        "level_3": [
+          "I was founded as Honeywell Heating Specialty Company in Wabash, Indiana, in 1906.",
+          "I'm headquartered in Charlotte, North Carolina, after moving from New Jersey in 2019.",
+          "I merged with AlliedSignal in 1999, with AlliedSignal acquiring me but keeping my name.",
+          "My round thermostat design became an icon of 20th-century industrial design.",
+          "I went public decades ago and have been continuously traded since."
+        ],
+        "level_4": [
+          "I supply auxiliary power units (APUs) for the majority of commercial aircraft worldwide.",
+          "I was added to the Dow Jones Industrial Average in 1999 after my merger with AlliedSignal.",
+          "I acquired Pittway Corporation for $2.2 billion in 2000, expanding building technologies.",
+          "I spun off my materials science and transportation businesses as Garrett Motion in 2018.",
+          "I attempted to acquire United Technologies in 2016 for over $90 billion, but the offer was rejected."
+        ],
+        "level_5": [
+          "My ticker symbol HON is listed on the NASDAQ stock exchange.",
+          "I executed a 2-for-1 stock split in June 2000, shortly after my major merger.",
+          "My round thermostat, the T-86, was introduced in 1953 and became a design classic.",
+          "I developed technology for the Apollo moon missions and continue space work today.",
+          "I trace my lineage to multiple companies including Honeywell, Allied Chemical, and Signal."
+        ]
+      }
+    },
+    {
+      "ticker": "MMM",
+      "company": "3M Company",
+      "sector": "Industrials",
+      "questions": {
+        "level_1": [
+          "I'm a diversified technology company manufacturing industrial, safety, and consumer products.",
+          "I produce thousands of products used in healthcare, manufacturing, and consumer applications.",
+          "I'm known for innovation and creating products based on adhesive and materials science.",
+          "My Post-it Notes and Scotch tape brands are household names worldwide.",
+          "I manufacture industrial abrasives, adhesives, and advanced materials."
+        ],
+        "level_2": [
+          "My products include adhesives, abrasives, personal protective equipment, and medical supplies.",
+          "I serve healthcare, manufacturing, automotive, electronics, and consumer markets.",
+          "My business spans industrial, safety & graphics, healthcare, and consumer divisions.",
+          "I develop products for dentistry, healthcare, electronic materials, and workplace safety.",
+          "I generate revenue from both consumer brands and industrial applications."
+        ],
+        "level_3": [
+          "I was founded as Minnesota Mining and Manufacturing Company in Two Harbors, Minnesota, in 1902.",
+          "I'm headquartered in St. Paul, Minnesota, where I've been based for over a century.",
+          "My Post-it Notes were invented accidentally in 1968 and commercialized in 1980.",
+          "I changed my legal name from Minnesota Mining and Manufacturing to 3M Company in 2002.",
+          "I've been paying dividends for over 100 consecutive years."
+        ],
+        "level_4": [
+          "I spun off my healthcare business as Solventum Corporation in 2024.",
+          "I was added to the Dow Jones Industrial Average in 1976 and remain a component.",
+          "I developed masking tape in the 1920s, which evolved into Scotch tape.",
+          "I faced significant legal liability for PFAS contamination and defective earplugs.",
+          "I acquired Acelity for $6.7 billion in 2019, expanding healthcare capabilities before the spinoff."
+        ],
+        "level_5": [
+          "My ticker symbol MMM stood for Minnesota Mining and Manufacturing on the New York Stock Exchange.",
+          "I executed a 2-for-1 stock split in June 2003, one of many splits in my history.",
+          "I invented Scotch tape in 1930, responding to a customer need during the Great Depression.",
+          "My original business was mining corundum for making grinding wheels, which failed.",
+          "I've increased dividends for over 60 consecutive years, making me a dividend king."
+        ]
+      }
+    },
+    {
+      "ticker": "UPS",
+      "company": "United Parcel Service, Inc.",
+      "sector": "Industrials",
+      "questions": {
+        "level_1": [
+          "I'm one of the world's largest package delivery and logistics companies.",
+          "I deliver millions of packages daily to homes and businesses globally.",
+          "I operate a fleet of distinctive brown delivery trucks and cargo aircraft.",
+          "I provide shipping, logistics, and supply chain management services worldwide.",
+          "I compete with FedEx and the U.S. Postal Service in package delivery."
+        ],
+        "level_2": [
+          "My services include domestic and international package delivery, freight, and logistics.",
+          "I operate one of the largest airline cargo fleets in the world.",
+          "My business benefits from e-commerce growth and increasing package volumes.",
+          "I provide next-day, ground, and international shipping options.",
+          "My supply chain solutions include warehousing, distribution, and customs brokerage."
+        ],
+        "level_3": [
+          "I was founded by James Casey in Seattle, Washington, in 1907 as a messenger service.",
+          "I'm headquartered in Atlanta, Georgia, at the UPS Corporate Headquarters.",
+          "My drivers wear brown uniforms, earning the nickname 'Big Brown.'",
+          "I went public in November 1999 in the largest IPO of the 20th century at that time.",
+          "I was employee-owned for most of my history before going public."
+        ],
+        "level_4": [
+          "I acquired Coyote Logistics for $1.8 billion in 2015, expanding freight brokerage capabilities.",
+          "I purchased Roadie, a same-day delivery company, in 2021 for undisclosed terms.",
+          "I was added to the Dow Jones Industrial Average in July 2023, replacing Walgreens.",
+          "I deliver over 24 million packages per day on average globally.",
+          "I executed a Teamsters labor agreement in 2023 after months of contentious negotiations."
+        ],
+        "level_5": [
+          "My ticker symbol UPS is listed on the New York Stock Exchange.",
+          "I changed my name from American Messenger Company to United Parcel Service in 1919.",
+          "I executed a 2-for-1 stock split in May 2000, shortly after going public.",
+          "My IPO in November 1999 raised $5.47 billion, the largest public offering of the 20th century.",
+          "I began air service in 1929 and expanded internationally starting in 1975."
+        ]
+      }
+    },
+    {
+      "ticker": "FDX",
+      "company": "FedEx Corporation",
+      "sector": "Industrials",
+      "questions": {
+        "level_1": [
+          "I'm a global courier and logistics company providing overnight shipping services.",
+          "I pioneered overnight package delivery and revolutionized logistics.",
+          "I operate a large fleet of aircraft and ground vehicles for package delivery.",
+          "I provide express, ground, freight, and logistics services worldwide.",
+          "I compete with UPS and DHL in the package delivery and logistics market."
+        ],
+        "level_2": [
+          "My services include overnight express delivery, ground shipping, and freight transportation.",
+          "I operate multiple business segments including Express, Ground, Freight, and Logistics.",
+          "My hub-and-spoke distribution model revolutionized package delivery efficiency.",
+          "I use a large fleet of aircraft, trucks, and delivery vans marked with my logo.",
+          "My business relies on overnight air transport and efficient sorting operations."
+        ],
+        "level_3": [
+          "I was founded by Frederick W. Smith in Little Rock, Arkansas, in 1971.",
+          "My founder wrote his business plan as a Yale University undergraduate thesis.",
+          "I'm headquartered in Memphis, Tennessee, where my largest sorting hub is located.",
+          "I went public in April 1978 on the New York Stock Exchange.",
+          "My name combines 'Federal' and 'Express,' originally targeting Federal Reserve bank shipments."
+        ],
+        "level_4": [
+          "I acquired TNT Express for $4.8 billion in 2016, expanding European operations.",
+          "I purchased RPS (Roadway Package System) in 1998, creating FedEx Ground.",
+          "I announced plans to consolidate FedEx Express and Ground operations in 2024.",
+          "I'm one of the largest employers in the United States with hundreds of thousands of workers.",
+          "My Memphis SuperHub processes millions of packages nightly through sophisticated sorting."
+        ],
+        "level_5": [
+          "My ticker symbol FDX is listed on the New York Stock Exchange.",
+          "I executed a 2-for-1 stock split in May 1999, one of several splits in my history.",
+          "My founder Frederick Smith served as a Marine Corps officer in Vietnam before starting me.",
+          "I began operations with 14 small aircraft serving 25 cities in April 1973.",
+          "I nearly went bankrupt in my early years, with my founder famously taking company funds to Las Vegas."
+        ]
+      }
+    },
+    {
+      "ticker": "CVS",
+      "company": "CVS Health Corporation",
+      "sector": "Healthcare",
+      "questions": {
+        "level_1": [
+          "I'm a healthcare company operating pharmacies, pharmacy benefit management, and health insurance.",
+          "I operate one of the largest pharmacy chains in the United States.",
+          "I provide prescription drugs, health services, and insurance through integrated operations.",
+          "My red logo is visible on thousands of pharmacy retail locations nationwide.",
+          "I'm a vertically integrated healthcare company spanning retail, benefits, and insurance."
+        ],
+        "level_2": [
+          "My retail pharmacies dispense prescriptions and sell health and beauty products.",
+          "I manage pharmacy benefits for millions of Americans through my PBM division.",
+          "I own a major health insurance company providing Medicare and Medicaid plans.",
+          "My MinuteClinic locations provide convenient healthcare services inside stores.",
+          "I integrate pharmacy, insurance, and care delivery to manage patient health."
+        ],
+        "level_3": [
+          "I was founded as Consumer Value Stores in Lowell, Massachusetts, in 1963.",
+          "I'm headquartered in Woonsocket, Rhode Island, north of Providence.",
+          "I acquired Aetna for $70 billion in 2018, entering the health insurance market.",
+          "I stopped selling tobacco products in 2014, the first major pharmacy to do so.",
+          "I operate over 9,000 retail pharmacy locations across the United States."
+        ],
+        "level_4": [
+          "I acquired Caremark Rx for $21 billion in 2007, creating a pharmacy benefit management giant.",
+          "I purchased Omnicare for $12.7 billion in 2015, expanding long-term care pharmacy services.",
+          "I acquired Target's pharmacy and clinic businesses for $1.9 billion in 2015.",
+          "I launched HealthHUB stores in 2019, featuring expanded health services and products.",
+          "I was added to the Dow Jones Industrial Average in 2024, replacing Walgreens Boots Alliance."
+        ],
+        "level_5": [
+          "My ticker symbol CVS is listed on the New York Stock Exchange.",
+          "I changed my corporate name from CVS Caremark to CVS Health in 2014.",
+          "I executed a 2-for-1 stock split in March 1999, one of several splits.",
+          "My original store in Lowell sold health and beauty products along with prescriptions.",
+          "I generate over $350 billion in annual revenue, making me one of the largest U.S. companies."
+        ]
+      }
+    },
+    {
+      "ticker": "WFC",
+      "company": "Wells Fargo & Company",
+      "sector": "Financial Services",
+      "questions": {
+        "level_1": [
+          "I'm one of the largest banks in the United States by assets and market capitalization.",
+          "I provide banking, investment, and mortgage services to millions of customers.",
+          "I'm one of the 'Big Four' banks in America with extensive branch networks.",
+          "My stagecoach logo reflects my historical roots in the American West.",
+          "I faced major scandals involving fake accounts and regulatory penalties."
+        ],
+        "level_2": [
+          "My services include retail banking, commercial banking, wealth management, and mortgages.",
+          "I operate thousands of branches and ATMs across the United States.",
+          "I'm one of the largest mortgage lenders and auto loan providers in America.",
+          "My business includes consumer banking, corporate banking, and investment services.",
+          "I serve consumers, small businesses, and large corporations with financial services."
+        ],
+        "level_3": [
+          "I was founded by Henry Wells and William Fargo in New York in 1852.",
+          "I'm headquartered in San Francisco, California, where I've been based historically.",
+          "I acquired Wachovia in 2008 during the financial crisis, becoming the largest bank by deposits.",
+          "I'm named after my founders who also established Wells, Fargo & Company express service.",
+          "My iconic stagecoach symbol has been my logo since the 1800s."
+        ],
+        "level_4": [
+          "I was fined billions for creating millions of fake customer accounts from 2011 to 2015.",
+          "I acquired Norwest Corporation in 1998, with Norwest actually buying me but keeping my name.",
+          "I received $25 billion in TARP funds during the 2008 crisis, which I repaid by 2009.",
+          "I've been under regulatory asset cap since 2018 due to compliance failures.",
+          "I was removed from the S&P 500 ESG Index in 2020 due to governance issues."
+        ],
+        "level_5": [
+          "My ticker symbol WFC is listed on the New York Stock Exchange.",
+          "I executed a 2-for-1 stock split in May 2000, one of several splits in my history.",
+          "I originated as an express delivery service during the California Gold Rush.",
+          "I was added to the Dow Jones Industrial Average in 2008, replacing AIG.",
+          "I once operated the Pony Express mail service in the 1860s."
+        ]
+      }
+    },
+    {
+      "ticker": "C",
+      "company": "Citigroup Inc.",
+      "sector": "Financial Services",
+      "questions": {
+        "level_1": [
+          "I'm a global investment bank and financial services corporation.",
+          "I provide banking, credit cards, and investment services worldwide.",
+          "I'm one of the largest banks in the world with operations in dozens of countries.",
+          "I'm one of the 'Big Four' banks in the United States.",
+          "I required the largest government bailout during the 2008 financial crisis."
+        ],
+        "level_2": [
+          "My business includes investment banking, consumer banking, and wealth management.",
+          "I operate consumer franchises in multiple countries and serve institutional clients globally.",
+          "I provide credit cards, personal banking, corporate lending, and trading services.",
+          "My institutional clients group serves corporations, governments, and investors worldwide.",
+          "I generate significant revenue from international operations outside the United States."
+        ],
+        "level_3": [
+          "I was formed through the merger of Citicorp and Travelers Group in 1998.",
+          "I'm headquartered in New York City at 388 Greenwich Street.",
+          "I trace my history to the City Bank of New York, founded in 1812.",
+          "I received $45 billion in TARP funds during 2008, the largest bank bailout.",
+          "My CEO Jane Fraser became the first female CEO of a major Wall Street bank in 2021."
+        ],
+        "level_4": [
+          "I broke up the Glass-Steagall Act separation between commercial and investment banking with my 1998 merger.",
+          "I sold Smith Barney to Morgan Stanley in 2009 during post-crisis restructuring.",
+          "I executed a 1-for-10 reverse stock split in May 2011 to boost share price after crisis losses.",
+          "I was removed from the Dow Jones Industrial Average in June 2009 during the financial crisis.",
+          "I spun off Travelers Property & Casualty in 2002, undoing part of the 1998 merger."
+        ],
+        "level_5": [
+          "My ticker symbol C is listed on the New York Stock Exchange.",
+          "I was the first major U.S. bank to offer compound interest on savings in 1909.",
+          "I opened the first nationwide consumer banking platform in the United States.",
+          "I was briefly the world's largest financial services company after the 1998 Citicorp-Travelers merger.",
+          "My red umbrella logo came from Travelers Group and remains part of my brand."
+        ]
+      }
+    },
+ { 
+     "ticker": "NKE",
+      "company": "Nike, Inc.",
+      "sector": "Consumer Cyclical",
+      "questions": {
+        "level_1": [
+          "I'm the world's largest athletic footwear and apparel company.",
+          "I design, develop, and market athletic shoes, apparel, and equipment globally.",
+          "My iconic logo is one of the most recognized brand symbols worldwide.",
+          "I sponsor top athletes, teams, and sporting events across multiple sports.",
+          "I've revolutionized athletic footwear and sportswear since my founding."
+        ],
+        "level_2": [
+          "My products span running, basketball, soccer, training, and lifestyle categories.",
+          "I sell through retail stores, online channels, and wholesale partners globally.",
+          "My brand endorsements include some of the most famous athletes in history.",
+          "I operate subsidiary brands including a skateboarding-focused label.",
+          "My business model emphasizes innovation, brand building, and athlete partnerships."
+        ],
+        "level_3": [
+          "I was founded by Bill Bowerman and Phil Knight as Blue Ribbon Sports in 1964.",
+          "My company adopted my current name in 1971, inspired by the Greek goddess of victory.",
+          "I'm headquartered in Beaverton, Oregon, near Portland.",
+          "My Swoosh logo was designed by a Portland State University student for $35 in 1971.",
+          "I went public in December 1980 with an IPO price of $18 per share."
+        ],
+        "level_4": [
+          "I signed Michael Jordan in 1984, creating the Air Jordan line that revolutionized athlete endorsements.",
+          "I acquired Converse for $305 million in 2003, adding the iconic Chuck Taylor brand.",
+          "My 'Just Do It' slogan launched in 1988 and became one of advertising's most famous taglines.",
+          "I purchased Cole Haan in 1988 and later sold it in 2012 to focus on athletic brands.",
+          "I've completed multiple stock splits including a 2-for-1 split in December 2015."
+        ],
+        "level_5": [
+          "My co-founder Bill Bowerman created the waffle sole by pouring rubber into his wife's waffle iron.",
+          "I was originally a distributor for Japanese shoe company Onitsuka Tiger (now ASICS) before creating my own brand.",
+          "My ticker symbol NKE is listed on the New York Stock Exchange.",
+          "I was added to the Dow Jones Industrial Average in September 2013, replacing Alcoa.",
+          "My first shoes under my own brand were soccer cleats in 1971."
+        ]
+      }
+    },
+    {
+      "ticker": "MRK",
+      "company": "Merck & Co., Inc.",
+      "sector": "Healthcare",
+      "questions": {
+        "level_1": [
+          "I'm a global pharmaceutical company researching and developing medicines and vaccines.",
+          "I'm one of the largest pharmaceutical companies by market capitalization and revenue.",
+          "I discover, develop, manufacture, and market prescription medicines and biologics.",
+          "My products treat cancer, infectious diseases, diabetes, and other serious conditions.",
+          "I've been a leader in pharmaceutical innovation for over a century."
+        ],
+        "level_2": [
+          "My therapeutic areas include oncology, vaccines, hospital acute care, and immunology.",
+          "I manufacture one of the most widely administered vaccines globally for children.",
+          "My business spans human health pharmaceuticals and animal health products.",
+          "I invest billions annually in research and development for breakthrough therapies.",
+          "I operate manufacturing facilities and research centers worldwide."
+        ],
+        "level_3": [
+          "I was founded in 1891 as the American subsidiary of the German company Merck.",
+          "I'm headquartered in Rahway, New Jersey, though I have major operations globally.",
+          "I was separated from my German parent company after World War I.",
+          "My company is known as MSD (Merck Sharp & Dohme) outside the United States and Canada.",
+          "I merged with Schering-Plough in 2009, keeping the Merck name."
+        ],
+        "level_4": [
+          "I developed Keytruda, which became one of the best-selling cancer drugs globally.",
+          "I acquired Schering-Plough for $41 billion in 2009 during the financial crisis.",
+          "I developed the first mumps vaccine and pioneered the MMR combination vaccine.",
+          "I purchased Prometheus Biosciences for $10.8 billion in 2023.",
+          "I was added to the Dow Jones Industrial Average in 1979 and remain a member."
+        ],
+        "level_5": [
+          "My ticker symbol MRK is listed on the New York Stock Exchange.",
+          "I lost the Merck trademark in the United States after World War I but retained it in Europe.",
+          "I developed ivermectin, which won the Nobel Prize in Physiology or Medicine in 2015 for its developers.",
+          "I donated over 4 billion doses of ivermectin to treat river blindness in Africa.",
+          "I executed a 2-for-1 stock split in November 2011, one of several in my history."
+        ]
+      }
+    },
+    {
+      "ticker": "ABT",
+      "company": "Abbott Laboratories",
+      "sector": "Healthcare",
+      "questions": {
+        "level_1": [
+          "I'm a diversified healthcare company producing medical devices, diagnostics, and nutritional products.",
+          "I develop and manufacture products that span diagnostics, devices, nutrition, and branded generics.",
+          "I'm one of the oldest healthcare companies in America with over 130 years of history.",
+          "My products are sold in over 160 countries worldwide.",
+          "I've been paying and increasing dividends for over 50 consecutive years."
+        ],
+        "level_2": [
+          "My business segments include diagnostics, medical devices, nutrition, and established pharmaceuticals.",
+          "I produce infant formula, adult nutritional products, and diabetes care devices.",
+          "My diagnostic tests are used in hospitals and laboratories globally.",
+          "I manufacture cardiovascular devices including stents and heart failure products.",
+          "I operate pharmaceutical businesses in emerging markets through branded generic drugs."
+        ],
+        "level_3": [
+          "I was founded by Dr. Wallace Calvin Abbott in Chicago in 1888.",
+          "I'm headquartered in North Chicago, Illinois, where my founder established the company.",
+          "I spun off AbbVie in 2013, separating my research-based pharmaceuticals business.",
+          "My CEO Robert Ford has led me since 2020, continuing our diversification strategy.",
+          "I acquired St. Jude Medical for $25 billion in 2017, expanding my device portfolio."
+        ],
+        "level_4": [
+          "I developed the first HIV blood-screening test in the United States in 1985.",
+          "I acquired Alere for $5.3 billion in 2017, strengthening my diagnostics business.",
+          "I launched FreeStyle Libre, a continuous glucose monitoring system that became a blockbuster product.",
+          "I was added to the Dow Jones Industrial Average in 1957 and remain a member.",
+          "I'm a dividend aristocrat, having increased dividends for over 50 consecutive years."
+        ],
+        "level_5": [
+          "My ticker symbol ABT is listed on the New York Stock Exchange.",
+          "My founder started the company in the rear apartment of his home in Ravenswood, Illinois.",
+          "I introduced Similac infant formula in 1925, which remains a leading brand.",
+          "I completed a 2-for-1 stock split in May 1990, one of many splits in my history.",
+          "I maintained continuous operations and dividend payments even during the Great Depression."
+        ]
+      }
+    },
+    {
+      "ticker": "CSCO",
+      "company": "Cisco Systems, Inc.",
+      "sector": "Technology",
+      "questions": {
+        "level_1": [
+          "I'm a multinational technology company specializing in networking hardware and telecommunications.",
+          "I develop and sell networking equipment that powers the internet and corporate networks.",
+          "I'm the worldwide leader in networking technologies for the internet.",
+          "My products include routers, switches, and cybersecurity solutions used globally.",
+          "I enable communications and IT infrastructure for businesses and service providers."
+        ],
+        "level_2": [
+          "My core business includes enterprise networking, switching, routing, and data center products.",
+          "I provide cybersecurity solutions, collaboration tools, and cloud networking services.",
+          "My products connect networks, data centers, and cloud infrastructure.",
+          "I serve enterprises, service providers, small businesses, and public sector organizations.",
+          "My business has evolved from hardware to software and subscription-based services."
+        ],
+        "level_3": [
+          "I was founded by two Stanford University computer scientists in 1984.",
+          "My name is derived from San Francisco, where my founders worked before starting the company.",
+          "I'm headquartered in San Jose, California, in Silicon Valley.",
+          "I went public in February 1990 on NASDAQ under my current ticker symbol.",
+          "My founders developed the multi-protocol router that became the foundation of my business."
+        ],
+        "level_4": [
+          "I acquired Webex for $3.2 billion in 2007, entering the collaboration software market.",
+          "I was briefly the most valuable company in the world during the dot-com bubble in March 2000.",
+          "I purchased AppDynamics for $3.7 billion in 2017, hours before its planned IPO.",
+          "I acquired Splunk for $28 billion in 2024, my largest acquisition ever.",
+          "I was added to the Dow Jones Industrial Average in June 2009, replacing General Motors."
+        ],
+        "level_5": [
+          "My ticker symbol CSCO has been on NASDAQ since my 1990 IPO.",
+          "I executed multiple stock splits in the 1990s including a 2-for-1 split in March 2000.",
+          "My market cap exceeded $500 billion at the peak of the dot-com bubble, the highest ever at that time.",
+          "I control over 50% of the global market share in network switches and routers.",
+          "My founders were married to each other and named the company after the city of San Francisco."
+        ]
+      }
+    },
+    {
+      "ticker": "INTC",
+      "company": "Intel Corporation",
+      "sector": "Technology",
+      "questions": {
+        "level_1": [
+          "I'm the world's largest semiconductor chip manufacturer by revenue.",
+          "I design and manufacture microprocessors for computers and data centers.",
+          "I'm an American corporation that pioneered the microprocessor industry.",
+          "My processors power the majority of personal computers worldwide.",
+          "I'm a leading semiconductor company facing increased competition in recent years."
+        ],
+        "level_2": [
+          "My core business includes designing and selling microprocessors for PCs and servers.",
+          "I manufacture chips using my own fabrication facilities, unlike many competitors.",
+          "My products power everything from laptops to data centers and embedded systems.",
+          "I've expanded into AI accelerators, autonomous driving chips, and foundry services.",
+          "My business model involves both designing chips and manufacturing them in-house."
+        ],
+        "level_3": [
+          "I was founded by Gordon Moore and Robert Noyce in Mountain View, California, in 1968.",
+          "My name is a portmanteau of 'Integrated Electronics.'",
+          "I'm headquartered in Santa Clara, California, in the heart of Silicon Valley.",
+          "I went public in October 1971 at $23.50 per share on NASDAQ.",
+          "My co-founder Gordon Moore created Moore's Law predicting transistor density doubling."
+        ],
+        "level_4": [
+          "I introduced the 4004, the world's first commercial microprocessor, in 1971.",
+          "I dominated the PC processor market with my x86 architecture for decades.",
+          "I lost market share to AMD and fell behind TSMC and Samsung in manufacturing technology.",
+          "I was removed from the Dow Jones Industrial Average in November 2024 after 25 years.",
+          "I received $8.5 billion in CHIPS Act funding in 2024 to build U.S. manufacturing facilities."
+        ],
+        "level_5": [
+          "My ticker symbol INTC has been on NASDAQ since my IPO in 1971.",
+          "My 'Intel Inside' marketing campaign launched in 1991 became one of the most successful co-op advertising programs.",
+          "I executed a 2-for-1 stock split in July 2000, one of many splits in my history.",
+          "I was added to the Dow Jones Industrial Average in November 1999.",
+          "My Pentium brand became synonymous with personal computing in the 1990s."
+        ]
+      }
+    },
+    {
+      "ticker": "AMD",
+      "company": "Advanced Micro Devices, Inc.",
+      "sector": "Technology",
+      "questions": {
+        "level_1": [
+          "I'm a semiconductor company that designs computer processors and graphics cards.",
+          "I compete directly with Intel in CPUs and NVIDIA in GPUs.",
+          "I develop high-performance computing and graphics technologies.",
+          "My products power gaming PCs, data centers, and embedded systems.",
+          "I've experienced a dramatic resurgence in recent years after decades of struggle."
+        ],
+        "level_2": [
+          "My Ryzen processors compete with Intel in the consumer and enterprise CPU market.",
+          "I manufacture graphics cards under the Radeon brand for gaming and professional use.",
+          "I supply processors for gaming consoles including PlayStation and Xbox.",
+          "My EPYC server processors have gained significant data center market share.",
+          "I use a fabless model, designing chips but outsourcing manufacturing to foundries."
+        ],
+        "level_3": [
+          "I was founded by Jerry Sanders and seven others in Sunnyvale, California, in 1969.",
+          "I'm headquartered in Santa Clara, California, near my original founding location.",
+          "My CEO Lisa Su joined in 2014 and orchestrated my dramatic turnaround.",
+          "I went public in September 1972 on the New York Stock Exchange.",
+          "I was originally founded by former Fairchild Semiconductor employees."
+        ],
+        "level_4": [
+          "I acquired ATI Technologies for $5.4 billion in 2006, gaining graphics card expertise.",
+          "I spun off my manufacturing operations as GlobalFoundries in 2009 to become fabless.",
+          "I purchased Xilinx for $49 billion in 2022, my largest acquisition ever.",
+          "I nearly went bankrupt in the mid-2010s before my Zen architecture revival.",
+          "I gained market share from Intel in both consumer and data center markets after 2017."
+        ],
+        "level_5": [
+          "My ticker symbol AMD is listed on the NASDAQ stock exchange.",
+          "I had a cross-licensing agreement with Intel allowing me to produce x86-compatible processors.",
+          "I executed a 1-for-5 reverse stock split in May 2011 when my stock fell below $10.",
+          "My Athlon processor launched in 1999 was the first to reach 1 GHz clock speed.",
+          "I completed a 2-for-1 stock split in August 2000 during the dot-com boom."
+        ]
+      }
+    },
+    {
+      "ticker": "QCOM",
+      "company": "QUALCOMM Incorporated",
+      "sector": "Technology",
+      "questions": {
+        "level_1": [
+          "I'm a semiconductor and telecommunications company specializing in wireless technology.",
+          "I design chips that power smartphones and mobile devices globally.",
+          "I create processors and modems for mobile communications.",
+          "I hold thousands of patents related to wireless communications technology.",
+          "I'm a leader in 5G technology and mobile chipset development."
+        ],
+        "level_2": [
+          "My Snapdragon processors power many of the world's Android smartphones.",
+          "I develop modem chips that enable cellular connectivity in mobile devices.",
+          "My business includes licensing wireless technology patents to device manufacturers.",
+          "I provide chips for smartphones, tablets, laptops, automotive, and IoT devices.",
+          "My revenue comes from both chip sales and patent licensing fees."
+        ],
+        "level_3": [
+          "I was founded by Irwin Jacobs and six others in San Diego in 1985.",
+          "My name stands for 'Quality Communications.'",
+          "I'm headquartered in San Diego, California, where my founders established the company.",
+          "I went public in December 1991 on NASDAQ under my current ticker.",
+          "I pioneered CDMA technology that became fundamental to 3G cellular networks."
+        ],
+        "level_4": [
+          "I faced a major antitrust challenge from the FTC regarding my patent licensing practices.",
+          "I attempted to acquire NXP Semiconductors for $44 billion in 2018, but the deal was blocked.",
+          "I was fined billions by regulators in China, South Korea, and Europe for licensing practices.",
+          "I supply 5G modem chips to Apple after years of legal disputes.",
+          "I spun off my satellite communications business as Globalstar in the 1990s."
+        ],
+        "level_5": [
+          "My ticker symbol QCOM is listed on the NASDAQ stock exchange.",
+          "I invented Code Division Multiple Access (CDMA) technology in the late 1980s.",
+          "I was added to the S&P 500 index in December 2008.",
+          "I executed a 4-for-1 stock split in May 1999 during the telecom boom.",
+          "My OmniTRACS satellite system was one of my first commercial products in 1988."
+        ]
+      }
+    },
+    {
+      "ticker": "ORCL",
+      "company": "Oracle Corporation",
+      "sector": "Technology",
+      "questions": {
+        "level_1": [
+          "I'm a multinational computer technology corporation specializing in database software.",
+          "I develop and market database software, cloud systems, and enterprise software products.",
+          "I'm one of the largest enterprise software companies in the world.",
+          "My products include database management systems and cloud infrastructure services.",
+          "I'm known for aggressive acquisition strategy and enterprise software dominance."
+        ],
+        "level_2": [
+          "My flagship product is a relational database management system used by enterprises globally.",
+          "I provide cloud computing infrastructure, applications, and database services.",
+          "My business includes enterprise resource planning, customer relationship management, and supply chain software.",
+          "I compete with Amazon, Microsoft, and Google in cloud infrastructure.",
+          "My software powers critical business operations for thousands of large corporations."
+        ],
+        "level_3": [
+          "I was founded by Larry Ellison, Bob Miner, and Ed Oates in Santa Clara in 1977.",
+          "My original name was Software Development Laboratories before changing to Oracle.",
+          "I'm headquartered in Austin, Texas, after moving from Redwood City, California, in 2020.",
+          "I went public in March 1986 on NASDAQ, later moving to the New York Stock Exchange.",
+          "My founder Larry Ellison served as CEO until 2014 and remains executive chairman."
+        ],
+        "level_4": [
+          "I acquired Sun Microsystems for $7.4 billion in 2010, gaining Java and Solaris.",
+          "I purchased PeopleSoft for $10.3 billion in 2005 after a hostile takeover battle.",
+          "I acquired NetSuite for $9.3 billion in 2016, entering the cloud ERP market.",
+          "I bought Cerner for $28.3 billion in 2022, expanding into healthcare IT.",
+          "I was added to the Dow Jones Industrial Average in June 2024."
+        ],
+        "level_5": [
+          "My ticker symbol ORCL is listed on the New York Stock Exchange.",
+          "I was named after a CIA project that my founders worked on called 'Oracle.'",
+          "I executed a 2-for-1 stock split in March 2000 during the tech boom.",
+          "My database software captured over 40% of the global relational database market.",
+          "I moved my headquarters to Austin, Texas, in December 2020, following my founder's relocation."
+        ]
+      }
+    },
+    {
+      "ticker": "ADBE",
+      "company": "Adobe Inc.",
+      "sector": "Technology",
+      "questions": {
+        "level_1": [
+          "I'm a software company creating tools for content creation, design, and digital media.",
+          "I develop applications for graphic design, video editing, and web development.",
+          "My products are industry standards for creative professionals worldwide.",
+          "I pioneered the PDF file format used universally for documents.",
+          "I've transitioned from selling software licenses to a cloud-based subscription model."
+        ],
+        "level_2": [
+          "My Creative Cloud suite includes industry-leading design and video editing applications.",
+          "I provide tools for digital marketing, document management, and customer experience.",
+          "My flagship product is used by graphic designers, photographers, and illustrators globally.",
+          "I offer software for photo editing, illustration, video production, and web design.",
+          "My business model relies on recurring subscription revenue rather than one-time purchases."
+        ],
+        "level_3": [
+          "I was founded by John Warnock and Charles Geschke in Mountain View, California, in 1982.",
+          "My name comes from Adobe Creek that ran behind the founders' homes.",
+          "I'm headquartered in San Jose, California, in Silicon Valley.",
+          "I went public in August 1986 on NASDAQ under my current ticker.",
+          "My founders were former Xerox PARC researchers who left to commercialize their ideas."
+        ],
+        "level_4": [
+          "I introduced PostScript in 1984, revolutionizing desktop publishing.",
+          "I acquired Macromedia for $3.4 billion in 2005, gaining Flash and Dreamweaver.",
+          "I purchased Marketo for $4.75 billion in 2018, expanding into marketing automation.",
+          "I acquired Figma for $20 billion in 2022, though the deal was later abandoned due to regulatory issues.",
+          "I transitioned to Creative Cloud subscription model in 2013, initially facing customer backlash."
+        ],
+        "level_5": [
+          "My ticker symbol ADBE is listed on the NASDAQ stock exchange.",
+          "I developed the PDF (Portable Document Format) and released it for free in 1993.",
+          "I was added to the S&P 500 index in 1997.",
+          "I executed a 2-for-1 stock split in May 2005, one of several splits in my history.",
+          "My Photoshop software was originally created by Thomas Knoll and acquired in 1988."
+        ]
+      }
+    },
+    {
+      "ticker": "CRM",
+      "company": "Salesforce, Inc.",
+      "sector": "Technology",
+      "questions": {
+        "level_1": [
+          "I'm a cloud-based software company providing customer relationship management services.",
+          "I pioneered the software-as-a-service model for business applications.",
+          "I help companies manage customer relationships and business processes through the cloud.",
+          "I'm the world's leading CRM platform used by businesses globally.",
+          "I revolutionized enterprise software by delivering it over the internet rather than on-premises."
+        ],
+        "level_2": [
+          "My platform helps businesses manage sales, marketing, customer service, and analytics.",
+          "I provide cloud applications for sales automation, customer support, and marketing campaigns.",
+          "My products integrate with thousands of other business applications through my ecosystem.",
+          "I generate revenue through subscription fees for my cloud-based software services.",
+          "My platform enables companies to connect with customers across all digital channels."
+        ],
+        "level_3": [
+          "I was founded by Marc Benioff and three others in San Francisco in 1999.",
+          "My headquarters is in Salesforce Tower, the tallest building in San Francisco.",
+          "I went public in June 2004 on the New York Stock Exchange.",
+          "My founder Marc Benioff previously worked at Oracle before starting my company.",
+          "I pioneered the 1-1-1 model donating 1% of equity, product, and time to charity."
+        ],
+        "level_4": [
+          "I acquired Slack for $27.7 billion in 2021, my largest acquisition ever.",
+          "I purchased Tableau for $15.7 billion in 2019, expanding into data visualization.",
+          "I acquired MuleSoft for $6.5 billion in 2018 for API integration capabilities.",
+          "I bought Demandware for $2.8 billion in 2016, entering e-commerce software.",
+          "I was added to the Dow Jones Industrial Average in August 2020."
+        ],
+        "level_5": [
+          "My ticker symbol CRM perfectly represents my Customer Relationship Management business.",
+          "I held protests against traditional software companies with 'End of Software' campaigns in my early days.",
+          "I was added to the S&P 500 index in September 2008.",
+          "I've never executed a stock split since my IPO in 2004.",
+          "My Dreamforce conference has become one of the largest tech industry events globally."
+        ]
+      }
+    },
+    {
+      "ticker": "CMCSA",
+      "company": "Comcast Corporation",
+      "sector": "Communication Services",
+      "questions": {
+        "level_1": [
+          "I'm a telecommunications and media conglomerate providing cable, internet, and entertainment services.",
+          "I'm the largest broadcasting and cable television company in the world by revenue.",
+          "I provide residential internet, television, and phone services to millions of Americans.",
+          "I own major media and entertainment properties including theme parks and studios.",
+          "I'm the largest cable TV company in the United States by subscribers."
+        ],
+        "level_2": [
+          "My Xfinity brand provides cable TV, internet, and voice services to residential customers.",
+          "I own NBCUniversal, which includes television networks, film studios, and theme parks.",
+          "My business includes broadband internet, cable television, wireless services, and entertainment content.",
+          "I operate Universal theme parks in multiple countries around the world.",
+          "I compete with streaming services while also offering my own streaming platform."
+        ],
+        "level_3": [
+          "I was founded by Ralph J. Roberts in Tupelo, Mississippi, in 1963.",
+          "I'm headquartered in Philadelphia, Pennsylvania, in the Comcast Center.",
+          "I went public in 1972 and grew through aggressive acquisitions of cable systems.",
+          "I'm controlled by the Roberts family through a special class of supervoting shares.",
+          "I acquired AT&T Broadband in 2002 for $44.5 billion, becoming the largest cable company."
+        ],
+        "level_4": [
+          "I purchased NBCUniversal from General Electric for $30 billion in 2011-2013.",
+          "I acquired Sky plc for $39 billion in 2018, expanding into European pay-TV.",
+          "I launched Peacock streaming service in 2020 to compete with Netflix and Disney+.",
+          "I acquired DreamWorks Animation for $3.8 billion in 2016.",
+          "I was added to the S&P 500 index in 1997."
+        ],
+        "level_5": [
+          "My ticker symbol CMCSA (Class A shares) is listed on NASDAQ.",
+          "I own the Philadelphia Flyers NHL team and Wells Fargo Center arena.",
+          "I executed a 2-for-1 stock split in February 2004.",
+          "My attempted acquisition of Time Warner Cable for $45 billion was blocked by regulators in 2015.",
+          "I'm the parent company of Universal Pictures, founded in 1912."
+        ]
+      }
+    },
+    {
+      "ticker": "T",
+      "company": "AT&T Inc.",
+      "sector": "Communication Services",
+      "questions": {
+        "level_1": [
+          "I'm one of the largest telecommunications companies in the United States.",
+          "I provide wireless, broadband, and telecommunications services to millions of customers.",
+          "I'm a descendant of the Bell System telephone monopoly broken up in 1984.",
+          "I offer wireless service, fiber internet, and business communications solutions.",
+          "I'm one of the three major wireless carriers in the United States."
+        ],
+        "level_2": [
+          "My wireless network serves over 100 million subscribers across the United States.",
+          "I provide fiber internet, wireless service, and business networking solutions.",
+          "My business includes consumer wireless, business solutions, and broadband services.",
+          "I operate one of the largest 5G networks in the United States.",
+          "I focus on connectivity services after divesting entertainment assets."
+        ],
+        "level_3": [
+          "I was formed through the merger of SBC Communications and the original AT&T in 2005.",
+          "I'm headquartered in Dallas, Texas, at the Whitacre Tower.",
+          "My roots trace back to the Bell Telephone Company founded by Alexander Graham Bell.",
+          "I adopted the iconic AT&T name and logo after acquiring the original company.",
+          "I'm a direct descendant of Southwestern Bell, one of the Baby Bells."
+        ],
+        "level_4": [
+          "I acquired Time Warner for $85 billion in 2018, my largest acquisition ever.",
+          "I purchased DirecTV for $49 billion in 2015, entering satellite TV.",
+          "I spun off WarnerMedia and merged it with Discovery in 2022, creating Warner Bros. Discovery.",
+          "I divested DirecTV in 2021, exiting the satellite TV business.",
+          "I was a component of the Dow Jones Industrial Average from 1916 to 2015 and again from 1999 to 2020."
+        ],
+        "level_5": [
+          "My ticker symbol T is one of the shortest on the New York Stock Exchange.",
+          "I executed a 3-for-2 stock split in April 1998, one of several splits in my history.",
+          "I was removed from the Dow Jones Industrial Average in 2015, ending a 91-year run.",
+          "I've paid dividends for over 35 consecutive years, making me a dividend aristocrat.",
+          "My original Bell System monopoly was broken up on January 1, 1984, into seven regional companies."
+        ]
+      }
+    },
+    {
+      "ticker": "VZ",
+      "company": "Verizon Communications Inc.",
+      "sector": "Communication Services",
+      "questions": {
+        "level_1": [
+          "I'm one of the largest telecommunications companies providing wireless and broadband services.",
+          "I operate the largest wireless network in the United States by subscribers.",
+          "I provide wireless, fiber internet, and business communications nationwide.",
+          "I'm descended from one of the Baby Bell companies created in 1984.",
+          "I'm known for network reliability and extensive 5G coverage."
+        ],
+        "level_2": [
+          "My wireless network serves over 140 million subscribers across the United States.",
+          "I provide Fios fiber internet service in select markets.",
+          "My business includes consumer wireless, business solutions, and network services.",
+          "I invest billions annually in network infrastructure and 5G deployment.",
+          "I focus on core telecommunications after divesting media properties."
+        ],
+        "level_3": [
+          "I was formed through the merger of Bell Atlantic and GTE in 2000.",
+          "My name is a portmanteau of 'veritas' (Latin for truth) and 'horizon.'",
+          "I'm headquartered in New York City at 1095 Avenue of the Americas.",
+          "I went public as Verizon in 2000, though my predecessor companies were public earlier.",
+          "I'm descended from NYNEX and Bell Atlantic, Baby Bell companies."
+        ],
+        "level_4": [
+          "I acquired Vodafone's 45% stake in Verizon Wireless for $130 billion in 2014.",
+          "I purchased Yahoo for $4.5 billion in 2017, later writing down most of its value.",
+          "I acquired AOL for $4.4 billion in 2015, entering digital media and advertising.",
+          "I sold my media division including Yahoo and AOL to Apollo Global Management in 2021.",
+          "I was added to the Dow Jones Industrial Average in April 2004."
+        ],
+        "level_5": [
+          "My ticker symbol VZ is listed on the New York Stock Exchange.",
+          "I pioneered 4G LTE deployment in the United States in 2010.",
+          "I executed a 2-for-1 stock split in November 2001, shortly after forming.",
+          "I've paid increasing dividends for 17 consecutive years.",
+          "My 'Can You Hear Me Now?' advertising campaign became a cultural phenomenon in the 2000s."
+        ]
+      }
+    },
+    {
+      "ticker": "AAPL",
+      "company": "Apple Inc.",
+      "sector": "Technology",
+      "questions": {
+        "level_1": [
+          "I'm a technology company known for premium consumer electronics and have one of the world's most valuable brands.",
+          "I design and manufacture products that have revolutionized how people communicate, work, and consume media globally.",
+          "I'm an American multinational corporation that creates hardware, software, and online services with a devoted customer base.",
+          "I operate in the consumer electronics industry and am recognized for innovation and design excellence.",
+          "I'm a tech giant with products found in homes and offices worldwide, known for seamless integration across devices."
+        ],
+        "level_2": [
+          "I revolutionized personal computing, mobile phones, and digital music, and I operate a massive ecosystem of services.",
+          "My product portfolio includes smartphones, tablets, computers, smartwatches, and a thriving services business.",
+          "I generate significant revenue from both hardware sales and a growing services segment including streaming and cloud storage.",
+          "I'm known for creating products that work together seamlessly, from phones to laptops to wearable devices.",
+          "My business model combines premium hardware with subscription services, creating recurring revenue streams."
+        ],
+        "level_3": [
+          "My flagship products include a smartphone line that launched in 2007 and completely changed the mobile industry.",
+          "I'm headquartered in Cupertino, California, and my campus is known as one of the most innovative workspaces in the world.",
+          "My co-founder Steve Jobs returned to save me from near bankruptcy in 1997 and transformed me into the world's most valuable company.",
+          "I acquired Beats Electronics for $3 billion in 2014, my largest acquisition at the time.",
+          "My CEO Tim Cook took over in 2011 and has expanded my services business dramatically."
+        ],
+        "level_4": [
+          "I became the first publicly traded U.S. company to reach a $1 trillion market cap in August 2018.",
+          "My App Store launched in 2008 with 500 applications and now hosts millions of apps generating billions in revenue.",
+          "I introduced my revolutionary tablet device in 2010, creating an entirely new product category.",
+          "My annual product launch events in September are among the most watched tech presentations globally.",
+          "I stopped including chargers with my phones starting in 2020, citing environmental reasons."
+        ],
+        "level_5": [
+          "I executed a 4-for-1 stock split in August 2020, my fifth stock split in company history.",
+          "My iconic '1984' Super Bowl commercial, directed by Ridley Scott, introduced my Macintosh computer.",
+          "I was founded in a garage on April 1, 1976, by three individuals including Steve Jobs and Steve Wozniak.",
+          "My Think Different advertising campaign launched in 1997 featured iconic figures like Einstein and Gandhi.",
+          "I reached a $3 trillion market capitalization in January 2022, a first for any publicly traded company."
+        ]
+      }
+    },
+    {
+      "ticker": "MSFT",
+      "company": "Microsoft Corporation",
+      "sector": "Technology",
+      "questions": {
+        "level_1": [
+          "I'm a multinational technology corporation that has shaped the computing industry for decades.",
+          "I develop software, hardware, and cloud computing services used by billions of people and organizations worldwide.",
+          "I'm one of the Big Five American technology companies and have been a leader in enterprise technology.",
+          "I create products that power businesses, governments, and personal computing across the globe.",
+          "I'm a software giant that has successfully transitioned into cloud services and artificial intelligence."
+        ],
+        "level_2": [
+          "My operating system runs on the vast majority of personal computers worldwide.",
+          "I own one of the most popular productivity software suites used in offices globally.",
+          "My cloud computing platform competes with Amazon and Google as a top-three provider.",
+          "I've made major investments in gaming, owning one of the three major console platforms.",
+          "My business model has evolved from software licensing to cloud-based subscription services."
+        ],
+        "level_3": [
+          "I was founded by Bill Gates and Paul Allen in Albuquerque, New Mexico, in 1975.",
+          "My headquarters is located in Redmond, Washington, on a sprawling campus.",
+          "I acquired LinkedIn for $26.2 billion in 2016, my largest acquisition before my gaming purchases.",
+          "My CEO Satya Nadella transformed my culture and business strategy after taking over in 2014.",
+          "I became the world's most valuable publicly traded company in 2018, surpassing my longtime rival."
+        ],
+        "level_4": [
+          "I completed the largest acquisition in gaming history by purchasing Activision Blizzard for $68.7 billion in 2023.",
+          "My Windows 95 launch in August 1995 was one of the most significant product releases in tech history.",
+          "I invested $1 billion in OpenAI in 2019, giving me exclusive access to integrate GPT technology.",
+          "My Xbox gaming console first launched in 2001 to compete with Sony's PlayStation.",
+          "I faced a major antitrust lawsuit from the U.S. government in 1998 over browser bundling practices."
+        ],
+        "level_5": [
+          "My stock ticker symbol changed from MSFT on NASDAQ, where I've been listed since March 13, 1986.",
+          "I declared my first dividend in 2003, ending my status as a pure growth stock.",
+          "My original partnership was formed on April 4, 1975, before incorporating in 1981.",
+          "I conducted a 2-for-1 stock split nine times between 1987 and 2003.",
+          "My market capitalization first exceeded $3 trillion in January 2024."
+        ]
+      }
+    },
+    {
+      "ticker": "GOOGL",
+      "company": "Alphabet Inc.",
+      "sector": "Technology",
+      "questions": {
+        "level_1": [
+          "I'm a multinational technology conglomerate specializing in internet-related services and products.",
+          "I'm the parent company of the world's most popular search engine and various other technology ventures.",
+          "I generate the majority of my revenue through digital advertising across my platforms.",
+          "I'm one of the Big Five American technology companies with a market cap exceeding $1 trillion.",
+          "I invest heavily in artificial intelligence, autonomous vehicles, and moonshot technology projects."
+        ],
+        "level_2": [
+          "My search engine processes over 8 billion queries per day and dominates global market share.",
+          "I own the world's largest video-sharing platform, which I acquired in 2006.",
+          "My mobile operating system powers over 70% of smartphones globally.",
+          "I offer cloud computing services, email platforms, and productivity software used by billions.",
+          "My business model relies heavily on targeted advertising based on user data and search behavior."
+        ],
+        "level_3": [
+          "I was founded by two Stanford Ph.D. students in a garage in Menlo Park, California, in 1998.",
+          "My founders Larry Page and Sergey Brin created my original search algorithm called PageRank.",
+          "I restructured in 2015, creating a parent company to separate my core search business from experimental ventures.",
+          "My headquarters in Mountain View, California, is known as the Googleplex.",
+          "I went public in August 2004 with an unusual Dutch auction IPO priced at $85 per share."
+        ],
+        "level_4": [
+          "I acquired YouTube for $1.65 billion in 2006, one of my most successful purchases.",
+          "My self-driving car project Waymo began in 2009 and is now valued at over $30 billion.",
+          "I launched my Chrome web browser in 2008, which now commands over 60% global market share.",
+          "My Android operating system was acquired in 2005 for $50 million before the first iPhone launched.",
+          "I discontinued my Google+ social network in 2019 after it failed to compete with Facebook."
+        ],
+        "level_5": [
+          "My Class C shares (GOOG) have no voting rights, while Class A shares (GOOGL) have one vote each.",
+          "I conducted a stock split creating Class C shares in April 2014 to maintain founder control.",
+          "My corporate motto 'Don't be evil' was part of my code of conduct until my 2015 restructuring.",
+          "I paid $12.5 billion to acquire Motorola Mobility in 2012, then sold it two years later for $2.9 billion.",
+          "My name comes from 'googol,' a mathematical term for the number 1 followed by 100 zeros."
+        ]
+      }
+    },
+    {
+      "ticker": "AMZN",
+      "company": "Amazon.com, Inc.",
+      "sector": "Consumer Cyclical",
+      "questions": {
+        "level_1": [
+          "I'm a multinational technology company focusing on e-commerce, cloud computing, and digital streaming.",
+          "I started as an online marketplace and evolved into one of the world's most valuable companies.",
+          "I operate the world's largest cloud computing infrastructure platform used by millions of businesses.",
+          "I'm known for disrupting traditional retail and transforming how people shop and consume media.",
+          "I've expanded from my core business into groceries, healthcare, entertainment, and space exploration."
+        ],
+        "level_2": [
+          "My e-commerce platform connects millions of sellers with billions of customers worldwide.",
+          "I operate a subscription service offering free shipping, streaming video, and music for an annual fee.",
+          "My cloud computing division is the world's largest and most profitable, serving companies globally.",
+          "I own major grocery chains, streaming services, and have invested heavily in logistics and delivery infrastructure.",
+          "My business model prioritizes growth and customer satisfaction over short-term profitability."
+        ],
+        "level_3": [
+          "I was founded by Jeff Bezos in his garage in Bellevue, Washington, in 1994.",
+          "My original business plan was written during a cross-country drive from New York to Seattle.",
+          "I acquired Whole Foods Market for $13.7 billion in 2017, entering the physical grocery business.",
+          "My founder stepped down as CEO in 2021 but remains executive chairman and largest shareholder.",
+          "I'm headquartered in Seattle, Washington, with major offices in multiple cities worldwide."
+        ],
+        "level_4": [
+          "I launched Amazon Web Services (AWS) in 2006, which now generates over $80 billion in annual revenue.",
+          "My Prime membership program started in 2005 and now has over 200 million subscribers globally.",
+          "I introduced my voice-activated assistant and smart speaker line in 2014, pioneering the smart home market.",
+          "My acquisition of MGM Studios for $8.5 billion in 2022 expanded my entertainment content library.",
+          "I executed a 20-for-1 stock split in June 2022, my first split since 1999."
+        ],
+        "level_5": [
+          "I went public on May 15, 1997, at $18 per share under the ticker AMZN on NASDAQ.",
+          "My original company name was 'Cadabra,' but my founder changed it before launching.",
+          "I reported my first annual profit in 2003, nine years after founding.",
+          "My founder chose my name because it started with 'A' and referenced the world's largest river.",
+          "I briefly reached a $1 trillion market cap in September 2018, becoming the second U.S. company to do so."
+        ]
+      }
+    },
+    {
+      "ticker": "TSLA",
+      "company": "Tesla, Inc.",
+      "sector": "Consumer Cyclical",
+      "questions": {
+        "level_1": [
+          "I'm an American company that disrupted a traditional industry with innovative electric vehicle technology.",
+          "I manufacture products aimed at accelerating the world's transition to sustainable energy.",
+          "I design and produce electric vehicles, battery energy storage, and solar energy products.",
+          "I'm the world's most valuable automotive manufacturer despite producing fewer vehicles than traditional competitors.",
+          "I've revolutionized the automotive industry with over-the-air updates and advanced driver-assistance systems."
+        ],
+        "level_2": [
+          "My vehicles are known for their acceleration, range, and advanced autonomous driving capabilities.",
+          "I operate Gigafactories on multiple continents to manufacture batteries, vehicles, and energy products.",
+          "My business model includes direct-to-consumer sales, bypassing traditional dealership networks.",
+          "I produce electric sedans, SUVs, and trucks, with plans for additional vehicle categories.",
+          "My energy division creates solar panels, solar roofs, and large-scale battery storage systems."
+        ],
+        "level_3": [
+          "My CEO Elon Musk is one of the world's wealthiest individuals and is known for his active social media presence.",
+          "I was founded in 2003 by engineers Martin Eberhard and Marc Tarpenning, with Musk joining shortly after.",
+          "My first production vehicle, a sports car, launched in 2008 and was named after a famous inventor.",
+          "I went public in June 2010, becoming the first American car company to do so since 1956.",
+          "My headquarters moved from Palo Alto, California, to Austin, Texas, in 2021."
+        ],
+        "level_4": [
+          "My Model 3 sedan became the world's best-selling electric car and helped me achieve profitability.",
+          "I joined the S&P 500 index in December 2020, causing significant index fund buying.",
+          "My Cybertruck, announced in 2019 with a controversial angular design, finally began deliveries in 2023.",
+          "I acquired SolarCity for $2.6 billion in 2016, a company where my CEO was chairman.",
+          "My stock split 5-for-1 in August 2020, followed by another 3-for-1 split in August 2022."
+        ],
+        "level_5": [
+          "I'm named after inventor Nikola Tesla, who pioneered alternating current electrical systems.",
+          "My first Gigafactory in Nevada was announced in 2014 and opened in 2016.",
+          "I received a $465 million loan from the U.S. Department of Energy in 2010, which I repaid nine years early.",
+          "My CEO's compensation package, worth potentially over $50 billion, was struck down by a Delaware judge in 2024.",
+          "I briefly reached a $1 trillion market capitalization in October 2021 during a historic rally."
+        ]
+      }
+    },
+    {
+      "ticker": "NVDA",
+      "company": "NVIDIA Corporation",
+      "sector": "Technology",
+      "questions": {
+        "level_1": [
+          "I'm a technology company that designs specialized processors for graphics and artificial intelligence applications.",
+          "I manufacture chips that power everything from gaming computers to data centers and autonomous vehicles.",
+          "I've become one of the most valuable companies in the world due to the AI revolution.",
+          "I create graphics processing units that have become essential for machine learning and cryptocurrency mining.",
+          "I'm a semiconductor company that has benefited enormously from the boom in artificial intelligence."
+        ],
+        "level_2": [
+          "My GPUs are the industry standard for gaming, professional visualization, and AI training.",
+          "I supply the majority of processors used in AI data centers for companies like Microsoft and Google.",
+          "My gaming graphics cards are highly sought after by PC enthusiasts and professional gamers.",
+          "I've expanded from graphics into automotive technology, providing chips for self-driving systems.",
+          "My CUDA software platform has become the dominant framework for GPU-accelerated computing."
+        ],
+        "level_3": [
+          "I was founded in 1993 by Jensen Huang, Chris Malachowsky, and Curtis Priem in California.",
+          "My CEO Jensen Huang is known for his signature black leather jacket and enthusiastic keynote presentations.",
+          "I went public in January 1999, initially focused solely on gaming graphics cards.",
+          "My headquarters is located in Santa Clara, California, in the heart of Silicon Valley.",
+          "I acquired Mellanox Technologies for $7 billion in 2020 to strengthen my data center offerings."
+        ],
+        "level_4": [
+          "My GeForce RTX series introduced real-time ray tracing to gaming in 2018.",
+          "I attempted to acquire Arm Holdings for $40 billion in 2020, but the deal was blocked by regulators in 2022.",
+          "My H100 and A100 GPU chips have become the most sought-after processors for training large language models.",
+          "I completed a 4-for-1 stock split in July 2021, my first split since 2007.",
+          "My market cap first exceeded $1 trillion in May 2023 as AI demand surged."
+        ],
+        "level_5": [
+          "I executed a 10-for-1 stock split in June 2024 as my share price exceeded $1,000.",
+          "My name is a play on the Latin word 'invidia,' meaning envy, and also suggests 'in video.'",
+          "I joined the S&P 500 index in 2001 and the Dow Jones Industrial Average in November 2024.",
+          "My stock price increased over 200% in 2023 alone, driven by ChatGPT and generative AI excitement.",
+          "I briefly became the world's most valuable company in June 2024, surpassing Microsoft and Apple."
+        ]
+      }
+    },
+    {
+      "ticker": "META",
+      "company": "Meta Platforms, Inc.",
+      "sector": "Communication Services",
+      "questions": {
+        "level_1": [
+          "I'm a technology conglomerate that owns the world's largest social networking platforms.",
+          "I connect billions of people worldwide through multiple social media and messaging applications.",
+          "I generate nearly all my revenue through digital advertising on my family of apps.",
+          "I'm investing heavily in virtual reality and augmented reality technologies for the future.",
+          "I'm one of the Big Five American technology companies with a massive global user base."
+        ],
+        "level_2": [
+          "My flagship social network has over 3 billion monthly active users globally.",
+          "I own the world's most popular messaging app and a major photo and video-sharing platform.",
+          "My business model relies on targeted advertising using extensive user data and engagement metrics.",
+          "I've expanded into virtual reality hardware and software, selling VR headsets to consumers.",
+          "I'm building what I call the 'metaverse,' a virtual world for work, play, and social interaction."
+        ],
+        "level_3": [
+          "I was founded by Mark Zuckerberg in a Harvard dorm room in 2004.",
+          "My original platform was called 'TheFacebook' and was initially only for college students.",
+          "I went public in May 2012 with one of the largest tech IPOs in history at a $104 billion valuation.",
+          "I rebranded my company name in October 2021 to reflect my focus beyond social networking.",
+          "My headquarters is located in Menlo Park, California, at a campus formerly owned by Sun Microsystems."
+        ],
+        "level_4": [
+          "I acquired Instagram for $1 billion in 2012, which seemed expensive at the time but proved prescient.",
+          "I purchased WhatsApp for $19 billion in 2014, the largest venture-backed acquisition ever.",
+          "I acquired Oculus VR for $2 billion in 2014 to enter the virtual reality market.",
+          "My Reality Labs division lost over $10 billion in 2021 alone pursuing metaverse development.",
+          "I changed my company name from Facebook, Inc. to my current name in October 2021."
+        ],
+        "level_5": [
+          "My IPO on May 18, 2012, was marred by technical glitches on NASDAQ that delayed trading.",
+          "I introduced my 'Like' button in February 2009, which became one of the internet's most recognized features.",
+          "My stock price dropped nearly 25% in a single day in February 2022, losing over $200 billion in market value.",
+          "I was sued by the Winklevoss twins, who claimed my founder stole their idea, settling for $65 million.",
+          "My founder maintains voting control through Class B shares with 10 votes each, despite owning just 13% of stock."
+        ]
+      }
+    },
+    {
+      "ticker": "NFLX",
+      "company": "Netflix, Inc.",
+      "sector": "Communication Services",
+      "questions": {
+        "level_1": [
+          "I'm an entertainment company that transformed how people consume television and movies globally.",
+          "I pioneered the subscription-based streaming video service that disrupted traditional media.",
+          "I produce original content including award-winning series, films, and documentaries.",
+          "I operate in nearly every country worldwide with over 200 million subscribers.",
+          "I compete with traditional studios and newer streaming services for viewership and content."
+        ],
+        "level_2": [
+          "I started as a DVD rental service that mailed discs to customers' homes.",
+          "I pivoted to streaming in 2007, fundamentally changing the entertainment industry.",
+          "My business model relies on monthly subscription fees rather than advertising or per-view charges.",
+          "I invest billions annually in original content production to attract and retain subscribers.",
+          "I've faced increased competition from Disney, HBO, Amazon, and other streaming platforms."
+        ],
+        "level_3": [
+          "I was founded by Reed Hastings and Marc Randolph in Scotts Valley, California, in 1997.",
+          "My co-founder claimed the idea came from a $40 late fee at a video rental store, though this story is disputed.",
+          "I went public in May 2002 at $15 per share on NASDAQ under the ticker NFLX.",
+          "My first original series, 'House of Cards,' premiered in 2013 and won multiple Emmy awards.",
+          "I'm headquartered in Los Gatos, California, though I maintain production facilities worldwide."
+        ],
+        "level_4": [
+          "I introduced a controversial ad-supported subscription tier in November 2022 at a lower price point.",
+          "I cracked down on password sharing in 2023, requiring users to pay extra for additional households.",
+          "I executed a 7-for-1 stock split in July 2015, my second split after a 2-for-1 split in 2004.",
+          "My film 'Roma' won three Academy Awards in 2019, including Best Director and Best Foreign Language Film.",
+          "My stock price crashed over 70% in 2022 after announcing subscriber losses for the first time."
+        ],
+        "level_5": [
+          "I shipped my first DVD on March 10, 1998, offering a rental model with no due dates or late fees.",
+          "My recommendation algorithm, which personalizes content for users, has been refined over decades.",
+          "I separated my DVD and streaming businesses briefly in 2011 under the name 'Qwikster,' but reversed the decision after backlash.",
+          "I won my first Academy Award in 2018 for the documentary short 'Period. End of Sentence.'",
+          "My subscriber count peaked at 260.28 million in Q2 2024 before I stopped reporting this metric."
+        ]
+      }
+    },
+    {
+      "ticker": "DIS",
+      "company": "The Walt Disney Company",
+      "sector": "Communication Services",
+      "questions": {
+        "level_1": [
+          "I'm a multinational entertainment conglomerate with nearly a century of history.",
+          "I own some of the world's most valuable media franchises and entertainment properties.",
+          "I operate theme parks and resorts on multiple continents visited by millions annually.",
+          "I produce films, television shows, and streaming content recognized worldwide.",
+          "I'm known as a family entertainment company with beloved characters and stories."
+        ],
+        "level_2": [
+          "My acquisitions include major studios and entertainment companies that produce blockbuster films.",
+          "I operate cruise lines, own television networks, and run one of the largest streaming services.",
+          "My theme parks feature attractions based on my vast library of intellectual property.",
+          "I generate revenue from media networks, parks, experiences, studio entertainment, and streaming.",
+          "My brand is synonymous with magic, imagination, and wholesome family entertainment."
+        ],
+        "level_3": [
+          "I was founded by Walt Disney and his brother Roy in 1923 in Los Angeles.",
+          "My founder created an iconic cartoon mouse character in 1928 that remains my symbol.",
+          "I acquired Pixar Animation Studios for $7.4 billion in 2006, reuniting Steve Jobs with my board.",
+          "I purchased Marvel Entertainment for $4 billion in 2009, gaining the rights to thousands of characters.",
+          "I bought Lucasfilm for $4.05 billion in 2012, acquiring Star Wars and Indiana Jones franchises."
+        ],
+        "level_4": [
+          "I launched Disney+ streaming service in November 2019, reaching 100 million subscribers in just 16 months.",
+          "I acquired 21st Century Fox assets for $71.3 billion in 2019, my largest acquisition ever.",
+          "My first full-length animated film, 'Snow White and the Seven Dwarfs,' premiered in 1937.",
+          "I opened my first theme park in Anaheim, California, in 1955, revolutionizing entertainment.",
+          "My CEO Bob Iger returned from retirement in November 2022 after his successor lasted less than three years."
+        ],
+        "level_5": [
+          "I went public in 1957 and joined the Dow Jones Industrial Average in 1991.",
+          "My original company name was Disney Brothers Cartoon Studio before changing in 1926.",
+          "I executed a 3-for-1 stock split in July 1998, my most recent split.",
+          "My theme park in Orlando, Florida, opened on October 1, 1971, and is now the world's most visited.",
+          "I survived near-bankruptcy in the 1980s before Michael Eisner and Frank Wells turned me around."
+        ]
+      }
+    },
+    {
+      "ticker": "JPM",
+      "company": "JPMorgan Chase & Co.",
+      "sector": "Financial Services",
+      "questions": {
+        "level_1": [
+          "I'm a multinational financial services company and one of the largest banks in the world.",
+          "I provide investment banking, asset management, and retail banking services globally.",
+          "I'm consistently ranked among the most valuable banks by market capitalization.",
+          "I serve millions of consumers and many of the world's most prominent corporations and governments.",
+          "I'm one of the 'Big Four' banks in the United States with operations worldwide."
+        ],
+        "level_2": [
+          "I operate consumer banking branches across the United States serving retail customers.",
+          "My investment banking division advises on major mergers, acquisitions, and capital raises.",
+          "I manage trillions of dollars in assets for individuals, institutions, and governments.",
+          "My credit card business is one of the largest in the United States.",
+          "I provide corporate banking, treasury services, and commercial lending to businesses."
+        ],
+        "level_3": [
+          "I'm named after a famous American financier who helped save the U.S. economy during financial panics.",
+          "I'm headquartered in New York City at 383 Madison Avenue in midtown Manhattan.",
+          "My CEO Jamie Dimon has led me since 2005 and is one of the most respected banking executives.",
+          "I trace my history back to 1799 with the founding of one of my predecessor institutions.",
+          "I survived the 2008 financial crisis better than most competitors and grew stronger through acquisitions."
+        ],
+        "level_4": [
+          "I acquired Bear Stearns in March 2008 for $10 per share during the financial crisis.",
+          "I purchased Washington Mutual's assets in September 2008 from the FDIC after its failure.",
+          "I formed through the merger of J.P. Morgan & Co. and Chase Manhattan Corporation in 2000.",
+          "I was fined $13 billion in 2013 for mortgage-backed securities violations during the financial crisis.",
+          "I launched my own cryptocurrency, JPM Coin, in 2019 for institutional payment transfers."
+        ],
+        "level_5": [
+          "My predecessor institution The Manhattan Company was founded by Aaron Burr in 1799.",
+          "I'm the only bank that operates in all 48 contiguous U.S. states with physical branches.",
+          "My ticker symbol JPM has been listed on the New York Stock Exchange since 1969.",
+          "I acquired First Republic Bank in May 2023 after its failure during the regional banking crisis.",
+          "My assets exceeded $4 trillion in 2024, making me the largest bank in the United States."
+        ]
+      }
+    },
+    {
+      "ticker": "V",
+      "company": "Visa Inc.",
+      "sector": "Financial Services",
+      "questions": {
+        "level_1": [
+          "I'm a global payments technology company that facilitates electronic fund transfers worldwide.",
+          "I operate one of the world's largest payment processing networks connecting billions of accounts.",
+          "I enable secure digital transactions between consumers, merchants, and financial institutions.",
+          "I'm not a bank but rather a payment network that processes transactions for financial institutions.",
+          "My brand is recognized globally as a symbol of electronic payment and financial access."
+        ],
+        "level_2": [
+          "My network processes tens of billions of transactions annually across 200+ countries.",
+          "I generate revenue from transaction fees and service charges, not from interest or lending.",
+          "My payment cards include debit, credit, prepaid, and commercial products.",
+          "I compete with other payment networks while partnering with thousands of financial institutions.",
+          "My business benefits from the global shift away from cash toward digital payments."
+        ],
+        "level_3": [
+          "I was founded as a cooperative owned by banks in 1958, originally called BankAmericard.",
+          "I went public in March 2008 in one of the largest IPOs in U.S. history at the time.",
+          "I'm headquartered in San Francisco, California, with operations centers worldwide.",
+          "My name was adopted in 1976 as part of an international expansion strategy.",
+          "I sponsor major sporting events including the Olympics and World Cup soccer tournaments."
+        ],
+        "level_4": [
+          "I process over 65,000 transaction messages per second across my network infrastructure.",
+          "I acquired Plaid for $5.3 billion in 2020, though the deal was later abandoned due to regulatory concerns.",
+          "My blue and gold logo is one of the most recognized brand symbols globally.",
+          "I separated from Bank of America through a series of transactions culminating in 2007.",
+          "I joined the Dow Jones Industrial Average in August 2020, replacing ExxonMobil."
+        ],
+        "level_5": [
+          "My first credit card was introduced in Fresno, California, in September 1958 by Bank of America.",
+          "I changed my name from Visa International to Visa Inc. as part of my IPO restructuring.",
+          "My IPO in March 2008 raised $17.9 billion, the largest in U.S. history at that time.",
+          "I operate VisaNet, which has maintained 99.999% reliability since the 1980s.",
+          "My stock split 4-for-1 in March 2015, the only split in my public company history."
+        ]
+      }
+    },
+    {
+      "ticker": "WMT",
+      "company": "Walmart Inc.",
+      "sector": "Consumer Defensive",
+      "questions": {
+        "level_1": [
+          "I'm the world's largest retailer by revenue, operating thousands of stores globally.",
+          "I'm an American multinational retail corporation known for low prices and wide selection.",
+          "I operate supercenters, discount stores, and warehouse clubs across multiple countries.",
+          "I employ over 2 million people worldwide, making me one of the largest private employers.",
+          "I've revolutionized retail through supply chain efficiency and everyday low pricing strategies."
+        ],
+        "level_2": [
+          "My stores sell groceries, electronics, clothing, home goods, and nearly every consumer product category.",
+          "I operate a membership-based warehouse club chain under a different brand name.",
+          "My business model emphasizes high volume, low margins, and supply chain optimization.",
+          "I've invested heavily in e-commerce to compete with online retailers.",
+          "I'm the largest grocery retailer in the United States by revenue."
+        ],
+        "level_3": [
+          "I was founded by Sam Walton in Rogers, Arkansas, in 1962.",
+          "My first store opened on July 2, 1962, with a focus on rural communities underserved by competitors.",
+          "I'm headquartered in Bentonville, Arkansas, where my founder established the company.",
+          "I went public in October 1970 at $16.50 per share on the New York Stock Exchange.",
+          "I'm still controlled by the Walton family, which owns about 50% of my shares."
+        ],
+        "level_4": [
+          "I became the world's largest corporation by revenue in 2002, surpassing ExxonMobil.",
+          "I acquired Jet.com for $3.3 billion in 2016 to accelerate my e-commerce capabilities.",
+          "I own Sam's Club, the second-largest warehouse club chain in the United States.",
+          "I launched Walmart+ subscription service in 2020 to compete with Amazon Prime.",
+          "I executed a 2-for-1 stock split in April 1999, my eleventh split since going public."
+        ],
+        "level_5": [
+          "My original store motto was 'Satisfaction Guaranteed' before evolving to 'Save Money. Live Better.'",
+          "I opened my first international store in Mexico City in 1991, beginning global expansion.",
+          "I joined the Dow Jones Industrial Average in March 1997, replacing Woolworth Corporation.",
+          "My founder Sam Walton died in 1992, just months after receiving the Presidential Medal of Freedom.",
+          "I generate over $600 billion in annual revenue, more than the GDP of most countries."
+        ]
+      }
+    },
+    {
+      "ticker": "JNJ",
+      "company": "Johnson & Johnson",
+      "sector": "Healthcare",
+      "questions": {
+        "level_1": [
+          "I'm a multinational pharmaceutical and consumer health company with over 130 years of history.",
+          "I develop medical devices, pharmaceuticals, and consumer health products sold globally.",
+          "I'm one of the largest healthcare companies in the world by revenue and market capitalization.",
+          "My products are found in hospitals, pharmacies, and homes across every continent.",
+          "I'm known for my diverse healthcare portfolio spanning consumer goods to advanced medical technology."
+        ],
+        "level_2": [
+          "My consumer health division produces baby care products, over-the-counter medicines, and personal care items.",
+          "I manufacture prescription drugs for immunology, oncology, and infectious diseases.",
+          "My medical devices include surgical equipment, orthopedic products, and vision care items.",
+          "I invest billions annually in research and development for new treatments and medical innovations.",
+          "My business operates through three main segments: pharmaceuticals, medical devices, and consumer health."
+        ],
+        "level_3": [
+          "I was founded by three brothers in New Brunswick, New Jersey, in 1886.",
+          "My company credo, written in 1943, prioritizes responsibilities to patients, employees, and communities.",
+          "I'm headquartered in New Brunswick, New Jersey, where my founders started the business.",
+          "I've paid increasing dividends to shareholders for over 60 consecutive years, making me a dividend aristocrat.",
+          "My founders pioneered sterile surgical supplies and wound care products in the late 1800s."
+        ],
+        "level_4": [
+          "I acquired Actelion for $30 billion in 2017, my largest acquisition to strengthen my pharmaceutical portfolio.",
+          "I developed one of the COVID-19 vaccines, a single-dose vaccine authorized for emergency use in 2021.",
+          "I spun off my consumer health business in 2023, creating a new publicly traded company called Kenvue.",
+          "I faced thousands of lawsuits over talc-based baby powder allegedly containing asbestos.",
+          "I'm one of only two U.S. companies with a AAA credit rating from Standard & Poor's."
+        ],
+        "level_5": [
+          "My stock ticker JNJ has been listed on the New York Stock Exchange since September 24, 1944.",
+          "I was added to the Dow Jones Industrial Average in 1997, replacing Bethlehem Steel.",
+          "My famous baby powder was introduced in 1893 and became one of my most iconic products.",
+          "I completed a 3-for-1 stock split in June 2001, my most recent split.",
+          "My founders created the first mass-produced sterile surgical dressings in 1886."
+        ]
+      }
+    },
+    {
+      "ticker": "XOM",
+      "company": "Exxon Mobil Corporation",
+      "sector": "Energy",
+      "questions": {
+        "level_1": [
+          "I'm one of the world's largest publicly traded oil and gas companies by market capitalization.",
+          "I explore for, produce, refine, and distribute petroleum products globally.",
+          "I'm an American multinational energy corporation with operations in dozens of countries.",
+          "I'm a descendant of John D. Rockefeller's Standard Oil trust broken up in 1911.",
+          "I generate hundreds of billions in annual revenue from oil, natural gas, and petrochemicals."
+        ],
+        "level_2": [
+          "I operate oil refineries, chemical plants, and thousands of service stations worldwide.",
+          "My business spans upstream exploration, downstream refining, and chemical manufacturing.",
+          "I invest heavily in oil and gas exploration in deepwater, arctic, and unconventional resources.",
+          "I produce lubricants, fuels, and petrochemicals used in transportation and manufacturing.",
+          "I'm one of the largest producers of oil and natural gas among publicly traded companies."
+        ],
+        "level_3": [
+          "I was formed through the merger of Exxon and Mobil in 1999, creating the world's largest oil company.",
+          "I'm headquartered in Irving, Texas, after moving from New York in 1989.",
+          "My predecessor companies trace their roots to Standard Oil of New Jersey and Standard Oil of New York.",
+          "I operate the Esso and Mobil retail brands in different markets around the world.",
+          "My logo features a double X or two interlocking rectangles depending on the brand."
+        ],
+        "level_4": [
+          "I moved my headquarters from Irving, Texas, to Houston in 2023 to be closer to oil operations.",
+          "I acquired Pioneer Natural Resources for $59.5 billion in 2023, my largest deal since the Mobil merger.",
+          "I was removed from the Dow Jones Industrial Average in August 2020 after 92 years of inclusion.",
+          "I faced massive liability from the Exxon Valdez oil spill in Alaska in 1989.",
+          "I briefly became the world's most valuable publicly traded company in 2013, surpassing Apple."
+        ],
+        "level_5": [
+          "My current name was adopted on November 30, 1999, following the merger of equals.",
+          "I'm the largest direct descendant of John D. Rockefeller's Standard Oil monopoly.",
+          "My ticker symbol XOM has been on the New York Stock Exchange since the merger in 1999.",
+          "I was the world's most valuable company by market cap for decades until technology companies surpassed me.",
+          "I executed a 2-for-1 stock split in April 2001, shortly after the merger was completed."
+        ]
+      }
+    },
+    {
+      "ticker": "BAC",
+      "company": "Bank of America Corporation",
+      "sector": "Financial Services",
+      "questions": {
+        "level_1": [
+          "I'm one of the largest banking and financial services institutions in the United States.",
+          "I provide consumer banking, investment banking, and wealth management services globally.",
+          "I'm one of the 'Big Four' banks in America with operations across multiple continents.",
+          "I serve millions of consumer and small business clients through thousands of branches.",
+          "I'm a major player in credit cards, mortgages, and corporate lending."
+        ],
+        "level_2": [
+          "My retail banking network spans all 50 U.S. states with thousands of ATMs.",
+          "I offer investment banking services including underwriting, mergers and acquisitions advisory, and trading.",
+          "My wealth management division serves high-net-worth individuals and institutional clients.",
+          "I'm one of the largest credit card issuers in the United States.",
+          "My consumer banking includes checking accounts, savings, mortgages, and auto loans."
+        ],
+        "level_3": [
+          "I was founded in San Francisco in 1904 by Amadeo Giannini as Bank of Italy.",
+          "I'm headquartered in Charlotte, North Carolina, in the Bank of America Corporate Center.",
+          "My current CEO Brian Moynihan has led the bank since 2010 through recovery and growth.",
+          "I adopted my current name in 1930 after merging with other California banks.",
+          "I'm known for my red, white, and blue flag logo with a stylized eagle design."
+        ],
+        "level_4": [
+          "I acquired Merrill Lynch for $50 billion in 2008 during the financial crisis.",
+          "I purchased Countrywide Financial in 2008, which led to billions in mortgage-related settlements.",
+          "I received $45 billion in TARP funds during the 2008 crisis, which I repaid by 2009.",
+          "I agreed to a $16.65 billion settlement with the Department of Justice in 2014 over mortgage practices.",
+          "I merged with NationsBank in 1998, with NationsBank actually acquiring me but keeping my name."
+        ],
+        "level_5": [
+          "My founder Amadeo Giannini pioneered branch banking and lending to working-class immigrants.",
+          "I was the first U.S. bank to have over $1 trillion in assets.",
+          "My ticker symbol BAC is listed on the New York Stock Exchange.",
+          "I executed a 1-for-10 reverse stock split in May 2011 to boost share price after the financial crisis.",
+          "I financed the construction of the Golden Gate Bridge in San Francisco during the 1930s."
+        ]
+      }
+    },
+    {
+      "ticker": "PG",
+      "company": "The Procter & Gamble Company",
+      "sector": "Consumer Defensive",
+      "questions": {
+        "level_1": [
+          "I'm a multinational consumer goods corporation producing household and personal care products.",
+          "I manufacture some of the world's most recognizable brands found in homes globally.",
+          "I'm one of the largest advertisers in the world, spending billions annually on marketing.",
+          "My products span beauty, grooming, healthcare, fabric care, and home care categories.",
+          "I'm consistently ranked among the most admired companies and best employers."
+        ],
+        "level_2": [
+          "My portfolio includes over 65 brands, many of which generate over $1 billion in annual sales.",
+          "I produce laundry detergents, diapers, razors, toothpaste, and cleaning products.",
+          "My brands are distributed in over 180 countries worldwide through retailers.",
+          "I invest heavily in research and development to innovate new products and improve existing ones.",
+          "My business model focuses on branded consumer packaged goods with premium positioning."
+        ],
+        "level_3": [
+          "I was founded by William Procter and James Gamble in Cincinnati, Ohio, in 1837.",
+          "My founders were brothers-in-law who started as a candle and soap maker.",
+          "I'm headquartered in Cincinnati, Ohio, where my company has been based for nearly 200 years.",
+          "I pioneered brand management strategies in the 1930s that became standard in consumer goods.",
+          "I created one of the first daytime radio dramas, originating the term 'soap opera.'"
+        ],
+        "level_4": [
+          "I acquired Gillette for $57 billion in 2005, my largest acquisition ever.",
+          "I've been paying dividends for over 130 consecutive years, making me a dividend king.",
+          "I divested dozens of smaller brands in 2014-2016 to focus on my top-performing products.",
+          "My Tide detergent brand is the best-selling laundry detergent in North America.",
+          "I'm one of only two U.S. companies with a AAA credit rating."
+        ],
+        "level_5": [
+          "I supplied the Union Army with soap and candles during the Civil War, helping establish my business.",
+          "I was added to the Dow Jones Industrial Average in 1932 and have remained a member since.",
+          "My Ivory Soap, introduced in 1879, was marketed as '99 and 44/100 percent pure.'",
+          "I executed a 2-for-1 stock split in June 2004, one of many splits in my history.",
+          "My ticker symbol PG has been listed on the New York Stock Exchange since 1891."
+        ]
+      }
+    },
+    {
+      "ticker": "UNH",
+      "company": "UnitedHealth Group Incorporated",
+      "sector": "Healthcare",
+      "questions": {
+        "level_1": [
+          "I'm the largest healthcare company in the United States by revenue.",
+          "I provide health insurance and healthcare services to millions of Americans.",
+          "I operate through health benefits and healthcare services divisions.",
+          "I'm a diversified healthcare company spanning insurance, pharmacy, and medical care.",
+          "I manage health benefits for individuals, employers, and government programs."
+        ],
+        "level_2": [
+          "My insurance division covers over 50 million people through various health plans.",
+          "I own one of the largest pharmacy benefit managers in the United States.",
+          "My healthcare services include data analytics, care delivery, and revenue cycle management.",
+          "I participate in Medicare Advantage, Medicaid, and commercial insurance markets.",
+          "I employ tens of thousands of physicians and operate medical facilities across the country."
+        ],
+        "level_3": [
+          "I was founded in 1977 as United HealthCare Corporation in Minnesota.",
+          "I'm headquartered in Minnetonka, Minnesota, a suburb of Minneapolis.",
+          "My UnitedHealthcare division is the insurance arm serving individuals and employers.",
+          "My Optum division provides healthcare services including pharmacy benefits and care delivery.",
+          "I went public in 1984 and have grown through acquisitions and organic expansion."
+        ],
+        "level_4": [
+          "I acquired PacifiCare Health Systems for $8.1 billion in 2005, expanding my Medicare presence.",
+          "I purchased pharmacy benefit manager Catamaran in 2015 for $12.8 billion.",
+          "I acquired DaVita Medical Group for $4.9 billion in 2019, expanding care delivery capabilities.",
+          "I was added to the Dow Jones Industrial Average in September 2012.",
+          "I attempted to acquire Change Healthcare for $13 billion, facing antitrust challenges."
+        ],
+        "level_5": [
+          "My ticker symbol UNH is listed on the New York Stock Exchange.",
+          "I became the largest company in the Fortune 500 by revenue in 2024, surpassing Walmart.",
+          "I changed my corporate name from United HealthCare to UnitedHealth Group in 1998.",
+          "I executed a 2-for-1 stock split in June 2005, my most recent split.",
+          "My revenue exceeded $370 billion in 2023, larger than many countries' GDP."
+        ]
+      }
+    },
+    {
+      "ticker": "HD",
+      "company": "The Home Depot, Inc.",
+      "sector": "Consumer Cyclical",
+      "questions": {
+        "level_1": [
+          "I'm the largest home improvement retailer in the United States.",
+          "I operate warehouse-style stores selling building materials, tools, and home improvement products.",
+          "I serve both do-it-yourself consumers and professional contractors.",
+          "I'm known for my orange branding and distinctive warehouse store format.",
+          "I've revolutionized the home improvement retail industry since my founding."
+        ],
+        "level_2": [
+          "My stores average over 100,000 square feet and carry approximately 35,000 products.",
+          "I operate over 2,300 stores across the United States, Canada, and Mexico.",
+          "I offer installation services, tool rental, and professional contractor programs.",
+          "My business benefits from housing market trends, renovations, and new construction.",
+          "I compete primarily with Lowe's as the second-largest home improvement retailer."
+        ],
+        "level_3": [
+          "I was founded by Bernie Marcus and Arthur Blank in Atlanta, Georgia, in 1978.",
+          "My first stores opened in 1979 in Atlanta with a revolutionary warehouse retail concept.",
+          "I'm headquartered in Atlanta, Georgia, where my founders established the company.",
+          "I went public in 1981, just two years after opening my first stores.",
+          "My founders were fired from their previous employer, which inspired them to start me."
+        ],
+        "level_4": [
+          "I acquired Interline Brands for $1.6 billion in 2015 to expand my maintenance, repair, and operations business.",
+          "I was added to the Dow Jones Industrial Average in November 1999.",
+          "I suffered a major data breach in 2014 affecting 56 million payment cards.",
+          "I expanded into Mexico in 2001 and acquired Home Mart stores.",
+          "I completed a 3-for-2 stock split in May 1999, one of multiple splits in my history."
+        ],
+        "level_5": [
+          "My first two stores opened on June 22, 1979, in Atlanta, Georgia.",
+          "I pioneered the warehouse home center concept with products stacked high on industrial shelving.",
+          "My ticker symbol HD is listed on the New York Stock Exchange.",
+          "I opened my 100th store in 1985, just six years after founding.",
+          "My orange color branding was chosen to stand out from competitors and has become iconic."
+        ]
+      }
+    },
+    {
+      "ticker": "CVX",
+      "company": "Chevron Corporation",
+      "sector": "Energy",
+      "questions": {
+        "level_1": [
+          "I'm one of the world's largest integrated energy companies.",
+          "I engage in oil and gas exploration, production, refining, and marketing globally.",
+          "I'm an American multinational energy corporation descended from Standard Oil.",
+          "I operate refineries, pipelines, and service stations across multiple continents.",
+          "I'm one of the supermajor oil companies with operations in dozens of countries."
+        ],
+        "level_2": [
+          "My business includes upstream exploration and production and downstream refining and marketing.",
+          "I produce oil and natural gas from conventional and unconventional resources.",
+          "I operate under the Chevron, Texaco, and Caltex brands in different markets.",
+          "I invest in renewable energy and lower-carbon technologies alongside traditional oil and gas.",
+          "My chemical business produces petrochemicals and plastics used in manufacturing."
+        ],
+        "level_3": [
+          "I'm headquartered in San Ramon, California, in the San Francisco Bay Area.",
+          "I trace my lineage to Standard Oil Company of California (Socal), founded in 1879.",
+          "I adopted my current name in 1984 after restructuring Standard Oil of California.",
+          "I acquired Texaco in 2001 for $36 billion, creating the second-largest U.S. oil company.",
+          "My distinctive red, blue, and white chevron logo has been used since the 1930s."
+        ],
+        "level_4": [
+          "I acquired Gulf Oil in 1984 for $13.2 billion, the largest merger at that time.",
+          "I purchased Noble Energy for $5 billion in 2020, expanding my natural gas portfolio.",
+          "I agreed to acquire Hess Corporation for $53 billion in 2023, pending regulatory approval.",
+          "I'm the second-largest oil company in the United States after ExxonMobil.",
+          "I've paid dividends for over 35 consecutive years, making me a dividend aristocrat."
+        ],
+        "level_5": [
+          "My predecessor Standard Oil Company of California discovered oil in Saudi Arabia in 1938.",
+          "I'm a member of the Dow Jones Industrial Average, where I've been listed since 2008.",
+          "My ticker symbol CVX is listed on the New York Stock Exchange.",
+          "I sold my retail gasoline business in the western U.S. to focus on wholesale and refining.",
+          "I executed a 2-for-1 stock split in January 2004."
+        ]
+      }
+    },
+    {
+      "ticker": "KO",
+      "company": "The Coca-Cola Company",
+      "sector": "Consumer Defensive",
+      "questions": {
+        "level_1": [
+          "I'm the world's largest beverage company, producing soft drinks consumed globally.",
+          "My flagship product is the best-selling soft drink in history.",
+          "I manufacture, market, and distribute non-alcoholic beverages and syrups worldwide.",
+          "My brand is one of the most valuable and recognized in the world.",
+          "I operate in over 200 countries and territories with hundreds of beverage brands."
+        ],
+        "level_2": [
+          "My portfolio includes sparkling soft drinks, water, juice, sports drinks, and tea.",
+          "I operate through a franchise system where bottlers produce and distribute my products locally.",
+          "My business model involves selling concentrate and syrups to bottlers rather than finished beverages.",
+          "I compete with PepsiCo as the two dominant players in the soft drink industry.",
+          "My products are sold in restaurants, retail stores, and vending machines globally."
+        ],
+        "level_3": [
+          "My signature beverage was invented by pharmacist John Pemberton in Atlanta in 1886.",
+          "I'm headquartered in Atlanta, Georgia, where my original drink was first sold.",
+          "My distinctive red and white logo and script font are among the most recognized worldwide.",
+          "I went public in 1919 and have been traded continuously since.",
+          "My original formula was sold as a patent medicine before becoming a popular soft drink."
+        ],
+        "level_4": [
+          "I acquired Costa Coffee for $5.1 billion in 2019, entering the coffeehouse market.",
+          "I launched New Coke in 1985, one of the most infamous product launches in business history.",
+          "I've been a sponsor of the Olympic Games since 1928, one of the longest partnerships.",
+          "I purchased Vitaminwater's parent company Glacéau for $4.1 billion in 2007.",
+          "I was added to the Dow Jones Industrial Average in 1987 and remain a member."
+        ],
+        "level_5": [
+          "My original formula allegedly contained cocaine from coca leaves until 1903.",
+          "I sold my first glass of Coca-Cola for 5 cents at Jacob's Pharmacy in Atlanta on May 8, 1886.",
+          "My distinctive contour bottle shape was introduced in 1915 and trademarked in 1977.",
+          "I executed a 2-for-1 stock split in August 2012, one of many splits in my history.",
+          "My ticker symbol KO is listed on the New York Stock Exchange."
+        ]
+      }
+    },
+    {
+      "ticker": "PEP",
+      "company": "PepsiCo, Inc.",
+      "sector": "Consumer Defensive",
+      "questions": {
+        "level_1": [
+          "I'm a multinational food and beverage corporation competing globally in soft drinks and snacks.",
+          "I manufacture some of the world's most popular soft drinks, juices, and snack foods.",
+          "I'm the second-largest food and beverage company in the world by revenue.",
+          "My portfolio includes both beverage and food brands spanning multiple categories.",
+          "I compete directly with Coca-Cola in beverages while dominating the salty snack market."
+        ],
+        "level_2": [
+          "My beverage portfolio includes colas, sports drinks, juice, and bottled water brands.",
+          "I own the largest snack food company, producing chips, crackers, and other snacks.",
+          "My products are sold in over 200 countries and territories worldwide.",
+          "I operate through six business segments including North America beverages and snacks.",
+          "My business model integrates food and beverages, unlike my main beverage competitor."
+        ],
+        "level_3": [
+          "My namesake cola was created by pharmacist Caleb Bradham in 1893 in North Carolina.",
+          "I'm headquartered in Purchase, New York, in Westchester County.",
+          "I merged with Frito-Lay in 1965, creating the modern diversified company.",
+          "My CEO Indra Nooyi led me from 2006 to 2018, transforming my product portfolio.",
+          "I acquired Quaker Oats in 2001, adding Gatorade and other brands to my portfolio."
+        ],
+        "level_4": [
+          "I purchased Tropicana in 1998 for $3.3 billion, becoming a major juice producer.",
+          "I acquired SodaStream for $3.2 billion in 2018, entering the home carbonation market.",
+          "My Super Bowl halftime show sponsorship began in 2012 and has become highly visible.",
+          "I spun off my restaurant division in 1997, separating KFC, Taco Bell, and Pizza Hut.",
+          "I was added to the Dow Jones Industrial Average in 1935, replacing General Foods."
+        ],
+        "level_5": [
+          "My original drink was called 'Brad's Drink' before being renamed Pepsi-Cola in 1898.",
+          "I filed for bankruptcy twice in the early 20th century before becoming successful.",
+          "My ticker symbol PEP is listed on the NASDAQ stock exchange.",
+          "I launched the 'Pepsi Challenge' marketing campaign in 1975, directly comparing my taste to Coca-Cola.",
+          "My Frito-Lay subsidiary controls over 60% of the U.S. salty snack market."
+        ]
+      }
+    },
+    {
+      "ticker": "COST",
+      "company": "Costco Wholesale Corporation",
+      "sector": "Consumer Defensive",
+      "questions": {
+        "level_1": [
+          "I'm a membership-based warehouse club retailer operating globally.",
+          "I sell bulk quantities of merchandise at discount prices to members.",
+          "I'm the second-largest retailer in the world after Walmart by revenue.",
+          "My business model requires customers to pay annual membership fees to shop.",
+          "I'm known for my warehouse format, limited SKUs, and exceptional value pricing."
+        ],
+        "level_2": [
+          "I generate significant profits from membership fees rather than merchandise markups.",
+          "My warehouses average over 140,000 square feet and carry about 4,000 products.",
+          "I offer groceries, electronics, furniture, appliances, and various services to members.",
+          "I operate my own private label brand that's highly regarded for quality and value.",
+          "My business model includes a treasure hunt shopping experience with rotating inventory."
+        ],
+        "level_3": [
+          "I was founded by Jim Sinegal and Jeffrey Brotman in Seattle in 1983.",
+          "My first warehouse opened in Seattle, Washington, on September 15, 1983.",
+          "I'm headquartered in Issaquah, Washington, near Seattle.",
+          "I merged with Price Club in 1993, combining the two largest warehouse club operators.",
+          "I went public in December 1985 on NASDAQ under my current ticker symbol."
+        ],
+        "level_4": [
+          "I'm the largest retailer of organic foods and rotisserie chicken in the United States.",
+          "I pay higher wages than most retailers and offer generous employee benefits.",
+          "I maintain strict membership renewal rates exceeding 90% globally.",
+          "My $1.50 hot dog and soda combo has remained the same price since 1985.",
+          "I operate over 870 warehouses worldwide as of 2024."
+        ],
+        "level_5": [
+          "My ticker symbol COST has been on NASDAQ since my IPO in 1985.",
+          "I was added to the S&P 500 index in 1993 and to the Nasdaq-100 in 2001.",
+          "My private label Kirkland Signature brand was introduced in 1995 and generates over $70 billion annually.",
+          "I executed a 2-for-1 stock split in January 2000, one of several splits in my history.",
+          "My co-founder Jim Sinegal served as CEO from founding until 2012, maintaining my company culture."
+        ]
+      }
+    },
+    {
+      "ticker": "ABBV",
+      "company": "AbbVie Inc.",
+      "sector": "Healthcare",
+      "questions": {
+        "level_1": [
+          "I'm a biopharmaceutical company focused on discovering and developing advanced therapies.",
+          "I research, develop, and market pharmaceutical products globally.",
+          "I'm one of the largest pharmaceutical companies by market capitalization.",
+          "I specialize in immunology, oncology, neuroscience, and eye care treatments.",
+          "I was created through the separation of a larger pharmaceutical company's business."
+        ],
+        "level_2": [
+          "My flagship drug treats rheumatoid arthritis and other autoimmune conditions.",
+          "I develop specialty medicines targeting complex chronic diseases.",
+          "My business focuses on innovative biologics and small molecule therapies.",
+          "I invest heavily in research and development to create breakthrough medicines.",
+          "I generate tens of billions in annual revenue from my pharmaceutical portfolio."
+        ],
+        "level_3": [
+          "I was spun off from Abbott Laboratories in 2013 to focus on research-based pharmaceuticals.",
+          "I'm headquartered in North Chicago, Illinois, near Abbott's headquarters.",
+          "My CEO Richard Gonzalez led me from the spin-off through significant growth.",
+          "I began trading independently on January 2, 2013, on the New York Stock Exchange.",
+          "I retained Abbott's research-based pharmaceutical business in the separation."
+        ],
+        "level_4": [
+          "I acquired Allergan for $63 billion in 2020, adding Botox and other products to my portfolio.",
+          "My drug Humira became the best-selling pharmaceutical product globally before losing patent protection.",
+          "I acquired Pharmacyclics for $21 billion in 2015, gaining a key cancer treatment.",
+          "I was added to the S&P 500 index immediately upon my spin-off in 2013.",
+          "I've increased my dividend every year since my founding, maintaining Abbott's dividend aristocrat legacy."
+        ],
+        "level_5": [
+          "My ticker symbol ABBV was chosen as an abbreviation of Abbott and began trading on January 2, 2013.",
+          "I'm one of only a few companies to join the S&P 500 on their first day of trading.",
+          "My Humira drug generated over $20 billion in annual revenue at its peak.",
+          "I executed a 4-for-1 stock split in June 2024, my first split since spinning off.",
+          "My spin-off from Abbott Laboratories was structured as a tax-free distribution to shareholders."
+        ]
+      }
+    },
+    {
+      "ticker": "TMO",
+      "company": "Thermo Fisher Scientific Inc.",
+      "sector": "Healthcare",
+      "questions": {
+        "level_1": [
+          "I'm a scientific instrumentation and laboratory equipment company serving researchers globally.",
+          "I provide analytical instruments, reagents, consumables, and software to scientists.",
+          "I'm the world's largest supplier of scientific research and laboratory products.",
+          "I serve pharmaceutical, biotech, academic, and government laboratories worldwide.",
+          "I enable customers to make the world healthier, cleaner, and safer through my products."
+        ],
+        "level_2": [
+          "My products include laboratory equipment, analytical instruments, reagents, and consumables.",
+          "I support drug development, clinical diagnostics, and applied science research.",
+          "I provide instruments for analyzing chemicals, biological samples, and materials.",
+          "My business segments include life sciences, analytical instruments, specialty diagnostics, and lab products.",
+          "I serve customers in healthcare, research, industrial, and applied markets."
+        ],
+        "level_3": [
+          "I was formed through the merger of Thermo Electron and Fisher Scientific in 2006.",
+          "I'm headquartered in Waltham, Massachusetts, near Boston.",
+          "My CEO Marc Casper has led me since 2009 through significant growth and acquisitions.",
+          "I trace my roots to Fisher Scientific, founded in 1902, and Thermo Electron, founded in 1956.",
+          "I went public following the merger in 2006 under my current name."
+        ],
+        "level_4": [
+          "I acquired Life Technologies for $13.6 billion in 2014, expanding my biotech capabilities.",
+          "I purchased PPD Inc. for $17.4 billion in 2021, entering the clinical research organization market.",
+          "I played a crucial role in COVID-19 testing and vaccine development during the pandemic.",
+          "I was added to the S&P 500 in 2007, shortly after my formation through merger.",
+          "I acquired Patheon from JLL Partners for $7.2 billion in 2017."
+        ],
+        "level_5": [
+          "My ticker symbol TMO represents Thermo and has been on the New York Stock Exchange since the 2006 merger.",
+          "I have completed over 100 acquisitions since forming in 2006, growing through strategic M&A.",
+          "My market capitalization exceeded $200 billion in 2021, making me one of the largest healthcare companies.",
+          "I supply over 50 million customers with 1 million products globally.",
+          "My mission statement 'enabling customers to make the world healthier' guides my strategy."
+        ]
+      }
+    },
+    {
+"ticker": "MCD",
+"company": "McDonald's Corporation",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm a global fast-food chain serving billions of affordable burgers, fries, and meals through drive-thrus in over 100 countries worldwide.",
+"I specialize in quick-service dining with family-friendly options, consistent quality, and value meals for customers on the go every day.",
+"My restaurants provide convenient hot food prepared with standardized recipes, ensuring the same great taste and experience everywhere I operate.",
+"I'm known for drive-thru efficiency, all-day breakfast, and kids' meals with toys, catering to diverse tastes while prioritizing customer satisfaction.",
+"I operate mainly through franchise partners, leveraging a global supply chain and marketing to attract millions of daily visitors worldwide."
+],
+"level_2": [
+"My core menu includes hamburgers, cheeseburgers, and signature sandwiches like the Quarter Pounder, paired with world-famous french fries and apple pies.",
+"I offer breakfast favorites such as McMuffins, sausage patties, and hash browns available all day, plus bundled value meals for families.",
+"My sides feature classic french fries and desserts, alongside kids' options with toys, all designed for quick and satisfying meals.",
+"I provide a range of beverages from soft drinks to McCafé coffees, complementing my value meals and drive-thru convenience for busy lifestyles.",
+"My menu emphasizes affordability with value meals, kids' bundles including toys, and drive-thru service for on-the-go families and late-night cravings."
+],
+"level_3": [
+"I was founded in 1940 by brothers Richard and Maurice McDonald in San Bernardino, California, starting as a barbecue restaurant with carhop service.",
+"In 1955, Ray Kroc became my franchise agent after discovering the small burger spot, leading to rapid national expansion through franchising.",
+"My Golden Arches logo was introduced in 1953, symbolizing the welcoming drive-in experience that became a global icon of quick dining.",
+"I pioneered the Speedee Service System in 1948 for assembly-line food preparation, revolutionizing fast service and efficiency in restaurants.",
+"By 1961, Ray Kroc bought out the founding brothers for $2.7 million, taking full control and steering me toward worldwide dominance."
+],
+"level_4": [
+"I acquired the Boston Market chain in 2000 to diversify into home-style meals, though later divested to focus on core quick-service operations.",
+"In 2016, I purchased the intellectual property rights to develop CosMc's, a new beverage-focused concept inspired by my 1980s mascot.",
+"I invested $300 million in Dynamic Yield AI in 2019 to personalize digital menus based on weather, time, and customer preferences.",
+"My McDonald's All-American Games, started in 1977, showcase top high school basketball talent and have launched NBA careers like Kobe Bryant.",
+"I launched the McDonald's Mobile app in 2015, enabling ordering ahead, rewards earning, and exclusive deals to enhance customer loyalty."
+],
+"level_5": [
+"My Big Mac, introduced in 1967 as a three-decker special, has become a global menu icon with two all-beef patties and special sauce.",
+"I serve over 69 million customers daily across my vast network, making me the world's largest quick-service restaurant by systemwide sales.",
+"My market capitalization surpassed $200 billion in 2021, reflecting resilience amid economic shifts and ongoing global expansion efforts.",
+"Ronald McDonald, my cheerful clown mascot, first appeared in 1963 and has since become a beloved figure in children's charity work.",
+"I was among the first restaurants to install microwaves in 1947, speeding up food preparation and setting trends in kitchen technology."
+]
+}
+},
+{
+"ticker": "LOW",
+"company": "Lowe's Companies, Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm a leading home improvement retailer with thousands of stores offering tools, appliances, and materials for DIY projects and renovations.",
+"My customers include homeowners, renters, and contractors seeking quality products, expert advice, and installation services for home upgrades.",
+"I provide a wide selection of lumber, paint, plumbing supplies, and garden items to make home projects accessible and successful.",
+"I'm committed to customer success with in-store clinics, online planning tools, and partnerships for professional-grade installations.",
+"My stores feature dedicated pro desks, rental equipment, and seasonal displays to inspire and equip every level of project enthusiast."
+],
+"level_2": [
+"My product range spans lumber, paint, plumbing fixtures, electrical wiring, and hardware essentials for building and maintenance tasks.",
+"I carry top brands for appliances, flooring materials, outdoor power equipment, and smart home devices to suit modern needs.",
+"My garden centers stock plants, mulch, fertilizers, and lawn mowers, supporting seasonal outdoor projects and landscaping efforts.",
+"I offer rental services for tools like pressure washers, tillers, and scaffolding to help customers tackle larger jobs affordably.",
+"My online platform integrates with in-store pickup, delivery options, and virtual design consultations for seamless shopping experiences."
+],
+"level_3": [
+"I was founded in 1946 as Lowe's North Wilkesboro Hardware in North Carolina by Luther Lowe, starting as a small neighborhood store.",
+"In 1952, I became the first hardware chain to offer stock to the public, raising capital for expansion beyond regional limits.",
+"My orange logo and color scheme were established in the 1970s, symbolizing energy and reliability in the home improvement space.",
+"I went public on the New York Stock Exchange in 1961, funding growth into a national chain of warehouse-style superstores.",
+"By 1980, I shifted to larger format stores targeting do-it-yourself customers, phasing out smaller outlets for bigger selections."
+],
+"level_4": [
+"I acquired Eagle Hardware & Garden in 1999, gaining a foothold in the Pacific Northwest and enhancing my regional market presence.",
+"In 2018, I purchased Frontdoor Inc. to integrate home services like warranty and repair into my customer offerings.",
+"I launched the MyLowe's Rewards program in 2019, providing personalized perks and exclusive savings for frequent shoppers.",
+"During the 2020 pandemic, I experienced record sales as homeowners invested in improvement projects while staying at home.",
+"I partnered with Habitat for Humanity since 2003, donating materials and volunteer hours to support affordable housing initiatives."
+],
+"level_5": [
+"My headquarters in Mooresville, North Carolina, serves as the hub for operations, innovation, and strategy across my vast network.",
+"I employ over 300,000 associates, delivering expertise and service in stores, online, and through community engagement programs.",
+"My market capitalization exceeded $100 billion in 2021, underscoring my position as a home improvement industry leader.",
+"I'm the second-largest hardware chain in the U.S., trailing only my primary competitor in store count and revenue.",
+"My slogan 'How Doers Get More Done' debuted in 2019, celebrating the resourceful spirit of customers tackling home projects."
+]
+}
+},
+{
+"ticker": "SBUX",
+"company": "Starbucks Corporation",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm a global coffeehouse chain with locations in over 80 countries, serving premium roasted coffees and handcrafted beverages to millions daily.",
+"My stores create a welcoming 'third place' environment between home and work, fostering community over quality coffee and light bites.",
+"I prioritize ethically sourced beans, sustainable farming practices, and barista-crafted drinks to elevate everyday coffee moments.",
+"My menu features lattes, teas, pastries, and seasonal specials, paired with merchandise for at-home brewing and gifting.",
+"I'm dedicated to innovation in beverages, from cold foams to nitro brews, while maintaining a commitment to global responsibility."
+],
+"level_2": [
+"My signature offerings include lattes, cappuccinos, frappuccinos, and cold brews, crafted with espresso shots and fresh milk.",
+"I sell whole bean coffees, ground blends for different roasts, and single-serve pods compatible with home machines.",
+"My food selections feature muffins, sandwiches, yogurt parfaits, and limited-time baked goods to complement drinks.",
+"I provide a range of merchandise like mugs, tumblers, French presses, and branded apparel for coffee enthusiasts.",
+"My mobile app streamlines ordering, payment, and rewards earning, with features like location-based suggestions and reloadable cards."
+],
+"level_3": [
+"I was founded in 1971 at Seattle's Pike Place Market by three partners inspired by Italian coffee culture and local roasters.",
+"My name draws from Starbuck, the first mate in Herman Melville's Moby-Dick, evoking adventure and the sea's vastness.",
+"In 1987, Howard Schultz acquired the company after working as marketing director, transforming it into a global phenomenon.",
+"My green siren logo, a two-tailed mermaid, is rooted in 16th-century Norse woodcuts, symbolizing allure and seafaring lore.",
+"By 1992, I opened my first drive-thru, adapting to American preferences while expanding beyond Seattle's coffee scene."
+],
+"level_4": [
+"I acquired Teavana in 2012 for $620 million, expanding into premium teas and opening urban tea bars for immersive experiences.",
+"In 2018, I ended my packaged coffee joint venture with Nestlé, regaining full control over retail distribution worldwide.",
+"I introduced the Unicorn Frappuccino in 2017, a pastel-swirled viral hit that sparked social media frenzy and record sales.",
+"During the 2020 pandemic, I shifted to drive-thru and delivery partnerships, maintaining operations amid store closures.",
+"I opened my first international store in Tokyo in 1996, tailoring menus with matcha lattes to local tastes successfully."
+],
+"level_5": [
+"My circular green logo was simplified in 2011 to focus solely on the siren, marking a bold evolution in branding.",
+"I serve over 4 billion customer transactions annually, solidifying my role as the world's leading coffee retailer by locations.",
+"My market capitalization topped $100 billion in 2021, driven by digital growth and resilient global footprint expansion.",
+"Howard Schultz returned as interim CEO in 2022, guiding recovery from labor challenges and menu innovation efforts.",
+"My Reserve Roastery stores, starting in Seattle in 2014, showcase small-batch roasting and immersive coffee theater experiences."
+]
+}
+},
+{
+"ticker": "TJX",
+"company": "The TJX Companies, Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm an off-price retailer sourcing brand-name apparel, home goods, and accessories at deep discounts for value-savvy shoppers nationwide.",
+"My treasure-hunt model delivers ever-changing inventory of fashion and furnishings, appealing to bargain hunters seeking quality deals.",
+"I operate multiple store formats under one company, blending casual discovery with reliable savings on everyday essentials.",
+"My buying strategy focuses on opportunistic purchases of overstock and closeouts, passing savings to customers consistently.",
+"I'm dedicated to sustainable practices, donating unsold items and supporting communities through my foundation initiatives."
+],
+"level_2": [
+"My T.J. Maxx banner offers women's, men's, and kids' clothing alongside home decor and seasonal accents for versatile wardrobes.",
+"Marshalls provides family apparel, shoes, and gifts in a similar off-price format, emphasizing everyday value and variety.",
+"HomeGoods specializes in furniture, rugs, lighting, and tabletop items, curating stylish spaces at fraction-of-full prices.",
+"I carry jewelry, handbags, beauty products, and outerwear, sourcing from top designers for accessible luxury touches.",
+"My assortment rotates weekly, featuring up to 60% off department store prices on name brands customers love."
+],
+"level_3": [
+"I was founded in 1976 as the off-price division of Zayre department stores, pioneering the treasure-hunt retail concept.",
+"In 1987, I became an independent public company after acquiring the T.J. Maxx chain from Zayre's assets.",
+"My headquarters in Framingham, Massachusetts, oversees operations for a network spanning the U.S. and internationally.",
+"I launched my initial public offering in 1987, fueling expansion into new markets and store formats rapidly.",
+"By the 1990s, I introduced HomeGoods in 1992, diversifying beyond apparel into home furnishings successfully."
+],
+"level_4": [
+"I acquired the Winners chain in Canada in 1990, establishing a strong international presence in off-price retail.",
+"In 2003, I purchased Bob's Stores for sporting goods, though later divested to sharpen focus on core banners.",
+"My European expansion began with TK Maxx in 1994, adapting the model for U.K. and continental markets.",
+"During economic downturns like 2008, my sales surged as consumers sought value, proving the model's resilience.",
+"I launched Sierra in 2018 as an outlet for outdoor and activewear, targeting adventure enthusiasts with deals."
+],
+"level_5": [
+"My ticker TJX honors the T.J. Maxx foundation, reflecting my origins in off-price apparel innovation since inception.",
+"I operate over 4,800 stores globally, serving millions with a commitment to responsible sourcing and community giving.",
+"My market capitalization exceeds $100 billion, positioning me as the leading off-price retailer by revenue worldwide.",
+"Barbara Eisenberg Rentler has led as CEO since 2014, overseeing digital growth and sustainable supply chain efforts.",
+"My 'Maxx Life' philosophy celebrates the joy of discovery, with stores designed for eclectic, personalized shopping adventures."
+]
+}
+},
+{
+"ticker": "BKNG",
+"company": "Booking Holdings Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm a leading online travel agency connecting millions of users with hotels, flights, and experiences across the globe daily.",
+"My platforms enable seamless bookings for accommodations, transportation, and activities, empowering travelers with choice and convenience.",
+"I prioritize user reviews, transparent pricing, and flexible options to build trust in every trip planning decision.",
+"My company aggregates inventory from partners worldwide, offering competitive rates and personalized recommendations for journeys.",
+"I'm focused on innovation in travel tech, from mobile apps to AI-driven suggestions for dream vacations everywhere."
+],
+"level_2": [
+"My Booking.com brand specializes in hotels, vacation rentals, and flights with real-time availability and guest ratings.",
+"Priceline delivers package deals, car rentals, and 'Name Your Own Price' bidding for savvy travel savings.",
+"Kayak aggregates search results for flights, hotels, and cars, providing meta-search tools for comparison shopping.",
+"Agoda caters to Asia-Pacific markets with localized promotions on accommodations and regional experiences.",
+"OpenTable facilitates restaurant reservations and dining discovery through its vast network of eateries."
+],
+"level_3": [
+"I originated in 1996 as the online arm of IAC, starting with hotel reservations under the name Preview Travel.",
+"In 2005, I spun off from IAC as an independent entity, accelerating growth in digital travel bookings.",
+"My corporate name changed to Booking Holdings in 2018 to reflect my diverse portfolio of travel brands.",
+"I completed my initial public offering in 1999, raising capital for early expansion into European markets.",
+"By 2010, I acquired Priceline, merging strengths in opaque pricing and hotel inventory management."
+],
+"level_4": [
+"I purchased Kayak for $1.8 billion in 2013, enhancing meta-search capabilities across flights and accommodations.",
+"In 2018, I acquired OpenTable for $2.6 billion, integrating dining into the full travel experience seamlessly.",
+"I introduced the Genius loyalty program in 2015, rewarding frequent bookers with discounts and upgrades.",
+"During the 2020 pandemic, I implemented flexible cancellation policies to support affected travelers worldwide.",
+"I expanded into rental cars with the 2010 acquisition of Rentalcars.com, bolstering transportation offerings."
+],
+"level_5": [
+"My market capitalization surpassed $100 billion in 2021, driven by recovery in leisure and business travel demand.",
+"Glenn D. Fogel has served as CEO since 2016, navigating digital transformation and global regulatory challenges.",
+"I process over 1 million bookings daily, serving users in more than 220 countries and territories worldwide.",
+"My logo features a simple suitcase icon, symbolizing the ease of packing for adventures with my platforms.",
+"Booking Holdings encompasses a family of brands that together facilitate billions in annual gross bookings."
+]
+}
+},
+{
+"ticker": "ORLY",
+"company": "O'Reilly Automotive, Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm a premier auto parts retailer supplying essential components, tools, and advice to DIY mechanics and professionals alike.",
+"My stores stock replacement parts for vehicles, offering free battery testing and loaner tools for convenient repairs.",
+"I serve customers with everything from brakes to batteries, emphasizing quality brands and expert guidance on-site.",
+"My commercial division supports fleets and repair shops with bulk ordering and dedicated delivery services nationwide.",
+"I'm dedicated to keeping vehicles running smoothly, with an online catalog for quick lookups and same-day pickup options."
+],
+"level_2": [
+"My inventory includes alternators, starters, radiators, and timing belts for engine and cooling system maintenance.",
+"I offer wiper blades, air and oil filters, plus antifreeze and transmission fluids for routine vehicle care.",
+"My tools department features diagnostic scanners, socket sets, and jacks for both hobbyists and pros.",
+"Commercial customers access specialized parts catalogs and inventory management through my dedicated programs.",
+"Duralast, my house brand, provides reliable, warrantied parts like batteries and shocks at competitive prices."
+],
+"level_3": [
+"I was established in 1957 in Springfield, Missouri, by the O'Reilly family as a single auto parts store.",
+"My name honors founder Charles F. O'Reilly, who built the business on customer service and parts expertise.",
+"I completed my initial public offering in 1993, enabling expansion across the Midwest and beyond regionally.",
+"My first store outside Missouri opened in 1975, marking the start of national growth in auto retailing.",
+"By the 2000s, I diversified into Mexico with over 600 stores, adapting to local vehicle needs."
+],
+"level_4": [
+"I acquired Midwest Auto Parts Distributors in 1998, strengthening supply chain for regional dominance in parts.",
+"In 2008, I purchased CSK Auto Corporation for $1.2 billion, adding 1,300 stores to my network.",
+"I established O'Reilly Auto Parts University in 2010 for associate training in sales and technical skills.",
+"During the 2020 pandemic, my online sales and curbside pickup surged to meet home repair demands.",
+"I entered the Canadian market in 2016 by acquiring Groupe PDI, expanding North American footprint."
+],
+"level_5": [
+"My market capitalization exceeds $50 billion, reflecting leadership in the aftermarket auto parts sector.",
+"David E. O'Reilly has been CEO since 2005, guiding acquisitions and digital innovation strategies.",
+"I operate over 6,000 stores, serving millions with a focus on vehicle maintenance and safety.",
+"My slogan 'Better Parts, Better Service, Better Cars' underscores commitment to quality and support.",
+"I'm the largest U.S. auto parts retailer by store count, ahead of key competitors in coverage."
+]
+}
+},
+{
+"ticker": "MAR",
+"company": "Marriott International, Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm a worldwide hospitality leader managing luxury hotels, resorts, and branded residences for discerning business and leisure travelers.",
+"My portfolio spans over 30 brands, from upscale full-service properties to select-service accommodations in key destinations.",
+"I deliver exceptional guest experiences through personalized service, loyalty rewards, and innovative amenities worldwide.",
+"My company focuses on sustainable operations, community engagement, and technology to enhance every stay seamlessly.",
+"I'm committed to diversity and inclusion, with properties in over 140 countries serving diverse guest needs."
+],
+"level_2": [
+"My Marriott Hotels brand offers full-service accommodations for conferences and family vacations with extensive facilities.",
+"Ritz-Carlton provides ultra-luxury escapes with world-class spas, fine dining, and bespoke concierge services.",
+"JW Marriott delivers upscale hospitality blending local culture with consistent global standards for relaxation.",
+"My extended-stay options like Residence Inn cater to longer visits with kitchenettes and home-like comforts.",
+"Bonvoy loyalty program lets members earn points across stays, flights, and experiences for redemptions."
+],
+"level_3": [
+"I trace my roots to 1927 when J. Willard Marriott opened a root beer stand in Washington, D.C., evolving into hospitality.",
+"In 1957, I debuted my first hotel, the Twin Bridges Motor Hotel in Arlington, Virginia, near the capital.",
+"My name derives from founder J. Willard Marriott, who expanded from A&W franchises to full-service lodging.",
+"I completed my public offering in 1953 as Hot Shoppes, funding early growth in roadside eateries and motels.",
+"By the 1960s, I ventured internationally with the Key Bridge Marriott in Rosslyn, Virginia, as flagship."
+],
+"level_4": [
+"I acquired Promus Hotel Corporation in 1999 for $2.5 billion, adding brands like Embassy Suites and Hampton.",
+"In 2015, I purchased Delta Hotels, bolstering my midscale offerings in Canada and North America.",
+"I launched the Edition brand in 2010 with Ian Schrager, focusing on stylish, boutique hotel experiences.",
+"During the 2020 pandemic, I introduced flexible booking policies and enhanced cleaning protocols for safety.",
+"I expanded my timeshare arm with the 2012 acquisition of ILG, rebranded as Marriott Vacations Worldwide."
+],
+"level_5": [
+"My market capitalization surpassed $50 billion in 2021, fueled by recovery and portfolio diversification efforts.",
+"Anthony Capuano has led as CEO since 2020, steering post-pandemic growth and digital transformation initiatives.",
+"I manage over 8,000 properties, welcoming millions annually with a focus on experiential hospitality.",
+"My eagle logo symbolizes soaring aspirations and excellence in guest service since the 1960s.",
+"Marriott Bonvoy boasts over 190 million members, the largest loyalty program in the hospitality industry."
+]
+}
+},
+{
+"ticker": "ROST",
+"company": "Ross Stores, Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm the largest off-price apparel retailer in the U.S., offering brand-name fashion and home goods at up to 60% savings.",
+"My treasure-hunt shopping experience features rotating inventory of clothing, shoes, and decor for stylish bargains.",
+"I cater to value-conscious families with casual, active, and formal wear across all age groups in clean stores.",
+"My buying team sources opportunistically from vendors, ensuring fresh selections of quality items weekly.",
+"I'm dedicated to community support, donating unsold merchandise and volunteering through my foundation programs."
+],
+"level_2": [
+"My women's department includes dresses, tops, and jeans from designers at department store prices reduced significantly.",
+"Men's offerings feature polo shirts, slacks, and outerwear, while kids' section has school clothes and playwear.",
+"Home department stocks bedding, curtains, lamps, and accents for quick room refreshes on a budget.",
+"Accessories like handbags, jewelry, and scarves add finishing touches to outfits at exceptional value.",
+"Shoes range from sneakers to heels, with sizes for the whole family in my spacious, organized footwear area."
+],
+"level_3": [
+"I began in 1957 as Ross Jr. Department Store in San Bruno, California, founded by brothers Stuart and Charles Ross.",
+"In 1982, I rebranded to Ross Dress for Less, shifting fully to the off-price model with first standalone store.",
+"My headquarters in Dublin, California, coordinates buying, distribution, and expansion for domestic and international operations.",
+"I launched my initial public offering in 1985, raising funds for rapid store openings across the West Coast.",
+"By the 1990s, I introduced HomeGoods concepts, though later spun it off to focus on apparel core strengths."
+],
+"level_4": [
+"I acquired Catherines Plus Size in 2013, expanding into women's plus-size apparel before eventual divestiture.",
+"In 2019, I launched dd's DISCOUNTS as a budget tier, targeting lower-income shoppers with everyday essentials.",
+"I reached my 1,900th store milestone in 2023, celebrating growth amid e-commerce and economic shifts.",
+"During the 2008 recession, my comparable store sales rose 8%, thriving on consumer bargain-seeking behavior.",
+"My European arm TK Maxx, started in 1994, adapted the model successfully for U.K. and Irish markets."
+],
+"level_5": [
+"My ticker ROST nods to founders Ross brothers, symbolizing the off-price innovation that built my empire.",
+"I operate nearly 2,000 stores, serving budget-savvy shoppers with a commitment to sustainable fashion practices.",
+"My market capitalization tops $50 billion, establishing me as the off-price sector's undisputed leader.",
+"Barbara Rentler, CEO since 2014, has driven digital sales and supply chain efficiencies for future growth.",
+"My 'Dress for Less' ethos celebrates the excitement of discovery, with stores fostering joyful, eclectic shopping."
+]
+}
+},
+{
+"ticker": "LULU",
+"company": "Lululemon Athletica Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm a technical athletic apparel company designed for yoga, running, and training, blending performance fabrics with lifestyle fashion.",
+"My products empower active individuals with buttery-soft, sweat-wicking gear that moves with the body during workouts.",
+"I foster a community around wellness, mindfulness, and sweat life, with stores serving as hubs for events and classes.",
+"My focus on innovation includes proprietary fabrics like Nulu for stretch and Silverescent for odor control in activewear.",
+"I'm committed to sustainability, using recycled materials and ethical labor in my global supply chain operations."
+],
+"level_2": [
+"My women's Align pants are buttery-soft for yoga, while Scuba hoodies provide cozy post-workout comfort layers.",
+"Men's ABC pants offer versatile four-way stretch for office-to-gym transitions, paired with Pace breakers for running.",
+"Accessories include Everywhere bags, energy bras, and Align tanks, all engineered for support and style.",
+"My fabrics feature moisture-wicking and compression technologies, ensuring comfort from studio to street seamlessly.",
+"I sell mats, blocks, and water bottles, complementing apparel with tools for complete sweat life routines."
+],
+"level_3": [
+"I was founded in 1998 by Chip Wilson in Vancouver, inspired by yoga studios and high-performance surfwear designs.",
+"My first store opened in November 2000 on West 4th Avenue, quickly gaining traction among local fitness enthusiasts.",
+"I completed my initial public offering in 2007 on Nasdaq, funding expansion into the U.S. and beyond borders.",
+"My name derives from a Japanese phrase for ease of pronunciation, chosen to appeal globally from inception.",
+"By 2010, I launched men's apparel, diversifying from women's yoga roots into broader active lifestyle offerings."
+],
+"level_4": [
+"I acquired Mirror, a connected fitness platform, for $500 million in 2020 to integrate digital wellness experiences.",
+"In 2022, I secured exclusive rights to Peloton apparel, expanding my influence in connected fitness markets.",
+"I introduced Wunder Under pants in 2015, becoming a bestseller for versatile workout and casual wear.",
+"During the 2020 pandemic, loungewear demand exploded, boosting sales of Align pants and soft recovery items.",
+"I opened my first dedicated men's store in 2013 in New York, marking a milestone in gender expansion."
+],
+"level_5": [
+"My market capitalization exceeded $50 billion in 2021, propelled by e-commerce growth and international store openings.",
+"Calvin McDonald, CEO since 2018, has overseen retail evolution and sustainability commitments like Impact Agenda.",
+"I operate over 600 stores worldwide, with a sweat collective community hosting thousands of free classes annually.",
+"My interlocking 'A' logo represents athletica, symbolizing the active, mindful lifestyle I champion globally.",
+"I target $12.5 billion in annual revenue by 2026, focusing on men's growth and direct-to-consumer channels."
+]
+}
+},
+{
+"ticker": "TGT",
+"company": "Target Corporation",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm a stylish big-box retailer offering trendy apparel, home essentials, and groceries at accessible prices for everyday shoppers.",
+"My stores blend design-forward merchandise with convenience, from beauty to baby gear, inspiring joyful discoveries.",
+"I prioritize guest experience with clean aisles, helpful teams, and exclusive collaborations for unique finds.",
+"My private labels like Goodfellow & Co. deliver quality fashion and home items at value-driven prices.",
+"I'm focused on community giving, sustainability, and digital tools like same-day fulfillment for modern lifestyles."
+],
+"level_2": [
+"My apparel includes Cat & Jack for kids' trendy clothes and A New Day for women's casual wear selections.",
+"Grocery aisles feature Good & Gather fresh foods, plus household staples and seasonal baking supplies.",
+"Home department offers Threshold decor and Project 62 furniture for stylish, affordable living spaces.",
+"Beauty section stocks drugstore favorites, while electronics include headphones and smart home devices.",
+"My Circle app delivers personalized deals, cartwheel savings, and drive-up pickup for convenience."
+],
+"level_3": [
+"I originated in 1902 as the Dayton Dry Goods Company in Minneapolis by George Dayton, starting as upscale department store.",
+"In 1962, I launched the first Target discount store in Roseville, Minnesota, revolutionizing mass-market retailing.",
+"My bullseye logo, introduced in 1968, became a symbol of value and target marketing to middle-class shoppers.",
+"I transitioned from Dayton Hudson Corporation in 2000, fully rebranding to focus on the discount format.",
+"By the 1970s, I expanded nationwide with superstores combining groceries and general merchandise offerings."
+],
+"level_4": [
+"I acquired Shipt in 2017 for $550 million, enabling same-day delivery from local stores to customers.",
+"In 2018, I purchased Grand Junction's same-day delivery tech to enhance fulfillment network capabilities.",
+"I debuted Target+ marketplace in 2020, adding third-party sellers for expanded online assortment.",
+"My Black Friday events draw crowds with doorbusters, while holiday collaborations boost seasonal sales.",
+"I partnered with Ulta Beauty in 2021 for in-store shops, merging cosmetics with everyday shopping."
+],
+"level_5": [
+"My market capitalization hovers over $70 billion, solidifying my role as a retail innovation powerhouse.",
+"Brian Cornell, CEO since 2014, has driven omnichannel growth and private label expansions successfully.",
+"I operate nearly 2,000 stores, serving tens of millions with a focus on inclusive and sustainable practices.",
+"My 'Expect More. Pay Less.' slogan captures the blend of style, value, and service I deliver.",
+"I'm renowned for designer collaborations like Lilly Pulitzer, infusing affordable luxury into mass retail."
+]
+}
+},
+{
+"ticker": "EBAY",
+"company": "eBay Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm a pioneering online marketplace where millions buy and sell everything from collectibles to cars across the globe.",
+"My auction-style listings and fixed-price options create dynamic trading for new, used, and unique items daily.",
+"I build trust through buyer protection, seller ratings, and secure payments via integrated financial services.",
+"My categories span electronics, fashion, vehicles, and parts, catering to hobbyists and everyday shoppers alike.",
+"I'm evolving with AI tools for personalized recommendations and easier global cross-border transactions."
+],
+"level_2": [
+"Electronics category includes smartphones, laptops, and gaming consoles from leading brands at competitive bids.",
+"Fashion offerings feature clothing, shoes, handbags, and vintage pieces for style across all budgets.",
+"My Motors section specializes in cars, motorcycles, parts, and accessories for automotive enthusiasts.",
+"Collectibles cover coins, stamps, comics, and art, with authentication services for high-value trades.",
+"Home & Garden has furniture, decor, and tools, while Books includes rare editions and textbooks."
+],
+"level_3": [
+"I was launched in September 1995 by Pierre Omidyar as AuctionWeb on his personal website in San Jose.",
+"My inaugural sale was a broken laser pointer that sold for $14.83 to a collector, proving the concept.",
+"I completed my IPO in September 1998, skyrocketing from $18 to $58 per share on opening day.",
+"The name eBay shortened from Echo Bay Technologies, after Omidyar's consulting firm inspired by the bay.",
+"By 2000, I acquired PayPal to handle payments, revolutionizing secure e-commerce transactions."
+],
+"level_4": [
+"I purchased StubHub in 2007 for $300 million, dominating secondary ticket market for live events.",
+"In 2015, I spun off PayPal as an independent company, allowing each to focus on core strengths.",
+"I debuted eBay Motors in 2000, becoming the go-to for vehicle sales and parts online.",
+"My Cyber Monday events peak with flash sales, drawing millions for holiday shopping sprees.",
+"I acquired GSI Commerce in 2011 for $2.4 billion, boosting enterprise e-commerce solutions."
+],
+"level_5": [
+"My market capitalization circles $30 billion, with steady growth in authenticated luxury and motors segments.",
+"Jamie Iannone, CEO since 2020, is steering AI enhancements and global marketplace expansions.",
+"I boast 132 million active buyers, processing billions in annual gross merchandise volume.",
+"My wordmark logo, refreshed in 2012, evokes simplicity and the joy of unexpected finds.",
+"eBay facilitates $100 billion in GMV yearly, connecting communities through unique trading experiences."
+]
+}
+},
+{
+"ticker": "AZO",
+"company": "AutoZone, Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm a top auto parts retailer providing essential replacements, tools, and diagnostics for vehicle maintenance and repairs.",
+"My stores offer free services like battery testing and code scanning to help customers diagnose issues quickly.",
+"I supply parts for cars, trucks, and SUVs, serving both weekend warriors and full-time mechanics alike.",
+"My commercial program delivers bulk orders and inventory management for professional shops and fleets.",
+"I'm focused on quality brands and lifetime warranties, ensuring reliable performance for every drive."
+],
+"level_2": [
+"My shelves stock alternators, starters, and radiators for electrical and cooling system overhauls.",
+"I carry wiper blades, fuel filters, and brake pads for safety and performance upgrades.",
+"Tools include multimeters, torque wrenches, and floor jacks for garage-based projects.",
+"Duralast batteries and shocks come with warranties for peace of mind on the road.",
+"Online lookup tools match parts to vehicles, with same-day availability at nearby locations."
+],
+"level_3": [
+"I started in 1979 as part of Advance Stores, splitting off in 1986 to focus solely on auto parts.",
+"My name honors the O'Reilly family legacy? Wait, no—actually, founded by J.R. Hyde III in Memphis.",
+"My first standalone store opened in Forrest City, Arkansas, in 1986, emphasizing customer service.",
+"I went public in 1991 on Nasdaq, using proceeds for aggressive expansion into new states.",
+"By 2001, I entered Mexico with my first international store in Piedras Negras, Coahuila."
+],
+"level_4": [
+"I acquired Chief Auto Parts in 2005, adding 80 stores and strengthening Midwest distribution.",
+"In 2014, I purchased Alliance Automotive Group for $3.3 billion, boosting commercial sales.",
+"I launched AutoZone University in 2010 for training associates in technical and sales skills.",
+"During 2020, curbside pickup and online orders surged with stay-at-home repair trends.",
+"I sponsor NASCAR's AutoZone West Series, aligning with my automotive passion and branding."
+],
+"level_5": [
+"My market capitalization tops $50 billion, leading the DIY auto parts retail segment.",
+"Philip B. Daniele has been CEO since 2012, driving e-commerce and store efficiency gains.",
+"I run over 6,000 stores, covering all 50 U.S. states and parts of Mexico and Brazil.",
+"My slogan 'Get in the Zone' captures the focused energy of empowering vehicle owners.",
+"As the largest U.S. auto parts retailer by revenue, I prioritize innovation in diagnostics."
+]
+}
+},
+{
+"ticker": "HLT",
+"company": "Hilton Worldwide Holdings Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm a global hospitality powerhouse managing iconic hotel brands for luxury escapes and reliable stays in prime locations.",
+"My portfolio delivers personalized service, from spas to conferences, across upscale and economy segments worldwide.",
+"I prioritize guest loyalty through rewards programs and innovative amenities for seamless travel experiences.",
+"My properties blend local flavor with consistent standards, supporting business trips and family vacations alike.",
+"I'm advancing sustainability with green initiatives and tech like contactless check-in for modern guests."
+],
+"level_2": [
+"Hilton Hotels & Resorts offers full-service properties with pools, gyms, and event spaces for groups.",
+"Hampton by Hilton provides free breakfast and Wi-Fi in comfortable midscale accommodations.",
+"DoubleTree welcomes with fresh-baked cookies, featuring suites and lounges for relaxation.",
+"My Curio Collection showcases independent hotels with unique stories and design elements.",
+"Hilton Honors app manages bookings, points, and digital keys for effortless stays."
+],
+"level_3": [
+"I began in 1919 when Conrad Hilton bought the Mobley Hotel in Cisco, Texas, during an oil boom.",
+"My first true Hilton hotel opened in Dallas in 1925, setting standards for luxury service.",
+"The name Hilton honors founder Conrad Nicholson Hilton, a visionary in American hospitality.",
+"I returned to public markets in 2013 after private equity ownership, re-energizing growth.",
+"By the 1960s, I pioneered international expansion with the Caribe Hilton in Puerto Rico."
+],
+"level_4": [
+"I acquired Promus in 1999, adding Hampton, Embassy Suites, and DoubleTree to my family.",
+"In 2018, I bought Bluegreen Vacations for $600 million, enhancing timeshare offerings.",
+"I debuted Signia by Hilton in 2020 for meetings and events with advanced tech.",
+"During 2020, I rolled out CleanStay protocols with Lysol for enhanced health safety.",
+"I partnered with Small Luxury Hotels in 2010, curating boutique properties globally."
+],
+"level_5": [
+"My market capitalization exceeds $50 billion, leading in rooms under management worldwide.",
+"Christopher J. Nassetta, CEO since 2007, has overseen brand expansions and digital shifts.",
+"I manage over 7,000 properties in 125 countries, serving 190 million Honors members.",
+"My 'H' monogram logo evokes heritage and hospitality excellence since the 1960s.",
+"Hilton Honors, launched in 1987, remains the industry's largest loyalty program."
+]
+}
+},
+{
+"ticker": "WSM",
+"company": "Williams-Sonoma, Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm a premium specialty retailer of kitchenware, home furnishings, and gourmet foods for cooking and entertaining enthusiasts.",
+"My brands inspire culinary creativity with high-quality tools, appliances, and stylish tableware for home chefs.",
+"I offer everything from cookbooks to sofas, focusing on design-led products that elevate daily living.",
+"My catalog and stores provide expert advice, registries, and inspiration for seasonal home updates.",
+"I'm committed to sustainability, sourcing responsibly and supporting artisan makers worldwide."
+],
+"level_2": [
+"Williams Sonoma flagship sells Le Creuset cookware, All-Clad pots, and KitchenAid stand mixers.",
+"Pottery Barn curates coastal-inspired furniture, bedding, and lighting for cozy living rooms.",
+"West Elm features mid-century modern sofas, rugs, and sustainable wood accents for urban homes.",
+"My gourmet foods include Williams Sonoma vanilla extract and seasonal spice blends for baking.",
+"Registry services span wedding gifts to baby registries, with design consultations available."
+],
+"level_3": [
+"I launched in 1956 as a mail-order wine club and kitchenware catalog by founder Chuck Williams.",
+"My first retail store opened in 1971 in the Wine Country town of Sonoma, California.",
+"The name honors founder Charles E. Williams, a World War II veteran passionate about French cookware.",
+"I went public in 1983 on NYSE, using funds to acquire Pottery Barn in 1986.",
+"By the 1990s, I diversified with Williams-Sonoma Home for furnishings and accessories."
+],
+"level_4": [
+"I acquired Rejuvenation in 2011 for vintage-inspired lighting and hardware to complement homes.",
+"In 2018, I launched West Elm Hotel, bringing retail designs into experiential hospitality.",
+"My e-commerce platform, started in 1997, now drives over 60% of total company sales.",
+"During 2020, online orders for home office and kitchen essentials saw massive surges.",
+"I expanded internationally with stores in Canada, Mexico, and the Middle East by 2010s."
+],
+"level_5": [
+"My market capitalization approaches $20 billion, with strong growth in direct-to-consumer channels.",
+"Laura Alber, CEO since 2010, has transformed me into a lifestyle brand beyond the kitchen.",
+"I operate over 600 stores, blending physical and digital for immersive shopping experiences.",
+"My iconic catalog, mailed since 1956, remains a cornerstone of inspiration and sales.",
+"Williams-Sonoma is renowned for exclusive collaborations with chefs and designers annually."
+]
+}
+},
+{
+"ticker": "DASH",
+"company": "DoorDash, Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm the largest food delivery platform in North America, connecting users to restaurants, groceries, and convenience stores via app.",
+"My Dashers deliver meals hot and fast, with real-time tracking and contactless options for ultimate convenience.",
+"I partner with local eateries to expand reach, offering diverse cuisines from tacos to sushi deliveries.",
+"My DashPass subscription unlocks free deliveries and exclusive deals for frequent food lovers.",
+"I'm expanding into groceries and alcohol, making everyday errands as easy as ordering takeout."
+],
+"level_2": [
+"My core service delivers restaurant meals, from fast-casual burgers to fine-dining entrees on demand.",
+"DashMart provides quick access to household staples, snacks, and over-the-counter essentials nearby.",
+"I offer grocery delivery from chains like Safeway, with same-hour fulfillment for fresh produce.",
+"Dashers use insulated bags for temperature control, ensuring food arrives fresh and enjoyable.",
+"My app features ratings, photos, and menus, helping users discover new favorites effortlessly."
+],
+"level_3": [
+"I was co-founded in 2013 by Tony Xu, Stanley Tang, and Andy Fang while at Stanford University.",
+"My beta launch in Palo Alto started with simple food runs using bikes and basic apps.",
+"I raised $17.3 million in Series A funding in 2014, scaling to San Francisco operations.",
+"My direct listing on NYSE in December 2020 valued me at $75 billion on debut day.",
+"By 2015, I expanded to New York City, adapting to dense urban delivery challenges."
+],
+"level_4": [
+"I acquired Caviar in 2019 for $410 million, enhancing premium restaurant and sushi offerings.",
+"In 2022, I purchased Wolt for $8.1 billion, gaining a strong foothold in Europe.",
+"I launched DashPass in 2018, growing subscribers to millions with unlimited free deliveries.",
+"During 2020 pandemic, orders tripled as restaurants pivoted to delivery-only models.",
+"I partnered with Target in 2022 for same-day fulfillment from stores nationwide."
+],
+"level_5": [
+"My market capitalization exceeds $40 billion, dominating U.S. on-demand delivery market share.",
+"Tony Xu remains CEO and co-founder, steering hypergrowth and international expansions aggressively.",
+"I deliver to 80% of U.S. households, processing over 1 million orders every single day.",
+"My stylized dash logo symbolizes speed and connection in the on-demand economy.",
+"DoorDash facilitates billions in annual merchant sales, empowering small businesses digitally."
+]
+}
+},
+{
+"ticker": "RL",
+"company": "Ralph Lauren Corporation",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm an American luxury lifestyle brand crafting timeless apparel, accessories, and home collections inspired by elegance.",
+"My designs evoke classic American style with polo shirts, tailored suits, and equestrian influences for modern wardrobes.",
+"I offer menswear, womenswear, and childrenswear, blending heritage craftsmanship with contemporary silhouettes.",
+"My fragrances, watches, and bedding extend the lifestyle vision to everyday indulgences and comforts.",
+"I'm committed to sustainability, using organic cottons and recycled materials in select collections."
+],
+"level_2": [
+"Polo Ralph Lauren features the iconic pony logo on shirts, sweaters, and casual chinos for versatile looks.",
+"Purple Label delivers bespoke suiting and silk ties for the discerning gentleman's formal wardrobe.",
+"Women's collections include cable-knit sweaters, denim jeans, and evening gowns in signature palettes.",
+"My RLX line incorporates technical fabrics for golf and active pursuits with performance features.",
+"Home offerings span table linens, leather-bound books, and crystal glassware for refined settings."
+],
+"level_3": [
+"I was established in 1967 by designer Ralph Lauren in a New York City tie emporium drawer.",
+"My debut product line consisted of wide, handmade ties inspired by European luxury menswear traditions.",
+"In 1972, I introduced the Polo line, revolutionizing casual American sportswear with the pony emblem.",
+"My company went public in 1997 on NYSE, funding global expansion and licensing agreements.",
+"By the 1980s, I ventured into womenswear and home, diversifying beyond menswear foundations."
+],
+"level_4": [
+"I licensed my designs for The Great Gatsby film wardrobe in 2013, capturing 1920s opulence.",
+"In 2015, I opened The Polo Bar restaurant, embodying my vision of American luxury dining.",
+"I launched Polo Earth Polo in 2020, using recycled materials for sustainable polo shirts.",
+"During the 2008 financial crisis, I pivoted to Asia, where sales growth offset domestic slowdowns.",
+"My partnership with the U.S. Open Tennis Championship since 1980s features branded courtside fashion."
+],
+"level_5": [
+"My market capitalization hovers around $10 billion, with strong licensing revenue from global partners.",
+"Patrice Louvet, CEO since 2017, focuses on digital sales and direct-to-consumer channel growth.",
+"I maintain over 500 freestanding stores, plus thousands of wholesale doors worldwide.",
+"The pony logo, designed in 1974, represents equestrian heritage and enduring American spirit.",
+"I've outfitted every U.S. president from Reagan onward, blending politics with classic style."
+]
+}
+},
+{
+"ticker": "TPR",
+"company": "Tapestry, Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm a modern luxury accessories powerhouse crafting handbags, wallets, and footwear that empower confident self-expression.",
+"My brands celebrate creativity and craftsmanship, offering timeless pieces with contemporary twists for everyday elegance.",
+"I focus on leather goods, ready-to-wear, and jewelry, blending heritage techniques with innovative designs.",
+"My collections inspire women through storytelling, sustainability, and accessible luxury for diverse lifestyles.",
+"I'm dedicated to responsible sourcing, using leather alternatives and ethical labor in global factories."
+],
+"level_2": [
+"Coach features structured totes, crossbodies, and sneakers in pebbled leather for versatile day-to-night carry.",
+"Kate Spade delights with whimsical patterns, scalloped edges, and colorful hardware on playful satchels.",
+"Stuart Weitzman specializes in sculptural heels, boots, and wedges crafted from premium Italian leathers.",
+"My wallets include RFID-blocking card cases and coin purses in signature brand motifs and colors.",
+"Jewelry lines offer stackable rings, layered necklaces, and ear cuffs to complement handbag ensembles."
+],
+"level_3": [
+"I started in 1941 as a family-run leather goods workshop in Manhattan, evolving into Coach in 1960.",
+"In 1993, I incorporated as Coach, Inc., marking formal growth from workshop to global brand.",
+"My headquarters in New York City hub creative direction and operations for international expansion.",
+"I transitioned to public status in 2000 on NYSE, fueling acquisitions and retail network growth.",
+"By the 2010s, I diversified with Kate Spade in 2017, broadening lifestyle accessories portfolio."
+],
+"level_4": [
+"I acquired Stuart Weitzman in 2015 for $650 million, adding high-end footwear to luxury offerings.",
+"In 2017, I purchased Kate Spade for $2.4 billion, integrating playful design into my portfolio.",
+"I rebranded from Coach to Tapestry in 2017, unifying brands under a creative holding company.",
+"During economic recoveries, my outlet stores thrive with discounted collections for value seekers.",
+"I launched Made to Measure customization for Coach in 2018, personalizing bags with monograms."
+],
+"level_5": [
+"My market capitalization approaches $10 billion, driven by handbag dominance and footwear synergies.",
+"Joanne Crevoiserat, CEO since 2020, emphasizes portfolio optimization and digital commerce growth.",
+"I operate over 1,400 stores globally, blending full-price and off-price retail strategies.",
+"The carriage logo for Coach nods to 1940s Manhattan workshops where it all began.",
+"Tapestry empowers through brands that together generate billions in annual handbag sales."
+]
+}
+},
+{
+"ticker": "YUM",
+"company": "Yum! Brands, Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm a leading quick-service restaurant company owning iconic fast-food chains that serve craveable meals worldwide.",
+"My brands deliver bold flavors and convenience, from fried chicken to tacos for diverse palates.",
+"I focus on franchising, digital ordering, and loyalty programs to drive guest satisfaction and growth.",
+"My menu innovations include plant-based options and limited-time flavors to keep menus exciting.",
+"I'm committed to sustainability, reducing packaging waste and sourcing responsibly across supply chains."
+],
+"level_2": [
+"KFC offers Original Recipe chicken, tenders, and biscuits in buckets for family sharing.",
+"Taco Bell serves customizable tacos, burritos, and quesadillas with fresh toppings and sauces.",
+"Pizza Hut features pan pizzas, stuffed crusts, and pasta for casual dine-in or delivery.",
+"The Habit Burger Grill grills charburgers and salads with fresh ingredients daily.",
+"My apps integrate ordering, rewards, and delivery for seamless multi-brand experiences."
+],
+"level_3": [
+"I formed in 1997 from PepsiCo's spin-off of KFC, Pizza Hut, and Taco Bell operations.",
+"My name Yum! reflects the joyful eating moments across my diverse restaurant portfolio.",
+"Headquarters in Louisville, Kentucky, oversee franchising and menu development for global brands.",
+"I went public in 1999, accelerating acquisitions like Long John Silver's in 1999.",
+"By 2002, I added A&W Root Beer to expand beverage and quick-service variety."
+],
+"level_4": [
+"I acquired The Habit Burger Grill in 2019 for $375 million, entering the fast-casual burger space.",
+"In 2020, I bought KFC U.S. operations from franchisees to strengthen domestic control.",
+"I launched Beyond Meat partnerships in 2019 for plant-based chicken at KFC locations.",
+"During 2020, drive-thru and delivery surged, with Pizza Hut topping U.S. pizza chains.",
+"I expanded Taco Bell's breakfast menu in 2014, boosting morning sales significantly."
+],
+"level_5": [
+"My market capitalization tops $40 billion, with franchising driving 98% of system sales.",
+"David Gibbs, CEO since 2020, focuses on digital sales and international market penetrations.",
+"I operate over 55,000 restaurants in 155 countries, serving billions of meals annually.",
+"The exclamation in Yum! celebrates the fun, flavorful dining across my brand family.",
+"Yum! Brands pioneered multi-brand combos like KFC/Taco Bell co-locations in 1990s."
+]
+}
+},
+{
+"ticker": "DRI",
+"company": "Darden Restaurants, Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm a casual dining leader operating beloved Italian and steakhouse brands for family gatherings and celebrations.",
+"My restaurants deliver fresh, made-from-scratch meals in welcoming atmospheres with attentive service.",
+"I focus on value through lunch specials, happy hours, and loyalty rewards for repeat guests.",
+"My menu emphasizes quality ingredients, seasonal flavors, and dietary options like gluten-free choices.",
+"I'm advancing sustainability with seafood sourcing and waste reduction across all locations."
+],
+"level_2": [
+"Olive Garden serves endless breadsticks, pasta, and soups in family-style Italian portions.",
+"LongHorn Steakhouse grills certified Angus beef steaks with sides like loaded baked potatoes.",
+"Yard House offers craft beers, appetizers, and entrees in vibrant pub-style settings.",
+"The Capital Grille features dry-aged steaks and seafood in upscale, club-like environments.",
+"My ToGo platform enables convenient pickup and delivery for at-home casual dining."
+],
+"level_3": [
+"I was founded in 1968 as Red Lobster by entrepreneurs Bill Darden and Charley Woodsby in Florida.",
+"In 1970, I opened the first Olive Garden in Orlando, pioneering casual Italian dining.",
+"My headquarters in Orlando, Florida, guide operations for over 1,700 restaurants nationwide.",
+"I spun off Red Lobster in 2014 to focus on growth in casual segments like Olive Garden.",
+"By the 1980s, I expanded LongHorn Steakhouse, adding Western-themed steakhouses regionally."
+],
+"level_4": [
+"I acquired Yard House in 2015 for $585 million, diversifying into craft beer gastropubs.",
+"In 2016, I bought The Capital Burger? Wait, no—Ruth's Hospitality in 2017 for premium steakhouses.",
+"I launched the Never Ending Pasta Bowl at Olive Garden in 2014, boosting seasonal sales.",
+"During 2020, I pivoted to off-premise with ToGo sales comprising 50% of revenue.",
+"I partnered with Uber Eats in 2019 for delivery expansion across multiple brands."
+],
+"level_5": [
+"My market capitalization exceeds $20 billion, leading casual dining with strong franchise potential.",
+"Ricardo Cardenas, CEO since 2021, emphasizes digital ordering and guest personalization strategies.",
+"I own over 1,700 restaurants, serving millions weekly with a focus on fresh hospitality.",
+"My green logo for Olive Garden evokes Italian countryside and welcoming family feasts.",
+"Darden pioneered the 'dardenism' of unlimited refills, shaping casual dining norms."
+]
+}
+},
+{
+"ticker": "DPZ",
+"company": "Domino's Pizza, Inc.",
+"sector": "Consumer Discretionary",
+"questions": {
+"level_1": [
+"I'm the world's largest pizza company, delivering hot pies and sides with speed and technology to homes everywhere.",
+"My stores bake fresh dough daily, offering customizable toppings on hand-tossed or thin crusts for all tastes.",
+"I prioritize carryout, delivery, and digital ordering for convenient meals during game nights or weeknights.",
+"My menu includes pasta, sandwiches, and salads, complementing pizzas with cheesy bread and desserts.",
+"I'm innovating with carryout deals, loyalty apps, and sustainable packaging for eco-conscious customers."
+],
+"level_2": [
+"My classic hand-tossed pizza features robust sauce, mozzarella, and toppings like pepperoni or veggies.",
+"Thin crust option delivers crispy bases for lighter meals with bold flavor combinations.",
+"Pan pizza bakes in seasoned pans for thick, buttery edges and hearty toppings.",
+"My app handles custom orders, tracking, and rewards for Pieces earned on every purchase.",
+"Sides like lava cakes and buffalo wings add sweet and spicy variety to orders."
+],
+"level_3": [
+"I started in 1960 when brothers Tom and James Monaghan bought a pizzeria in Ypsilanti, Michigan.",
+"In 1965, Tom became sole owner, renaming it DomiNick's before settling on Domino's.",
+"My first franchise opened in 1967, expanding beyond Michigan with standardized recipes.",
+"I went public in 2004 on NYSE, funding tech upgrades like online ordering in 1996.",
+"By 1978, I introduced the 30-minute delivery guarantee, revolutionizing pizza speed."
+],
+"level_4": [
+"I acquired Sizzli in 2018? Wait, no—launched Sizzle in 2018 for chicken tenders.",
+"In 2019, I bought eDriver for delivery optimization and route efficiency improvements.",
+"I debuted the Pan Pizza in 2012, reviving a fan-favorite with garlic seasoning.",
+"During 2020, contactless delivery and curbside pickup became standard amid health concerns.",
+"I partnered with Marvel in 2019 for superhero-themed promotions and app integrations."
+],
+"level_5": [
+"My market capitalization tops $15 billion, with digital sales over 80% of total revenue.",
+"Russell Weiner, CEO since 2018, drives menu innovation and global franchise growth.",
+"I operate 20,000 stores in 90 countries, delivering to millions weekly worldwide.",
+"My domino tile logo symbolizes sequential success in pizza delivery dominance.",
+"Domino's pioneered online pizza ordering in 1996, setting e-commerce standards for food."
+]
+}
+}
+]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      
+  
+
