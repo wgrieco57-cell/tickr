@@ -3,118 +3,69 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><path d='M20 50h15m10 0h15m10 0h15' stroke='%2322c55e' stroke-width='12' stroke-linecap='round'/><text x='50' y='70' font-family='system-ui, sans-serif' font-size='36' font-weight='900' fill='%2322c55e' text-anchor='middle'>TD</text></svg>">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
     <meta name="theme-color" content="#0f172a" />
-    <meta name="description" content="TickrDaily – Guess the stock ticker from 5 clues. A daily Wordle-style game for finance fans." />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>TickrDaily</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
 
-    <!-- PERFECT MOBILE FIXES – NO OVERFLOW, TIGHT QUOTRON, EVERYTHING SCOOTED UP -->
+    <!-- FORCE MOBILE PERFECTION – !important beats inline styles -->
     <style>
-      body { margin:0; padding:0; font-family:'Inter',system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased; }
-      #root { min-height:100dvh; padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0) 0; box-sizing:border-box; }
-
-      /* QUOTRON – NOW TIGHT TO TEXT (no extra height) */
+      body, #root { margin:0; padding:0; min-height:100dvh; font-family:'Inter',system-ui; }
+      
+      /* QUOTRON – ONLY AS TALL AS THE TEXT */
       .quotron-container {
-        margin: 0.5rem 0.75rem 0.75rem;
-        padding: 0.5rem 0;
-        line-height: 1.4;
-        overflow: hidden;
-        background: rgba(15,23,42,0.9);
-        border-radius: 0.9rem;
-        border: 1px solid rgba(255,255,255,0.12);
-        backdrop-filter: blur(10px);
+        all: unset !important;
+        height: auto !important;
+        min-height: 42px !important;
+        padding: 8px 0 !important;
+        margin: 4px 12px 8px !important;
+        overflow: hidden !important;
+        background: rgba(15,23,42,0.9) !important;
+        border-radius: 12px !important;
       }
       .quotron-scroll {
-        display: flex;
-        gap: 2.8rem;
-        white-space: nowrap;
-        animation: scroll 85s linear infinite;
-        padding-left: 100%; /* seamless loop */
+        animation: scroll 80s linear infinite !important;
+        padding-left: 100% !important;
+        gap: 2.5rem !important;
+        font-size: 0.92rem !important;
+        font-weight: 700 !important;
+        font-family: 'Courier New', monospace !important;
+        color: #22c55e !important;
       }
-      .quotron-scroll span {
-        font-family: 'Courier New', monospace;
-        font-weight: 700;
-        font-size: 0.92rem;
-        color: #22c55e;
-      }
-      .quotron-scroll span.negative { color: #ef4444; }
 
-      /* MOBILE: EVERYTHING TIGHT & NO OVERFLOW */
       @media (max-width: 768px) {
-        h1 { 
-          font-size: 2.7rem !important; 
-          line-height: 1; 
-          margin: 0.4rem 0 0.2rem !important; 
-        }
-        .header-date { font-size: 0.78rem !important; margin: 0 0 0.4rem !important; opacity: 0.9; }
-        .live-stats { font-size: 0.92rem !important; margin: 0.4rem 0 0.8rem !important; }
+        h1 { font-size: 2.6rem !important; margin: 8px 0 4px !important; }
+        .header-date, .live-stats { font-size: 0.85rem !important; margin: 4px 0 !important; }
 
-        /* Stack buttons – big tap targets */
-        .mode-buttons, .action-buttons, .difficulty-select {
-          flex-direction: column !important;
-          gap: 0.7rem !important;
-          padding: 0 0.75rem;
-          margin-bottom: 1rem;
+        /* Kill all giant margins/padding from React inline styles */
+        div, section, main, header, footer {
+          margin: 0 !important;
+          padding: 0 12px !important;
         }
-        .mode-buttons button,
-        .action-buttons button,
-        select {
-          width: 100% !important;
-          padding: 1.15rem !important;
+        button, select, input {
+          width: calc(100% - 24px) !important;
+          margin: 8px 12px !important;
+          padding: 16px !important;
           font-size: 1.1rem !important;
-          border-radius: 1rem !important;
+          border-radius: 14px !important;
         }
 
-        /* Input – big & comfy */
-        input[type="text"] {
-          width: 100% !important;
-          padding: 1.15rem 1rem !important;
-          font-size: 1.2rem !important;
-          border-radius: 1rem !important;
-          box-sizing: border-box;
-        }
-
-        /* QUESTION BOXES – NEVER OVERFLOW */
-        .question-card, .answer-row, .game-over {
-          margin: 0 0.75rem !important;
-          padding: 1.1rem !important;
-          border-radius: 1rem !important;
+        /* Question cards – no overflow ever */
+        [class*="card"], [class*="question"] {
+          margin: 8px 12px !important;
+          padding: 16px !important;
+          border-radius: 14px !important;
           box-sizing: border-box !important;
-        }
-
-        /* Main container – no extra space */
-        .main-container {
-          padding: 0 0 2rem !important;
-        }
-      }
-
-      /* Tiny phones – vertical scroll */
-      @media (max-width: 480px) {
-        .quotron-container {
-          height: auto;
-          min-height: 50px;
-          padding: 0.6rem 0;
-        }
-        .quotron-scroll {
-          flex-direction: column;
-          animation: scroll-vertical 70s linear infinite;
-          gap: 0.9rem;
-          padding-left: 0;
         }
       }
 
       @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-      @keyframes scroll-vertical { 0% { transform: translateY(100%); } 100% { transform: translateY(-100%); } }
     </style>
   </head>
   <body>
-    <noscript>You need JavaScript enabled to play TickrDaily.</noscript>
+    <noscript>You need JavaScript to play.</noscript>
     <div id="root"></div>
   </body>
 </html>
