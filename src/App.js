@@ -38,7 +38,7 @@ const db = getFirestore();
   const today = new Date().toISOString().split("T")[0];
   
   // Always produce a valid 2-segment path: analytics / daily_2025-11-24
-  const docRef = doc(db, "analytics", "daily_" + today);
+  const docRef = doc(db, "analytics", `daily_${today}`);
 
   try {
     const docSnap = await getDoc(docRef);
