@@ -14,77 +14,97 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- FINAL IPHONE-PERFECT STYLES -->
+    <!-- PERFECT MOBILE FIXES – NO OVERFLOW, TIGHT QUOTRON, EVERYTHING SCOOTED UP -->
     <style>
       body { margin:0; padding:0; font-family:'Inter',system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased; }
-      #root { min-height:100dvh; padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); box-sizing:border-box; }
+      #root { min-height:100dvh; padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0) 0; box-sizing:border-box; }
 
-      /* Quotron – beautiful on every screen */
+      /* QUOTRON – NOW TIGHT TO TEXT (no extra height) */
       .quotron-container {
-        margin: 0 0.75rem 1rem;
-        padding: 0.75rem 0;
-        border-radius: 1rem;
-        background: rgba(15,23,42,0.9);
-        border: 1px solid rgba(255,255,255,0.12);
+        margin: 0.5rem 0.75rem 0.75rem;
+        padding: 0.5rem 0;
+        line-height: 1.4;
         overflow: hidden;
+        background: rgba(15,23,42,0.9);
+        border-radius: 0.9rem;
+        border: 1px solid rgba(255,255,255,0.12);
         backdrop-filter: blur(10px);
       }
       .quotron-scroll {
         display: flex;
         gap: 2.8rem;
-        animation: scroll 90s linear infinite;
         white-space: nowrap;
-        padding-left: 100%;
+        animation: scroll 85s linear infinite;
+        padding-left: 100%; /* seamless loop */
       }
       .quotron-scroll span {
         font-family: 'Courier New', monospace;
         font-weight: 700;
-        font-size: 0.9rem;
+        font-size: 0.92rem;
         color: #22c55e;
       }
       .quotron-scroll span.negative { color: #ef4444; }
 
-      /* iPhone & Mobile Perfection */
+      /* MOBILE: EVERYTHING TIGHT & NO OVERFLOW */
       @media (max-width: 768px) {
-        h1 { font-size: 2.7rem !important; line-height: 1; margin: 0.5rem 0 !important; }
-        .header-date { font-size: 0.8rem !important; opacity: 0.9; }
-        .live-stats { font-size: 0.95rem !important; margin: 0.8rem 0 !important; }
+        h1 { 
+          font-size: 2.7rem !important; 
+          line-height: 1; 
+          margin: 0.4rem 0 0.2rem !important; 
+        }
+        .header-date { font-size: 0.78rem !important; margin: 0 0 0.4rem !important; opacity: 0.9; }
+        .live-stats { font-size: 0.92rem !important; margin: 0.4rem 0 0.8rem !important; }
 
-        /* Full-width stacked buttons with big tap targets */
+        /* Stack buttons – big tap targets */
         .mode-buttons, .action-buttons, .difficulty-select {
           flex-direction: column !important;
-          gap: 0.75rem !important;
+          gap: 0.7rem !important;
           padding: 0 0.75rem;
+          margin-bottom: 1rem;
         }
         .mode-buttons button,
         .action-buttons button,
         select {
           width: 100% !important;
-          padding: 1.1rem !important;
+          padding: 1.15rem !important;
           font-size: 1.1rem !important;
-          margin: 0 !important;
           border-radius: 1rem !important;
         }
 
-        /* Input box – huge and easy on iPhone */
+        /* Input – big & comfy */
         input[type="text"] {
           width: 100% !important;
-          padding: 1.2rem 1rem !important;
+          padding: 1.15rem 1rem !important;
           font-size: 1.2rem !important;
           border-radius: 1rem !important;
+          box-sizing: border-box;
         }
 
-        /* Game area */
-        .main-container { padding: 0.5rem 0.75rem !important; }
+        /* QUESTION BOXES – NEVER OVERFLOW */
+        .question-card, .answer-row, .game-over {
+          margin: 0 0.75rem !important;
+          padding: 1.1rem !important;
+          border-radius: 1rem !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Main container – no extra space */
+        .main-container {
+          padding: 0 0 2rem !important;
+        }
       }
 
-      /* Tiny phones (iPhone SE, etc.) */
+      /* Tiny phones – vertical scroll */
       @media (max-width: 480px) {
-        .quotron-container { height: 110px; margin-bottom: 1.2rem; }
+        .quotron-container {
+          height: auto;
+          min-height: 50px;
+          padding: 0.6rem 0;
+        }
         .quotron-scroll {
           flex-direction: column;
           animation: scroll-vertical 70s linear infinite;
-          gap: 1rem;
+          gap: 0.9rem;
           padding-left: 0;
         }
       }
