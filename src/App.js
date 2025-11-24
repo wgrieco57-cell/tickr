@@ -441,35 +441,28 @@ function App() {
     }
     setCurrentLevel(currentLevel+1);
   };
-  // ──────── ANALYTICS: Track real plays (anonymous) ────────
+  // Track real plays (runs once per visit)
   useEffect(() => {
-    if (testMode) return; // Don't count test mode
+    if (testMode) return;
 
-    const trackPlay = async () => {
+    const track = async () => {
       try {
-        const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
-        const dailyDoc = doc(db, 'analytics', `daily/${today}`);
-        const globalDoc = doc(db, 'analytics', 'global');
+        const today = new Date().toISOString().split('T')[0];
+        const dailyRef = doc(db, 'analytics', `daily/${today}`);
+        const globalRef = doc(db, 'analytics', 'global');
 
-        // Increment daily plays
-        await setDoc(dailyDoc, { plays: increment(1) }, { merge: true });
+        await setDoc(dailyRef, { plays: increment(1) }, { merge: true });
+        await updateDoc(globalRef, { totalPlays: increment(1) });
 
-        // Increment total plays
-        await updateDoc(globalDoc, { totalPlays: increment(1) });
-
-        // Unique user (very lightweight fingerprint)
-        const fingerprint = localStorage.getItem('td_fp') ||
-          Math.random().toString(36).substring(2) + Date.now().toString(36);
-        if (!localStorage.getItem('td_fp')) {
-          localStorage.setItem('td_fp', fingerprint);
-          await updateDoc(globalDoc, { uniqueUsers: increment(1) });
+        if (!localStorage.getItem('td_visited')) {
+          localStorage.setItem('td_visited', 'true');
+          await updateDoc(globalRef, { uniqueUsers: increment(1) });
         }
       } catch (e) {
         console.log("Analytics offline (normal in dev)", e);
       }
     };
-
-    trackPlay();
+    track();
   }, [testMode]);
   
 // Update stats when game ends (updated for totalPuzzles)
