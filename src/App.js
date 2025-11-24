@@ -722,9 +722,19 @@ function App() {
           20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
         @media (max-width: 768px) {
-          .quotron { flex-direction: column; height: 100px; overflow: hidden; white-space: normal; }
-          .quotron div { animation: scroll-vertical 120s linear infinite; }
-        }
+  .quotron {
+    height: 38px !important;
+    flex-direction: row !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    padding: 0 !important;
+  }
+  .quotron div {
+    animation: scroll 80s linear infinite !important;
+    line-height: 38px !important;
+  }
+}
+
         @keyframes scroll-vertical {
           0% { transform: translateY(100%); }
           100% { transform: translateY(-100%); }
