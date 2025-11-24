@@ -61,16 +61,6 @@ const db = getFirestore();
   }
 }
 
-const auth = getAuth();
-useEffect(() => {
-  signInAnonymously(auth)
-    .then(() => {
-      console.log("Signed in anonymously");
-    })
-    .catch((error) => {
-      console.error("Anonymous sign-in error:", error);
-    });
-}, []);
 
 
 // Helper functions for deterministic daily selection
@@ -197,6 +187,18 @@ function App() {
       setLoading(false);
     });
   }, []);
+
+  const auth = getAuth();
+useEffect(() => {
+  signInAnonymously(auth)
+    .then(() => {
+      console.log("Signed in anonymously");
+    })
+    .catch((error) => {
+      console.error("Anonymous sign-in error:", error);
+    });
+}, []);
+
   // Select daily ticker and pick questions (deterministic for non-test mode)
   useEffect(() => {
     if (!data || data.length === 0) return;
