@@ -461,7 +461,7 @@ function App() {
         totalTime: prev.totalTime + timeElapsed,
         gamesWon: won ? prev.gamesWon + 1 : prev.gamesWon,
         currentStreak: won ? prev.currentStreak + 1 : 0,
-        maxStreak: won ? Math.max(prev.maxStreak, prev.currentStreak + 1) : prev.maxStreak,
+        maxStreak: Math.max(prev.maxStreak, won ? prev.currentStreak + 1 : prev.currentStreak),
         fastestTime: won && (!prev.fastestTime || timeElapsed < prev.fastestTime) ? timeElapsed : prev.fastestTime,
         guessDistribution: newGuessDistribution,
         playHistory: newPlayHistory
