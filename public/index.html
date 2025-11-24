@@ -2,48 +2,71 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><path d='M20 50h15m10 0h15m10 0h15' stroke='%2322c55e' stroke-width='12' stroke-linecap='round'/><text x='50' y='70' font-family='system-ui, sans-serif' font-size='36' font-weight='900' fill='%2322c55e' text-anchor='middle'>TD</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text x='50' y='68' font-family='system-ui' font-size='42' font-weight='900' fill='%2322c55e' text-anchor='middle'>TD</text></svg>">
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
     <meta name="theme-color" content="#0f172a" />
     <title>TickrDaily</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900:900&display=swap" rel="stylesheet">
 
-    <!-- FORCE MOBILE PERFECTION – !important beats inline styles -->
+    <!-- FINAL MOBILE PERFECTION – NO WHITE, TINY QUESTIONS, TIGHT QUOTRON -->
     <style>
-      body, #root { margin:0; padding:0; min-height:100dvh; font-family:'Inter',system-ui; }
-      
-      /* QUOTRON – ONLY AS TALL AS THE TEXT */
+      *, *::before, *::after { box-sizing: border-box; }
+      body, html, #root {
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 100dvh !important;
+        width: 100vw !important;
+        overflow-x: hidden !important;
+        background: #0f172a !important;
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+
+      /* QUOTRON – ONE LINE ONLY */
       .quotron-container {
         all: unset !important;
-        height: auto !important;
-        min-height: 42px !important;
-        padding: 8px 0 !important;
-        margin: 4px 12px 8px !important;
+        height: 44px !important;
+        margin: 6px 0 !important;
         overflow: hidden !important;
-        background: rgba(15,23,42,0.9) !important;
-        border-radius: 12px !important;
+        display: flex !important;
+        align-items: center !important;
+        background: rgba(15,23,42,0.95) !important;
       }
       .quotron-scroll {
         animation: scroll 80s linear infinite !important;
         padding-left: 100% !important;
-        gap: 2.5rem !important;
-        font-size: 0.92rem !important;
+        gap: 2.8rem !important;
+        font-size: 0.94rem !important;
         font-weight: 700 !important;
         font-family: 'Courier New', monospace !important;
         color: #22c55e !important;
+        white-space: nowrap !important;
       }
+      .quotron-scroll span.negative { color: #ef4444 !important; }
 
+      /* MOBILE – FULL BLEED, TINY TEXT, NO SUN */
       @media (max-width: 768px) {
-        h1 { font-size: 2.6rem !important; margin: 8px 0 4px !important; }
-        .header-date, .live-stats { font-size: 0.85rem !important; margin: 4px 0 !important; }
-
-        /* Kill all giant margins/padding from React inline styles */
-        div, section, main, header, footer {
-          margin: 0 !important;
-          padding: 0 12px !important;
+        h1 {
+          font-size: 2.6rem !important;
+          margin: 8px 0 4px !important;
+          background: linear-gradient(135deg,#22c55e,#16a34a) !important;
+          -webkit-background-clip: text !important;
+          -webkit-text-fill-color: transparent !important;
         }
+        .header-date, .live-stats { 
+          font-size: 0.82rem !important; 
+          margin: 4px 0 !important; 
+          opacity: 0.9;
+        }
+
+        /* Remove all padding/margin from React inline styles */
+        div, section, main, header { 
+          margin: 0 !important; 
+          padding: 0 12px !important; 
+        }
+
+        /* Buttons & input */
         button, select, input {
           width: calc(100% - 24px) !important;
           margin: 8px 12px !important;
@@ -52,12 +75,17 @@
           border-radius: 14px !important;
         }
 
-        /* Question cards – no overflow ever */
-        [class*="card"], [class*="question"] {
+        /* QUESTION TEXT – MUCH SMALLER */
+        .question-text, [class*="question"], p, span {
+          font-size: 0.98rem !important;
+          line-height: 1.4 !important;
+        }
+
+        /* Question cards – tight fit */
+        [class*="card"], [class*="question"], .answer-row {
           margin: 8px 12px !important;
-          padding: 16px !important;
+          padding: 14px !important;
           border-radius: 14px !important;
-          box-sizing: border-box !important;
         }
       }
 
@@ -65,7 +93,7 @@
     </style>
   </head>
   <body>
-    <noscript>You need JavaScript to play.</noscript>
+    <noscript>You need JavaScript to play TickrDaily.</noscript>
     <div id="root"></div>
   </body>
 </html>
