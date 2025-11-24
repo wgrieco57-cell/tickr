@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import confetti from 'canvas-confetti'; // npm install canvas-confetti required
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, increment, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { getAuth, signInAnonymously } from "firebase/auth";
 const FINNHUB_API_KEY = "d4g9o8pr01qm5b34j8l0d4g9o8pr01qm5b34j8lg"; // Hardcoded as requested (note: for local/dev only—expose risk in prod)
 const QUOTRON_TICKERS = [
   '^GSPC','^DJI','^IXIC', // Major indexes
@@ -60,6 +61,16 @@ const db = getFirestore();
   }
 }
 
+const auth = getAuth();
+useEffect(() => {
+  signInAnonymously(auth)
+    .then(() => {
+      console.log("Signed in anonymously");
+    })
+    .catch((error) => {
+      console.error("Anonymous sign-in error:", error);
+    });
+}, []);
 
 
 // Helper functions for deterministic daily selection
