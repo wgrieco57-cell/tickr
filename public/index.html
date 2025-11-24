@@ -8,26 +8,22 @@
     <title>TickrDaily</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900:900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
 
-    <!-- FINAL MOBILE PERFECTION – NO WHITE, TINY QUESTIONS, TIGHT QUOTRON -->
+    <!-- FINAL FIX – KILLS ALL SPACE UNDER QUOTRON -->
     <style>
       *, *::before, *::after { box-sizing: border-box; }
-      body, html, #root {
-        margin: 0 !important;
-        padding: 0 !important;
-        height: 100dvh !important;
-        width: 100vw !important;
-        overflow-x: hidden !important;
-        background: #0f172a !important;
-        font-family: 'Inter', system-ui, sans-serif;
-      }
+      body, html, #root { margin:0 !important; padding:0 !important; height:100dvh !important; background:#0f172a !important; font-family:'Inter',system-ui; overflow-x:hidden; }
 
-      /* QUOTRON – ONE LINE ONLY */
+      /* THIS LINE IS THE MAGIC — REMOVES EVERY MARGIN UNDER QUOTRON */
+      .quotron-container, .quotron-container ~ * { margin-bottom: 0.4rem !important; }
+      /* AND THIS ONE KILLS THE BIG INLINE MARGIN YOUR REACT CODE ADDS */
+      [style*="margin"], [style*="1.5rem"], [style*="2rem"] { margin-bottom: 0.4rem !important; }
+
       .quotron-container {
         all: unset !important;
         height: 44px !important;
-        margin: 6px 0 !important;
+        margin: 6px 0 6px !important;
         overflow: hidden !important;
         display: flex !important;
         align-items: center !important;
@@ -45,48 +41,13 @@
       }
       .quotron-scroll span.negative { color: #ef4444 !important; }
 
-      /* MOBILE – FULL BLEED, TINY TEXT, NO SUN */
       @media (max-width: 768px) {
-        h1 {
-          font-size: 2.6rem !important;
-          margin: 8px 0 4px !important;
-          background: linear-gradient(135deg,#22c55e,#16a34a) !important;
-          -webkit-background-clip: text !important;
-          -webkit-text-fill-color: transparent !important;
-        }
-        .header-date, .live-stats { 
-          font-size: 0.82rem !important; 
-          margin: 4px 0 !important; 
-          opacity: 0.9;
-        }
-
-        /* Remove all padding/margin from React inline styles */
-        div, section, main, header { 
-          margin: 0 !important; 
-          padding: 0 12px !important; 
-        }
-
-        /* Buttons & input */
-        button, select, input {
-          width: calc(100% - 24px) !important;
-          margin: 8px 12px !important;
-          padding: 16px !important;
-          font-size: 1.1rem !important;
-          border-radius: 14px !important;
-        }
-
-        /* QUESTION TEXT – MUCH SMALLER */
-        .question-text, [class*="question"], p, span {
-          font-size: 0.98rem !important;
-          line-height: 1.4 !important;
-        }
-
-        /* Question cards – tight fit */
-        [class*="card"], [class*="question"], .answer-row {
-          margin: 8px 12px !important;
-          padding: 14px !important;
-          border-radius: 14px !important;
-        }
+        h1 { font-size: 2.6rem !important; margin: 8px 0 4px !important; background: linear-gradient(135deg,#22c55e,#16a34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header-date, .live-stats { font-size: 0.82rem !important; margin: 4px 0 !important; }
+        div, section { margin:0 !important; padding:0 12px !important; }
+        button, select, input { width: calc(100% - 24px) !important; margin: 8px 12px !important; padding: 16px !important; font-size: 1.1rem !important; border-radius: 14px !important; }
+        .question-text, [class*="question"], p, span { font-size: 0.98rem !important; line-height: 1.4 !important; }
+        [class*="card"], [class*="question"] { margin: 8px 12px !important; padding: 14px !important; border-radius: 14px !important; }
       }
 
       @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
