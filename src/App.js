@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import confetti from 'canvas-confetti'; // npm install canvas-confetti required
+import { initializeApp } from "firebase/app";
+import { getFirestore, doc, increment, getDoc, setDoc, updateDoc } from "firebase/firestore";
 const FINNHUB_API_KEY = "d4g9o8pr01qm5b34j8l0d4g9o8pr01qm5b34j8lg"; // Hardcoded as requested (note: for local/dev only—expose risk in prod)
 const QUOTRON_TICKERS = [
   '^GSPC','^DJI','^IXIC', // Major indexes
@@ -19,6 +21,19 @@ const FALLBACK_QUOTES = [
   { symbol: '^DJI', current: '35000.00', change: '+100.00' },
   { symbol: '^IXIC', current: '15000.00', change: '+50.00' }
 ];
+const firebaseConfig = {
+  apiKey: "AIzaSyAdgvuwk-0gU7Tucj87ny2dmFn8qIJ0xsE",
+  authDomain: "tickr-2b042.firebaseapp.com",
+  projectId: "tickr-2b042",
+  storageBucket: "tickr-2b042.firebasestorage.app",
+  messagingSenderId: "866254338816",
+  appId: "1:866254338816:web:85b7cf91fee6225ebe91e5",
+  measurementId: "G-WF8Q9HBVJN"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
 // Helper functions for deterministic daily selection
 function hashCode(str) {
   let hash = 0;
@@ -425,6 +440,37 @@ function App() {
     }
     setCurrentLevel(currentLevel+1);
   };
+  // ──────── ANALYTICS: Track real plays (anonymous) ────────
+  useEffect(() => {
+    if (testMode) return; // Don't count test mode
+
+    const trackPlay = async () => {
+      try {
+        const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+        const dailyDoc = doc(db, 'analytics', `daily/${today}`);
+        const globalDoc = doc(db, 'analytics', 'global');
+
+        // Increment daily plays
+        await setDoc(dailyDoc, { plays: increment(1) }, { merge: true });
+
+        // Increment total plays
+        await updateDoc(globalDoc, { totalPlays: increment(1) });
+
+        // Unique user (very lightweight fingerprint)
+        const fingerprint = localStorage.getItem('td_fp') ||
+          Math.random().toString(36).substring(2) + Date.now().toString(36);
+        if (!localStorage.getItem('td_fp')) {
+          localStorage.setItem('td_fp', fingerprint);
+          await updateDoc(globalDoc, { uniqueUsers: increment(1) });
+        }
+      } catch (e) {
+        console.log("Analytics offline (normal in dev)", e);
+      }
+    };
+
+    trackPlay();
+  }, [testMode]);
+  
 // Update stats when game ends (updated for totalPuzzles)
   const updateStats = (won, cluesUsed) => {
     if (testMode || gameMode === 'unlimited') return;
