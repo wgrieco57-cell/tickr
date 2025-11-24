@@ -34,7 +34,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const today = new Date().toISOString().split("T")[0]; // e.g., "2025-11-24"
-const docRef = doc(db, "analytics", "daily_" today); // ✅ Collection: analytics / Doc: 2025-11-24
+const docRef = doc(db, "analytics", "daily_", today); // ✅ Collection: analytics / Doc: 2025-11-24
 
 
 // Helper functions for deterministic daily selection
