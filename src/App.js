@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import confetti from 'canvas-confetti'; // npm install canvas-confetti required
-const analytics = getAnalytics(app);
 const FINNHUB_API_KEY = "d4g9o8pr01qm5b34j8l0d4g9o8pr01qm5b34j8lg"; // Hardcoded as requested (note: for local/dev only—expose risk in prod)
 const QUOTRON_TICKERS = [
   '^GSPC','^DJI','^IXIC', // Major indexes
