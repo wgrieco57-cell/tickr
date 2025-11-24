@@ -473,24 +473,25 @@ function App() {
   useEffect(() => {
     if (testMode) return;
 
-    const track = async () => {
-      try {
-        const today = new Date().toISOString().split('T')[0];
-        const dailyRef = doc(db, 'analytics', `daily/${today}`);
-        const globalRef = doc(db, 'analytics', 'global');
+   const track = async () => {
+  try {
+    const today = new Date().toISOString().split('T')[0];
+    const dailyRef = doc(db, 'analytics', `daily_${today}`); // ✅ fixed
+    const globalRef = doc(db, 'analytics', 'global');
 
-        await setDoc(dailyRef, { plays: increment(1) }, { merge: true });
-        await updateDoc(globalRef, { totalPlays: increment(1) });
+    await setDoc(dailyRef, { plays: increment(1) }, { merge: true });
+    await updateDoc(globalRef, { totalPlays: increment(1) });
 
-        if (!localStorage.getItem('td_visited')) {
-          localStorage.setItem('td_visited', 'true');
-          await updateDoc(globalRef, { uniqueUsers: increment(1) });
-        }
-      } catch (e) {
-        console.log("Analytics offline (normal in dev)", e);
-      }
-    };
-    track();
+    if (!localStorage.getItem('td_visited')) {
+      localStorage.setItem('td_visited', 'true');
+      await updateDoc(globalRef, { uniqueUsers: increment(1) });
+    }
+  } catch (e) {
+    console.log("Analytics offline (normal in dev)", e);
+  }
+};
+track();
+
   }, [testMode]);
   
 // Update stats when game ends (updated for totalPuzzles)
