@@ -453,6 +453,7 @@ function App() {
       }
 
       const newPlayHistory = { ...prev.playHistory, [today]: { won, clues: cluesUsed, time: timeElapsed } };
+      const newCurrentStreak = won ? prev.currentStreak + 1 : 0;
 
       const updated = {
         ...prev,
@@ -460,8 +461,8 @@ function App() {
         totalPuzzles: prev.totalPuzzles + 1,
         totalTime: prev.totalTime + timeElapsed,
         gamesWon: won ? prev.gamesWon + 1 : prev.gamesWon,
-        currentStreak: won ? prev.currentStreak + 1 : 0,
-        maxStreak: Math.max(prev.maxStreak, won ? prev.currentStreak + 1 : prev.currentStreak),
+        currentStreak: newCurrentStreak,
+        maxStreak: Math.max(prev.maxStreak, newCurrentStreak),
         fastestTime: won && (!prev.fastestTime || timeElapsed < prev.fastestTime) ? timeElapsed : prev.fastestTime,
         guessDistribution: newGuessDistribution,
         playHistory: newPlayHistory
