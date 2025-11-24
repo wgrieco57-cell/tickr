@@ -425,7 +425,7 @@ function App() {
     }
     setCurrentLevel(currentLevel+1);
   };
-  // Update stats when game ends (updated for totalPuzzles)
+// Update stats when game ends (updated for totalPuzzles)
   const updateStats = (won, cluesUsed) => {
     if (testMode || gameMode === 'unlimited') return;
     // Only update if not already completed today
@@ -443,26 +443,35 @@ function App() {
     }
     const timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
     const today = new Date().toISOString().split('T')[0];
-    const newStats = { ...stats };
-    newStats.gamesPlayed += 1;
-    newStats.totalPuzzles += 1; // Always increment
-    newStats.totalTime += timeElapsed;
-    if (won) {
-      newStats.gamesWon += 1;
-      newStats.currentStreak += 1;
-      newStats.maxStreak = Math.max(newStats.maxStreak, newStats.currentStreak);
-      newStats.guessDistribution[cluesUsed] += 1;
-      if (!newStats.fastestTime || timeElapsed < newStats.fastestTime) {
-        newStats.fastestTime = timeElapsed;
+
+    setStats(prev => {
+      const newGuessDistribution = { ...prev.guessDistribution };
+      if (won) {
+        newGuessDistribution[cluesUsed] = (newGuessDistribution[cluesUsed] || 0) + 1;
+      } else {
+        newGuessDistribution.fail = (newGuessDistribution.fail || 0) + 1;
       }
-    } else {
-      newStats.currentStreak = 0;
-      newStats.guessDistribution.fail += 1;
-    }
-    if (!newStats.playHistory) newStats.playHistory = {};
-    newStats.playHistory[today] = { won, clues: cluesUsed, time: timeElapsed };
-    setStats(newStats);
-    localStorage.setItem('tickrDailyStats', JSON.stringify(newStats));
+
+      const newPlayHistory = { ...prev.playHistory, [today]: { won, clues: cluesUsed, time: timeElapsed } };
+
+      const updated = {
+        ...prev,
+        gamesPlayed: prev.gamesPlayed + 1,
+        totalPuzzles: prev.totalPuzzles + 1,
+        totalTime: prev.totalTime + timeElapsed,
+        gamesWon: won ? prev.gamesWon + 1 : prev.gamesWon,
+        currentStreak: won ? prev.currentStreak + 1 : 0,
+        maxStreak: won ? Math.max(prev.maxStreak, prev.currentStreak + 1) : prev.maxStreak,
+        fastestTime: won && (!prev.fastestTime || timeElapsed < prev.fastestTime) ? timeElapsed : prev.fastestTime,
+        guessDistribution: newGuessDistribution,
+        playHistory: newPlayHistory
+      };
+
+      // Save to localStorage immediately
+      localStorage.setItem('tickrDailyStats', JSON.stringify(updated));
+
+      return updated;
+    });
   };
   // Share results
   const shareResults = () => {
