@@ -32,7 +32,9 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const db = getFirestore();
+const today = new Date().toISOString().split("T")[0]; // e.g., "2025-11-24"
+const docRef = doc(db, "analytics", today); // ✅ Collection: analytics / Doc: 2025-11-24
 
 
 // Helper functions for deterministic daily selection
@@ -80,6 +82,29 @@ function App() {
     totalTime: 0,
     totalPuzzles: 0 // New: Tracks all puzzles (daily + unlimited)
   });
+
+    async function updateDailyStats({ won = false }) {
+    const today = new Date().toISOString().split("T")[0];
+    const docRef = doc(db, "analytics", today);
+    try {
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        await updateDoc(docRef, {
+          gamesPlayed: increment(1),
+          gamesWon: won ? increment(1) : increment(0),
+        });
+      } else {
+        await setDoc(docRef, {
+          date: today,
+          gamesPlayed: 1,
+          gamesWon: won ? 1 : 0,
+        });
+      }
+    } catch (err) {
+      console.error("Error updating daily stats:", err);
+    }
+  }
+  
   // New states for modes
   const [gameMode, setGameMode] = useState('daily'); // 'daily' | 'unlimited'
   const [difficulty, setDifficulty] = useState('medium'); // 'easy' | 'medium' | 'hard'
