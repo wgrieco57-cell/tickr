@@ -34,6 +34,33 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 
+ async function updateDailyStats({ won = false }) {
+  const today = new Date().toISOString().split("T")[0];
+  
+  // Always produce a valid 2-segment path: analytics / daily_2025-11-24
+  const docRef = doc(db, "analytics", "daily_" + today);
+
+  try {
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      await updateDoc(docRef, {
+        gamesPlayed: increment(1),
+        gamesWon: won ? increment(1) : increment(0),
+      });
+    } else {
+      await setDoc(docRef, {
+        date: today,
+        gamesPlayed: 1,
+        gamesWon: won ? 1 : 0,
+      });
+    }
+  } catch (err) {
+    console.error("Error updating daily stats:", err);
+  }
+}
+
+
 
 // Helper functions for deterministic daily selection
 function hashCode(str) {
@@ -78,35 +105,8 @@ function App() {
     playHistory: {},
     fastestTime: null,
     totalTime: 0,
-    totalPuzzles: 0 // New: Tracks all puzzles (daily + unlimited)
+    totalPuzzles: 0, // New: Tracks all puzzles (daily + unlimited)
   });
-
-   async function updateDailyStats({ won = false }) {
-  const today = new Date().toISOString().split("T")[0];
-
-  // MUST be exactly two segments → analytics / daily_2025-11-24
-  const docRef = doc(db, "analytics", "daily_" + today);
-
-  try {
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      await updateDoc(docRef, {
-        gamesPlayed: increment(1),
-        gamesWon: won ? increment(1) : increment(0),
-      });
-    } else {
-      await setDoc(docRef, {
-        date: today,
-        gamesPlayed: 1,
-        gamesWon: won ? 1 : 0,
-      });
-    }
-  } catch (err) {
-    console.error("Error updating daily stats:", err);
-  }
-}
-
   
   // New states for modes
   const [gameMode, setGameMode] = useState('daily'); // 'daily' | 'unlimited'
