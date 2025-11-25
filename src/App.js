@@ -591,31 +591,31 @@ const updateStats = async (won = false, cluesUsed = 0, timeElapsed = null) => {
   }
 };
   // Share results
-  const shareResults = () => {
-    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
-    const won = submittedAnswers.some(a => a.isCorrect);
-    const cluesUsed = won ? submittedAnswers.length : questions.length;
-    const modeText = gameMode === 'daily' ? 'Daily' : `${difficulty} Unlimited`;
-    const text = `TickrDaily ${modeText} ${new Date().toLocaleDateString()}\n${emoji} (${cluesUsed}/${questions.length})\n🎯 ${dailyTicker.ticker}\n\nPlay: ${window.location.href}`;
-    if (navigator.share) {
-      navigator.share({ text }).catch(() => {
-        navigator.clipboard.writeText(text);
-        alert('Results copied to clipboard!');
-      });
-    } else {
+const shareResults = () => {
+  const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
+  const won = submittedAnswers.some(a => a.isCorrect);
+  const cluesUsed = won ? submittedAnswers.length : questions.length;
+  const modeText = gameMode === 'daily' ? 'Daily' : `${difficulty} Unlimited`;
+  const text = `TickrDaily ${modeText} ${new Date().toLocaleDateString()}\n${emoji} (${cluesUsed}/${questions.length})\n\nPlay: ${window.location.href}`;
+  if (navigator.share) {
+    navigator.share({ text }).catch(() => {
       navigator.clipboard.writeText(text);
       alert('Results copied to clipboard!');
-    }
-  };
-  const shareToTwitter = () => {
-    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
-    const won = submittedAnswers.some(a => a.isCorrect);
-    const cluesUsed = won ? submittedAnswers.length : questions.length;
-    const modeText = gameMode === 'daily' ? 'Daily' : `${difficulty} Unlimited`;
-    const text = `TickrDaily ${modeText} ${new Date().toLocaleDateString()}\n${emoji} (${cluesUsed}/${questions.length})\n🎯 ${dailyTicker.ticker}\n\nPlay: ${window.location.href}`;
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-    window.open(twitterUrl, '_blank');
-  };
+    });
+  } else {
+    navigator.clipboard.writeText(text);
+    alert('Results copied to clipboard!');
+  }
+};
+ const shareToTwitter = () => {
+  const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
+  const won = submittedAnswers.some(a => a.isCorrect);
+  const cluesUsed = won ? submittedAnswers.length : questions.length;
+  const modeText = gameMode === 'daily' ? 'Daily' : `${difficulty} Unlimited`;
+  const text = `TickrDaily ${modeText} ${new Date().toLocaleDateString()}\n${emoji} (${cluesUsed}/${questions.length})\n\nPlay: ${window.location.href}`;
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+  window.open(twitterUrl, '_blank');
+};
   const toggleDarkMode = () => {
     const newMode = !darkMode;
     setDarkMode(newMode);
