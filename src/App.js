@@ -923,7 +923,7 @@ const shareToTwitter = () => {
         }
       `}</style>
       <div style={{ width:'100%', maxWidth:'900px', display:'flex', flexDirection:'column', alignItems:'center' }}>
-     <div style={{ textAlign:'center', marginBottom:'1rem', position:'relative', width:'100%' }}>
+    <div style={{ textAlign:'center', marginBottom:'1rem', position:'relative', width:'100%' }}>
   {/* Dark Mode Button */}
   <button
     onClick={toggleDarkMode}
@@ -963,7 +963,10 @@ const shareToTwitter = () => {
       gap:'0.5rem'
     }}>
       TEST MODE
-          {/* Login / Logout Buttons */}
+    </div>
+  )}
+
+  {/* Login / Logout Buttons */}
   <div style={{ position:'absolute', right:0, top:0, display:'flex', alignItems:'center', gap:'1rem' }}>
     {user ? (
       <div style={{ display:'flex', alignItems:'center', gap:'0.5rem' }}>
@@ -1002,6 +1005,9 @@ const shareToTwitter = () => {
         Log In / Sign Up
       </button>
     )}
+  </div>
+</div>
+
         
             </div>
           )}
