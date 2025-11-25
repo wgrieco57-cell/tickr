@@ -15,11 +15,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
     "firebase": "^10.14.1",
-    "react-firebase-hooks": "^5.1.1"  // Add this line (latest version as of now)
-
-
-
-    
+    "react-firebase-hooks": "^5.1.1" 
   },
   "scripts": {
     "start": "react-scripts start",
