@@ -873,690 +873,737 @@ const shareToTwitter = () => {
   const cardBg = darkMode ? 'rgba(15,23,42,0.7)' : 'rgba(255,255,255,0.8)';
   const borderColor = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
   return (
-    <div style={{ minHeight:'100vh', background: bgColor, display:'flex', flexDirection:'column', alignItems:'center', padding:'2rem 1rem' }}>
-      {/* Quotron */}
-      <div className="quotron" style={{ width:'100%', overflow:'hidden', whiteSpace:'nowrap', marginBottom:'2rem', border:`1px solid ${borderColor}`, padding:'0.5rem 0', borderRadius:'1rem', background:darkMode ? 'rgba(15,23,42,0.8)' : 'rgba(255,255,255,0.8)', display: 'flex', flexDirection: 'row' }}>
-        <div style={{ display:'inline-block', animation:'scroll 120s linear infinite' }}>
-          {[...quotes, ...quotes].map((q,i)=>(
-            <span key={i} style={{ display:'inline-block', marginRight:'3rem', color: q.change>=0 ? '#22c55e' : '#ef4444', fontWeight:'700', fontFamily:'monospace' }}>
-              {q.symbol} {q.current} {q.change>=0?`+${q.change}`:q.change}
-            </span>
-          ))}
-        </div>
+  <div style={{ minHeight:'100vh', background: bgColor, display:'flex', flexDirection:'column', alignItems:'center', padding:'2rem 1rem' }}>
+    {/* Quotron */}
+    <div className="quotron" style={{ width:'100%', overflow:'hidden', whiteSpace:'nowrap', marginBottom:'2rem', border:`1px solid ${borderColor}`, padding:'0.5rem 0', borderRadius:'1rem', background:darkMode ? 'rgba(15,23,42,0.8)' : 'rgba(255,255,255,0.8)', display: 'flex', flexDirection: 'row' }}>
+      <div style={{ display:'inline-block', animation:'scroll 120s linear infinite' }}>
+        {[...quotes, ...quotes].map((q,i)=>(
+          <span key={i} style={{ display:'inline-block', marginRight:'3rem', color: q.change>=0 ? '#22c55e' : '#ef4444', fontWeight:'700', fontFamily:'monospace' }}>
+            {q.symbol} {q.current} {q.change>=0?`+${q.change}`:q.change}
+          </span>
+        ))}
       </div>
-      <style>{`
-        @keyframes scroll {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
+    </div>
+    <style>{`
+      @keyframes scroll {
+        0% { transform: translateX(-50%); }
+        100% { transform: translateX(0); }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
         }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-          20%, 40%, 60%, 80% { transform: translateX(5px); }
+      }
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+        20%, 40%, 60%, 80% { transform: translateX(5px); }
+      }
+      @media (max-width: 768px) {
+        .quotron {
+          height: 38px !important;
+          flex-direction: row !important;
+          overflow: hidden !important;
+          white-space: nowrap !important;
+          padding: 0 !important;
         }
-        @media (max-width: 768px) {
-  .quotron {
-    height: 38px !important;
-    flex-direction: row !important;
-    overflow: hidden !important;
-    white-space: nowrap !important;
-    padding: 0 !important;
-  }
-  .quotron div {
-    animation: scroll 80s linear infinite !important;
-    line-height: 38px !important;
-  }
-}
-        @keyframes scroll-vertical {
-          0% { transform: translateY(100%); }
-          100% { transform: translateY(-100%); }
+        .quotron div {
+          animation: scroll 80s linear infinite !important;
+          line-height: 38px !important;
         }
-      `}</style>
-
-          <div style={{ width:'100%', maxWidth:'900px', display:'flex', flexDirection:'column', alignItems:'center' }}>
-  <div style={{ textAlign:'center', marginBottom:'1rem', position:'relative', width:'100%' }}>
-    <>
-      {/* Dark Mode Button */}
-      <button
-        onClick={toggleDarkMode}
-        style={{
-          position:'absolute',
-          right:'120px',
-          top:0,
-          padding:'0.75rem',
-          background:cardBg,
-          border:`1px solid ${borderColor}`,
-          borderRadius:'0.75rem',
-          color:textColor,
-          cursor:'pointer',
-          transition:'all 0.3s ease'
-        }}
-        title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-        aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-      >
-        {darkMode ? '☀️' : '🌙'}
-      </button>
-      {/* Test Mode Badge */}
-      {testMode && (
-        <div style={{
-          position:'absolute',
-          left:0,
-          top:0,
-          padding:'0.75rem 1rem',
-          background:'linear-gradient(135deg, #f59e0b, #d97706)',
-          border:`1px solid ${borderColor}`,
-          borderRadius:'0.75rem',
-          color:'white',
-          fontWeight:'700',
-          fontSize:'0.75rem',
-          display:'flex',
-          alignItems:'center',
-          gap:'0.5rem'
-        }}>
-          TEST MODE
-        </div>
-      )}
-      {/* Login / Logout Buttons */}
-      <div style={{ position:'absolute', right:0, top:0, display:'flex', alignItems:'center', gap:'1rem' }}>
-        {user ? (
-          <div style={{ display:'flex', alignItems:'center', gap:'0.5rem' }}>
-            {user.photoURL && (
-              <img
-                src={user.photoURL}
-                width={36}
-                height={36}
-                style={{ borderRadius:'50%' }}
-                alt="Profile"
-              />
-            )}
-            <span style={{ fontWeight:600, color:textColor }}>
-              {user.displayName || user.email.split("@")[0]}
-            </span>
-            <button
-              onClick={() => signOut(auth)}
-              style={{
-                color:'#ef4444',
-                fontSize:'0.875rem',
-                background:'none',
-                border:'none',
-                cursor:'pointer'
-              }}
-            >
-              Logout
-            </button>
-          </div>
-        ) : (
+      }
+      @keyframes scroll-vertical {
+        0% { transform: translateY(100%); }
+        100% { transform: translateY(-100%); }
+      }
+    `}</style>
+    <div style={{ width:'100%', maxWidth:'900px', display:'flex', flexDirection:'column', alignItems:'center' }}>
+      <div style={{ textAlign:'center', marginBottom:'1rem', position:'relative', width:'100%' }}>
+        <>
+          {/* Dark Mode Button */}
           <button
-            onClick={() => setShowAuthModal(true)}
+            onClick={toggleDarkMode}
             style={{
-              padding:'0.75rem 1.5rem',
-              background:'linear-gradient(135deg,#22c55e,#16a34a)',
-              color:'white',
-              border:'none',
-              borderRadius:'1rem',
-              fontWeight:600,
-              cursor:'pointer'
-            }}
-          >
-            Log In / Sign Up
-          </button>
-        )}
-      </div>
-    </>  // ← ADD THIS: Closes the fragment!
-  </div>  // ← Now cleanly closes the header div
-
-        
-            </div>
-          )}
-          <h1 style={{ fontSize:'4rem', fontWeight:'800', background:'linear-gradient(135deg,#22c55e 0%,#3b82f6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', marginBottom:'0.5rem', letterSpacing:'-0.02em' }}>TickrDaily</h1>
-          <p style={{ color:mutedColor, fontSize:'1rem', fontWeight:'500', letterSpacing:'0.05em' }}>{todayDate}</p>
-          <p style={{ color:mutedColor, fontSize:'0.875rem', marginTop:'0.5rem' }}>
-            {gameMode === 'daily' ? 'Guess the stock from 5 clues' : `Guess the stock from ${difficulty === 'easy' ? 6 : difficulty === 'hard' ? 3 : 5} clues (${difficulty})`}
-          </p>
-          {gameOver && gameMode === 'daily' && !testMode && (
-            <p style={{ color: '#22c55e', fontSize: '1rem', fontWeight: '600', marginTop: '1rem' }}>
-              You already completed today's puzzle! Come back tomorrow for a new one. 🎯
-            </p>
-          )}
-          {/* New: Progress Bar */}
-          <div style={{ width: '100%', height: '4px', background: borderColor, borderRadius: '2px', margin: '1rem 0', overflow: 'hidden' }}>
-            <div style={{
-              width: `${((currentLevel + 1) / questions.length) * 100}%`,
-              height: '100%',
-              background: 'linear-gradient(90deg, #22c55e, #3b82f6)',
-              transition: 'width 0.3s ease'
-            }} />
-          </div>
-        </div>
-        {/* Mode Selector */}
-        <ModeSelector />
-       {/* Stats and How to Play Buttons */}
-<div style={{ display:'flex', gap:'1rem', marginBottom:'2rem' }}>
-  <button
-    onClick={() => setShowStats(!showStats)}
-    style={{
-      padding:'0.75rem 1.75rem',
-      background:cardBg,
-      border:`1px solid ${borderColor}`,
-      borderRadius:'1rem',
-      color:textColor,
-      cursor:'pointer',
-      fontWeight:'600',
-      fontSize:'0.875rem',
-      transition:'all 0.3s ease',
-      display:'flex',
-      alignItems:'center',
-      gap:'0.5rem'
-    }}
-    aria-label="View Statistics"
-  >
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <line x1="18" y1="20" x2="18" y2="10"></line>
-      <line x1="12" y1="20" x2="12" y2="4"></line>
-      <line x1="6" y1="20" x2="6" y2="14"></line>
-    </svg>
-    <span>Statistics</span>
-  </button>  {/* ← ADD THIS: Closes the button! */}
-  <button
-    onClick={() => setShowHowToPlay(true)}
-    style={{
-      padding:'0.75rem 1.75rem',
-      background:cardBg,
-      border:`1px solid ${borderColor}`,
-      borderRadius:'1rem',
-      color:textColor,
-      cursor:'pointer',
-      fontWeight:'600',
-      fontSize:'0.875rem',
-      transition:'all 0.3s ease',
-      display:'flex',
-      alignItems:'center',
-      gap:'0.5rem'
-    }}
-    aria-label="How to Play"
-  >
-    <span>❓</span>
-    <span>How to Play</span>
-  </button>  {/* ← And close this one too, if it was missing */}
-</div>  {/* ← This now cleanly closes the flex container */}
-        {/* Stats Modal (updated with totalPuzzles card) */}
-        {showStats && (
-          <div
-            style={{
-              position:'fixed',
+              position:'absolute',
+              right:'120px',
               top:0,
+              padding:'0.75rem',
+              background:cardBg,
+              border:`1px solid ${borderColor}`,
+              borderRadius:'0.75rem',
+              color:textColor,
+              cursor:'pointer',
+              transition:'all 0.3s ease'
+            }}
+            title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          >
+            {darkMode ? '☀️' : '🌙'}
+          </button>
+          {/* Test Mode Badge */}
+          {testMode && (
+            <div style={{
+              position:'absolute',
               left:0,
-              right:0,
-              bottom:0,
-              background:'rgba(0,0,0,0.8)',
+              top:0,
+              padding:'0.75rem 1rem',
+              background:'linear-gradient(135deg, #f59e0b, #d97706)',
+              border:`1px solid ${borderColor}`,
+              borderRadius:'0.75rem',
+              color:'white',
+              fontWeight:'700',
+              fontSize:'0.75rem',
               display:'flex',
               alignItems:'center',
-              justifyContent:'center',
-              zIndex:100,
-              padding:'1rem',
+              gap:'0.5rem'
+            }}>
+              TEST MODE
+            </div>
+          )}
+          {/* Login / Logout Buttons */}
+          <div style={{ position:'absolute', right:0, top:0, display:'flex', alignItems:'center', gap:'1rem' }}>
+            {user ? (
+              <div style={{ display:'flex', alignItems:'center', gap:'0.5rem' }}>
+                {user.photoURL && (
+                  <img
+                    src={user.photoURL}
+                    width={36}
+                    height={36}
+                    style={{ borderRadius:'50%' }}
+                    alt="Profile"
+                  />
+                )}
+                <span style={{ fontWeight:600, color:textColor }}>
+                  {user.displayName || user.email.split("@")[0]}
+                </span>
+                <button
+                  onClick={() => signOut(auth)}
+                  style={{
+                    color:'#ef4444',
+                    fontSize:'0.875rem',
+                    background:'none',
+                    border:'none',
+                    cursor:'pointer'
+                  }}
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => setShowAuthModal(true)}
+                style={{
+                  padding:'0.75rem 1.5rem',
+                  background:'linear-gradient(135deg,#22c55e,#16a34a)',
+                  color:'white',
+                  border:'none',
+                  borderRadius:'1rem',
+                  fontWeight:600,
+                  cursor:'pointer'
+                }}
+              >
+                Log In / Sign Up
+              </button>
+            )}
+          </div>
+        </>
+      </div>
+      <h1 style={{ fontSize:'4rem', fontWeight:'800', background:'linear-gradient(135deg,#22c55e 0%,#3b82f6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', marginBottom:'0.5rem', letterSpacing:'-0.02em' }}>TickrDaily</h1>
+      <p style={{ color:mutedColor, fontSize:'1rem', fontWeight:'500', letterSpacing:'0.05em' }}>{todayDate}</p>
+      <p style={{ color:mutedColor, fontSize:'0.875rem', marginTop:'0.5rem' }}>
+        {gameMode === 'daily' ? 'Guess the stock from 5 clues' : `Guess the stock from ${difficulty === 'easy' ? 6 : difficulty === 'hard' ? 3 : 5} clues (${difficulty})`}
+      </p>
+      {gameOver && gameMode === 'daily' && !testMode && (
+        <p style={{ color: '#22c55e', fontSize: '1rem', fontWeight: '600', marginTop: '1rem' }}>
+          You already completed today's puzzle! Come back tomorrow for a new one. 🎯
+        </p>
+      )}
+      {/* New: Progress Bar */}
+      <div style={{ width: '100%', height: '4px', background: borderColor, borderRadius: '2px', margin: '1rem 0', overflow: 'hidden' }}>
+        <div style={{
+          width: `${((currentLevel + 1) / questions.length) * 100}%`,
+          height: '100%',
+          background: 'linear-gradient(90deg, #22c55e, #3b82f6)',
+          transition: 'width 0.3s ease'
+        }} />
+      </div>
+      {/* Mode Selector */}
+      <ModeSelector />
+      {/* Stats and How to Play Buttons */}
+      <div style={{ display:'flex', gap:'1rem', marginBottom:'2rem' }}>
+        <button
+          onClick={() => setShowStats(!showStats)}
+          style={{
+            padding:'0.75rem 1.75rem',
+            background:cardBg,
+            border:`1px solid ${borderColor}`,
+            borderRadius:'1rem',
+            color:textColor,
+            cursor:'pointer',
+            fontWeight:'600',
+            fontSize:'0.875rem',
+            transition:'all 0.3s ease',
+            display:'flex',
+            alignItems:'center',
+            gap:'0.5rem'
+          }}
+          aria-label="View Statistics"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          <span>Statistics</span>
+        </button>
+        <button
+          onClick={() => setShowHowToPlay(true)}
+          style={{
+            padding:'0.75rem 1.75rem',
+            background:cardBg,
+            border:`1px solid ${borderColor}`,
+            borderRadius:'1rem',
+            color:textColor,
+            cursor:'pointer',
+            fontWeight:'600',
+            fontSize:'0.875rem',
+            transition:'all 0.3s ease',
+            display:'flex',
+            alignItems:'center',
+            gap:'0.5rem'
+          }}
+          aria-label="How to Play"
+        >
+          <span>❓</span>
+          <span>How to Play</span>
+        </button>
+      </div>
+      {/* Stats Modal (updated with totalPuzzles card) */}
+      {showStats && (
+        <div
+          style={{
+            position:'fixed',
+            top:0,
+            left:0,
+            right:0,
+            bottom:0,
+            background:'rgba(0,0,0,0.8)',
+            display:'flex',
+            alignItems:'center',
+            justifyContent:'center',
+            zIndex:100,
+            padding:'1rem',
+            overflowY:'auto'
+          }}
+          onClick={() => setShowStats(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Statistics Modal"
+        >
+          <div
+            style={{
+              background: darkMode ? 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))' : 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95))',
+              backdropFilter:'blur(20px)',
+              borderRadius:'2rem',
+              padding:'2.5rem',
+              maxWidth:'700px',
+              width:'100%',
+              border:`1px solid ${borderColor}`,
+              position:'relative',
+              maxHeight:'90vh',
               overflowY:'auto'
             }}
-            onClick={() => setShowStats(false)}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Statistics Modal"
+            onClick={(e) => e.stopPropagation()}
           >
-            <div
+            <button
+              onClick={() => setShowStats(false)}
               style={{
-                background: darkMode ? 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))' : 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95))',
-                backdropFilter:'blur(20px)',
-                borderRadius:'2rem',
-                padding:'2.5rem',
-                maxWidth:'700px',
-                width:'100%',
-                border:`1px solid ${borderColor}`,
-                position:'relative',
-                maxHeight:'90vh',
-                overflowY:'auto'
+                position:'absolute',
+                top:'1rem',
+                right:'1rem',
+                background:cardBg,
+                border:'none',
+                color:textColor,
+                fontSize:'1.5rem',
+                cursor:'pointer',
+                width:'40px',
+                height:'40px',
+                borderRadius:'50%',
+                display:'flex',
+                alignItems:'center',
+                justifyContent:'center'
               }}
-              onClick={(e) => e.stopPropagation()}
+              aria-label="Close Statistics Modal"
             >
+              ×
+            </button>
+            <h2 style={{ fontSize:'2rem', fontWeight:'800', color:textColor, marginBottom:'2rem', textAlign:'center', display:'flex', alignItems:'center', justifyContent:'center', gap:'0.75rem' }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+              Your Statistics
+            </h2>
+            {/* Mode Tabs */}
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.5rem' }}>
               <button
-                onClick={() => setShowStats(false)}
+                onClick={() => setActiveModeTab('daily')}
                 style={{
-                  position:'absolute',
-                  top:'1rem',
-                  right:'1rem',
-                  background:cardBg,
-                  border:'none',
-                  color:textColor,
-                  fontSize:'1.5rem',
-                  cursor:'pointer',
-                  width:'40px',
-                  height:'40px',
-                  borderRadius:'50%',
-                  display:'flex',
-                  alignItems:'center',
-                  justifyContent:'center'
+                  padding: '0.5rem 1rem',
+                  background: activeModeTab === 'daily' ? '#22c55e' : cardBg,
+                  color: activeModeTab === 'daily' ? 'white' : textColor,
+                  border: `1px solid ${borderColor}`,
+                  borderRadius: '0.5rem',
+                  cursor: 'pointer',
+                  fontWeight: '600'
                 }}
-                aria-label="Close Statistics Modal"
               >
-                ×
+                🗓️ Daily
               </button>
-              <h2 style={{ fontSize:'2rem', fontWeight:'800', color:textColor, marginBottom:'2rem', textAlign:'center', display:'flex', alignItems:'center', justifyContent:'center', gap:'0.75rem' }}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="20" x2="18" y2="10"></line>
-                  <line x1="12" y1="20" x2="12" y2="4"></line>
-                  <line x1="6" y1="20" x2="6" y2="14"></line>
-                </svg>
-                Your Statistics
-              </h2>
-              {/* Mode Tabs */}
-              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.5rem' }}>
-                <button
-                  onClick={() => setActiveModeTab('daily')}
-                  style={{
-                    padding: '0.5rem 1rem',
-                    background: activeModeTab === 'daily' ? '#22c55e' : cardBg,
-                    color: activeModeTab === 'daily' ? 'white' : textColor,
-                    border: `1px solid ${borderColor}`,
-                    borderRadius: '0.5rem',
-                    cursor: 'pointer',
-                    fontWeight: '600'
-                  }}
-                >
-                  🗓️ Daily
-                </button>
-                <button
-                  onClick={() => setActiveModeTab('unlimited')}
-                  style={{
-                    padding: '0.5rem 1rem',
-                    background: activeModeTab === 'unlimited' ? '#22c55e' : cardBg,
-                    color: activeModeTab === 'unlimited' ? 'white' : textColor,
-                    border: `1px solid ${borderColor}`,
-                    borderRadius: '0.5rem',
-                    cursor: 'pointer',
-                    fontWeight: '600'
-                  }}
-                >
-                  ♾️ Unlimited
-                </button>
-                <button
-                  onClick={() => setActiveModeTab('overall')}
-                  style={{
-                    padding: '0.5rem 1rem',
-                    background: activeModeTab === 'overall' ? '#22c55e' : cardBg,
-                    color: activeModeTab === 'overall' ? 'white' : textColor,
-                    border: `1px solid ${borderColor}`,
-                    borderRadius: '0.5rem',
-                    cursor: 'pointer',
-                    fontWeight: '600'
-                  }}
-                >
-                  📊 Overall
-                </button>
-              </div>
-              {/* Stats Grid (Conditional by Tab) */}
-              <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
-                {activeModeTab === 'daily' && (
-                  <>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#22c55e' }}>{stats.dailyGamesPlayed}</div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Played</div>
-                    </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#3b82f6' }}>
-                        {stats.dailyGamesPlayed > 0 ? Math.round((stats.dailyGamesWon / stats.dailyGamesPlayed) * 100) : 0}%
-                      </div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Win Rate</div>
-                    </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#f59e0b' }}>{stats.dailyCurrentStreak}🔥</div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Streak</div>
-                    </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#a855f7' }}>{stats.dailyMaxStreak}</div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Max Streak</div>
-                    </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#ec4899' }}>
-                        {stats.dailyGamesPlayed > 0 ? formatTime(Math.floor(stats.dailyTotalTime / stats.dailyGamesPlayed)) : '--'}
-                      </div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Avg Time</div>
-                    </div>
-                  </>
-                )}
-                {activeModeTab === 'unlimited' && (
-                  <>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#22c55e' }}>{stats.unlimitedCompletions}</div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Unlimited Completed</div>
-                    </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#3b82f6' }}>
-                        {stats.unlimitedCompletions > 0 ? Math.round(((stats.unlimitedCompletions - stats.unlimitedGuessDistribution.fail) / stats.unlimitedCompletions) * 100) : 0}%
-                      </div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Unlimited Win Rate</div>
-                    </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#ec4899' }}>
-                        {stats.unlimitedCompletions > 0 ? formatTime(Math.floor(stats.unlimitedTotalTime / stats.unlimitedCompletions)) : '--'}
-                      </div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Unlimited Avg Time</div>
-                    </div>
-                    {/* Filler cards to balance grid */}
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
-                  </>
-                )}
-                {activeModeTab === 'overall' && (
-                  <>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#22c55e' }}>{stats.dailyGamesPlayed + stats.unlimitedCompletions}</div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Total Played</div>
-                    </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#3b82f6' }}>
-                        {stats.overallFastestTime ? formatTime(stats.overallFastestTime) : '--'}
-                      </div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Overall Fastest</div>
-                    </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#f59e0b' }}>
-                        {stats.dailyGamesPlayed + stats.unlimitedCompletions > 0 ? formatTime(Math.floor(stats.overallTotalTime / (stats.dailyGamesPlayed + stats.unlimitedCompletions))) : '--'}
-                      </div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Overall Avg Time</div>
-                    </div>
-                    {/* Filler */}
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
-                  </>
-                )}
-              </div>
-              {/* Achievements (Shared) */}
-              {getAchievements().length > 0 && (
-                <div style={{ marginBottom:'2rem' }}>
-                  <h3 style={{ fontSize:'1.25rem', fontWeight:'700', color:textColor, marginBottom:'1rem' }}>
-                    🏆 Achievements (All Modes)
-                  </h3>
-                  <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'0.75rem' }}>
-                    {getAchievements().map((ach, i) => (
-                      <div key={i} style={{ background:cardBg, padding:'1rem', borderRadius:'0.75rem', border:`1px solid ${borderColor}`, display:'flex', alignItems:'center', gap:'0.75rem' }}>
-                        <span style={{ fontSize:'1.5rem' }}>{ach.icon}</span>
-                        <div>
-                          <div style={{ fontSize:'0.875rem', fontWeight:'600', color:textColor }}>{ach.name}</div>
-                          <div style={{ fontSize:'0.75rem', color:mutedColor }}>{ach.desc}</div>
-                        </div>
-                      </div>
-                    ))}
+              <button
+                onClick={() => setActiveModeTab('unlimited')}
+                style={{
+                  padding: '0.5rem 1rem',
+                  background: activeModeTab === 'unlimited' ? '#22c55e' : cardBg,
+                  color: activeModeTab === 'unlimited' ? 'white' : textColor,
+                  border: `1px solid ${borderColor}`,
+                  borderRadius: '0.5rem',
+                  cursor: 'pointer',
+                  fontWeight: '600'
+                }}
+              >
+                ♾️ Unlimited
+              </button>
+              <button
+                onClick={() => setActiveModeTab('overall')}
+                style={{
+                  padding: '0.5rem 1rem',
+                  background: activeModeTab === 'overall' ? '#22c55e' : cardBg,
+                  color: activeModeTab === 'overall' ? 'white' : textColor,
+                  border: `1px solid ${borderColor}`,
+                  borderRadius: '0.5rem',
+                  cursor: 'pointer',
+                  fontWeight: '600'
+                }}
+              >
+                📊 Overall
+              </button>
+            </div>
+            {/* Stats Grid (Conditional by Tab) */}
+            <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
+              {activeModeTab === 'daily' && (
+                <>
+                  <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ fontSize:'2rem', fontWeight:'700', color:'#22c55e' }}>{stats.dailyGamesPlayed}</div>
+                    <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Played</div>
                   </div>
-                </div>
+                  <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ fontSize:'2rem', fontWeight:'700', color:'#3b82f6' }}>
+                      {stats.dailyGamesPlayed > 0 ? Math.round((stats.dailyGamesWon / stats.dailyGamesPlayed) * 100) : 0}%
+                    </div>
+                    <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Win Rate</div>
+                  </div>
+                  <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ fontSize:'2rem', fontWeight:'700', color:'#f59e0b' }}>{stats.dailyCurrentStreak}🔥</div>
+                    <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Streak</div>
+                  </div>
+                  <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ fontSize:'2rem', fontWeight:'700', color:'#a855f7' }}>{stats.dailyMaxStreak}</div>
+                    <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Max Streak</div>
+                  </div>
+                  <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ fontSize:'2rem', fontWeight:'700', color:'#ec4899' }}>
+                      {stats.dailyGamesPlayed > 0 ? formatTime(Math.floor(stats.dailyTotalTime / stats.dailyGamesPlayed)) : '--'}
+                    </div>
+                    <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Avg Time</div>
+                  </div>
+                </>
               )}
-              {/* Guess Distribution (Mode-Specific) */}
-              <div style={{ marginBottom:'1.5rem' }}>
-                <h3 style={{ fontSize:'1.25rem', fontWeight:'700', color:textColor, marginBottom:'1rem' }}>
-                  Guess Distribution ({activeModeTab === 'daily' ? 'Daily' : activeModeTab === 'unlimited' ? 'Unlimited' : 'Combined'})
-                </h3>
-                {activeModeTab === 'daily' ? (
-                  <GuessDistChart dist={stats.dailyGuessDistribution} maxClues={5} />
-                ) : activeModeTab === 'unlimited' ? (
-                  <GuessDistChart dist={stats.unlimitedGuessDistribution} maxClues={6} />
-                ) : (
-                  <GuessDistChart dist={{...stats.dailyGuessDistribution, ...stats.unlimitedGuessDistribution, 6: (stats.unlimitedGuessDistribution[6] || 0)}} maxClues={6} />
-                )}
-              </div>
-              {/* Play History (Daily Only) */}
-              {activeModeTab === 'daily' && stats.dailyPlayHistory && Object.keys(stats.dailyPlayHistory).length > 0 && (
-                <div>
-                  <h3 style={{ fontSize:'1.25rem', fontWeight:'700', color:textColor, marginBottom:'1rem' }}>
-                    📅 Daily History (Last 30 Days)
-                  </h3>
-                  <div style={{ display:'grid', gridTemplateColumns:'repeat(7, 1fr)', gap:'0.25rem' }}>
-                    {Array.from({ length: 30 }, (_, i) => {
-                      const date = new Date();
-                      date.setDate(date.getDate() - (29 - i));
-                      const dateStr = date.toISOString().split('T')[0];
-                      const dayData = stats.dailyPlayHistory[dateStr];
-                      return (
-                        <div
-                          key={i}
-                          title={dateStr + (dayData ? ` - ${dayData.won ? 'Won' : 'Lost'} in ${dayData.clues} clues` : '')}
-                          style={{
-                            aspectRatio:'1',
-                            borderRadius:'0.25rem',
-                            background: dayData
-                              ? dayData.won
-                                ? '#22c55e'
-                                : '#ef4444'
-                              : cardBg,
-                            border:`1px solid ${borderColor}`,
-                            cursor:'pointer'
-                          }}
-                        />
-                      );
-                    })}
+              {activeModeTab === 'unlimited' && (
+                <>
+                  <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ fontSize:'2rem', fontWeight:'700', color:'#22c55e' }}>{stats.unlimitedCompletions}</div>
+                    <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Unlimited Completed</div>
                   </div>
-                  <div style={{ display:'flex', justifyContent:'space-between', marginTop:'0.5rem', fontSize:'0.75rem', color:mutedColor }}>
-                    <span>30 days ago</span>
-                    <span>Today</span>
+                  <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ fontSize:'2rem', fontWeight:'700', color:'#3b82f6' }}>
+                      {stats.unlimitedCompletions > 0 ? Math.round(((stats.unlimitedCompletions - stats.unlimitedGuessDistribution.fail) / stats.unlimitedCompletions) * 100) : 0}%
+                    </div>
+                    <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Unlimited Win Rate</div>
                   </div>
-                </div>
+                  <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ fontSize:'2rem', fontWeight:'700', color:'#ec4899' }}>
+                      {stats.unlimitedCompletions > 0 ? formatTime(Math.floor(stats.unlimitedTotalTime / stats.unlimitedCompletions)) : '--'}
+                    </div>
+                    <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Unlimited Avg Time</div>
+                  </div>
+                  {/* Filler cards to balance grid */}
+                  <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
+                  <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
+                </>
+              )}
+              {activeModeTab === 'overall' && (
+                <>
+                  <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ fontSize:'2rem', fontWeight:'700', color:'#22c55e' }}>{stats.dailyGamesPlayed + stats.unlimitedCompletions}</div>
+                    <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Total Played</div>
+                  </div>
+                  <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ fontSize:'2rem', fontWeight:'700', color:'#3b82f6' }}>
+                      {stats.overallFastestTime ? formatTime(stats.overallFastestTime) : '--'}
+                    </div>
+                    <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Overall Fastest</div>
+                  </div>
+                  <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ fontSize:'2rem', fontWeight:'700', color:'#f59e0b' }}>
+                      {stats.dailyGamesPlayed + stats.unlimitedCompletions > 0 ? formatTime(Math.floor(stats.overallTotalTime / (stats.dailyGamesPlayed + stats.unlimitedCompletions))) : '--'}
+                    </div>
+                    <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Overall Avg Time</div>
+                  </div>
+                  {/* Filler */}
+                  <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
+                  <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
+                </>
               )}
             </div>
+            {/* Achievements (Shared) */}
+            {getAchievements().length > 0 && (
+              <div style={{ marginBottom:'2rem' }}>
+                <h3 style={{ fontSize:'1.25rem', fontWeight:'700', color:textColor, marginBottom:'1rem' }}>
+                  🏆 Achievements (All Modes)
+                </h3>
+                <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'0.75rem' }}>
+                  {getAchievements().map((ach, i) => (
+                    <div key={i} style={{ background:cardBg, padding:'1rem', borderRadius:'0.75rem', border:`1px solid ${borderColor}`, display:'flex', alignItems:'center', gap:'0.75rem' }}>
+                      <span style={{ fontSize:'1.5rem' }}>{ach.icon}</span>
+                      <div>
+                        <div style={{ fontSize:'0.875rem', fontWeight:'600', color:textColor }}>{ach.name}</div>
+                        <div style={{ fontSize:'0.75rem', color:mutedColor }}>{ach.desc}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {/* Guess Distribution (Mode-Specific) */}
+            <div style={{ marginBottom:'1.5rem' }}>
+              <h3 style={{ fontSize:'1.25rem', fontWeight:'700', color:textColor, marginBottom:'1rem' }}>
+                Guess Distribution ({activeModeTab === 'daily' ? 'Daily' : activeModeTab === 'unlimited' ? 'Unlimited' : 'Combined'})
+              </h3>
+              {activeModeTab === 'daily' ? (
+                <GuessDistChart dist={stats.dailyGuessDistribution} maxClues={5} />
+              ) : activeModeTab === 'unlimited' ? (
+                <GuessDistChart dist={stats.unlimitedGuessDistribution} maxClues={6} />
+              ) : (
+                <GuessDistChart dist={{...stats.dailyGuessDistribution, ...stats.unlimitedGuessDistribution, 6: (stats.unlimitedGuessDistribution[6] || 0)}} maxClues={6} />
+              )}
+            </div>
+            {/* Play History (Daily Only) */}
+            {activeModeTab === 'daily' && stats.dailyPlayHistory && Object.keys(stats.dailyPlayHistory).length > 0 && (
+              <div>
+                <h3 style={{ fontSize:'1.25rem', fontWeight:'700', color:textColor, marginBottom:'1rem' }}>
+                  📅 Daily History (Last 30 Days)
+                </h3>
+                <div style={{ display:'grid', gridTemplateColumns:'repeat(7, 1fr)', gap:'0.25rem' }}>
+                  {Array.from({ length: 30 }, (_, i) => {
+                    const date = new Date();
+                    date.setDate(date.getDate() - (29 - i));
+                    const dateStr = date.toISOString().split('T')[0];
+                    const dayData = stats.dailyPlayHistory[dateStr];
+                    return (
+                      <div
+                        key={i}
+                        title={dateStr + (dayData ? ` - ${dayData.won ? 'Won' : 'Lost'} in ${dayData.clues} clues` : '')}
+                        style={{
+                          aspectRatio:'1',
+                          borderRadius:'0.25rem',
+                          background: dayData
+                            ? dayData.won
+                              ? '#22c55e'
+                              : '#ef4444'
+                            : cardBg,
+                          border:`1px solid ${borderColor}`,
+                          cursor:'pointer'
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+                <div style={{ display:'flex', justifyContent:'space-between', marginTop:'0.5rem', fontSize:'0.75rem', color:mutedColor }}>
+                  <span>30 days ago</span>
+                  <span>Today</span>
+                </div>
+              </div>
+            )}
           </div>
-        )}
-        {/* How to Play Modal (with ARIA) */}
-        {showHowToPlay && (
+        </div>
+      )}
+      {/* How to Play Modal (with ARIA) */}
+      {showHowToPlay && (
+        <div
+          style={{
+            position:'fixed',
+            top:0,
+            left:0,
+            right:0,
+            bottom:0,
+            background:'rgba(0,0,0,0.8)',
+            display:'flex',
+            alignItems:'center',
+            justifyContent:'center',
+            zIndex:100,
+            padding:'1rem'
+          }}
+          onClick={() => setShowHowToPlay(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="How to Play Modal"
+        >
           <div
             style={{
-              position:'fixed',
-              top:0,
-              left:0,
-              right:0,
-              bottom:0,
-              background:'rgba(0,0,0,0.8)',
-              display:'flex',
-              alignItems:'center',
-              justifyContent:'center',
-              zIndex:100,
-              padding:'1rem'
+              background: darkMode ? 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))' : 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95))',
+              backdropFilter:'blur(20px)',
+              borderRadius:'2rem',
+              padding:'2.5rem',
+              maxWidth:'600px',
+              width:'100%',
+              border:`1px solid ${borderColor}`,
+              position:'relative'
             }}
-            onClick={() => setShowHowToPlay(false)}
-            role="dialog"
-            aria-modal="true"
-            aria-label="How to Play Modal"
+            onClick={(e) => e.stopPropagation()}
           >
-            <div
+            <button
+              onClick={() => setShowHowToPlay(false)}
               style={{
-                background: darkMode ? 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))' : 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95))',
-                backdropFilter:'blur(20px)',
-                borderRadius:'2rem',
-                padding:'2.5rem',
-                maxWidth:'600px',
-                width:'100%',
-                border:`1px solid ${borderColor}`,
-                position:'relative'
+                position:'absolute',
+                top:'1rem',
+                right:'1rem',
+                background:cardBg,
+                border:'none',
+                color:textColor,
+                fontSize:'1.5rem',
+                cursor:'pointer',
+                width:'40px',
+                height:'40px',
+                borderRadius:'50%',
+                display:'flex',
+                alignItems:'center',
+                justifyContent:'center'
               }}
-              onClick={(e) => e.stopPropagation()}
+              aria-label="Close How to Play Modal"
             >
-              <button
-                onClick={() => setShowHowToPlay(false)}
-                style={{
-                  position:'absolute',
-                  top:'1rem',
-                  right:'1rem',
-                  background:cardBg,
-                  border:'none',
-                  color:textColor,
-                  fontSize:'1.5rem',
-                  cursor:'pointer',
-                  width:'40px',
-                  height:'40px',
-                  borderRadius:'50%',
-                  display:'flex',
-                  alignItems:'center',
-                  justifyContent:'center'
-                }}
-                aria-label="Close How to Play Modal"
-              >
-                ×
-              </button>
-              <h2 style={{ fontSize:'2rem', fontWeight:'800', color:textColor, marginBottom:'1.5rem', textAlign:'center' }}>
-                ❓ How to Play
-              </h2>
-              <div style={{ color:textColor, lineHeight:'1.8', fontSize:'1rem' }}>
-                <p style={{ marginBottom:'1rem', fontWeight:'600', fontSize:'1.125rem' }}>
-                  Guess the stock ticker in {numClues} clues or less!
-                </p>
-                <div style={{ background:cardBg, padding:'1.5rem', borderRadius:'1rem', marginBottom:'1rem', border:`1px solid ${borderColor}` }}>
-                  <p style={{ marginBottom:'0.75rem' }}>
-                    <strong style={{ color:'#22c55e' }}>🎯 Objective:</strong> Identify the mystery stock from progressively specific clues.
-                  </p>
-                  <p style={{ marginBottom:'0.75rem' }}>
-                    <strong style={{ color:'#3b82f6' }}>📝 Clues:</strong> Each clue gets more specific, from broad industry hints to precise company details.
-                  </p>
-                  <p>
-                    <strong style={{ color:'#f59e0b' }}>⏱️ Strategy:</strong> The fewer clues you need, the better your score!
-                  </p>
-                </div>
-                <div style={{ background:cardBg, padding:'1.5rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                  <h3 style={{ fontSize:'1.125rem', fontWeight:'700', marginBottom:'0.75rem' }}>Example:</h3>
-                  <div style={{ fontSize:'0.875rem', color:mutedColor, lineHeight:'1.6' }}>
-                    <p>1️⃣ "I'm a technology company..."</p>
-                    <p>2️⃣ "I make electric vehicles..."</p>
-                    <p>3️⃣ "My CEO is very active on social media..."</p>
-                    <p>4️⃣ "I launched the Cybertruck in 2023..."</p>
-                    <p>5️⃣ "I'm named after a famous inventor..."</p>
-                    <p style={{ marginTop:'0.75rem', color:'#22c55e', fontWeight:'600' }}>Answer: TSLA (Tesla)</p>
-                  </div>
-                </div>
-                <p style={{ marginTop:'1.5rem', textAlign:'center', fontSize:'0.875rem', color:mutedColor }}>
-                  {gameMode === 'daily' ? 'New puzzle daily at midnight EST!' : 'Endless challenges await!'} 🌅
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
-        {/* Questions (input with title for shortcut hint) */}
-        {questions.map((q, idx) => {
-          if(idx>currentLevel) return null;
-          return (
-            <div key={idx} style={{ marginBottom:'2rem', width:'100%' }}>
-              <div style={{ background:'rgba(15,23,42,0.7)', backdropFilter:'blur(20px)', borderRadius:'1.5rem', padding:'2rem', border:'1px solid rgba(255,255,255,0.1)', width:'100%' }}>
-                <p style={{ fontWeight:'700', fontSize:'1.25rem', marginBottom:'1rem', color:'#f1f5f9' }}>Question {q.level}: {q.question}</p>
-                {q.answers.map((a,i)=>(
-                  <div key={i} style={{ padding:'0.75rem 1.25rem', marginBottom:'0.5rem', borderRadius:'0.75rem', background:a.isCorrect?"rgba(34,197,94,0.2)":"rgba(239,68,68,0.2)", color:a.isCorrect?"#22c55e":"#ef4444", fontWeight:'600', fontFamily:'monospace', fontSize:'1rem' }}>
-                    {a.isCorrect?"✓":"✗"} {a.guess}
-                  </div>
-                ))}
-                {currentLevel===idx && !gameOver && (
-                  <form
-                    style={{ position:'relative', marginTop:'1rem', width:'100%', display:'flex', flexDirection:'column', alignItems:'center' }}
-                    onSubmit={handleSubmit}
-                  >
-                    <input
-                      ref={inputRef}
-                      value={input}
-                      onChange={e => setInput(e.target.value)}
-                      placeholder="Ex: NVDA (NVIDIA)"
-                      autoFocus
-                      title="Press Enter to submit"
-                      aria-label="Enter your stock guess"
-                      style={{
-                        width:'100%',
-                        padding:'1rem 1.25rem',
-                        borderRadius:'1rem',
-                        border:'2px solid rgba(255,255,255,0.2)',
-                        background:'rgba(255,255,255,0.1)',
-                        color:'white',
-                        outline:'none',
-                        fontWeight:'500',
-                        fontSize:'1rem',
-                        boxSizing:'border-box'
-                      }}
-                    />
-                    {availableOptions.length>0 && (
-                      <div style={{ position:'absolute', top:'100%', left:0, right:0, marginTop:'0.5rem', background:'rgba(15,23,42,0.95)', borderRadius:'1rem', overflow:'auto', maxHeight:'400px', zIndex:50, border:'1px solid rgba(255,255,255,0.2)' }}>
-                        {availableOptions.map((opt,i)=>(
-                          <div
-                            key={i}
-                            onClick={()=>handleOptionClick(opt)}
-                            style={{
-                              padding:'1rem 1.25rem',
-                              cursor:'pointer',
-                              borderBottom:i<availableOptions.length-1?"1px solid rgba(255,255,255,0.1)":"none",
-                              transition:'background 0.2s ease'
-                            }}
-                            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(34, 197, 94, 0.15)'}
-                            onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
-                          >
-                            <div style={{ fontWeight:'700', color:'#22c55e', fontFamily:'monospace', fontSize:'1rem' }}>{opt.symbol}</div>
-                            <div style={{ fontSize:'0.875rem', color:'#94a3b8', marginTop:'0.25rem' }}>{opt.company}</div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                    <button
-                      type="submit"
-                      style={{
-                        marginTop:'1rem',
-                        padding:'0.75rem 1.5rem',
-                        background:'linear-gradient(135deg,#22c55e 0%,#16a34a 100%)',
-                        borderRadius:'0.75rem',
-                        border:'none',
-                        fontWeight:'700',
-                        fontSize:'0.875rem',
-                        color:'white',
-                        cursor:'pointer',
-                        transition:'all 0.3s ease',
-                        boxShadow:'0 10px 25px -5px rgba(34, 197, 94, 0.4)',
-                        ...(shake && { animation: 'shake 0.5s ease-in-out' })
-                      }}
-                      aria-label="Submit your answer"
-                      onMouseEnter={(e) => {
-                        if (!shake) {
-                          e.currentTarget.style.transform = 'translateY(-2px)';
-                          e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(34, 197, 94, 0.5)';
-                        }
-                      }}
-                      onMouseLeave={(e) => {
-                        if (!shake) {
-                          e.currentTarget.style.transform = 'translateY(0)';
-                          e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(34, 197, 94, 0.4)';
-                        }
-                      }}
-                    >
-                      Submit Answer
-                    </button>
-                  </form>
-                )}
-              </div>
-            </div>
-          );
-        })}
-        {/* Game Over */}
-        {gameOver && (
-          <div style={{ textAlign:'center', marginTop:'2rem', background:'rgba(15,23,42,0.7)', backdropFilter:'blur(20px)', padding:'3rem', borderRadius:'2rem', border:'1px solid rgba(255,255,255,0.1)', width:'100%' }}>
-            <div style={{ fontSize:'5rem', marginBottom:'1.5rem' }}>{isWinner ? '🎉' : '😔'}</div>
-            <h2 style={{ fontSize:'2.5rem', fontWeight:'800', background:isWinner?'linear-gradient(135deg,#22c55e 0%,#3b82f6 100%)':'linear-gradient(135deg,#ef4444 0%,#dc2626 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', marginBottom:'1.5rem' }}>
-              {isWinner?'Congratulations!':'Game Over'}
+              ×
+            </button>
+            <h2 style={{ fontSize:'2rem', fontWeight:'800', color:textColor, marginBottom:'1.5rem', textAlign:'center' }}>
+              ❓ How to Play
             </h2>
-            <div style={{ background:'rgba(255,255,255,0.05)', borderRadius:'1rem', padding:'2rem', marginBottom:'2rem' }}>
-              <p style={{ color:'#94a3b8', fontSize:'0.875rem', marginBottom:'0.5rem', textTransform:'uppercase' }}>The Answer Was</p>
-              <p style={{ fontSize:'2.5rem', fontWeight:'800', color:'#22c55e', fontFamily:'monospace', marginBottom:'0.5rem' }}>{dailyTicker.ticker}</p>
-              <p style={{ fontSize:'1.125rem', color:'#e2e8f0' }}>{dailyTicker.company}</p>
-              <p style={{ color: '#94a3b8', fontSize: '1.125rem', marginTop: '1rem', textAlign: 'center' }}>
-                {gameMode === 'daily' ? 'Come back tomorrow for a new challenge!' : 'Keep going!'}
+            <div style={{ color:textColor, lineHeight:'1.8', fontSize:'1rem' }}>
+              <p style={{ marginBottom:'1rem', fontWeight:'600', fontSize:'1.125rem' }}>
+                Guess the stock ticker in {numClues} clues or less!
+              </p>
+              <div style={{ background:cardBg, padding:'1.5rem', borderRadius:'1rem', marginBottom:'1rem', border:`1px solid ${borderColor}` }}>
+                <p style={{ marginBottom:'0.75rem' }}>
+                  <strong style={{ color:'#22c55e' }}>🎯 Objective:</strong> Identify the mystery stock from progressively specific clues.
+                </p>
+                <p style={{ marginBottom:'0.75rem' }}>
+                  <strong style={{ color:'#3b82f6' }}>📝 Clues:</strong> Each clue gets more specific, from broad industry hints to precise company details.
+                </p>
+                <p>
+                  <strong style={{ color:'#f59e0b' }}>⏱️ Strategy:</strong> The fewer clues you need, the better your score!
+                </p>
+              </div>
+              <div style={{ background:cardBg, padding:'1.5rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                <h3 style={{ fontSize:'1.125rem', fontWeight:'700', marginBottom:'0.75rem' }}>Example:</h3>
+                <div style={{ fontSize:'0.875rem', color:mutedColor, lineHeight:'1.6' }}>
+                  <p>1️⃣ "I'm a technology company..."</p>
+                  <p>2️⃣ "I make electric vehicles..."</p>
+                  <p>3️⃣ "My CEO is very active on social media..."</p>
+                  <p>4️⃣ "I launched the Cybertruck in 2023..."</p>
+                  <p>5️⃣ "I'm named after a famous inventor..."</p>
+                  <p style={{ marginTop:'0.75rem', color:'#22c55e', fontWeight:'600' }}>Answer: TSLA (Tesla)</p>
+                </div>
+              </div>
+              <p style={{ marginTop:'1.5rem', textAlign:'center', fontSize:'0.875rem', color:mutedColor }}>
+                {gameMode === 'daily' ? 'New puzzle daily at midnight EST!' : 'Endless challenges await!'} 🌅
               </p>
             </div>
-            <div style={{ marginTop:'1.5rem', display:'flex', gap:'0.75rem', justifyContent:'center', flexWrap:'wrap' }}>
+          </div>
+        </div>
+      )}
+      {/* Questions (input with title for shortcut hint) */}
+      {questions.map((q, idx) => {
+        if(idx>currentLevel) return null;
+        return (
+          <div key={idx} style={{ marginBottom:'2rem', width:'100%' }}>
+            <div style={{ background:'rgba(15,23,42,0.7)', backdropFilter:'blur(20px)', borderRadius:'1.5rem', padding:'2rem', border:'1px solid rgba(255,255,255,0.1)', width:'100%' }}>
+              <p style={{ fontWeight:'700', fontSize:'1.25rem', marginBottom:'1rem', color:'#f1f5f9' }}>Question {q.level}: {q.question}</p>
+              {q.answers.map((a,i)=>(
+                <div key={i} style={{ padding:'0.75rem 1.25rem', marginBottom:'0.5rem', borderRadius:'0.75rem', background:a.isCorrect?"rgba(34,197,94,0.2)":"rgba(239,68,68,0.2)", color:a.isCorrect?"#22c55e":"#ef4444", fontWeight:'600', fontFamily:'monospace', fontSize:'1rem' }}>
+                  {a.isCorrect?"✓":"✗"} {a.guess}
+                </div>
+              ))}
+              {currentLevel===idx && !gameOver && (
+                <form
+                  style={{ position:'relative', marginTop:'1rem', width:'100%', display:'flex', flexDirection:'column', alignItems:'center' }}
+                  onSubmit={handleSubmit}
+                >
+                  <input
+                    ref={inputRef}
+                    value={input}
+                    onChange={e => setInput(e.target.value)}
+                    placeholder="Ex: NVDA (NVIDIA)"
+                    autoFocus
+                    title="Press Enter to submit"
+                    aria-label="Enter your stock guess"
+                    style={{
+                      width:'100%',
+                      padding:'1rem 1.25rem',
+                      borderRadius:'1rem',
+                      border:'2px solid rgba(255,255,255,0.2)',
+                      background:'rgba(255,255,255,0.1)',
+                      color:'white',
+                      outline:'none',
+                      fontWeight:'500',
+                      fontSize:'1rem',
+                      boxSizing:'border-box'
+                    }}
+                  />
+                  {availableOptions.length>0 && (
+                    <div style={{ position:'absolute', top:'100%', left:0, right:0, marginTop:'0.5rem', background:'rgba(15,23,42,0.95)', borderRadius:'1rem', overflow:'auto', maxHeight:'400px', zIndex:50, border:'1px solid rgba(255,255,255,0.2)' }}>
+                      {availableOptions.map((opt,i)=>(
+                        <div
+                          key={i}
+                          onClick={()=>handleOptionClick(opt)}
+                          style={{
+                            padding:'1rem 1.25rem',
+                            cursor:'pointer',
+                            borderBottom:i<availableOptions.length-1?"1px solid rgba(255,255,255,0.1)":"none",
+                            transition:'background 0.2s ease'
+                          }}
+                          onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(34, 197, 94, 0.15)'}
+                          onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                        >
+                          <div style={{ fontWeight:'700', color:'#22c55e', fontFamily:'monospace', fontSize:'1rem' }}>{opt.symbol}</div>
+                          <div style={{ fontSize:'0.875rem', color:'#94a3b8', marginTop:'0.25rem' }}>{opt.company}</div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <button
+                    type="submit"
+                    style={{
+                      marginTop:'1rem',
+                      padding:'0.75rem 1.5rem',
+                      background:'linear-gradient(135deg,#22c55e 0%,#16a34a 100%)',
+                      borderRadius:'0.75rem',
+                      border:'none',
+                      fontWeight:'700',
+                      fontSize:'0.875rem',
+                      color:'white',
+                      cursor:'pointer',
+                      transition:'all 0.3s ease',
+                      boxShadow:'0 10px 25px -5px rgba(34, 197, 94, 0.4)',
+                      ...(shake && { animation: 'shake 0.5s ease-in-out' })
+                    }}
+                    aria-label="Submit your answer"
+                    onMouseEnter={(e) => {
+                      if (!shake) {
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                        e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(34, 197, 94, 0.5)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!shake) {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(34, 197, 94, 0.4)';
+                      }
+                    }}
+                  >
+                    Submit Answer
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        );
+      })}
+      {/* Game Over */}
+      {gameOver && (
+        <div style={{ textAlign:'center', marginTop:'2rem', background:'rgba(15,23,42,0.7)', backdropFilter:'blur(20px)', padding:'3rem', borderRadius:'2rem', border:'1px solid rgba(255,255,255,0.1)', width:'100%' }}>
+          <div style={{ fontSize:'5rem', marginBottom:'1.5rem' }}>{isWinner ? '🎉' : '😔'}</div>
+          <h2 style={{ fontSize:'2.5rem', fontWeight:'800', background:isWinner?'linear-gradient(135deg,#22c55e 0%,#3b82f6 100%)':'linear-gradient(135deg,#ef4444 0%,#dc2626 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', marginBottom:'1.5rem' }}>
+            {isWinner?'Congratulations!':'Game Over'}
+          </h2>
+          <div style={{ background:'rgba(255,255,255,0.05)', borderRadius:'1rem', padding:'2rem', marginBottom:'2rem' }}>
+            <p style={{ color:'#94a3b8', fontSize:'0.875rem', marginBottom:'0.5rem', textTransform:'uppercase' }}>The Answer Was</p>
+            <p style={{ fontSize:'2.5rem', fontWeight:'800', color:'#22c55e', fontFamily:'monospace', marginBottom:'0.5rem' }}>{dailyTicker.ticker}</p>
+            <p style={{ fontSize:'1.125rem', color:'#e2e8f0' }}>{dailyTicker.company}</p>
+            <p style={{ color: '#94a3b8', fontSize: '1.125rem', marginTop: '1rem', textAlign: 'center' }}>
+              {gameMode === 'daily' ? 'Come back tomorrow for a new challenge!' : 'Keep going!'}
+            </p>
+          </div>
+          <div style={{ marginTop:'1.5rem', display:'flex', gap:'0.75rem', justifyContent:'center', flexWrap:'wrap' }}>
+            <button
+              onClick={shareResults}
+              style={{
+                padding:'1rem 2rem',
+                borderRadius:'1rem',
+                fontWeight:'700',
+                fontSize:'1rem',
+                color:'white',
+                border:'none',
+                background:'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+                cursor:'pointer',
+                transition:'all 0.3s ease',
+                boxShadow:'0 10px 25px -5px rgba(59, 130, 246, 0.4)'
+              }}
+              aria-label="Share your results"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(59, 130, 246, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(59, 130, 246, 0.4)';
+              }}
+            >
+              📤 Share Results
+            </button>
+            <button
+              onClick={shareToTwitter}
+              style={{
+                padding:'1rem 2rem',
+                borderRadius:'1rem',
+                fontWeight:'700',
+                fontSize:'1rem',
+                color:'white',
+                border:'none',
+                background:'linear-gradient(135deg, #1DA1F2 0%, #0c85d0 100%)',
+                cursor:'pointer',
+                transition:'all 0.3s ease',
+                boxShadow:'0 10px 25px -5px rgba(29, 161, 242, 0.4)'
+              }}
+              aria-label="Share on X (Twitter)"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(29, 161, 242, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(29, 161, 242, 0.4)';
+              }}
+            >
+              🐦 Share on X
+            </button>
+            {gameMode === 'unlimited' && (
               <button
-                onClick={shareResults}
+                onClick={nextPuzzle}
                 style={{
                   padding:'1rem 2rem',
                   borderRadius:'1rem',
@@ -1564,52 +1611,28 @@ const shareToTwitter = () => {
                   fontSize:'1rem',
                   color:'white',
                   border:'none',
-                  background:'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+                  background:'linear-gradient(135deg,#22c55e 0%,#16a34a 100%)',
                   cursor:'pointer',
                   transition:'all 0.3s ease',
-                  boxShadow:'0 10px 25px -5px rgba(59, 130, 246, 0.4)'
+                  boxShadow:'0 10px 25px -5px rgba(34, 197, 94, 0.4)'
                 }}
-                aria-label="Share your results"
+                aria-label="Load Next Puzzle"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(59, 130, 246, 0.5)';
+                  e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(34, 197, 94, 0.5)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(59, 130, 246, 0.4)';
+                  e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(34, 197, 94, 0.4)';
                 }}
               >
-                📤 Share Results
+                🔄 Next Puzzle
               </button>
-              <button
-                onClick={shareToTwitter}
-                style={{
-                  padding:'1rem 2rem',
-                  borderRadius:'1rem',
-                  fontWeight:'700',
-                  fontSize:'1rem',
-                  color:'white',
-                  border:'none',
-                  background:'linear-gradient(135deg, #1DA1F2 0%, #0c85d0 100%)',
-                  cursor:'pointer',
-                  transition:'all 0.3s ease',
-                  boxShadow:'0 10px 25px -5px rgba(29, 161, 242, 0.4)'
-                }}
-                aria-label="Share on X (Twitter)"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(29, 161, 242, 0.5)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(29, 161, 242, 0.4)';
-                }}
-              >
-                🐦 Share on X
-              </button>
-              {gameMode === 'unlimited' && (
+            )}
+            {testMode && (
+              <>
                 <button
-                  onClick={nextPuzzle}
+                  onClick={resetGame}
                   style={{
                     padding:'1rem 2rem',
                     borderRadius:'1rem',
@@ -1622,7 +1645,7 @@ const shareToTwitter = () => {
                     transition:'all 0.3s ease',
                     boxShadow:'0 10px 25px -5px rgba(34, 197, 94, 0.4)'
                   }}
-                  aria-label="Load Next Puzzle"
+                  aria-label="Start New Game"
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-2px)';
                     e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(34, 197, 94, 0.5)';
@@ -1632,70 +1655,39 @@ const shareToTwitter = () => {
                     e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(34, 197, 94, 0.4)';
                   }}
                 >
-                  🔄 Next Puzzle
+                  🔄 New Game
                 </button>
-              )}
-              {testMode && (
-                <>
-                  <button
-                    onClick={resetGame}
-                    style={{
-                      padding:'1rem 2rem',
-                      borderRadius:'1rem',
-                      fontWeight:'700',
-                      fontSize:'1rem',
-                      color:'white',
-                      border:'none',
-                      background:'linear-gradient(135deg,#22c55e 0%,#16a34a 100%)',
-                      cursor:'pointer',
-                      transition:'all 0.3s ease',
-                      boxShadow:'0 10px 25px -5px rgba(34, 197, 94, 0.4)'
-                    }}
-                    aria-label="Start New Game"
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(34, 197, 94, 0.5)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(34, 197, 94, 0.4)';
-                    }}
-                  >
-                    🔄 New Game
-                  </button>
-                  <button
-                    onClick={skipToNextTicker}
-                    style={{
-                      padding:'1rem 2rem',
-                      borderRadius:'1rem',
-                      fontWeight:'700',
-                      fontSize:'1rem',
-                      color:'white',
-                      border:'none',
-                      background:'linear-gradient(135deg, #f59e0b, #d97706)',
-                      cursor:'pointer',
-                      transition:'all 0.3s ease',
-                      boxShadow:'0 10px 25px -5px rgba(245, 158, 11, 0.4)'
-                    }}
-                    aria-label="Skip to Next Ticker (Test Mode)"
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(245, 158, 11, 0.5)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(245, 158, 11, 0.4)';
-                    }}
-                  >
-                    🧪 Skip to Next Ticker
-                  </button>
-                </>
-              )}
-            </div>
+                <button
+                  onClick={skipToNextTicker}
+                  style={{
+                    padding:'1rem 2rem',
+                    borderRadius:'1rem',
+                    fontWeight:'700',
+                    fontSize:'1rem',
+                    color:'white',
+                    border:'none',
+                    background:'linear-gradient(135deg, #f59e0b, #d97706)',
+                    cursor:'pointer',
+                    transition:'all 0.3s ease',
+                    boxShadow:'0 10px 25px -5px rgba(245, 158, 11, 0.4)'
+                  }}
+                  aria-label="Skip to Next Ticker (Test Mode)"
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(245, 158, 11, 0.5)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(245, 158, 11, 0.4)';
+                  }}
+                >
+                  🧪 Skip to Next Ticker
+                </button>
+              </>
+            )}
           </div>
-        )}
-      </div>
-    </div>
-  );
-}
-export default App;
+        </div>
+      )}
+    </div>  {/* ← This is the closing tag for the maxWidth container—now wraps EVERYTHING! */}
+  </div>
+);
