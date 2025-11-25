@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useAuthState, useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import confetti from 'canvas-confetti'; // npm install canvas-confetti required
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, increment, getDoc, setDoc, updateDoc, onSnapshot, serverTimestamp, collection, query, where } from "firebase/firestore";
+import { getFirestore, doc, increment, getDoc, setDoc, updateDoc, onSnapshot, serverTimestamp, collection, query, where, deleteDoc } from "firebase/firestore";
 import { getAuth, signInAnonymously, GoogleAuthProvider, signOut } from "firebase/auth";
 import { getAnalytics, logEvent } from "firebase/analytics";
 
