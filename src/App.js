@@ -468,9 +468,9 @@ useEffect(() => {
     if (isCorrect || currentLevel === questions.length -1) {
       setGameOver(true);
       // Confetti on win
-      if (isCorrect) {
+      if (isCorrect) 
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-      }
+      
       // Defer stats update to avoid double-save (only for daily)
         updateStats(isCorrect, currentLevel + 1);
       return;
