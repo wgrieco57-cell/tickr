@@ -486,23 +486,35 @@ useEffect(() => {
   useEffect(() => {
     if (testMode) return;
 
-   const track = async () => {
+const track = async () => {
   try {
     const today = new Date().toISOString().split('T')[0];
-    const dailyRef = doc(db, 'analytics', `daily_${today}`); // ✅ fixed
+    const dailyRef = doc(db, 'analytics', `daily_${today}`); // ✅ daily doc
     const globalRef = doc(db, 'analytics', 'global');
 
+    // Increment daily plays safely (create doc if missing)
     await setDoc(dailyRef, { plays: increment(1) }, { merge: true });
+
+    // Ensure global doc exists
+    const globalSnap = await getDoc(globalRef);
+    if (!globalSnap.exists()) {
+      await setDoc(globalRef, { totalPlays: 0, uniqueUsers: 0 });
+    }
+
+    // Increment total plays
     await updateDoc(globalRef, { totalPlays: increment(1) });
 
+    // Increment unique users if first visit
     if (!localStorage.getItem('td_visited')) {
       localStorage.setItem('td_visited', 'true');
       await updateDoc(globalRef, { uniqueUsers: increment(1) });
     }
+
   } catch (e) {
     console.log("Analytics offline (normal in dev)", e);
   }
 };
+
 track();
 
   }, [testMode]);
