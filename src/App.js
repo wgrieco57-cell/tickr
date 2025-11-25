@@ -924,12 +924,13 @@ const shareToTwitter = () => {
       `}</style>
       <div style={{ width:'100%', maxWidth:'900px', display:'flex', flexDirection:'column', alignItems:'center' }}>
     <div style={{ textAlign:'center', marginBottom:'1rem', position:'relative', width:'100%' }}>
+<>
   {/* Dark Mode Button */}
   <button
     onClick={toggleDarkMode}
     style={{
       position:'absolute',
-      right:'120px', // moved left to make room for login/logout
+      right:'120px',
       top:0,
       padding:'0.75rem',
       background:cardBg,
@@ -1006,7 +1007,7 @@ const shareToTwitter = () => {
       </button>
     )}
   </div>
-
+</>
 
         
             </div>
