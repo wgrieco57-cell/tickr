@@ -422,20 +422,18 @@ useEffect(() => {
       setSubmittedAnswers(prev => [...prev, { level: currentLevel + 1, guess: formattedGuess, isCorrect }]);
       setInput("");
       setAvailableOptions([]);
-      if (isCorrect || currentLevel === questions.length -1) {
-        setGameOver(true);
-        // Confetti on win
-        if (isCorrect) {
-          confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-        }
-        // Defer stats update to avoid double-save (only for daily)
-        if (gameMode === 'daily') {
-          setTimeout(() => updateStats(isCorrect, currentLevel + 1), 100);
-        }
-        // Always increment totalPuzzles
-        setStats(prev => ({ ...prev, totalPuzzles: prev.totalPuzzles + 1 }));
-        localStorage.setItem('tickrDailyStats', JSON.stringify({ ...stats, totalPuzzles: stats.totalPuzzles + 1 }));
-        return;
+     if (isCorrect || currentLevel === questions.length -1) {
+  setGameOver(true);
+
+  const timeElapsed = startTime ? Math.floor((Date.now() - startTime)/1000) : 0;
+
+  if (isCorrect) confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+
+ updateStats(isCorrect, currentLevel + 1);
+
+
+  return;
+}
       }
       setCurrentLevel(currentLevel+1);
       return;
@@ -475,7 +473,7 @@ useEffect(() => {
       }
       // Defer stats update to avoid double-save (only for daily)
       if (gameMode === 'daily') {
-        setTimeout(() => updateStats(isCorrect, currentLevel + 1), 100);
+        setTimeout(() => updateStats(isCorrect, currentLevel + 1);
       }
       // Always increment totalPuzzles
       setStats(prev => ({ ...prev, totalPuzzles: prev.totalPuzzles + 1 }));
@@ -524,55 +522,61 @@ useEffect(() => {
   track();
 }, [gameMode, testMode]);
   
-// Update stats when game ends (updated for totalPuzzles)
-  const updateStats = (won, cluesUsed) => {
-    if (testMode || gameMode === 'unlimited') return;
-    // Only update if not already completed today
-    const progressStr = localStorage.getItem('dailyProgress');
-    if (progressStr) {
-      try {
-        const progress = JSON.parse(progressStr);
-        if (progress.gameOver) {
-          console.log('Game already completed today—no stats update');
-          return;
-        }
-      } catch (e) {
-        // Ignore, proceed
+// Update stats in one place
+const updateStats = (won = false, cluesUsed = 0, timeElapsed = null) => {
+  if (testMode || gameMode === 'unlimited') return;
+
+  // Only update if not already completed today (daily mode)
+  const progressStr = localStorage.getItem('dailyProgress');
+  if (progressStr) {
+    try {
+      const progress = JSON.parse(progressStr);
+      if (progress.gameOver) {
+        console.log('Game already completed today—no stats update');
+        return;
       }
+    } catch (e) {
+      // Ignore, proceed
     }
-    const timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
-    const today = new Date().toISOString().split('T')[0];
+  }
 
-    setStats(prev => {
-      const newGuessDistribution = { ...prev.guessDistribution };
-      if (won) {
-        newGuessDistribution[cluesUsed] = (newGuessDistribution[cluesUsed] || 0) + 1;
-      } else {
-        newGuessDistribution.fail = (newGuessDistribution.fail || 0) + 1;
-      }
+  // Compute timeElapsed if not provided
+  if (timeElapsed === null) {
+    timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
+  }
 
-      const newPlayHistory = { ...prev.playHistory, [today]: { won, clues: cluesUsed, time: timeElapsed } };
-      const newCurrentStreak = won ? prev.currentStreak + 1 : 0;
+  const today = new Date().toISOString().split('T')[0];
 
-      const updated = {
-        ...prev,
-        gamesPlayed: prev.gamesPlayed + 1,
-        totalPuzzles: prev.totalPuzzles + 1,
-        totalTime: prev.totalTime + timeElapsed,
-        gamesWon: won ? prev.gamesWon + 1 : prev.gamesWon,
-        currentStreak: newCurrentStreak,
-        maxStreak: Math.max(prev.maxStreak, newCurrentStreak),
-        fastestTime: won && (!prev.fastestTime || timeElapsed < prev.fastestTime) ? timeElapsed : prev.fastestTime,
-        guessDistribution: newGuessDistribution,
-        playHistory: newPlayHistory
-      };
+  setStats(prev => {
+    const newGuessDistribution = { ...prev.guessDistribution };
+    if (won) {
+      newGuessDistribution[cluesUsed] = (newGuessDistribution[cluesUsed] || 0) + 1;
+    } else {
+      newGuessDistribution.fail = (newGuessDistribution.fail || 0) + 1;
+    }
 
-      // Save to localStorage immediately
-      localStorage.setItem('tickrDailyStats', JSON.stringify(updated));
+    const newPlayHistory = { ...prev.playHistory, [today]: { won, clues: cluesUsed, time: timeElapsed } };
+    const newCurrentStreak = won ? prev.currentStreak + 1 : 0;
 
-      return updated;
-    });
-  };
+    const updated = {
+      ...prev,
+      gamesPlayed: prev.gamesPlayed + 1,
+      totalPuzzles: prev.totalPuzzles + 1,
+      totalTime: prev.totalTime + timeElapsed,
+      gamesWon: won ? prev.gamesWon + 1 : prev.gamesWon,
+      currentStreak: newCurrentStreak,
+      maxStreak: Math.max(prev.maxStreak, newCurrentStreak),
+      fastestTime: won && (!prev.fastestTime || timeElapsed < prev.fastestTime) ? timeElapsed : prev.fastestTime,
+      guessDistribution: newGuessDistribution,
+      playHistory: newPlayHistory
+    };
+
+    localStorage.setItem('tickrDailyStats', JSON.stringify(updated));
+
+    return updated;
+  });
+};
+
   // Share results
   const shareResults = () => {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
