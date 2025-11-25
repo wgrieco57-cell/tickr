@@ -472,9 +472,8 @@ useEffect(() => {
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
       }
       // Defer stats update to avoid double-save (only for daily)
-      if (gameMode === 'daily') {
-        setTimeout(() => updateStats(isCorrect, currentLevel + 1);
-      }
+        updateStats(isCorrect, currentLevel + 1);
+    
       // Always increment totalPuzzles
       setStats(prev => ({ ...prev, totalPuzzles: prev.totalPuzzles + 1 }));
       localStorage.setItem('tickrDailyStats', JSON.stringify({ ...stats, totalPuzzles: stats.totalPuzzles + 1 }));
