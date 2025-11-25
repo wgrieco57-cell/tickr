@@ -488,12 +488,9 @@ useEffect(() => {
   useEffect(() => {
     if (testMode) return;
 
-import { getAnalytics, logEvent } from "firebase/analytics";
-
-// Initialize Analytics after your Firebase app
-const analytics = getAnalytics(app);
-
 useEffect(() => {
+  if (testMode) return; // skip in test mode
+
   const track = async () => {
     try {
       const today = new Date().toISOString().split('T')[0];
@@ -502,23 +499,23 @@ useEffect(() => {
       const dailyRef = doc(db, 'analytics', `daily_${today}`);
       const globalRef = doc(db, 'analytics', 'global');
 
-      // Increment Firestore stats
+      // Increment today's stats
       await setDoc(dailyRef, { plays: increment(1) }, { merge: true });
 
-      // Make sure global doc exists; if not, create it
+      // Ensure global doc exists
       try {
         await updateDoc(globalRef, { totalPlays: increment(1) });
       } catch {
         await setDoc(globalRef, { totalPlays: 1, uniqueUsers: 0 });
       }
 
-      // Track unique users
+      // Track unique users per browser
       if (!localStorage.getItem('td_visited')) {
         localStorage.setItem('td_visited', 'true');
         await updateDoc(globalRef, { uniqueUsers: increment(1) });
       }
 
-      // Log Firebase Analytics events
+      // Firebase Analytics events
       logEvent(analytics, 'page_view', { page_path: window.location.pathname });
       logEvent(analytics, 'visit_tickr', { mode: gameMode });
 
@@ -528,8 +525,7 @@ useEffect(() => {
   };
 
   track();
-}, [gameMode]);
-
+}, [gameMode, testMode]);
   
 // Update stats when game ends (updated for totalPuzzles)
   const updateStats = (won, cluesUsed) => {
