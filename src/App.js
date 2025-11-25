@@ -922,98 +922,98 @@ const shareToTwitter = () => {
           100% { transform: translateY(-100%); }
         }
       `}</style>
-      <div style={{ width:'100%', maxWidth:'900px', display:'flex', flexDirection:'column', alignItems:'center' }}>
-    <div style={{ textAlign:'center', marginBottom:'1rem', position:'relative', width:'100%' }}>
-<>
-   {/* Dark Mode Button */}
-  <button
-    onClick={toggleDarkMode}
-    style={{
-      position:'absolute',
-      right:'120px',
-      top:0,
-      padding:'0.75rem',
-      background:cardBg,
-      border:`1px solid ${borderColor}`,
-      borderRadius:'0.75rem',
-      color:textColor,
-      cursor:'pointer',
-      transition:'all 0.3s ease'
-    }}
-    title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-    aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-  >
-    {darkMode ? '☀️' : '🌙'}
-  </button>
 
-  {/* Test Mode Badge */}
-  {testMode && (
-    <div style={{
-      position:'absolute',
-      left:0,
-      top:0,
-      padding:'0.75rem 1rem',
-      background:'linear-gradient(135deg, #f59e0b, #d97706)',
-      border:`1px solid ${borderColor}`,
-      borderRadius:'0.75rem',
-      color:'white',
-      fontWeight:'700',
-      fontSize:'0.75rem',
-      display:'flex',
-      alignItems:'center',
-      gap:'0.5rem'
-    }}>
-      TEST MODE
-    </div>
-  )}
-
-  {/* Login / Logout Buttons */}
-  <div style={{ position:'absolute', right:0, top:0, display:'flex', alignItems:'center', gap:'1rem' }}>
-    {user ? (
-      <div style={{ display:'flex', alignItems:'center', gap:'0.5rem' }}>
-        {user.photoURL && (
-          <img
-            src={user.photoURL}
-            width={36}
-            height={36}
-            style={{ borderRadius:'50%' }}
-            alt="Profile"
-          />
-        )}
-        <span style={{ fontWeight:600, color:textColor }}>
-          {user.displayName || user.email.split("@")[0]}
-        </span>
-        <button
-          onClick={() => signOut(auth)}
-          style={{
-            color:'#ef4444',
-            fontSize:'0.875rem',
-            background:'none',
-            border:'none',
-            cursor:'pointer'
-          }}
-        >
-          Logout
-        </button>
-      </div>
-    ) : (
+          <div style={{ width:'100%', maxWidth:'900px', display:'flex', flexDirection:'column', alignItems:'center' }}>
+  <div style={{ textAlign:'center', marginBottom:'1rem', position:'relative', width:'100%' }}>
+    <>
+      {/* Dark Mode Button */}
       <button
-        onClick={() => setShowAuthModal(true)}
+        onClick={toggleDarkMode}
         style={{
-          padding:'0.75rem 1.5rem',
-          background:'linear-gradient(135deg,#22c55e,#16a34a)',
-          color:'white',
-          border:'none',
-          borderRadius:'1rem',
-          fontWeight:600,
-          cursor:'pointer'
+          position:'absolute',
+          right:'120px',
+          top:0,
+          padding:'0.75rem',
+          background:cardBg,
+          border:`1px solid ${borderColor}`,
+          borderRadius:'0.75rem',
+          color:textColor,
+          cursor:'pointer',
+          transition:'all 0.3s ease'
         }}
+        title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+        aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
       >
-        Log In / Sign Up
+        {darkMode ? '☀️' : '🌙'}
       </button>
-    )}
-  </div>
-</div>
+      {/* Test Mode Badge */}
+      {testMode && (
+        <div style={{
+          position:'absolute',
+          left:0,
+          top:0,
+          padding:'0.75rem 1rem',
+          background:'linear-gradient(135deg, #f59e0b, #d97706)',
+          border:`1px solid ${borderColor}`,
+          borderRadius:'0.75rem',
+          color:'white',
+          fontWeight:'700',
+          fontSize:'0.75rem',
+          display:'flex',
+          alignItems:'center',
+          gap:'0.5rem'
+        }}>
+          TEST MODE
+        </div>
+      )}
+      {/* Login / Logout Buttons */}
+      <div style={{ position:'absolute', right:0, top:0, display:'flex', alignItems:'center', gap:'1rem' }}>
+        {user ? (
+          <div style={{ display:'flex', alignItems:'center', gap:'0.5rem' }}>
+            {user.photoURL && (
+              <img
+                src={user.photoURL}
+                width={36}
+                height={36}
+                style={{ borderRadius:'50%' }}
+                alt="Profile"
+              />
+            )}
+            <span style={{ fontWeight:600, color:textColor }}>
+              {user.displayName || user.email.split("@")[0]}
+            </span>
+            <button
+              onClick={() => signOut(auth)}
+              style={{
+                color:'#ef4444',
+                fontSize:'0.875rem',
+                background:'none',
+                border:'none',
+                cursor:'pointer'
+              }}
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={() => setShowAuthModal(true)}
+            style={{
+              padding:'0.75rem 1.5rem',
+              background:'linear-gradient(135deg,#22c55e,#16a34a)',
+              color:'white',
+              border:'none',
+              borderRadius:'1rem',
+              fontWeight:600,
+              cursor:'pointer'
+            }}
+          >
+            Log In / Sign Up
+          </button>
+        )}
+      </div>
+    </>  // ← ADD THIS: Closes the fragment!
+  </div>  // ← Now cleanly closes the header div
 
         
             </div>
