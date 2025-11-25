@@ -3,6 +3,7 @@ import confetti from 'canvas-confetti'; // npm install canvas-confetti required
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, increment, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { getAuth, signInAnonymously } from "firebase/auth";
+import { getAnalytics, logEvent } from "firebase/analytics";
 const FINNHUB_API_KEY = "d4g9o8pr01qm5b34j8l0d4g9o8pr01qm5b34j8lg"; // Hardcoded as requested (note: for local/dev only—expose risk in prod)
 const QUOTRON_TICKERS = [
   '^GSPC','^DJI','^IXIC', // Major indexes
@@ -34,6 +35,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
+const analytics = getAnalytics(app);
 
  async function updateDailyStats({ won = false }) {
   const today = new Date().toISOString().split("T")[0];
@@ -486,38 +488,48 @@ useEffect(() => {
   useEffect(() => {
     if (testMode) return;
 
-const track = async () => {
-  try {
-    const today = new Date().toISOString().split('T')[0];
-    const dailyRef = doc(db, 'analytics', `daily_${today}`); // ✅ daily doc
-    const globalRef = doc(db, 'analytics', 'global');
+import { getAnalytics, logEvent } from "firebase/analytics";
 
-    // Increment daily plays safely (create doc if missing)
-    await setDoc(dailyRef, { plays: increment(1) }, { merge: true });
+// Initialize Analytics after your Firebase app
+const analytics = getAnalytics(app);
 
-    // Ensure global doc exists
-    const globalSnap = await getDoc(globalRef);
-    if (!globalSnap.exists()) {
-      await setDoc(globalRef, { totalPlays: 0, uniqueUsers: 0 });
+useEffect(() => {
+  const track = async () => {
+    try {
+      const today = new Date().toISOString().split('T')[0];
+
+      // Firestore references
+      const dailyRef = doc(db, 'analytics', `daily_${today}`);
+      const globalRef = doc(db, 'analytics', 'global');
+
+      // Increment Firestore stats
+      await setDoc(dailyRef, { plays: increment(1) }, { merge: true });
+
+      // Make sure global doc exists; if not, create it
+      try {
+        await updateDoc(globalRef, { totalPlays: increment(1) });
+      } catch {
+        await setDoc(globalRef, { totalPlays: 1, uniqueUsers: 0 });
+      }
+
+      // Track unique users
+      if (!localStorage.getItem('td_visited')) {
+        localStorage.setItem('td_visited', 'true');
+        await updateDoc(globalRef, { uniqueUsers: increment(1) });
+      }
+
+      // Log Firebase Analytics events
+      logEvent(analytics, 'page_view', { page_path: window.location.pathname });
+      logEvent(analytics, 'visit_tickr', { mode: gameMode });
+
+    } catch (e) {
+      console.log("Analytics offline (normal in dev)", e);
     }
+  };
 
-    // Increment total plays
-    await updateDoc(globalRef, { totalPlays: increment(1) });
+  track();
+}, [gameMode]);
 
-    // Increment unique users if first visit
-    if (!localStorage.getItem('td_visited')) {
-      localStorage.setItem('td_visited', 'true');
-      await updateDoc(globalRef, { uniqueUsers: increment(1) });
-    }
-
-  } catch (e) {
-    console.log("Analytics offline (normal in dev)", e);
-  }
-};
-
-track();
-
-  }, [testMode]);
   
 // Update stats when game ends (updated for totalPuzzles)
   const updateStats = (won, cluesUsed) => {
