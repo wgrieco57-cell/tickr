@@ -4,6 +4,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, doc, increment, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { getAnalytics, logEvent } from "firebase/analytics";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut
+} from "firebase/auth";
 const FINNHUB_API_KEY = "d4g9o8pr01qm5b34j8l0d4g9o8pr01qm5b34j8lg"; // Hardcoded as requested (note: for local/dev only—expose risk in prod)
 const QUOTRON_TICKERS = [
   '^GSPC','^DJI','^IXIC', // Major indexes
@@ -117,6 +124,18 @@ function App() {
   const [difficulty, setDifficulty] = useState('medium'); // 'easy' | 'medium' | 'hard'
   const [puzzleSeed, setPuzzleSeed] = useState(0);
   const inputRef = useRef(null);
+  // Auth State
+const [showAuthModal, setShowAuthModal] = useState(false);
+const [isSignUp, setIsSignUp] = useState(false);
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+const [confirmPassword, setConfirmPassword] = useState("");
+const [authError, setAuthError] = useState("");
+const [authLoading, setAuthLoading] = useState(false);
+  const googleProvider = new GoogleAuthProvider();
+  
+
+
   // Check for test mode via URL parameter
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -166,6 +185,48 @@ function App() {
           achievements: [],
         });
       }
+      const handleGoogleSignIn = async () => {
+  setAuthLoading(true);
+  try {
+    await signInWithPopup(auth, googleProvider);
+    setShowAuthModal(false);
+  } catch (err) {
+    setAuthError("Google sign-in failed. Try again!");
+  } finally {
+    setAuthLoading(false);
+  }
+};
+const handleEmailAuth = async (e) => {
+  e.preventDefault();
+  setAuthError("");
+
+  if (isSignUp && password !== confirmPassword) {
+    setAuthError("Passwords don't match!");
+    return;
+  }
+
+  setAuthLoading(true);
+  try {
+    if (isSignUp) {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } else {
+      await signInWithEmailAndPassword(auth, email, password);
+    }
+    setShowAuthModal(false);
+  } catch (err) {
+    const msg =
+      err.code === "auth/email-already-in-use"
+        ? "This email is already registered. Try logging in!"
+        : err.code === "auth/weak-password"
+        ? "Password should be at least 6 characters"
+        : "Invalid email or password";
+
+    setAuthError(msg);
+  } finally {
+    setAuthLoading(false);
+  }
+};
+
       const savedDarkMode = localStorage.getItem('tickrDailyDarkMode');
       if (savedDarkMode !== null) {
         setDarkMode(JSON.parse(savedDarkMode));
@@ -862,44 +923,86 @@ const shareToTwitter = () => {
         }
       `}</style>
       <div style={{ width:'100%', maxWidth:'900px', display:'flex', flexDirection:'column', alignItems:'center' }}>
-        {/* Header with Dark Mode Toggle and Test Mode Indicator */}
-        <div style={{ textAlign:'center', marginBottom:'1rem', position:'relative', width:'100%' }}>
-          <button
-            onClick={toggleDarkMode}
-            style={{
-              position:'absolute',
-              right:0,
-              top:0,
-              padding:'0.75rem',
-              background:cardBg,
-              border:`1px solid ${borderColor}`,
-              borderRadius:'0.75rem',
-              color:textColor,
-              cursor:'pointer',
-              transition:'all 0.3s ease'
-            }}
-            title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-          >
-            {darkMode ? '☀️' : '🌙'}
-          </button>
-          {testMode && (
-            <div style={{
-              position:'absolute',
-              left:0,
-              top:0,
-              padding:'0.75rem 1rem',
-              background:'linear-gradient(135deg, #f59e0b, #d97706)',
-              border:`1px solid ${borderColor}`,
-              borderRadius:'0.75rem',
-              color:'white',
-              fontWeight:'700',
-              fontSize:'0.75rem',
-              display:'flex',
-              alignItems:'center',
-              gap:'0.5rem'
-            }}>
-              🧪 TEST MODE
+     <div style={{ textAlign:'center', marginBottom:'1rem', position:'relative', width:'100%' }}>
+  {/* Dark Mode Button */}
+  <button
+    onClick={toggleDarkMode}
+    style={{
+      position:'absolute',
+      right:'120px', // moved left to make room for login/logout
+      top:0,
+      padding:'0.75rem',
+      background:cardBg,
+      border:`1px solid ${borderColor}`,
+      borderRadius:'0.75rem',
+      color:textColor,
+      cursor:'pointer',
+      transition:'all 0.3s ease'
+    }}
+    title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+    aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+  >
+    {darkMode ? '☀️' : '🌙'}
+  </button>
+
+  {/* Test Mode Badge */}
+  {testMode && (
+    <div style={{
+      position:'absolute',
+      left:0,
+      top:0,
+      padding:'0.75rem 1rem',
+      background:'linear-gradient(135deg, #f59e0b, #d97706)',
+      border:`1px solid ${borderColor}`,
+      borderRadius:'0.75rem',
+      color:'white',
+      fontWeight:'700',
+      fontSize:'0.75rem',
+      display:'flex',
+      alignItems:'center',
+      gap:'0.5rem'
+    }}>
+      TEST MODE
+          {/* Login / Logout Buttons */}
+  <div style={{ position:'absolute', right:0, top:0, display:'flex', alignItems:'center', gap:'1rem' }}>
+    {user ? (
+      <div style={{ display:'flex', alignItems:'center', gap:'0.5rem' }}>
+        {user.photoURL && (
+          <img
+            src={user.photoURL}
+            width={36}
+            height={36}
+            style={{ borderRadius:'50%' }}
+            alt="Profile"
+          />
+        )}
+        <span style={{ fontWeight:600, color:textColor }}>
+          {user.displayName || user.email.split("@")[0]}
+        </span>
+        <button
+          onClick={() => signOut(auth)}
+          style={{ color:'#ef4444', fontSize:'0.875rem', background:'none', border:'none', cursor:'pointer' }}
+        >
+          Logout
+        </button>
+      </div>
+    ) : (
+      <button
+        onClick={() => setShowAuthModal(true)}
+        style={{
+          padding:'0.75rem 1.5rem',
+          background:'linear-gradient(135deg,#22c55e,#16a34a)',
+          color:'white',
+          border:'none',
+          borderRadius:'1rem',
+          fontWeight:600,
+          cursor:'pointer'
+        }}
+      >
+        Log In / Sign Up
+      </button>
+    )}
+        
             </div>
           )}
           <h1 style={{ fontSize:'4rem', fontWeight:'800', background:'linear-gradient(135deg,#22c55e 0%,#3b82f6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', marginBottom:'0.5rem', letterSpacing:'-0.02em' }}>TickrDaily</h1>
