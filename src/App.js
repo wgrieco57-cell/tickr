@@ -1040,55 +1040,55 @@ const shareToTwitter = () => {
         </div>
         {/* Mode Selector */}
         <ModeSelector />
-        {/* Stats and How to Play Buttons */}
-        <div style={{ display:'flex', gap:'1rem', marginBottom:'2rem' }}>
-          <button
-            onClick={() => setShowStats(!showStats)}
-            style={{
-              padding:'0.75rem 1.75rem',
-              background:cardBg,
-              border:`1px solid ${borderColor}`,
-              borderRadius:'1rem',
-              color:textColor,
-              cursor:'pointer',
-              fontWeight:'600',
-              fontSize:'0.875rem',
-              transition:'all 0.3s ease',
-              display:'flex',
-              alignItems:'center',
-              gap:'0.5rem'
-            }}
-            aria-label="View Statistics"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="20" x2="18" y2="10"></line>
-              <line x1="12" y1="20" x2="12" y2="4"></line>
-              <line x1="6" y1="20" x2="6" y2="14"></line>
-            </svg>
-            <span>Statistics</span>
-          </button>
-          <button
-            onClick={() => setShowHowToPlay(true)}
-            style={{
-              padding:'0.75rem 1.75rem',
-              background:cardBg,
-              border:`1px solid ${borderColor}`,
-              borderRadius:'1rem',
-              color:textColor,
-              cursor:'pointer',
-              fontWeight:'600',
-              fontSize:'0.875rem',
-              transition:'all 0.3s ease',
-              display:'flex',
-              alignItems:'center',
-              gap:'0.5rem'
-            }}
-            aria-label="How to Play"
-          >
-            <span>❓</span>
-            <span>How to Play</span>
-          </button>
-        </div>
+       {/* Stats and How to Play Buttons */}
+<div style={{ display:'flex', gap:'1rem', marginBottom:'2rem' }}>
+  <button
+    onClick={() => setShowStats(!showStats)}
+    style={{
+      padding:'0.75rem 1.75rem',
+      background:cardBg,
+      border:`1px solid ${borderColor}`,
+      borderRadius:'1rem',
+      color:textColor,
+      cursor:'pointer',
+      fontWeight:'600',
+      fontSize:'0.875rem',
+      transition:'all 0.3s ease',
+      display:'flex',
+      alignItems:'center',
+      gap:'0.5rem'
+    }}
+    aria-label="View Statistics"
+  >
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="18" y1="20" x2="18" y2="10"></line>
+      <line x1="12" y1="20" x2="12" y2="4"></line>
+      <line x1="6" y1="20" x2="6" y2="14"></line>
+    </svg>
+    <span>Statistics</span>
+  </button>  {/* ← ADD THIS: Closes the button! */}
+  <button
+    onClick={() => setShowHowToPlay(true)}
+    style={{
+      padding:'0.75rem 1.75rem',
+      background:cardBg,
+      border:`1px solid ${borderColor}`,
+      borderRadius:'1rem',
+      color:textColor,
+      cursor:'pointer',
+      fontWeight:'600',
+      fontSize:'0.875rem',
+      transition:'all 0.3s ease',
+      display:'flex',
+      alignItems:'center',
+      gap:'0.5rem'
+    }}
+    aria-label="How to Play"
+  >
+    <span>❓</span>
+    <span>How to Play</span>
+  </button>  {/* ← And close this one too, if it was missing */}
+</div>  {/* ← This now cleanly closes the flex container */}
         {/* Stats Modal (updated with totalPuzzles card) */}
         {showStats && (
           <div
