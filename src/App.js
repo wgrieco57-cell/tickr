@@ -925,7 +925,7 @@ const shareToTwitter = () => {
       <div style={{ width:'100%', maxWidth:'900px', display:'flex', flexDirection:'column', alignItems:'center' }}>
     <div style={{ textAlign:'center', marginBottom:'1rem', position:'relative', width:'100%' }}>
 <>
-  {/* Dark Mode Button */}
+   {/* Dark Mode Button */}
   <button
     onClick={toggleDarkMode}
     style={{
@@ -985,7 +985,13 @@ const shareToTwitter = () => {
         </span>
         <button
           onClick={() => signOut(auth)}
-          style={{ color:'#ef4444', fontSize:'0.875rem', background:'none', border:'none', cursor:'pointer' }}
+          style={{
+            color:'#ef4444',
+            fontSize:'0.875rem',
+            background:'none',
+            border:'none',
+            cursor:'pointer'
+          }}
         >
           Logout
         </button>
@@ -1007,7 +1013,7 @@ const shareToTwitter = () => {
       </button>
     )}
   </div>
-</>
+</div>
 
         
             </div>
