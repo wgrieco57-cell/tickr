@@ -1690,4 +1690,8 @@ const shareToTwitter = () => {
       )}
     </div>  {/* ← This is the closing tag for the maxWidth container—now wraps EVERYTHING! */}
   </div>
-); export default App;
+); 
+};
+
+
+export default App;
