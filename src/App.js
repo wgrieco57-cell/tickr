@@ -12,16 +12,16 @@ const QUOTRON_TICKERS = [
 ];
 // Fallback quotes for API errors
 const FALLBACK_QUOTES = [
-  { symbol: 'AAPL', current: '150.00', change: '+1.50' },
+  { symbol: 'AAPL', current: '150.00', change: '1.50' },
   { symbol: 'TSLA', current: '250.00', change: '-2.00' },
-  { symbol: 'GOOGL', current: '140.00', change: '+0.75' },
-  { symbol: 'MSFT', current: '320.00', change: '+3.20' },
-  { symbol: '^GSPC', current: '4500.00', change: '+25.00' },
+  { symbol: 'GOOGL', current: '140.00', change: '0.75' },
+  { symbol: 'MSFT', current: '320.00', change: '3.20' },
+  { symbol: '^GSPC', current: '4500.00', change: '25.00' },
   { symbol: 'NVDA', current: '120.00', change: '-1.50' },
-  { symbol: 'AMZN', current: '100.00', change: '+0.50' },
-  { symbol: 'META', current: '300.00', change: '+2.00' },
-  { symbol: '^DJI', current: '35000.00', change: '+100.00' },
-  { symbol: '^IXIC', current: '15000.00', change: '+50.00' }
+  { symbol: 'AMZN', current: '100.00', change: '0.50' },
+  { symbol: 'META', current: '300.00', change: '2.00' },
+  { symbol: '^DJI', current: '35000.00', change: '100.00' },
+  { symbol: '^IXIC', current: '15000.00', change: '50.00' }
 ];
 const firebaseConfig = {
   apiKey: "AIzaSyAdgvuwk-0gU7Tucj87ny2dmFn8qIJ0xsE",
@@ -32,20 +32,16 @@ const firebaseConfig = {
   appId: "1:866254338816:web:85b7cf91fee6225ebe91e5",
   measurementId: "G-WF8Q9HBVJN"
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const analytics = getAnalytics(app);
-
  async function updateDailyStats({ won = false }) {
   const today = new Date().toISOString().split("T")[0];
-  
+ 
   // Always produce a valid 2-segment path: analytics / daily_2025-11-24
   const docRef = doc(db, "analytics", `daily_${today}`);
-
   try {
     const docSnap = await getDoc(docRef);
-
     if (docSnap.exists()) {
       await updateDoc(docRef, {
         gamesPlayed: increment(1),
@@ -62,9 +58,6 @@ const analytics = getAnalytics(app);
     console.error("Error updating daily stats:", err);
   }
 }
-
-
-
 // Helper functions for deterministic daily selection
 function hashCode(str) {
   let hash = 0;
@@ -99,18 +92,26 @@ function App() {
   const [startTime, setStartTime] = useState(null);
   const [testMode, setTestMode] = useState(false);
   const [shake, setShake] = useState(false);
+  const [activeModeTab, setActiveModeTab] = useState('daily'); // Default to daily
   const [stats, setStats] = useState({
-    gamesPlayed: 0,
-    gamesWon: 0,
-    currentStreak: 0,
-    maxStreak: 0,
-    guessDistribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, fail: 0 },
-    playHistory: {},
-    fastestTime: null,
-    totalTime: 0,
-    totalPuzzles: 0, // New: Tracks all puzzles (daily + unlimited)
+    // Daily-specific
+    dailyGamesPlayed: 0,
+    dailyGamesWon: 0,
+    dailyCurrentStreak: 0,
+    dailyMaxStreak: 0,
+    dailyGuessDistribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, fail: 0 },
+    dailyPlayHistory: {},
+    dailyTotalTime: 0,
+    // Unlimited-specific
+    unlimitedCompletions: 0,
+    unlimitedGuessDistribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, fail: 0 },
+    unlimitedTotalTime: 0,
+    // Shared
+    overallFastestTime: null,
+    overallTotalTime: 0,
+    achievements: [], // Populate via getAchievements (update it to check both distros)
   });
-  
+ 
   // New states for modes
   const [gameMode, setGameMode] = useState('daily'); // 'daily' | 'unlimited'
   const [difficulty, setDifficulty] = useState('medium'); // 'easy' | 'medium' | 'hard'
@@ -150,8 +151,19 @@ function App() {
       if (savedStats) {
         const parsed = JSON.parse(savedStats);
         setStats({
-          ...parsed,
-          totalPuzzles: parsed.totalPuzzles || 0 // Backward compat
+          dailyGamesPlayed: parsed.gamesPlayed || 0,
+          dailyGamesWon: parsed.gamesWon || 0,
+          dailyCurrentStreak: parsed.currentStreak || 0,
+          dailyMaxStreak: parsed.maxStreak || 0,
+          dailyGuessDistribution: parsed.guessDistribution || { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, fail: 0 },
+          dailyPlayHistory: parsed.playHistory || {},
+          dailyTotalTime: parsed.totalTime || 0, // Old total was mixed; approximate as daily
+          unlimitedCompletions: parsed.totalPuzzles || 0, // Map old totalPuzzles to unlimited
+          unlimitedGuessDistribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, fail: 0 }, // Reset if no old data
+          unlimitedTotalTime: 0, // Start fresh
+          overallFastestTime: parsed.fastestTime,
+          overallTotalTime: parsed.totalTime || 0,
+          achievements: [],
         });
       }
       const savedDarkMode = localStorage.getItem('tickrDailyDarkMode');
@@ -189,7 +201,6 @@ function App() {
       setLoading(false);
     });
   }, []);
-
   const auth = getAuth();
 useEffect(() => {
   signInAnonymously(auth)
@@ -200,7 +211,6 @@ useEffect(() => {
       console.error("Anonymous sign-in error:", error);
     });
 }, []);
-
   // Select daily ticker and pick questions (deterministic for non-test mode)
   useEffect(() => {
     if (!data || data.length === 0) return;
@@ -471,102 +481,115 @@ useEffect(() => {
     return;
   }
   setCurrentLevel(currentLevel + 1);
-};  // <-- Single closing brace for entire handleSubmit
-
+}; // <-- Single closing brace for entire handleSubmit
 useEffect(() => {
   if (testMode) return; // skip in test mode
-
   const track = async () => {
     try {
       const today = new Date().toISOString().split('T')[0];
-
       // Firestore references
       const dailyRef = doc(db, 'analytics', `daily_${today}`);
       const globalRef = doc(db, 'analytics', 'global');
-
       // Increment today's stats
       await setDoc(dailyRef, { plays: increment(1) }, { merge: true });
-
       // Ensure global doc exists
       try {
         await updateDoc(globalRef, { totalPlays: increment(1) });
       } catch {
         await setDoc(globalRef, { totalPlays: 1, uniqueUsers: 0 });
       }
-
       // Track unique users per browser
       if (!localStorage.getItem('td_visited')) {
         localStorage.setItem('td_visited', 'true');
         await updateDoc(globalRef, { uniqueUsers: increment(1) });
       }
-
       // Firebase Analytics events
       logEvent(analytics, 'page_view', { page_path: window.location.pathname });
       logEvent(analytics, 'visit_tickr', { mode: gameMode });
-
     } catch (e) {
       console.log("Analytics offline (normal in dev)", e);
     }
   };
-
   track();
 }, [gameMode, testMode]);
-  
+ 
 // Update stats in one place
-const updateStats = (won = false, cluesUsed = 0, timeElapsed = null) => {
-  if (testMode || gameMode === 'unlimited') return;
-
-  // Only update if not already completed today (daily mode)
-  const progressStr = localStorage.getItem('dailyProgress');
-  if (progressStr) {
-    try {
-      const progress = JSON.parse(progressStr);
-      if (progress.gameOver) {
-        console.log('Game already completed today—no stats update');
-        return;
+const updateStats = async (won = false, cluesUsed = 0, timeElapsed = null) => {
+  if (testMode) return;
+  // Skip if already completed today (daily only)
+  if (gameMode === 'daily') {
+    const progressStr = localStorage.getItem('dailyProgress');
+    if (progressStr) {
+      try {
+        const progress = JSON.parse(progressStr);
+        if (progress.gameOver) {
+          console.log('Game already completed today—no stats update');
+          return;
+        }
+      } catch (e) {
+        // Ignore, proceed
       }
-    } catch (e) {
-      // Ignore, proceed
     }
   }
-
   // Compute timeElapsed if not provided
   if (timeElapsed === null) {
     timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
   }
-
   const today = new Date().toISOString().split('T')[0];
-
   setStats(prev => {
-    const newGuessDistribution = { ...prev.guessDistribution };
-    if (won) {
-      newGuessDistribution[cluesUsed] = (newGuessDistribution[cluesUsed] || 0) + 1;
-    } else {
-      newGuessDistribution.fail = (newGuessDistribution.fail || 0) + 1;
+    const newDailyGuessDist = { ...prev.dailyGuessDistribution };
+    const newUnlimitedGuessDist = { ...prev.unlimitedGuessDistribution };
+    const newDailyHistory = { ...prev.dailyPlayHistory };
+
+    // Mode-specific updates
+    if (gameMode === 'daily') {
+      if (won) {
+        newDailyGuessDist[cluesUsed] = (newDailyGuessDist[cluesUsed] || 0) + 1;
+      } else {
+        newDailyGuessDist.fail = (newDailyGuessDist.fail || 0) + 1;
+      }
+      newDailyHistory[today] = { won, clues: cluesUsed, time: timeElapsed };
+    } else { // unlimited
+      if (won) {
+        newUnlimitedGuessDist[cluesUsed] = (newUnlimitedGuessDist[cluesUsed] || 0) + 1;
+      } else {
+        newUnlimitedGuessDist.fail = (newUnlimitedGuessDist.fail || 0) + 1;
+      }
     }
 
-    const newPlayHistory = { ...prev.playHistory, [today]: { won, clues: cluesUsed, time: timeElapsed } };
-    const newCurrentStreak = won ? prev.currentStreak + 1 : 0;
+    const newDailyCurrentStreak = gameMode === 'daily' ? (won ? prev.dailyCurrentStreak + 1 : 0) : prev.dailyCurrentStreak;
+    const newDailyMaxStreak = Math.max(prev.dailyMaxStreak, newDailyCurrentStreak);
 
     const updated = {
       ...prev,
-      gamesPlayed: prev.gamesPlayed + 1,
-      totalPuzzles: prev.totalPuzzles + 1,
-      totalTime: prev.totalTime + timeElapsed,
-      gamesWon: won ? prev.gamesWon + 1 : prev.gamesWon,
-      currentStreak: newCurrentStreak,
-      maxStreak: Math.max(prev.maxStreak, newCurrentStreak),
-      fastestTime: won && (!prev.fastestTime || timeElapsed < prev.fastestTime) ? timeElapsed : prev.fastestTime,
-      guessDistribution: newGuessDistribution,
-      playHistory: newPlayHistory
+      // Daily
+      dailyGamesPlayed: gameMode === 'daily' ? prev.dailyGamesPlayed + 1 : prev.dailyGamesPlayed,
+      dailyGamesWon: gameMode === 'daily' && won ? prev.dailyGamesWon + 1 : prev.dailyGamesWon,
+      dailyCurrentStreak: newDailyCurrentStreak,
+      dailyMaxStreak: newDailyMaxStreak,
+      dailyGuessDistribution: gameMode === 'daily' ? newDailyGuessDist : prev.dailyGuessDistribution,
+      dailyPlayHistory: gameMode === 'daily' ? newDailyHistory : prev.dailyPlayHistory,
+      dailyTotalTime: gameMode === 'daily' ? prev.dailyTotalTime + timeElapsed : prev.dailyTotalTime,
+      // Unlimited
+      unlimitedCompletions: gameMode === 'unlimited' ? prev.unlimitedCompletions + 1 : prev.unlimitedCompletions,
+      unlimitedGuessDistribution: gameMode === 'unlimited' ? newUnlimitedGuessDist : prev.unlimitedGuessDistribution,
+      unlimitedTotalTime: gameMode === 'unlimited' ? prev.unlimitedTotalTime + timeElapsed : prev.unlimitedTotalTime,
+      // Shared
+      overallTotalTime: prev.overallTotalTime + timeElapsed,
+      overallFastestTime: won && (!prev.overallFastestTime || timeElapsed < prev.overallFastestTime) ? timeElapsed : prev.overallFastestTime,
     };
-
     localStorage.setItem('tickrDailyStats', JSON.stringify(updated));
-
     return updated;
   });
+  // Update Firebase daily stats (only daily)
+  if (gameMode === 'daily') {
+    try {
+      await updateDailyStats({ won });
+    } catch (err) {
+      console.error('Error updating daily Firebase stats:', err);
+    }
+  }
 };
-
   // Share results
   const shareResults = () => {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
@@ -604,15 +627,21 @@ const updateStats = (won = false, cluesUsed = 0, timeElapsed = null) => {
     return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
   };
   const getAchievements = () => {
-    const achievements = [];
-    if (stats.currentStreak >= 5) achievements.push({ icon: '🔥', name: '5 Day Streak', desc: 'Win 5 days in a row' });
-    if (stats.currentStreak >= 10) achievements.push({ icon: '⚡', name: '10 Day Streak', desc: 'Win 10 days in a row' });
-    if (stats.gamesWon >= 10) achievements.push({ icon: '🏆', name: 'Veteran', desc: 'Win 10 games' });
-    if (stats.gamesWon >= 50) achievements.push({ icon: '👑', name: 'Master', desc: 'Win 50 games' });
-    if (stats.guessDistribution[1] >= 5) achievements.push({ icon: '🎯', name: 'First Try Hero', desc: 'Win on first clue 5 times' });
-    if (stats.fastestTime && stats.fastestTime < 30) achievements.push({ icon: '⚡', name: 'Speed Demon', desc: 'Win in under 30 seconds' });
-    return achievements;
-  };
+  const achievements = [];
+  const dailyDist = stats.dailyGuessDistribution;
+  const unlimitedDist = stats.unlimitedGuessDistribution;
+  // Daily-specific
+  if (stats.dailyCurrentStreak >= 5) achievements.push({ icon: '🔥', name: 'Daily 5 Streak', desc: 'Win 5 daily puzzles in a row' });
+  if (stats.dailyCurrentStreak >= 10) achievements.push({ icon: '⚡', name: 'Daily 10 Streak', desc: 'Win 10 daily in a row' });
+  if (stats.dailyGamesWon >= 10) achievements.push({ icon: '🏆', name: 'Daily Veteran', desc: 'Win 10 daily games' });
+  // Unlimited-specific
+  if (stats.unlimitedCompletions >= 50) achievements.push({ icon: '♾️', name: 'Unlimited Marathoner', desc: 'Complete 50 unlimited puzzles' });
+  if (unlimitedDist[1] >= 10) achievements.push({ icon: '🎯', name: 'Unlimited First-Try Pro', desc: 'Win 10 unlimited on first clue' });
+  // Shared
+  if (stats.dailyGamesWon + (stats.unlimitedCompletions - stats.unlimitedGuessDistribution.fail) >= 50) achievements.push({ icon: '👑', name: 'Master Guesser', desc: '50 total wins across modes' });
+  if (stats.overallFastestTime && stats.overallFastestTime < 30) achievements.push({ icon: '⚡', name: 'Speed Demon', desc: 'Fastest win under 30s (any mode)' });
+  return achievements;
+};
   const handleOptionClick = (option) => {
     setInput(option.formatted);
     setAvailableOptions([]);
@@ -655,9 +684,6 @@ const updateStats = (won = false, cluesUsed = 0, timeElapsed = null) => {
     }
     setQuestions(pickedQuestions);
     setStartTime(Date.now());
-    // Increment totalPuzzles
-    setStats(prev => ({ ...prev, totalPuzzles: prev.totalPuzzles + 1 }));
-    localStorage.setItem('tickrDailyStats', JSON.stringify({ ...stats, totalPuzzles: stats.totalPuzzles + 1 }));
   };
   // Next puzzle for unlimited
   const nextPuzzle = () => {
@@ -668,10 +694,55 @@ const updateStats = (won = false, cluesUsed = 0, timeElapsed = null) => {
     setAvailableOptions([]);
     // Trigger re-selection via dep
     setPuzzleSeed(prev => prev + 1);
-    // Increment totalPuzzles
-    setStats(prev => ({ ...prev, totalPuzzles: prev.totalPuzzles + 1 }));
-    localStorage.setItem('tickrDailyStats', JSON.stringify({ ...stats, totalPuzzles: stats.totalPuzzles + 1 }));
   };
+  const GuessDistChart = ({ dist, maxClues }) => (
+  <>
+    {Array.from({ length: maxClues }, (_, i) => {
+      const clue = i + 1;
+      const count = dist[clue];
+      const maxCount = Math.max(...Object.values(dist));
+      const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
+      return (
+        <div key={clue} style={{ display:'flex', alignItems:'center', marginBottom:'0.5rem' }}>
+          <div style={{ width:'60px', color:mutedColor, fontSize:'0.875rem', fontWeight:'600' }}>
+            {clue} clue{clue > 1 ? 's' : ''}
+          </div>
+          <div style={{ flex:1, background:cardBg, height:'32px', borderRadius:'0.5rem', overflow:'hidden', position:'relative', border:`1px solid ${borderColor}` }}>
+            <div style={{
+              width:`${Math.max(percentage, 5)}%`,
+              height:'100%',
+              background: 'linear-gradient(90deg, #22c55e, #16a34a)',
+              transition:'width 0.5s ease',
+              display:'flex',
+              alignItems:'center',
+              justifyContent:'flex-end',
+              paddingRight:'0.5rem'
+            }}>
+              <span style={{ color:'white', fontWeight:'700', fontSize:'0.875rem' }}>{count}</span>
+            </div>
+          </div>
+        </div>
+      );
+    })}
+    <div style={{ display:'flex', alignItems:'center', marginBottom:'0.5rem' }}>
+      <div style={{ width:'60px', color:mutedColor, fontSize:'0.875rem', fontWeight:'600' }}>Failed</div>
+      <div style={{ flex:1, background:cardBg, height:'32px', borderRadius:'0.5rem', overflow:'hidden', position:'relative', border:`1px solid ${borderColor}` }}>
+        <div style={{
+          width:`${Math.max((dist.fail / Math.max(...Object.values(dist))) * 100, 5)}%`,
+          height:'100%',
+          background: 'linear-gradient(90deg, #ef4444, #dc2626)',
+          transition:'width 0.5s ease',
+          display:'flex',
+          alignItems:'center',
+          justifyContent:'flex-end',
+          paddingRight:'0.5rem'
+        }}>
+          <span style={{ color:'white', fontWeight:'700', fontSize:'0.875rem' }}>{dist.fail}</span>
+        </div>
+      </div>
+    </div>
+  </>
+);
   // Mode Selector Component
   const ModeSelector = () => (
     <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -787,7 +858,6 @@ const updateStats = (won = false, cluesUsed = 0, timeElapsed = null) => {
     line-height: 38px !important;
   }
 }
-
         @keyframes scroll-vertical {
           0% { transform: translateY(100%); }
           100% { transform: translateY(-100%); }
@@ -846,11 +916,11 @@ const updateStats = (won = false, cluesUsed = 0, timeElapsed = null) => {
           )}
           {/* New: Progress Bar */}
           <div style={{ width: '100%', height: '4px', background: borderColor, borderRadius: '2px', margin: '1rem 0', overflow: 'hidden' }}>
-            <div style={{ 
-              width: `${((currentLevel + 1) / questions.length) * 100}%`, 
-              height: '100%', 
-              background: 'linear-gradient(90deg, #22c55e, #3b82f6)', 
-              transition: 'width 0.3s ease' 
+            <div style={{
+              width: `${((currentLevel + 1) / questions.length) * 100}%`,
+              height: '100%',
+              background: 'linear-gradient(90deg, #22c55e, #3b82f6)',
+              transition: 'width 0.3s ease'
             }} />
           </div>
         </div>
@@ -972,47 +1042,133 @@ const updateStats = (won = false, cluesUsed = 0, timeElapsed = null) => {
                 </svg>
                 Your Statistics
               </h2>
-              <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
-                <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                  <div style={{ fontSize:'2rem', fontWeight:'700', color:'#22c55e' }}>{stats.gamesPlayed}</div>
-                  <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Played</div>
-                </div>
-                <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                  <div style={{ fontSize:'2rem', fontWeight:'700', color:'#3b82f6' }}>
-                    {stats.gamesPlayed > 0 ? Math.round((stats.gamesWon / stats.gamesPlayed) * 100) : 0}%
-                  </div>
-                  <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Win Rate</div>
-                </div>
-                <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                  <div style={{ fontSize:'2rem', fontWeight:'700', color:'#f59e0b' }}>{stats.currentStreak}🔥</div>
-                  <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Current Streak</div>
-                </div>
-                <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                  <div style={{ fontSize:'2rem', fontWeight:'700', color:'#a855f7' }}>{stats.maxStreak}</div>
-                  <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Max Streak</div>
-                </div>
-                <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                  <div style={{ fontSize:'2rem', fontWeight:'700', color:'#ec4899' }}>
-                    {stats.fastestTime ? formatTime(stats.fastestTime) : '--'}
-                  </div>
-                  <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Fastest Time</div>
-                </div>
-                <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                  <div style={{ fontSize:'2rem', fontWeight:'700', color:'#14b8a6' }}>
-                    {stats.gamesPlayed > 0 ? formatTime(Math.floor(stats.totalTime / stats.gamesPlayed)) : '--'}
-                  </div>
-                  <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Avg Time</div>
-                </div>
-                {/* New: Total Puzzles Card */}
-                <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
-                  <div style={{ fontSize:'2rem', fontWeight:'700', color:'#8b5cf6' }}>{stats.totalPuzzles}</div>
-                  <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Total Puzzles</div>
-                </div>
+              {/* Mode Tabs */}
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.5rem' }}>
+                <button
+                  onClick={() => setActiveModeTab('daily')}
+                  style={{
+                    padding: '0.5rem 1rem',
+                    background: activeModeTab === 'daily' ? '#22c55e' : cardBg,
+                    color: activeModeTab === 'daily' ? 'white' : textColor,
+                    border: `1px solid ${borderColor}`,
+                    borderRadius: '0.5rem',
+                    cursor: 'pointer',
+                    fontWeight: '600'
+                  }}
+                >
+                  🗓️ Daily
+                </button>
+                <button
+                  onClick={() => setActiveModeTab('unlimited')}
+                  style={{
+                    padding: '0.5rem 1rem',
+                    background: activeModeTab === 'unlimited' ? '#22c55e' : cardBg,
+                    color: activeModeTab === 'unlimited' ? 'white' : textColor,
+                    border: `1px solid ${borderColor}`,
+                    borderRadius: '0.5rem',
+                    cursor: 'pointer',
+                    fontWeight: '600'
+                  }}
+                >
+                  ♾️ Unlimited
+                </button>
+                <button
+                  onClick={() => setActiveModeTab('overall')}
+                  style={{
+                    padding: '0.5rem 1rem',
+                    background: activeModeTab === 'overall' ? '#22c55e' : cardBg,
+                    color: activeModeTab === 'overall' ? 'white' : textColor,
+                    border: `1px solid ${borderColor}`,
+                    borderRadius: '0.5rem',
+                    cursor: 'pointer',
+                    fontWeight: '600'
+                  }}
+                >
+                  📊 Overall
+                </button>
               </div>
+              {/* Stats Grid (Conditional by Tab) */}
+              <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
+                {activeModeTab === 'daily' && (
+                  <>
+                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#22c55e' }}>{stats.dailyGamesPlayed}</div>
+                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Played</div>
+                    </div>
+                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#3b82f6' }}>
+                        {stats.dailyGamesPlayed > 0 ? Math.round((stats.dailyGamesWon / stats.dailyGamesPlayed) * 100) : 0}%
+                      </div>
+                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Win Rate</div>
+                    </div>
+                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#f59e0b' }}>{stats.dailyCurrentStreak}🔥</div>
+                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Streak</div>
+                    </div>
+                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#a855f7' }}>{stats.dailyMaxStreak}</div>
+                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Max Streak</div>
+                    </div>
+                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#ec4899' }}>
+                        {stats.dailyGamesPlayed > 0 ? formatTime(Math.floor(stats.dailyTotalTime / stats.dailyGamesPlayed)) : '--'}
+                      </div>
+                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Avg Time</div>
+                    </div>
+                  </>
+                )}
+                {activeModeTab === 'unlimited' && (
+                  <>
+                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#22c55e' }}>{stats.unlimitedCompletions}</div>
+                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Unlimited Completed</div>
+                    </div>
+                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#3b82f6' }}>
+                        {stats.unlimitedCompletions > 0 ? Math.round(((stats.unlimitedCompletions - stats.unlimitedGuessDistribution.fail) / stats.unlimitedCompletions) * 100) : 0}%
+                      </div>
+                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Unlimited Win Rate</div>
+                    </div>
+                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#ec4899' }}>
+                        {stats.unlimitedCompletions > 0 ? formatTime(Math.floor(stats.unlimitedTotalTime / stats.unlimitedCompletions)) : '--'}
+                      </div>
+                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Unlimited Avg Time</div>
+                    </div>
+                    {/* Filler cards to balance grid */}
+                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
+                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
+                  </>
+                )}
+                {activeModeTab === 'overall' && (
+                  <>
+                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#22c55e' }}>{stats.dailyGamesPlayed + stats.unlimitedCompletions}</div>
+                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Total Played</div>
+                    </div>
+                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#3b82f6' }}>
+                        {stats.overallFastestTime ? formatTime(stats.overallFastestTime) : '--'}
+                      </div>
+                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Overall Fastest</div>
+                    </div>
+                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                      <div style={{ fontSize:'2rem', fontWeight:'700', color:'#f59e0b' }}>
+                        {stats.dailyGamesPlayed + stats.unlimitedCompletions > 0 ? formatTime(Math.floor(stats.overallTotalTime / (stats.dailyGamesPlayed + stats.unlimitedCompletions))) : '--'}
+                      </div>
+                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Overall Avg Time</div>
+                    </div>
+                    {/* Filler */}
+                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
+                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
+                  </>
+                )}
+              </div>
+              {/* Achievements (Shared) */}
               {getAchievements().length > 0 && (
                 <div style={{ marginBottom:'2rem' }}>
                   <h3 style={{ fontSize:'1.25rem', fontWeight:'700', color:textColor, marginBottom:'1rem' }}>
-                    🏆 Achievements
+                    🏆 Achievements (All Modes)
                   </h3>
                   <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'0.75rem' }}>
                     {getAchievements().map((ach, i) => (
@@ -1027,48 +1183,31 @@ const updateStats = (won = false, cluesUsed = 0, timeElapsed = null) => {
                   </div>
                 </div>
               )}
+              {/* Guess Distribution (Mode-Specific) */}
               <div style={{ marginBottom:'1.5rem' }}>
                 <h3 style={{ fontSize:'1.25rem', fontWeight:'700', color:textColor, marginBottom:'1rem' }}>
-                  Guess Distribution
+                  Guess Distribution ({activeModeTab === 'daily' ? 'Daily' : activeModeTab === 'unlimited' ? 'Unlimited' : 'Combined'})
                 </h3>
-                {[1,2,3,4,5,'fail'].map((clue) => {
-                  const count = stats.guessDistribution[clue];
-                  const maxCount = Math.max(...Object.values(stats.guessDistribution));
-                  const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
-                  return (
-                    <div key={clue} style={{ display:'flex', alignItems:'center', marginBottom:'0.5rem' }}>
-                      <div style={{ width:'60px', color:mutedColor, fontSize:'0.875rem', fontWeight:'600' }}>
-                        {clue === 'fail' ? 'Failed' : `${clue} clue${clue > 1 ? 's' : ''}`}
-                      </div>
-                      <div style={{ flex:1, background:cardBg, height:'32px', borderRadius:'0.5rem', overflow:'hidden', position:'relative', border:`1px solid ${borderColor}` }}>
-                        <div style={{
-                          width:`${Math.max(percentage, 5)}%`,
-                          height:'100%',
-                          background: clue === 'fail' ? 'linear-gradient(90deg, #ef4444, #dc2626)' : 'linear-gradient(90deg, #22c55e, #16a34a)',
-                          transition:'width 0.5s ease',
-                          display:'flex',
-                          alignItems:'center',
-                          justifyContent:'flex-end',
-                          paddingRight:'0.5rem'
-                        }}>
-                          <span style={{ color:'white', fontWeight:'700', fontSize:'0.875rem' }}>{count}</span>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                {activeModeTab === 'daily' ? (
+                  <GuessDistChart dist={stats.dailyGuessDistribution} maxClues={5} />
+                ) : activeModeTab === 'unlimited' ? (
+                  <GuessDistChart dist={stats.unlimitedGuessDistribution} maxClues={6} />
+                ) : (
+                  <GuessDistChart dist={{...stats.dailyGuessDistribution, ...stats.unlimitedGuessDistribution, 6: (stats.unlimitedGuessDistribution[6] || 0)}} maxClues={6} />
+                )}
               </div>
-              {stats.playHistory && Object.keys(stats.playHistory).length > 0 && (
+              {/* Play History (Daily Only) */}
+              {activeModeTab === 'daily' && stats.dailyPlayHistory && Object.keys(stats.dailyPlayHistory).length > 0 && (
                 <div>
                   <h3 style={{ fontSize:'1.25rem', fontWeight:'700', color:textColor, marginBottom:'1rem' }}>
-                    📅 Play History (Last 30 Days)
+                    📅 Daily History (Last 30 Days)
                   </h3>
                   <div style={{ display:'grid', gridTemplateColumns:'repeat(7, 1fr)', gap:'0.25rem' }}>
                     {Array.from({ length: 30 }, (_, i) => {
                       const date = new Date();
                       date.setDate(date.getDate() - (29 - i));
                       const dateStr = date.toISOString().split('T')[0];
-                      const dayData = stats.playHistory[dateStr];
+                      const dayData = stats.dailyPlayHistory[dateStr];
                       return (
                         <div
                           key={i}
