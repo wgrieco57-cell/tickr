@@ -1006,7 +1006,7 @@ const shareToTwitter = () => {
       </button>
     )}
   </div>
-</div>
+
 
         
             </div>
