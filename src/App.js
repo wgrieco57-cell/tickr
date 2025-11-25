@@ -484,9 +484,6 @@ useEffect(() => {
     }
     setCurrentLevel(currentLevel+1);
   };
-  // Track real plays (runs once per visit)
-  useEffect(() => {
-    if (testMode) return;
 
 useEffect(() => {
   if (testMode) return; // skip in test mode
