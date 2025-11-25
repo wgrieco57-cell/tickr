@@ -392,61 +392,18 @@ useEffect(() => {
     }
   }, [currentLevel, gameOver]);
   // Handle submit (with confetti on win)
-  const handleSubmit = (e) => {
-    if (e) e.preventDefault();
-    if (gameOver || !input.trim()) return;
-    let tickerToCheck = input.trim().toLowerCase();
-    // Auto-complete if exact symbol match
-    const matchedTicker = allTickers.find(t => t.symbol.toLowerCase() === tickerToCheck);
-    if (matchedTicker) {
-      setInput(matchedTicker.formatted);
-      // Submit the formatted version
-      const formattedGuess = matchedTicker.formatted;
-      const lowerCheck = matchedTicker.symbol.toLowerCase();
-      // Check for duplicate
-      const alreadyGuessedSymbols = submittedAnswers.map(a => {
-        const paren = a.guess.indexOf('(');
-        return paren > 0 ? a.guess.substring(0, paren).trim().toLowerCase() : a.guess.toLowerCase();
-      });
-      if (alreadyGuessedSymbols.includes(lowerCheck)) {
-        setShake(true);
-        setInput("");
-        setAvailableOptions([]);
-        return;
-      }
-      const correctTicker = questions[currentLevel].correct;
-      const isCorrect = matchedTicker.symbol.toUpperCase() === correctTicker.toUpperCase();
-      const updatedQuestions = [...questions];
-      updatedQuestions[currentLevel].answers.push({ guess: formattedGuess, isCorrect });
-      setQuestions(updatedQuestions);
-      setSubmittedAnswers(prev => [...prev, { level: currentLevel + 1, guess: formattedGuess, isCorrect }]);
-      setInput("");
-      setAvailableOptions([]);
-     if (isCorrect || currentLevel === questions.length -1) {
-  setGameOver(true);
-
-  const timeElapsed = startTime ? Math.floor((Date.now() - startTime)/1000) : 0;
-
-  if (isCorrect) confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-
- updateStats(isCorrect, currentLevel + 1);
-
-
-  return;
-}
-      }
-      setCurrentLevel(currentLevel+1);
-      return;
-    }
-    // If no exact match, check if it's a partial or company name, but for now, treat as is
-    const parenIndex = input.indexOf('(');
-    if (parenIndex > 0) {
-      tickerToCheck = input.substring(0, parenIndex).trim().toLowerCase();
-    } else {
-      tickerToCheck = input.trim().toLowerCase();
-    }
-    const lowerCheck = tickerToCheck;
-    // Check for duplicate guess
+ const handleSubmit = (e) => {
+  if (e) e.preventDefault();
+  if (gameOver || !input.trim()) return;
+  let tickerToCheck = input.trim().toLowerCase();
+  // Auto-complete if exact symbol match
+  const matchedTicker = allTickers.find(t => t.symbol.toLowerCase() === tickerToCheck);
+  if (matchedTicker) {
+    setInput(matchedTicker.formatted);
+    // Submit the formatted version
+    const formattedGuess = matchedTicker.formatted;
+    const lowerCheck = matchedTicker.symbol.toLowerCase();
+    // Check for duplicate
     const alreadyGuessedSymbols = submittedAnswers.map(a => {
       const paren = a.guess.indexOf('(');
       return paren > 0 ? a.guess.substring(0, paren).trim().toLowerCase() : a.guess.toLowerCase();
@@ -458,25 +415,63 @@ useEffect(() => {
       return;
     }
     const correctTicker = questions[currentLevel].correct;
-    const isCorrect = tickerToCheck.toUpperCase() === correctTicker.toUpperCase();
+    const isCorrect = matchedTicker.symbol.toUpperCase() === correctTicker.toUpperCase();
     const updatedQuestions = [...questions];
-    updatedQuestions[currentLevel].answers.push({ guess: input.trim(), isCorrect });
+    updatedQuestions[currentLevel].answers.push({ guess: formattedGuess, isCorrect });
     setQuestions(updatedQuestions);
-    setSubmittedAnswers(prev => [...prev, { level: currentLevel + 1, guess: input.trim(), isCorrect }]);
+    setSubmittedAnswers(prev => [...prev, { level: currentLevel + 1, guess: formattedGuess, isCorrect }]);
     setInput("");
     setAvailableOptions([]);
     if (isCorrect || currentLevel === questions.length -1) {
       setGameOver(true);
-      // Confetti on win
-      if (isCorrect) 
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-      
-      // Defer stats update to avoid double-save (only for daily)
-        updateStats(isCorrect, currentLevel + 1);
+      const timeElapsed = startTime ? Math.floor((Date.now() - startTime)/1000) : 0;
+      if (isCorrect) confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      updateStats(isCorrect, currentLevel + 1);
       return;
     }
-    setCurrentLevel(currentLevel+1);
-  };
+    // Advance if not correct (inside matchedTicker if)
+    setCurrentLevel(currentLevel + 1);
+    return;
+  }
+  // If no exact match, check if it's a partial or company name, but for now, treat as is
+  const parenIndex = input.indexOf('(');
+  if (parenIndex > 0) {
+    tickerToCheck = input.substring(0, parenIndex).trim().toLowerCase();
+  } else {
+    tickerToCheck = input.trim().toLowerCase();
+  }
+  const lowerCheck = tickerToCheck;
+  // Check for duplicate guess
+  const alreadyGuessedSymbols = submittedAnswers.map(a => {
+    const paren = a.guess.indexOf('(');
+    return paren > 0 ? a.guess.substring(0, paren).trim().toLowerCase() : a.guess.toLowerCase();
+  });
+  if (alreadyGuessedSymbols.includes(lowerCheck)) {
+    setShake(true);
+    setInput("");
+    setAvailableOptions([]);
+    return;
+  }
+  const correctTicker = questions[currentLevel].correct;
+  const isCorrect = tickerToCheck.toUpperCase() === correctTicker.toUpperCase();
+  const updatedQuestions = [...questions];
+  updatedQuestions[currentLevel].answers.push({ guess: input.trim(), isCorrect });
+  setQuestions(updatedQuestions);
+  setSubmittedAnswers(prev => [...prev, { level: currentLevel + 1, guess: input.trim(), isCorrect }]);
+  setInput("");
+  setAvailableOptions([]);
+  if (isCorrect || currentLevel === questions.length -1) {
+    setGameOver(true);
+    // Confetti on win
+    if (isCorrect) {
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    }
+    // Defer stats update to avoid double-save (only for daily)
+    updateStats(isCorrect, currentLevel + 1);
+    return;
+  }
+  setCurrentLevel(currentLevel + 1);
+};  // <-- Single closing brace for entire handleSubmit
 
 useEffect(() => {
   if (testMode) return; // skip in test mode
