@@ -473,10 +473,6 @@ useEffect(() => {
       }
       // Defer stats update to avoid double-save (only for daily)
         updateStats(isCorrect, currentLevel + 1);
-    
-      // Always increment totalPuzzles
-      setStats(prev => ({ ...prev, totalPuzzles: prev.totalPuzzles + 1 }));
-      localStorage.setItem('tickrDailyStats', JSON.stringify({ ...stats, totalPuzzles: stats.totalPuzzles + 1 }));
       return;
     }
     setCurrentLevel(currentLevel+1);
