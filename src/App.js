@@ -952,8 +952,6 @@ function App() {
   const borderColor = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
   const isDailyCompleted = gameOver && gameMode === 'daily' && !testMode;
 
-  const isAnon = user && !user.email;
-
   return (
     <div style={{ minHeight:'100vh', background: bgColor, display:'flex', flexDirection:'column', alignItems:'center', padding:'2rem 1rem' }}>
       {/* Auth Banner if anon */}
