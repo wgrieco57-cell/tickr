@@ -805,9 +805,7 @@ const shareToTwitter = () => {
   const mutedColor = darkMode ? '#94a3b8' : '#64748b';
   const cardBg = darkMode ? 'rgba(15,23,42,0.7)' : 'rgba(255,255,255,0.8)';
   const borderColor = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
-  const isMobile = window.innerWidth <= 768;
   const closeButtonStyle = {
-    position: 'absolute',
     position: 'fixed',
     top: '1rem',
     right: '1rem',
@@ -824,19 +822,6 @@ const shareToTwitter = () => {
     justifyContent: 'center',
     zIndex: 101,
     transition: 'all 0.3s ease'
-  };
-  const darkModeButtonStyle = {
-    position: 'absolute',
-    right: isMobile ? '1rem' : '0',
-    bottom: isMobile ? '1rem' : '0',
-    top: isMobile ? 'auto' : '0',
-    padding:'0.75rem',
-    background:cardBg,
-    border:`1px solid ${borderColor}`,
-    borderRadius:'0.75rem',
-    color:textColor,
-    cursor:'pointer',
-    transition:'all 0.3s ease'
   };
   return (
     <div style={{ minHeight:'100vh', background: bgColor, display:'flex', flexDirection:'column', alignItems:'center', padding:'2rem 1rem' }}>
@@ -948,14 +933,6 @@ const shareToTwitter = () => {
               transition: 'width 0.3s ease'
             }} />
           </div>
-          <button
-            onClick={toggleDarkMode}
-            style={darkModeButtonStyle}
-            title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-          >
-            {darkMode ? '☀️' : '🌙'}
-          </button>
         </div>
         {/* Mode Selector */}
         <ModeSelector />
@@ -1052,13 +1029,6 @@ const shareToTwitter = () => {
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button
-                onClick={() => setShowStats(false)}
-                style={closeButtonStyle}
-                aria-label="Close Statistics Modal"
-              >
-                ×
-              </button>
               <h2 style={{ fontSize:'2rem', fontWeight:'800', color:textColor, marginBottom:'2rem', textAlign:'center', display:'flex', alignItems:'center', justifyContent:'center', gap:'0.75rem' }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="18" y1="20" x2="18" y2="10"></line>
@@ -1302,13 +1272,6 @@ const shareToTwitter = () => {
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button
-                onClick={() => setShowHowToPlay(false)}
-                style={closeButtonStyle}
-                aria-label="Close How to Play Modal"
-              >
-                ×
-              </button>
               <h2 style={{ fontSize:'2rem', fontWeight:'800', color:textColor, marginBottom:'1.5rem', textAlign:'center' }}>
                 ❓ How to Play
               </h2>
