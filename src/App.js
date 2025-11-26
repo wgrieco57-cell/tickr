@@ -1,14 +1,10 @@
-import React, { useState, useEffect, useRef, useMemo, useCallback, Suspense, lazy } from "react";
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { debounce } from 'lodash'; // npm install lodash
 import confetti from 'canvas-confetti'; // npm install canvas-confetti required
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, increment, getDoc, setDoc, updateDoc, writeBatch } from "firebase/firestore";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { getAnalytics, logEvent } from "firebase/analytics";
-
-// Lazy load heavy modals
-const StatsModal = lazy(() => import('./components/StatsModal')); // Assume split out
-const HowToPlayModal = lazy(() => import('./components/HowToPlayModal')); // Assume split out
 
 const FINNHUB_API_KEY = "d4g9o8pr01qm5b34j8l0d4g9o8pr01qm5b34j8lg"; // Hardcoded as requested (note: for local/dev only—expose risk in prod)
 const QUOTRON_TICKERS = [
@@ -44,7 +40,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const analytics = getAnalytics(app);
 
-// Extracted helper functions (memoized where possible)
+// Extracted helper functions
 function hashCode(str) {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
@@ -84,7 +80,7 @@ async function updateDailyStats({ won = false }) {
   }
 }
 
-// CSS Styles (extracted from inline for better performance)
+// CSS Styles (extracted)
 const styles = {
   app: { minHeight: '100vh', background: 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem 1rem' },
   header: { textAlign: 'center', marginBottom: '1rem', position: 'relative', width: '100%' },
@@ -102,25 +98,259 @@ const styles = {
   submitBtn: { marginTop: '1rem', padding: '0.75rem 1.5rem', background: 'linear-gradient(135deg,#22c55e 0%,#16a34a 100%)', borderRadius: '0.75rem', border: 'none', fontWeight: '700', fontSize: '0.875rem', color: 'white', cursor: 'pointer', transition: 'all 0.3s ease', boxShadow: '0 10px 25px -5px rgba(34, 197, 94, 0.4)' },
   shake: { animation: 'shake 0.5s ease-in-out' },
   gameOver: { textAlign: 'center', marginTop: '2rem', background: 'rgba(15,23,42,0.7)', backdropFilter: 'blur(20px)', padding: '3rem', borderRadius: '2rem', border: '1px solid rgba(255,255,255,0.1)', width: '100%' },
+  modalOverlay: { position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100, padding: '1rem', overflowY: 'auto' },
+  modalContent: { background: 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))', backdropFilter: 'blur(20px)', borderRadius: '2rem', padding: '2.5rem', maxWidth: '700px', width: '100%', border: '1px solid rgba(255,255,255,0.1)', position: 'relative', maxHeight: '90vh', overflowY: 'auto' },
+  closeButton: { position: 'fixed', top: '1rem', right: '1rem', background: 'rgba(15,23,42,0.7)', border: 'none', color: '#e2e8f0', fontSize: '1.5rem', cursor: 'pointer', width: '40px', height: '40px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 101, transition: 'all 0.3s ease' },
+  modeSelector: { display: 'flex', gap: '1rem', marginBottom: '2rem', justifyContent: 'center', flexWrap: 'wrap' },
+  statsButtons: { display: 'flex', gap: '1rem', marginBottom: '2rem' },
+  button: { padding: '0.75rem 1.75rem', background: 'rgba(15,23,42,0.7)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '1rem', color: '#e2e8f0', cursor: 'pointer', fontWeight: '600', fontSize: '0.875rem', transition: 'all 0.3s ease', display: 'flex', alignItems: 'center', gap: '0.5rem' },
+  shareButton: { padding: '1rem 2rem', borderRadius: '1rem', fontWeight: '700', fontSize: '1rem', color: 'white', border: 'none', cursor: 'pointer', transition: 'all 0.3s ease', boxShadow: '0 10px 25px -5px rgba(59, 130, 246, 0.4)' },
+  quotron: { width: '100%', overflow: 'hidden', whiteSpace: 'nowrap', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)', padding: '0.5rem 0', borderRadius: '1rem', background: 'rgba(15,23,42,0.8)', display: 'flex', flexDirection: 'row', willChange: 'transform' },
+  option: { padding: '1rem 1.25rem', cursor: 'pointer', borderBottom: '1px solid rgba(255,255,255,0.1)', transition: 'background 0.2s ease' },
   // Add more as needed...
 };
 
-// Assume these are imported from separate files or defined here
-// const Header = React.memo(/* ... */);
-// const Quotron = React.memo(/* ... */);
-// const GameQuestion = React.memo(/* ... */);
-// const ModeSelector = React.memo(/* ... */);
-// For simplicity, I'll inline optimized versions in this refactored file.
+// Inlined StatsModal component
+const StatsModal = ({ stats, activeModeTab, setActiveModeTab, themeStyles, formatTime, achievements, onClose }) => {
+  const maxCount = useMemo(() => Math.max(...Object.values(stats.dailyGuessDistribution).filter(v => typeof v === 'number')), [stats.dailyGuessDistribution]);
+  const GuessDistChart = ({ dist, maxClues }) => (
+    <>
+      {Array.from({ length: maxClues }, (_, i) => {
+        const clue = i + 1;
+        const count = dist[clue] || 0;
+        const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
+        return (
+          <div key={clue} style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
+            <div style={{ width: '60px', color: themeStyles.mutedColor, fontSize: '0.875rem', fontWeight: '600' }}>
+              {clue} clue{clue > 1 ? 's' : ''}
+            </div>
+            <div style={{ flex: 1, background: themeStyles.cardBg, height: '32px', borderRadius: '0.5rem', overflow: 'hidden', position: 'relative', border: `1px solid ${themeStyles.borderColor}` }}>
+              <div style={{
+                width: `${Math.max(percentage, 5)}%`,
+                height: '100%',
+                background: 'linear-gradient(90deg, #22c55e, #16a34a)',
+                transition: 'width 0.5s ease',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+                paddingRight: '0.5rem'
+              }}>
+                <span style={{ color: 'white', fontWeight: '700', fontSize: '0.875rem' }}>{count}</span>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
+        <div style={{ width: '60px', color: themeStyles.mutedColor, fontSize: '0.875rem', fontWeight: '600' }}>Failed</div>
+        <div style={{ flex: 1, background: themeStyles.cardBg, height: '32px', borderRadius: '0.5rem', overflow: 'hidden', position: 'relative', border: `1px solid ${themeStyles.borderColor}` }}>
+          <div style={{
+            width: `${Math.max((dist.fail / maxCount) * 100, 5)}%`,
+            height: '100%',
+            background: 'linear-gradient(90deg, #ef4444, #dc2626)',
+            transition: 'width 0.5s ease',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            paddingRight: '0.5rem'
+          }}>
+            <span style={{ color: 'white', fontWeight: '700', fontSize: '0.875rem' }}>{dist.fail}</span>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+
+  return (
+    <div style={styles.modalOverlay} onClick={onClose} role="dialog" aria-modal="true" aria-label="Statistics Modal">
+      <button onClick={onClose} style={styles.closeButton} aria-label="Close Statistics Modal">×</button>
+      <div style={{ ...styles.modalContent, background: themeStyles.textColor === '#e2e8f0' ? 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95))' : styles.modalContent.background }} onClick={(e) => e.stopPropagation()}>
+        <h2 style={{ fontSize: '2rem', fontWeight: '800', color: themeStyles.textColor, marginBottom: '2rem', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          Your Statistics
+        </h2>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.5rem' }}>
+          <button onClick={() => setActiveModeTab('daily')} style={{ padding: '0.5rem 1rem', background: activeModeTab === 'daily' ? '#22c55e' : themeStyles.cardBg, color: activeModeTab === 'daily' ? 'white' : themeStyles.textColor, border: `1px solid ${themeStyles.borderColor}`, borderRadius: '0.5rem', cursor: 'pointer', fontWeight: '600' }}>🗓️ Daily</button>
+          <button onClick={() => setActiveModeTab('unlimited')} style={{ padding: '0.5rem 1rem', background: activeModeTab === 'unlimited' ? '#22c55e' : themeStyles.cardBg, color: activeModeTab === 'unlimited' ? 'white' : themeStyles.textColor, border: `1px solid ${themeStyles.borderColor}`, borderRadius: '0.5rem', cursor: 'pointer', fontWeight: '600' }}>♾️ Unlimited</button>
+          <button onClick={() => setActiveModeTab('overall')} style={{ padding: '0.5rem 1rem', background: activeModeTab === 'overall' ? '#22c55e' : themeStyles.cardBg, color: activeModeTab === 'overall' ? 'white' : themeStyles.textColor, border: `1px solid ${themeStyles.borderColor}`, borderRadius: '0.5rem', cursor: 'pointer', fontWeight: '600' }}>📊 Overall</button>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+          {activeModeTab === 'daily' && (
+            <>
+              <div style={{ textAlign: 'center', background: themeStyles.cardBg, padding: '1.5rem 1rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }}>
+                <div style={{ fontSize: '2rem', fontWeight: '700', color: '#22c55e' }}>{stats.dailyGamesPlayed}</div>
+                <div style={{ fontSize: '0.75rem', color: themeStyles.mutedColor, marginTop: '0.25rem' }}>Daily Played</div>
+              </div>
+              <div style={{ textAlign: 'center', background: themeStyles.cardBg, padding: '1.5rem 1rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }}>
+                <div style={{ fontSize: '2rem', fontWeight: '700', color: '#3b82f6' }}>{winRate}%</div>
+                <div style={{ fontSize: '0.75rem', color: themeStyles.mutedColor, marginTop: '0.25rem' }}>Daily Win Rate</div>
+              </div>
+              <div style={{ textAlign: 'center', background: themeStyles.cardBg, padding: '1.5rem 1rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }}>
+                <div style={{ fontSize: '2rem', fontWeight: '700', color: '#f59e0b' }}>{stats.dailyCurrentStreak}🔥</div>
+                <div style={{ fontSize: '0.75rem', color: themeStyles.mutedColor, marginTop: '0.25rem' }}>Daily Streak</div>
+              </div>
+              <div style={{ textAlign: 'center', background: themeStyles.cardBg, padding: '1.5rem 1rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }}>
+                <div style={{ fontSize: '2rem', fontWeight: '700', color: '#a855f7' }}>{stats.dailyMaxStreak}</div>
+                <div style={{ fontSize: '0.75rem', color: themeStyles.mutedColor, marginTop: '0.25rem' }}>Daily Max Streak</div>
+              </div>
+              <div style={{ textAlign: 'center', background: themeStyles.cardBg, padding: '1.5rem 1rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }}>
+                <div style={{ fontSize: '2rem', fontWeight: '700', color: '#ec4899' }}>
+                  {stats.dailyGamesPlayed > 0 ? formatTime(Math.floor(stats.dailyTotalTime / stats.dailyGamesPlayed)) : '--'}
+                </div>
+                <div style={{ fontSize: '0.75rem', color: themeStyles.mutedColor, marginTop: '0.25rem' }}>Daily Avg Time</div>
+              </div>
+            </>
+          )}
+          {activeModeTab === 'unlimited' && (
+            <>
+              <div style={{ textAlign: 'center', background: themeStyles.cardBg, padding: '1.5rem 1rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }}>
+                <div style={{ fontSize: '2rem', fontWeight: '700', color: '#22c55e' }}>{stats.unlimitedCompletions}</div>
+                <div style={{ fontSize: '0.75rem', color: themeStyles.mutedColor, marginTop: '0.25rem' }}>Unlimited Completed</div>
+              </div>
+              <div style={{ textAlign: 'center', background: themeStyles.cardBg, padding: '1.5rem 1rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }}>
+                <div style={{ fontSize: '2rem', fontWeight: '700', color: '#3b82f6' }}>{unlimitedWinRate}%</div>
+                <div style={{ fontSize: '0.75rem', color: themeStyles.mutedColor, marginTop: '0.25rem' }}>Unlimited Win Rate</div>
+              </div>
+              <div style={{ textAlign: 'center', background: themeStyles.cardBg, padding: '1.5rem 1rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }}>
+                <div style={{ fontSize: '2rem', fontWeight: '700', color: '#ec4899' }}>
+                  {stats.unlimitedCompletions > 0 ? formatTime(Math.floor(stats.unlimitedTotalTime / stats.unlimitedCompletions)) : '--'}
+                </div>
+                <div style={{ fontSize: '0.75rem', color: themeStyles.mutedColor, marginTop: '0.25rem' }}>Unlimited Avg Time</div>
+              </div>
+              <div style={{ textAlign: 'center', background: themeStyles.cardBg, padding: '1.5rem 1rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }} />
+              <div style={{ textAlign: 'center', background: themeStyles.cardBg, padding: '1.5rem 1rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }} />
+            </>
+          )}
+          {activeModeTab === 'overall' && (
+            <>
+              <div style={{ textAlign: 'center', background: themeStyles.cardBg, padding: '1.5rem 1rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }}>
+                <div style={{ fontSize: '2rem', fontWeight: '700', color: '#22c55e' }}>{stats.dailyGamesPlayed + stats.unlimitedCompletions}</div>
+                <div style={{ fontSize: '0.75rem', color: themeStyles.mutedColor, marginTop: '0.25rem' }}>Total Played</div>
+              </div>
+              <div style={{ textAlign: 'center', background: themeStyles.cardBg, padding: '1.5rem 1rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }}>
+                <div style={{ fontSize: '2rem', fontWeight: '700', color: '#3b82f6' }}>
+                  {stats.overallFastestTime ? formatTime(stats.overallFastestTime) : '--'}
+                </div>
+                <div style={{ fontSize: '0.75rem', color: themeStyles.mutedColor, marginTop: '0.25rem' }}>Overall Fastest</div>
+              </div>
+              <div style={{ textAlign: 'center', background: themeStyles.cardBg, padding: '1.5rem 1rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }}>
+                <div style={{ fontSize: '2rem', fontWeight: '700', color: '#f59e0b' }}>
+                  {stats.dailyGamesPlayed + stats.unlimitedCompletions > 0 ? formatTime(Math.floor(stats.overallTotalTime / (stats.dailyGamesPlayed + stats.unlimitedCompletions))) : '--'}
+                </div>
+                <div style={{ fontSize: '0.75rem', color: themeStyles.mutedColor, marginTop: '0.25rem' }}>Overall Avg Time</div>
+              </div>
+              <div style={{ textAlign: 'center', background: themeStyles.cardBg, padding: '1.5rem 1rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }} />
+              <div style={{ textAlign: 'center', background: themeStyles.cardBg, padding: '1.5rem 1rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }} />
+            </>
+          )}
+        </div>
+        {achievements.length > 0 && (
+          <div style={{ marginBottom: '2rem' }}>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: themeStyles.textColor, marginBottom: '1rem' }}>🏆 Achievements (All Modes)</h3>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
+              {achievements.map((ach, i) => (
+                <div key={i} style={{ background: themeStyles.cardBg, padding: '1rem', borderRadius: '0.75rem', border: `1px solid ${themeStyles.borderColor}`, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  <span style={{ fontSize: '1.5rem' }}>{ach.icon}</span>
+                  <div>
+                    <div style={{ fontSize: '0.875rem', fontWeight: '600', color: themeStyles.textColor }}>{ach.name}</div>
+                    <div style={{ fontSize: '0.75rem', color: themeStyles.mutedColor }}>{ach.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        <div style={{ marginBottom: '1.5rem' }}>
+          <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: themeStyles.textColor, marginBottom: '1rem' }}>
+            Guess Distribution ({activeModeTab === 'daily' ? 'Daily' : activeModeTab === 'unlimited' ? 'Unlimited' : 'Combined'})
+          </h3>
+          {activeModeTab === 'daily' ? (
+            <GuessDistChart dist={stats.dailyGuessDistribution} maxClues={5} />
+          ) : activeModeTab === 'unlimited' ? (
+            <GuessDistChart dist={stats.unlimitedGuessDistribution} maxClues={6} />
+          ) : (
+            <GuessDistChart dist={{ ...stats.dailyGuessDistribution, ...stats.unlimitedGuessDistribution, 6: (stats.unlimitedGuessDistribution[6] || 0) }} maxClues={6} />
+          )}
+        </div>
+        {activeModeTab === 'daily' && stats.dailyPlayHistory && Object.keys(stats.dailyPlayHistory).length > 0 && (
+          <div>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: themeStyles.textColor, marginBottom: '1rem' }}>📅 Daily History (Last 30 Days)</h3>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '0.25rem' }}>
+              {Array.from({ length: 30 }, (_, i) => {
+                const date = new Date();
+                date.setDate(date.getDate() - (29 - i));
+                const dateStr = date.toISOString().split('T')[0];
+                const dayData = stats.dailyPlayHistory[dateStr];
+                return (
+                  <div
+                    key={i}
+                    title={dateStr + (dayData ? ` - ${dayData.won ? 'Won' : 'Lost'} in ${dayData.clues} clues` : '')}
+                    style={{
+                      aspectRatio: '1',
+                      borderRadius: '0.25rem',
+                      background: dayData ? (dayData.won ? '#22c55e' : '#ef4444') : themeStyles.cardBg,
+                      border: `1px solid ${themeStyles.borderColor}`,
+                      cursor: 'pointer'
+                    }}
+                  />
+                );
+              })}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem', fontSize: '0.75rem', color: themeStyles.mutedColor }}>
+              <span>30 days ago</span>
+              <span>Today</span>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// Inlined HowToPlayModal component
+const HowToPlayModal = ({ numClues, gameMode, themeStyles, onClose }) => (
+  <div style={styles.modalOverlay} onClick={onClose} role="dialog" aria-modal="true" aria-label="How to Play Modal">
+    <button onClick={onClose} style={styles.closeButton} aria-label="Close How to Play Modal">×</button>
+    <div style={{ ...styles.modalContent, background: themeStyles.textColor === '#e2e8f0' ? 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95))' : styles.modalContent.background }} onClick={(e) => e.stopPropagation()}>
+      <h2 style={{ fontSize: '2rem', fontWeight: '800', color: themeStyles.textColor, marginBottom: '1.5rem', textAlign: 'center' }}>❓ How to Play</h2>
+      <div style={{ color: themeStyles.textColor, lineHeight: '1.8', fontSize: '1rem' }}>
+        <p style={{ marginBottom: '1rem', fontWeight: '600', fontSize: '1.125rem' }}>Guess the stock ticker in {numClues} clues or less!</p>
+        <div style={{ background: themeStyles.cardBg, padding: '1.5rem', borderRadius: '1rem', marginBottom: '1rem', border: `1px solid ${themeStyles.borderColor}` }}>
+          <p style={{ marginBottom: '0.75rem' }}><strong style={{ color: '#22c55e' }}>🎯 Objective:</strong> Identify the mystery stock from progressively specific clues.</p>
+          <p style={{ marginBottom: '0.75rem' }}><strong style={{ color: '#3b82f6' }}>📝 Clues:</strong> Each clue gets more specific, from broad industry hints to precise company details.</p>
+          <p><strong style={{ color: '#f59e0b' }}>⏱️ Strategy:</strong> The fewer clues you need, the better your score!</p>
+        </div>
+        <div style={{ background: themeStyles.cardBg, padding: '1.5rem', borderRadius: '1rem', border: `1px solid ${themeStyles.borderColor}` }}>
+          <h3 style={{ fontSize: '1.125rem', fontWeight: '700', marginBottom: '0.75rem' }}>Example:</h3>
+          <div style={{ fontSize: '0.875rem', color: themeStyles.mutedColor, lineHeight: '1.6' }}>
+            <p>1️⃣ "I'm a technology company..."</p>
+            <p>2️⃣ "I make electric vehicles..."</p>
+            <p>3️⃣ "My CEO is very active on social media..."</p>
+            <p>4️⃣ "I launched the Cybertruck in 2023..."</p>
+            <p>5️⃣ "I'm named after a famous inventor..."</p>
+            <p style={{ marginTop: '0.75rem', color: '#22c55e', fontWeight: '600' }}>Answer: TSLA (Tesla)</p>
+          </div>
+        </div>
+        <p style={{ marginTop: '1.5rem', textAlign: 'center', fontSize: '0.875rem', color: themeStyles.mutedColor }}>
+          {gameMode === 'daily' ? 'New puzzle daily at midnight EST!' : 'Endless challenges await!'} 🌅
+        </p>
+      </div>
+    </div>
+  </div>
+);
 
 function App() {
-  // States (unchanged, but group related)
   const [data, setData] = useState([]);
   const [allTickers, setAllTickers] = useState([]);
   const [dailyTicker, setDailyTicker] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [currentLevel, setCurrentLevel] = useState(0);
   const [input, setInput] = useState("");
-  const [debouncedInput, setDebouncedInput] = useState(""); // New for debounce
+  const [debouncedInput, setDebouncedInput] = useState("");
   const [submittedAnswers, setSubmittedAnswers] = useState([]);
   const [availableOptions, setAvailableOptions] = useState([]);
   const [gameOver, setGameOver] = useState(false);
@@ -153,7 +383,6 @@ function App() {
   const [puzzleSeed, setPuzzleSeed] = useState(0);
   const inputRef = useRef(null);
 
-  // Memoized values
   const isWinner = useMemo(() => submittedAnswers.some(a => a.isCorrect), [submittedAnswers]);
   const numClues = useMemo(() => questions.length, [questions]);
   const todayDate = useMemo(() => new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }), []);
@@ -163,9 +392,8 @@ function App() {
   const unlimitedWinRate = useMemo(() => 
     stats.unlimitedCompletions > 0 ? Math.round(((stats.unlimitedCompletions - stats.unlimitedGuessDistribution.fail) / stats.unlimitedCompletions) * 100) : 0
   , [stats.unlimitedCompletions, stats.unlimitedGuessDistribution.fail]);
-  const achievements = useMemo(() => getAchievements(stats), [stats]); // Define getAchievements below
+  const achievements = useMemo(() => getAchievements(stats), [stats]);
 
-  // Dynamic styles based on darkMode (memoized)
   const themeStyles = useMemo(() => ({
     bgColor: darkMode ? 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' : 'linear-gradient(135deg,#f8fafc 0%,#e2e8f0 50%,#cbd5e1 100%)',
     textColor: darkMode ? '#e2e8f0' : '#1e293b',
@@ -182,7 +410,7 @@ function App() {
     }
   }, []);
 
-  // Keyboard shortcuts (optimized deps)
+  // Keyboard shortcuts
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (e.ctrlKey && e.shiftKey && e.key === 'T') {
@@ -192,7 +420,7 @@ function App() {
     };
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [testMode]); // Dep on testMode to avoid stale closure
+  }, [testMode]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -201,9 +429,9 @@ function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [input, gameOver, gameMode, handleSubmit]); // Add deps
+  }, [input, gameOver, gameMode]);
 
-  // Load stats from localStorage (unchanged, but memoize parsed if needed)
+  // Load stats from localStorage
   useEffect(() => {
     try {
       const savedStats = localStorage.getItem('tickrDailyStats');
@@ -239,14 +467,14 @@ function App() {
     }
   }, []);
 
-  // Debounced input for autocomplete
+  // Debounced input
   useEffect(() => {
     const handler = debounce((value) => setDebouncedInput(value), 200);
     handler(input);
     return () => handler.cancel();
   }, [input]);
 
-  // Memoized availableOptions (moved from useEffect to useMemo)
+  // Memoized availableOptions
   const availableOptionsMemo = useMemo(() => {
     if (!debouncedInput) return [];
     const alreadyGuessed = submittedAnswers.map(a => {
@@ -274,7 +502,7 @@ function App() {
   }, [debouncedInput, allTickers, submittedAnswers]);
   useEffect(() => setAvailableOptions(availableOptionsMemo), [availableOptionsMemo]);
 
-  // Load local JSON data (unchanged)
+  // Load local JSON data
   useEffect(() => {
     Promise.all([
       fetch('/data.json').then(res => res.json()),
@@ -308,7 +536,7 @@ function App() {
       });
   }, []);
 
-  // Select daily ticker (optimized deps, no testMode if not needed)
+  // Select daily ticker
   useEffect(() => {
     if (!data || data.length === 0) return;
     setCurrentLevel(0);
@@ -321,7 +549,7 @@ function App() {
     let selectedTicker;
     let pickedQuestions = [];
     const sortedData = useMemo(() => [...data].sort((a, b) => a.ticker.localeCompare(b.ticker)), [data]);
-    let filteredData = sortedData; // Future: filter by difficulty
+    let filteredData = sortedData;
     if (gameMode === 'daily' && !testMode) {
       const seed = hashCode(today);
       const rnd = createSeededRandom(seed);
@@ -400,9 +628,9 @@ function App() {
       }
     }
     setStartTime(Date.now());
-  }, [data, gameMode, difficulty, puzzleSeed]); // Removed testMode if not essential
+  }, [data, gameMode, difficulty, puzzleSeed, testMode]);
 
-  // Throttled progress save (debounced)
+  // Throttled progress save
   const debouncedSaveProgress = useCallback(
     debounce((progressToSave) => {
       if (gameMode !== 'daily' || testMode || !dailyTicker || !startTime) return;
@@ -438,7 +666,6 @@ function App() {
   useEffect(() => {
     const fetchQuotes = async () => {
       try {
-        // Check cache first
         const cached = localStorage.getItem('quotesCache');
         if (cached) {
           const { data: cachedData, timestamp } = JSON.parse(cached);
@@ -480,8 +707,13 @@ function App() {
     }
   }, [currentLevel, gameOver]);
 
-  // Memoized helpers
-  const validateGuess = useCallback((guess, correctTicker, submittedAnswers) => {
+  const getAlreadyGuessedSymbols = useCallback((submittedAnswers) => 
+    submittedAnswers.map(a => {
+      const paren = a.guess.indexOf('(');
+      return paren > 0 ? a.guess.substring(0, paren).trim().toLowerCase() : a.guess.toLowerCase();
+    }), []);
+
+  const validateGuess = useCallback((guess, correctTicker, allTickers) => {
     let tickerToCheck = guess.trim().toLowerCase();
     const matchedTicker = allTickers.find(t => t.symbol.toLowerCase() === tickerToCheck);
     if (matchedTicker) {
@@ -496,20 +728,13 @@ function App() {
     }
     const isCorrect = tickerToCheck.toUpperCase() === correctTicker.toUpperCase();
     return { formattedGuess: guess.trim(), tickerToCheck, isCorrect, matched: false };
-  }, [allTickers]);
+  }, []);
 
-  const getAlreadyGuessedSymbols = useCallback((submittedAnswers) => 
-    submittedAnswers.map(a => {
-      const paren = a.guess.indexOf('(');
-      return paren > 0 ? a.guess.substring(0, paren).trim().toLowerCase() : a.guess.toLowerCase();
-    }), []);
-
-  // Optimized handleSubmit (broken down, useCallback)
   const handleSubmit = useCallback((e) => {
     if (e) e.preventDefault();
     if (gameOver || !input.trim()) return;
     const alreadyGuessed = getAlreadyGuessedSymbols(submittedAnswers);
-    const { formattedGuess, tickerToCheck, isCorrect, matched } = validateGuess(input, questions[currentLevel]?.correct || '', submittedAnswers);
+    const { formattedGuess, tickerToCheck, isCorrect } = validateGuess(input, questions[currentLevel]?.correct || '', allTickers);
     if (alreadyGuessed.includes(tickerToCheck)) {
       setShake(true);
       setInput("");
@@ -532,7 +757,7 @@ function App() {
     setCurrentLevel(currentLevel + 1);
   }, [gameOver, input, currentLevel, questions, submittedAnswers, startTime, allTickers, getAlreadyGuessedSymbols, validateGuess]);
 
-  // Analytics (run once)
+  // Analytics
   useEffect(() => {
     if (testMode) return;
     const track = async () => {
@@ -540,7 +765,7 @@ function App() {
         const today = new Date().toISOString().split('T')[0];
         const dailyRef = doc(db, 'analytics', `daily_${today}`);
         const globalRef = doc(db, 'analytics', 'global');
-        const batch = writeBatch(db); // Batch for perf
+        const batch = writeBatch(db);
         batch.set(dailyRef, { plays: increment(1) }, { merge: true });
         try {
           batch.update(globalRef, { totalPlays: increment(1) });
@@ -559,9 +784,8 @@ function App() {
       }
     };
     track();
-  }, [gameMode, testMode]); // Kept, but batched
+  }, [gameMode, testMode]);
 
-  // Optimized updateStats (useCallback, batched)
   const updateStats = useCallback(async (won = false, cluesUsed = 0, timeElapsed = null) => {
     if (testMode) return;
     if (gameMode === 'daily') {
@@ -627,7 +851,6 @@ function App() {
     }
   }, [gameMode, testMode, startTime]);
 
-  // Other functions (useCallback where passed as props)
   const toggleDarkMode = useCallback(() => {
     const newMode = !darkMode;
     setDarkMode(newMode);
@@ -733,7 +956,6 @@ function App() {
     window.open(twitterUrl, '_blank');
   }, [submittedAnswers, questions]);
 
-  // Render components (optimized with memo where possible)
   if (loading || !dailyTicker || !questions.length) {
     return (
       <div style={{ ...styles.app, background: themeStyles.bgColor, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -742,8 +964,19 @@ function App() {
     );
   }
 
-  // Inline simple components for this refactored file (in production, split to files)
-  const Header = (
+  const QuotronComponent = (
+    <div className="quotron" style={styles.quotron}>
+      <div style={{ display: 'inline-block', animation: 'scroll 120s linear infinite' }}>
+        {[...quotes, ...quotes].map((q, i) => (
+          <span key={i} style={{ display: 'inline-block', marginRight: '3rem', color: q.change >= 0 ? '#22c55e' : '#ef4444', fontWeight: '700', fontFamily: 'monospace' }}>
+            {q.symbol} {q.current} {q.change >= 0 ? `+${q.change}` : q.change}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+
+  const HeaderComponent = (
     <div style={styles.header}>
       <button
         onClick={toggleDarkMode}
@@ -798,38 +1031,8 @@ function App() {
     </div>
   );
 
-  const Quotron = (
-    <div className="quotron" style={{ 
-      width: '100%', 
-      overflow: 'hidden', 
-      whiteSpace: 'nowrap', 
-      marginBottom: '2rem', 
-      border: `1px solid ${themeStyles.borderColor}`, 
-      padding: '0.5rem 0', 
-      borderRadius: '1rem', 
-      background: darkMode ? 'rgba(15,23,42,0.8)' : 'rgba(255,255,255,0.8)', 
-      display: 'flex', 
-      flexDirection: 'row',
-      willChange: 'transform' // For animation perf
-    }}>
-      <div style={{ display: 'inline-block', animation: 'scroll 120s linear infinite' }}>
-        {[...quotes, ...quotes].map((q, i) => (
-          <span key={i} style={{ 
-            display: 'inline-block', 
-            marginRight: '3rem', 
-            color: q.change >= 0 ? '#22c55e' : '#ef4444', 
-            fontWeight: '700', 
-            fontFamily: 'monospace' 
-          }}>
-            {q.symbol} {q.current} {q.change >= 0 ? `+${q.change}` : q.change}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-
-  const ModeSelector = (
-    <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+  const ModeSelectorComponent = (
+    <div style={styles.modeSelector}>
       <button
         onClick={() => setGameMode('daily')}
         style={{
@@ -842,6 +1045,7 @@ function App() {
           cursor: 'pointer',
           transition: 'all 0.3s ease'
         }}
+        aria-label="Switch to Daily Mode"
       >
         🗓️ Daily Mode
       </button>
@@ -857,6 +1061,7 @@ function App() {
           cursor: 'pointer',
           transition: 'all 0.3s ease'
         }}
+        aria-label="Switch to Unlimited Mode"
       >
         ♾️ Unlimited Mode
       </button>
@@ -873,6 +1078,7 @@ function App() {
             fontWeight: '600',
             cursor: 'pointer'
           }}
+          aria-label="Select Difficulty Level"
         >
           <option value="easy">😊 Easy (6 Clues)</option>
           <option value="medium">⚖️ Medium (5 Clues)</option>
@@ -882,24 +1088,12 @@ function App() {
     </div>
   );
 
-  const StatsButtons = (
-    <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+  const StatsButtonsComponent = (
+    <div style={styles.statsButtons}>
       <button
         onClick={() => setShowStats(!showStats)}
-        style={{
-          padding: '0.75rem 1.75rem',
-          background: themeStyles.cardBg,
-          border: `1px solid ${themeStyles.borderColor}`,
-          borderRadius: '1rem',
-          color: themeStyles.textColor,
-          cursor: 'pointer',
-          fontWeight: '600',
-          fontSize: '0.875rem',
-          transition: 'all 0.3s ease',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem'
-        }}
+        style={{ ...styles.button, background: themeStyles.cardBg, border: `1px solid ${themeStyles.borderColor}`, color: themeStyles.textColor }}
+        aria-label="View Statistics"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <line x1="18" y1="20" x2="18" y2="10"></line>
@@ -910,31 +1104,19 @@ function App() {
       </button>
       <button
         onClick={() => setShowHowToPlay(true)}
-        style={{
-          padding: '0.75rem 1.75rem',
-          background: themeStyles.cardBg,
-          border: `1px solid ${themeStyles.borderColor}`,
-          borderRadius: '1rem',
-          color: themeStyles.textColor,
-          cursor: 'pointer',
-          fontWeight: '600',
-          fontSize: '0.875rem',
-          transition: 'all 0.3s ease',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem'
-        }}
+        style={{ ...styles.button, background: themeStyles.cardBg, border: `1px solid ${themeStyles.borderColor}`, color: themeStyles.textColor }}
+        aria-label="How to Play"
       >
         ❓ How to Play
       </button>
     </div>
   );
 
-  const Questions = questions.map((q, idx) => {
+  const QuestionsComponent = questions.map((q, idx) => {
     if (idx > currentLevel) return null;
     return (
       <div key={idx} style={{ marginBottom: '2rem', width: '100%' }}>
-        <div style={styles.card}>
+        <div style={{ ...styles.card, background: themeStyles.cardBg, border: `1px solid ${themeStyles.borderColor}` }}>
           <p style={styles.question}>Question {q.level}: {q.question}</p>
           {q.answers.map((a, i) => (
             <div key={i} style={{
@@ -956,6 +1138,7 @@ function App() {
                 placeholder="Ex: NVDA (NVIDIA)"
                 autoFocus
                 title="Press Enter to submit"
+                aria-label="Enter your stock guess"
                 style={styles.input}
               />
               {availableOptions.length > 0 && (
@@ -976,12 +1159,7 @@ function App() {
                     <div
                       key={i}
                       onClick={() => handleOptionClick(opt)}
-                      style={{
-                        padding: '1rem 1.25rem',
-                        cursor: 'pointer',
-                        borderBottom: i < availableOptions.length - 1 ? "1px solid rgba(255,255,255,0.1)" : "none",
-                        transition: 'background 0.2s ease'
-                      }}
+                      style={styles.option}
                       onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(34, 197, 94, 0.15)'}
                       onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                     >
@@ -994,6 +1172,7 @@ function App() {
               <button
                 type="submit"
                 style={{ ...styles.submitBtn, ...(shake && styles.shake) }}
+                aria-label="Submit your answer"
                 onMouseEnter={(e) => {
                   if (!shake) {
                     e.currentTarget.style.transform = 'translateY(-2px)';
@@ -1016,8 +1195,8 @@ function App() {
     );
   });
 
-  const GameOver = gameOver && (
-    <div style={styles.gameOver}>
+  const GameOverComponent = gameOver && (
+    <div style={{ ...styles.gameOver, background: themeStyles.cardBg, border: `1px solid ${themeStyles.borderColor}` }}>
       <div style={{ fontSize: '5rem', marginBottom: '1.5rem' }}>{isWinner ? '🎉' : '😔'}</div>
       <h2 style={{ 
         fontSize: '2.5rem', 
@@ -1030,7 +1209,7 @@ function App() {
         {isWinner ? 'Congratulations!' : 'Game Over'}
       </h2>
       <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '1rem', padding: '2rem', marginBottom: '2rem' }}>
-        <p style={{ color: '#94a3b8', fontSize: '0.875rem', marginBottom: '0.5rem', textTransform: 'uppercase' }}>The Answer Was</p>
+        <p style={{ color: themeStyles.mutedColor, fontSize: '0.875rem', marginBottom: '0.5rem', textTransform: 'uppercase' }}>The Answer Was</p>
         <p style={{ fontSize: '2.5rem', fontWeight: '800', color: '#22c55e', fontFamily: 'monospace', marginBottom: '0.5rem' }}>{dailyTicker.ticker}</p>
         <p style={{ fontSize: '1.125rem', color: themeStyles.textColor }}>{dailyTicker.company}</p>
         <p style={{ color: themeStyles.mutedColor, fontSize: '1.125rem', marginTop: '1rem', textAlign: 'center' }}>
@@ -1038,93 +1217,170 @@ function App() {
         </p>
       </div>
       <div style={{ marginTop: '1.5rem', display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-        <button onClick={shareResults} style={{ /* existing styles */ }} /* add hover handlers */ >📤 Share Results</button>
-        <button onClick={shareToTwitter} style={{ /* existing */ }} >🐦 Share on X</button>
-        {gameMode === 'unlimited' && <button onClick={nextPuzzle} style={{ /* existing */ }} >🔄 Next Puzzle</button>}
+        <button
+          onClick={shareResults}
+          style={{ ...styles.shareButton, background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)', boxShadow: '0 10px 25px -5px rgba(59, 130, 246, 0.4)' }}
+          aria-label="Share your results"
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(59, 130, 246, 0.5)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(59, 130, 246, 0.4)';
+          }}
+        >
+          📤 Share Results
+        </button>
+        <button
+          onClick={shareToTwitter}
+          style={{ ...styles.shareButton, background: 'linear-gradient(135deg, #1DA1F2 0%, #0c85d0 100%)', boxShadow: '0 10px 25px -5px rgba(29, 161, 242, 0.4)' }}
+          aria-label="Share on X (Twitter)"
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(29, 161, 242, 0.5)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(29, 161, 242, 0.4)';
+          }}
+        >
+          🐦 Share on X
+        </button>
+        {gameMode === 'unlimited' && (
+          <button
+            onClick={nextPuzzle}
+            style={{ ...styles.shareButton, background: 'linear-gradient(135deg,#22c55e 0%,#16a34a 100%)', boxShadow: '0 10px 25px -5px rgba(34, 197, 94, 0.4)' }}
+            aria-label="Load Next Puzzle"
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(34, 197, 94, 0.5)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(34, 197, 94, 0.4)';
+            }}
+          >
+            🔄 Next Puzzle
+          </button>
+        )}
         {testMode && (
           <>
-            <button onClick={resetGame} style={{ /* existing */ }} >🔄 New Game</button>
-            <button onClick={skipToNextTicker} style={{ /* existing */ }} >🧪 Skip to Next Ticker</button>
+            <button
+              onClick={resetGame}
+              style={{ ...styles.shareButton, background: 'linear-gradient(135deg,#22c55e 0%,#16a34a 100%)', boxShadow: '0 10px 25px -5px rgba(34, 197, 94, 0.4)' }}
+              aria-label="Start New Game"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(34, 197, 94, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(34, 197, 94, 0.4)';
+              }}
+            >
+              🔄 New Game
+            </button>
+            <button
+              onClick={skipToNextTicker}
+              style={{ ...styles.shareButton, background: 'linear-gradient(135deg, #f59e0b, #d97706)', boxShadow: '0 10px 25px -5px rgba(245, 158, 11, 0.4)' }}
+              aria-label="Skip to Next Ticker (Test Mode)"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(245, 158, 11, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(245, 158, 11, 0.4)';
+              }}
+            >
+              🧪 Skip to Next Ticker
+            </button>
           </>
         )}
       </div>
     </div>
   );
 
-  // Modals with Suspense
-  const StatsModalRender = showStats && (
-    <Suspense fallback={<div>Loading stats...</div>}>
-      <StatsModal 
-        stats={stats} 
-        activeModeTab={activeModeTab} 
-        setActiveModeTab={setActiveModeTab} 
-        darkMode={darkMode} 
-        themeStyles={themeStyles} 
-        formatTime={formatTime} 
-        achievements={achievements} 
-        onClose={() => setShowStats(false)} 
-      />
-    </Suspense>
-  );
-
-  const HowToPlayModalRender = showHowToPlay && (
-    <Suspense fallback={<div>Loading...</div>}>
-      <HowToPlayModal 
-        numClues={numClues} 
-        gameMode={gameMode} 
-        darkMode={darkMode} 
-        themeStyles={themeStyles} 
-        onClose={() => setShowHowToPlay(false)} 
-      />
-    </Suspense>
-  );
-
-  // Global styles (in <style> tag)
-  const GlobalStyles = (
-    <style>{`
-      @keyframes scroll {
-        0% { transform: translateX(-50%); }
-        100% { transform: translateX(0); }
-      }
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      @keyframes shake {
-        0%, 100% { transform: translateX(0); }
-        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-        20%, 40%, 60%, 80% { transform: translateX(5px); }
-      }
-      @media (max-width: 768px) {
-        .quotron { height: 38px !important; flex-direction: row !important; overflow: hidden !important; white-space: nowrap !important; padding: 0 !important; }
-        .quotron div { animation: scroll 80s linear infinite !important; line-height: 38px !important; }
-      }
-      @keyframes scroll-vertical {
-        0% { transform: translateY(100%); }
-        100% { transform: translateY(-100%); }
-      }
-    `}</style>
-  );
-
   return (
     <div style={{ ...styles.app, background: themeStyles.bgColor }}>
-      {GlobalStyles}
-      {Quotron}
+      <style>{`
+        @keyframes scroll {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+          20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        @media (max-width: 768px) {
+          .quotron {
+            height: 38px !important;
+            flex-direction: row !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+            padding: 0 !important;
+          }
+          .quotron div {
+            animation: scroll 80s linear infinite !important;
+            line-height: 38px !important;
+          }
+        }
+        @keyframes scroll-vertical {
+          0% { transform: translateY(100%); }
+          100% { transform: translateY(-100%); }
+        }
+      `}</style>
+      {QuotronComponent}
       <div style={{ width: '100%', maxWidth: '900px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {Header}
-        {ModeSelector}
-        {StatsButtons}
-        {Questions}
-        {GameOver}
+        {HeaderComponent}
+        {ModeSelectorComponent}
+        {StatsButtonsComponent}
+        {QuestionsComponent}
+        {GameOverComponent}
       </div>
-      {StatsModalRender}
-      {HowToPlayModalRender}
+      {showStats && (
+        <StatsModal 
+          stats={stats} 
+          activeModeTab={activeModeTab} 
+          setActiveModeTab={setActiveModeTab} 
+          themeStyles={themeStyles} 
+          formatTime={formatTime} 
+          achievements={achievements} 
+          onClose={() => setShowStats(false)} 
+          winRate={winRate}
+          unlimitedWinRate={unlimitedWinRate}
+        />
+      )}
+      {showHowToPlay && (
+        <HowToPlayModal 
+          numClues={numClues} 
+          gameMode={gameMode} 
+          themeStyles={themeStyles} 
+          onClose={() => setShowHowToPlay(false)} 
+        />
+      )}
     </div>
   );
 }
 
-// Export (assume StatsModal and HowToPlayModal are defined in separate files with similar optimizations)
-// For complete impl, create components/StatsModal.jsx with the stats grid, tabs, etc., using React.memo and useMemo for charts.
-// Similarly for HowToPlayModal.jsx.
+const getAchievements = (stats) => {
+  const achievements = [];
+  const dailyDist = stats.dailyGuessDistribution;
+  const unlimitedDist = stats.unlimitedGuessDistribution;
+  if (stats.dailyCurrentStreak >= 5) achievements.push({ icon: '🔥', name: 'Daily 5 Streak', desc: 'Win 5 daily puzzles in a row' });
+  if (stats.dailyCurrentStreak >= 10) achievements.push({ icon: '⚡', name: 'Daily 10 Streak', desc: 'Win 10 daily in a row' });
+  if (stats.dailyGamesWon >= 10) achievements.push({ icon: '🏆', name: 'Daily Veteran', desc: 'Win 10 daily games' });
+  if (stats.unlimitedCompletions >= 50) achievements.push({ icon: '♾️', name: 'Unlimited Marathoner', desc: 'Complete 50 unlimited puzzles' });
+  if (unlimitedDist[1] >= 10) achievements.push({ icon: '🎯', name: 'Unlimited First-Try Pro', desc: 'Win 10 unlimited on first clue' });
+  if (stats.dailyGamesWon + (stats.unlimitedCompletions - stats.unlimitedGuessDistribution.fail) >= 50) achievements.push({ icon: '👑', name: 'Master Guesser', desc: '50 total wins across modes' });
+  if (stats.overallFastestTime && stats.overallFastestTime < 30) achievements.push({ icon: '⚡', name: 'Speed Demon', desc: 'Fastest win under 30s (any mode)' });
+  return achievements;
+};
 
 export default App;
