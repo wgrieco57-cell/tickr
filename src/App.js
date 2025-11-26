@@ -922,13 +922,43 @@ function App() {
           <p>Sign in to save your stats across devices! <button onClick={() => setShowLogin(true)} style={{ color: 'white', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}>Login</button></p>
         </div>
       )}
-      {/* User Profile */}
-      {user && (
-        <div style={{ position: 'absolute', top: '1rem', right: '1rem', display: 'flex', gap: '1rem', alignItems: 'center' }}>
-          <span style={{ color: textColor, fontSize: '0.875rem' }}>Welcome, {user.displayName || user.email || 'Anon'}!</span>
-          <button onClick={handleLogout} style={{ padding: '0.5rem 1rem', background: cardBg, border: `1px solid ${borderColor}`, borderRadius: '0.5rem', color: textColor, cursor: 'pointer' }}>Logout</button>
-        </div>
-      )}
+      {/* User Profile / Login Button */}
+      <div style={{ position: 'absolute', top: '1rem', right: '1rem', display: 'flex', gap: '1rem', alignItems: 'center' }}>
+        {isAnon ? (
+          <button 
+            onClick={() => setShowLogin(true)} 
+            style={{ 
+              padding: '0.5rem 1rem', 
+              background: cardBg, 
+              border: `1px solid ${borderColor}`, 
+              borderRadius: '0.5rem', 
+              color: textColor, 
+              cursor: 'pointer',
+              fontSize: '0.875rem'
+            }}
+          >
+            Login
+          </button>
+        ) : user && (
+          <>
+            <span style={{ color: textColor, fontSize: '0.875rem' }}>Welcome, {user.displayName || user.email}!</span>
+            <button 
+              onClick={handleLogout} 
+              style={{ 
+                padding: '0.5rem 1rem', 
+                background: cardBg, 
+                border: `1px solid ${borderColor}`, 
+                borderRadius: '0.5rem', 
+                color: textColor, 
+                cursor: 'pointer',
+                fontSize: '0.875rem'
+              }}
+            >
+              Logout
+            </button>
+          </>
+        )}
+      </div>
       {/* Quotron */}
       <div className="quotron" style={{ width:'100%', overflow:'hidden', whiteSpace:'nowrap', marginBottom:'2rem', border:`1px solid ${borderColor}`, padding:'0.5rem 0', borderRadius:'1rem', background:darkMode ? 'rgba(15,23,42,0.8)' : 'rgba(255,255,255,0.8)', display: 'flex', flexDirection: 'row' }}>
         <div style={{ display:'inline-block', animation:'scroll 120s linear infinite' }}>
@@ -1154,7 +1184,7 @@ function App() {
                 <button
                   onClick={handleCreateAccount}
                   disabled={!createEmail || !createPassword || createPassword.length < 6}
-                  style={{ padding: '0.75rem', borderRadius: '0.5rem', background: '#22c55e', color: 'white', border: 'none', cursor: 'pointer' }}
+                  style={{ padding: '0.5rem 1rem', borderRadius: '0.5rem', background: '#22c55e', color: 'white', border: 'none', cursor: 'pointer' }}
                 >
                   Create Account
                 </button>
@@ -1175,13 +1205,13 @@ function App() {
                 <button
                   onClick={handleSignIn}
                   disabled={!loginEmail || !loginPassword}
-                  style={{ padding: '0.75rem', borderRadius: '0.5rem', background: '#3b82f6', color: 'white', border: 'none', cursor: 'pointer' }}
+                  style={{ padding: '0.5rem 1rem', borderRadius: '0.5rem', background: '#3b82f6', color: 'white', border: 'none', cursor: 'pointer' }}
                 >
                   Sign In
                 </button>
                 <button
                   onClick={handleGoogleSignIn}
-                  style={{ padding: '0.75rem', borderRadius: '0.5rem', background: '#db4437', color: 'white', border: 'none', cursor: 'pointer' }}
+                  style={{ padding: '0.5rem 1rem', borderRadius: '0.5rem', background: '#db4437', color: 'white', border: 'none', cursor: 'pointer' }}
                 >
                   Sign in with Google
                 </button>
