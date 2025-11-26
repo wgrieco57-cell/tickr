@@ -2897,26 +2897,436 @@
 "Domino's pioneered online pizza ordering in 1996, setting e-commerce standards for food."
 ]
 }
-}
+},
+
+  {
+    "ticker": "RCL",
+    "company": "Royal Caribbean Group",
+    "sector": "Consumer Discretionary",
+    "questions": {
+      "level_1": [
+        "I'm a company known for taking travelers on vacations across oceans.",
+        "I operate leisure trips where customers stay in floating resorts.",
+        "My business depends heavily on tourism and travel demand.",
+        "I provide entertainment, dining, and lodging all in one experience.",
+        "I am one of the largest operators in my industry worldwide."
+      ],
+      "level_2": [
+        "I run multiple brands that cater to different types of cruise travelers.",
+        "I operate some of the biggest ships ever built.",
+        "My business includes Caribbean, European, and global itineraries.",
+        "I rely on port agreements around the world to operate.",
+        "I compete with Carnival and Norwegian in a concentrated industry."
+      ],
+      "level_3": [
+        "I was founded in Norway in 1968.",
+        "My headquarters is located in Miami, Florida.",
+        "I launched several record-breaking mega-ships over the past decade.",
+        "I survived a major downturn during the COVID-19 pandemic.",
+        "I introduced private island destinations for guests."
+      ],
+      "level_4": [
+        "I operate the Oasis-class vessels, among the largest passenger ships ever built.",
+        "I developed Perfect Day at CocoCay, a private island with a waterpark.",
+        "I pioneered the use of LNG-powered cruise ships in my fleet.",
+        "I built the Icon-class, redefining modern cruise ship design.",
+        "I implemented strict health protocols after 2020 to revive operations."
+      ],
+      "level_5": [
+        "I launched my first ship, the Song of Norway, in 1970.",
+        "I carried over 6 million guests annually before the pandemic.",
+        "I partnered with DreamWorks for onboard entertainment in the 2010s.",
+        "I once operated a class of ships named after famous explorers.",
+        "I was originally called Royal Caribbean Cruise Line."
+      ]
+    }
+  },
+
+  {
+    "ticker": "SBUX",
+    "company": "Starbucks Corporation",
+    "sector": "Consumer Discretionary",
+    "questions": {
+      "level_1": [
+        "I'm a company known for serving beverages enjoyed globally.",
+        "I operate retail locations where customers gather socially.",
+        "My brand is heavily associated with coffee culture.",
+        "I provide a consistent café experience across countries.",
+        "I'm one of the most recognizable food and beverage brands worldwide."
+      ],
+      "level_2": [
+        "I sell handcrafted drinks, pastries, and seasonal offerings.",
+        "I operate company-owned stores and licensed locations.",
+        "I have a strong loyalty rewards program with millions of members.",
+        "I pioneered the mainstream specialty coffee movement.",
+        "My stores often serve as community study and meeting spots."
+      ],
+      "level_3": [
+        "I was founded in Seattle in 1971.",
+        "My former CEO became known for his influence on company culture.",
+        "I expanded rapidly in the 2000s across Asia and Europe.",
+        "I once owned a music label and sold CDs in stores.",
+        "I introduced Frappuccino blended beverages in the 1990s."
+      ],
+      "level_4": [
+        "I once acquired Teavana to expand my tea offerings.",
+        "I rolled out Nitro Cold Brew nationwide in the late 2010s.",
+        "I created the iconic holiday cups that customers anticipate yearly.",
+        "I launched the 'third place' concept: home, work, and my stores.",
+        "I briefly owned the Seattle SuperSonics basketball team."
+      ],
+      "level_5": [
+        "I opened my first international store in Tokyo in 1996.",
+        "I originally started as a retailer of whole coffee beans and equipment.",
+        "My founders were influenced by Italian espresso bars.",
+        "I use a siren as my corporate logo.",
+        "My early stores sold beans sourced from Peet's Coffee."
+      ]
+    }
+  },
+
+  {
+    "ticker": "ULTA",
+    "company": "Ulta Beauty",
+    "sector": "Consumer Discretionary",
+    "questions": {
+      "level_1": [
+        "I'm a retailer specializing in products people use for personal care.",
+        "I sell items that include makeup, skincare, and hair care.",
+        "My stores feature both mass-market and prestige brands.",
+        "I have nationwide locations typically found in shopping centers.",
+        "I’m a well-known beauty destination in the United States."
+      ],
+      "level_2": [
+        "I offer salon services inside many of my stores.",
+        "I carry thousands of products across fragrance and cosmetics.",
+        "I run a popular loyalty program with tens of millions of members.",
+        "I partner with influencers to launch exclusive beauty lines.",
+        "I offer a wide mix of drugstore and luxury beauty brands."
+      ],
+      "level_3": [
+        "I was founded in 1990 in Illinois.",
+        "I originally launched under the name Ulta3.",
+        "I expanded rapidly during the 2010s through new store formats.",
+        "I grew significantly by combining beauty retail and salon services.",
+        "I reached over 1,300 store locations nationwide."
+      ],
+      "level_4": [
+        "I partnered with Target for shop-in-shop experiences.",
+        "I invested heavily in e-commerce and curbside pickup during 2020.",
+        "I launched my own private-label beauty lines.",
+        "I created the '21 Days of Beauty' promotional event.",
+        "I built an in-house distribution network to support rapid growth."
+      ],
+      "level_5": [
+        "I debuted on public markets in 2007.",
+        "I once attempted international expansion into Canada.",
+        "I opened my first salon-inside-store during the company's early years.",
+        "My early founders included Terry Hanson and Richard George.",
+        "My concept was originally pitched as 'the beauty superstore.'"
+      ]
+    }
+  },
+
+  {
+    "ticker": "CMG",
+    "company": "Chipotle Mexican Grill",
+    "sector": "Consumer Discretionary",
+    "questions": {
+      "level_1": [
+        "I’m a restaurant chain known for customizable meals.",
+        "My concept focuses on fresh ingredients served quickly.",
+        "My stores have an assembly-line ordering style.",
+        "I specialize in burritos, bowls, and tacos.",
+        "I’m widely recognized in the fast-casual dining category."
+      ],
+      "level_2": [
+        "I emphasize ethically sourced and sustainable ingredients.",
+        "I operate company-owned restaurants rather than franchises.",
+        "I introduced a digital pickup lane called the 'Chipotlane.'",
+        "I became a favorite for health-conscious and fitness-focused diners.",
+        "I focus on a small, simple menu executed consistently."
+      ],
+      "level_3": [
+        "I was founded in Denver, Colorado, in 1993.",
+        "I started with a small location near a college campus.",
+        "I grew rapidly in the 2000s after investment from a major fast-food giant.",
+        "I spun off from that major company in 2006.",
+        "I faced food safety challenges in the mid-2010s."
+      ],
+      "level_4": [
+        "I launched Lifestyle Bowls for dietary preferences like keto and high-protein.",
+        "I introduced new proteins like carne asada and barbacoa as limited-time items.",
+        "I incorporated AI and robotics to automate food preparation.",
+        "I opened a 'Farmers Market' virtual restaurant concept during lockdowns.",
+        "I was one of the first fast-casual chains to adopt digital ordering at scale."
+      ],
+      "level_5": [
+        "My founder Steve Ells trained as a classically-trained chef.",
+        "My first day's sales totaled just over $350 in 1993.",
+        "I once tested a burger concept called Tasty Made.",
+        "I originally bought ingredients from local Denver suppliers myself.",
+        "My restaurant interiors were influenced by minimalist industrial design."
+      ]
+    }
+  },
+
+  {
+    "ticker": "FVRR",
+    "company": "Fiverr International",
+    "sector": "Communication Services",
+    "questions": {
+      "level_1": [
+        "I operate an online platform connecting people around the world.",
+        "My business revolves around freelancers offering digital services.",
+        "Users come to me to find skilled professionals for short-term work.",
+        "I help people outsource tasks across many creative fields.",
+        "I’m known for making gig-based work widely accessible."
+      ],
+      "level_2": [
+        "I host categories including design, writing, music, and marketing.",
+        "My platform enables fixed-price project listings.",
+        "I grew rapidly as remote work expanded globally.",
+        "I operate a rating system that builds trust between buyers and sellers.",
+        "I compete in the online freelance marketplace industry."
+      ],
+      "level_3": [
+        "I was founded in Tel Aviv in 2010.",
+        "My original concept emphasized $5 starting prices.",
+        "I expanded into premium offerings like Pro and Studio.",
+        "I acquired several startups to broaden my scope.",
+        "I became publicly traded in the late 2010s."
+      ],
+      "level_4": [
+        "I purchased AND CO to help freelancers manage invoicing.",
+        "I created a subscription-based freelancer storefront service.",
+        "I launched a learning platform offering creative courses.",
+        "I implemented AI-driven matching for buyer requests.",
+        "I expanded into corporate procurement with Fiverr Business."
+      ],
+      "level_5": [
+        "My founders are Micha Kaufman and Shai Wininger.",
+        "I initially marketed myself as the 'eBay for services.'",
+        "My early platform design mimicked product listings for gigs.",
+        "I once grew over 200% during the 2020 work-from-home boom.",
+        "I started in a small office in Ramat Gan before global expansion."
+      ]
+    }
+  },
+{ 
+    "ticker": "HAS",
+    "company": "Hasbro, Inc.",
+    "sector": "Consumer Discretionary",
+    "questions": {
+      "level_1": [
+        "I’m a company known for making products that entertain families.",
+        "People associate me with games, toys, and childhood favorites.",
+        "My brands span classic board games and character franchises.",
+        "I operate globally in the entertainment and consumer products space.",
+        "My products are found in big-box retailers all over the country."
+      ],
+      "level_2": [
+        "I own well-known board games played at gatherings for decades.",
+        "I produce action figures and collectible toys based on major franchises.",
+        "I work closely with movie studios for character licensing.",
+        "I operate a digital gaming division for my classic brands.",
+        "I generate revenue from toys, games, media, and licensing."
+      ],
+      "level_3": [
+        "I was founded in Rhode Island in the 1920s.",
+        "My original focus was on school supplies before toys.",
+        "I acquired a major board-game maker in the early 1990s.",
+        "I once owned a television network aimed at children.",
+        "Several of my brands have become film franchises."
+      ],
+      "level_4": [
+        "I own the rights to Transformers and G.I. Joe.",
+        "I produce Nerf blasters and accessories.",
+        "I acquired Wizards of the Coast, makers of Magic: The Gathering.",
+        "I created the cinematic universe based on my toy lines.",
+        "I launched a popular toy line originating from Japanese robots."
+      ],
+      "level_5": [
+        "I publish Dungeons & Dragons through my subsidiary.",
+        "One of my best-known games is Monopoly.",
+        "I once partnered with Discovery to launch The Hub network.",
+        "My founders were the Hassenfeld brothers.",
+        "I began as a textile remnants company before moving into toys."
+      ]
+    }
+  },
+
+  {
+    "ticker": "MAR",
+    "company": "Marriott International",
+    "sector": "Consumer Discretionary",
+    "questions": {
+      "level_1": [
+        "I’m a company that provides lodging and travel accommodations.",
+        "I operate locations where travelers stay overnight during trips.",
+        "My business includes hotels ranging from budget to luxury.",
+        "I serve millions of guests annually worldwide.",
+        "I’m a well-known name in the global hospitality industry."
+      ],
+      "level_2": [
+        "I manage and franchise hotels rather than owning most of them.",
+        "I operate many sub-brands that target different travel markets.",
+        "I offer a loyalty program that spans hundreds of destinations.",
+        "My growth strategy involves acquisitions and international expansion.",
+        "I compete with Hilton, Hyatt, and other major hotel groups."
+      ],
+      "level_3": [
+        "I was founded in Washington, D.C., in the 1920s.",
+        "I originally started as a root beer stand.",
+        "I expanded into hotels in the 1950s as travel boomed.",
+        "I went through a major corporate split in 1993.",
+        "I own some of the world's most famous luxury hotel brands."
+      ],
+      "level_4": [
+        "I acquired Starwood Hotels, greatly expanding my portfolio.",
+        "I operate brands like Ritz-Carlton and St. Regis.",
+        "I run one of the world’s largest loyalty programs.",
+        "I pioneered the 'asset-light' model in hospitality.",
+        "I used keyless mobile check-in before it became common."
+      ],
+      "level_5": [
+        "I was founded by J. Willard Marriott.",
+        "I once ran a chain of Hot Shoppes restaurants.",
+        "I introduced the first drive-in airport hotel.",
+        "I operated cruise ships during the mid-20th century.",
+        "I have over 8,000 hotel properties worldwide."
+      ]
+    }
+  },
+
+  {
+    "ticker": "DECK",
+    "company": "Deckers Outdoor Corporation",
+    "sector": "Consumer Discretionary",
+    "questions": {
+      "level_1": [
+        "I’m a company known for footwear and outdoor-inspired lifestyle brands.",
+        "People associate me with shoes worn for comfort and casual fashion.",
+        "My products are especially popular in colder climates.",
+        "I serve customers through retail stores and online channels.",
+        "I’m known globally despite having a niche product style."
+      ],
+      "level_2": [
+        "I sell boots, sandals, and running shoes under multiple brand names.",
+        "One of my brands became a cultural fashion staple in the 2000s.",
+        "I operate in both performance athletics and casual wear.",
+        "I heavily market to outdoor and surf-influenced lifestyles.",
+        "I compete with footwear brands across fashion and performance categories."
+      ],
+      "level_3": [
+        "I was founded in California in the 1970s.",
+        "My founders were inspired by beach culture.",
+        "I gained massive popularity in the 2000s due to celebrity influence.",
+        "I expanded into high-performance running footwear in the 2010s.",
+        "My portfolio includes several brands with dedicated fanbases."
+      ],
+      "level_4": [
+        "I own the Hoka One One running brand.",
+        "I produce the UGG line of sheepskin boots.",
+        "I previously owned the Teva sandal brand known for outdoor activities.",
+        "I expanded globally as demand for my lifestyle footwear increased.",
+        "I implemented limited-release drops for premium products."
+      ],
+      "level_5": [
+        "My iconic boot style was inspired by Australian surfers.",
+        "I reached huge popularity after being featured on Oprah’s list.",
+        "My Hoka brand was originally founded in France.",
+        "I once rebranded Teva sandals to target urban audiences.",
+        "My earliest products were sandals sold to surfers out of car trunks."
+      ]
+    }
+  },
+
+  {
+    "ticker": "CROX",
+    "company": "Crocs, Inc.",
+    "sector": "Consumer Discretionary",
+    "questions": {
+      "level_1": [
+        "I’m a company that makes casual shoes with a unique look.",
+        "My products are used for everyday comfort and leisure.",
+        "I’m known for foam-based footwear people either love or hate.",
+        "My brand is instantly recognizable for its distinctive style.",
+        "I appeal to customers across many age groups."
+      ],
+      "level_2": [
+        "I sell shoes that are lightweight, washable, and durable.",
+        "I work with celebrities and designers for limited edition collaborations.",
+        "I once faced declining sales before making a major comeback.",
+        "My products often include customizable accessories.",
+        "I compete in the casual lifestyle and comfort footwear market."
+      ],
+      "level_3": [
+        "I was founded in Colorado in the early 2000s.",
+        "My original product was designed as a boating shoe.",
+        "I exploded in popularity shortly after my launch.",
+        "I went through restructuring in the late 2010s.",
+        "I became known for turning an odd design into a mainstream staple."
+      ],
+      "level_4": [
+        "I sell Jibbitz charms for personalization.",
+        "I collaborated with Post Malone and Balenciaga.",
+        "I acquired Hey Dude Shoes to expand my portfolio.",
+        "I built foam-resin shoes using a proprietary material.",
+        "I gained viral popularity through social media trends."
+      ],
+      "level_5": [
+        "My material Croslite is central to my comfort.",
+        "My classic clog design remains my best-selling product.",
+        "I once released platform versions of my clogs.",
+        "My IPO took place only a few years after founding.",
+        "My shoes were originally unveiled at a boat show."
+      ]
+    }
+  },
+
+  {
+    "ticker": "CAR",
+    "company": "Avis Budget Group",
+    "sector": "Industrials",
+    "questions": {
+      "level_1": [
+        "I’m a company that provides transportation solutions for travelers.",
+        "People use my services when they need vehicles temporarily.",
+        "I operate at airports, city locations, and travel hubs.",
+        "My customers include both individuals and businesses.",
+        "I’m a well-known provider in the rental car industry."
+      ],
+      "level_2": [
+        "I operate multiple brands targeting different price points.",
+        "I rent sedans, SUVs, trucks, and specialty vehicles.",
+        "I provide fleet management and leasing services.",
+        "I generate revenue from business travel and tourism.",
+        "I compete with Enterprise and Hertz."
+      ],
+      "level_3": [
+        "I was founded in Michigan in the 1940s.",
+        "I expanded rapidly with airport-based rental counters.",
+        "I merged with another major rental brand in the early 2000s.",
+        "I went through restructurings tied to travel downturns.",
+        "I operate globally across dozens of countries."
+      ],
+      "level_4": [
+        "I own the Zipcar car-sharing service.",
+        "I acquired Budget Rent a Car to expand my portfolio.",
+        "I once operated a truck rental business.",
+        "I implemented self-service rental technology.",
+        "I manage large corporate fleets through long-term contracts."
+      ],
+      "level_5": [
+        "My original founder started with only three cars.",
+        "I was named after the founder’s favorite number.",
+        "I played a major role in the rise of airport rental markets.",
+        "I once licensed my brand to a major European operator.",
+        "My early slogan focused on trying harder to beat competitors."
+      ]
+    }
+  }
 ]
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-      
-  
 
