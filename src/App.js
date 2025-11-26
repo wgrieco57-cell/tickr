@@ -309,6 +309,18 @@ function App() {
     const isCorrect = guessSymbol === correctTicker;
     handleSubmission(formatted, resolvedSymbol, isCorrect);
   }, [gameOver, input, processGuess, isDuplicateGuess, questions, currentLevel, handleSubmission]);
+  // Reset game state when mode changes
+  useEffect(() => {
+    setCurrentLevel(0);
+    setSubmittedAnswers([]);
+    setGameOver(false);
+    setInput("");
+    setAvailableOptions([]);
+    setStartTime(null);
+    if (gameMode === 'unlimited') {
+      setPuzzleSeed(prev => prev + 1);
+    }
+  }, [gameMode]);
   // Check for test mode via URL parameter
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -463,13 +475,6 @@ function App() {
   // Select daily ticker and pick questions (deterministic for non-test mode)
   useEffect(() => {
     if (!data || data.length === 0) return;
-    // Reset game state for new puzzle/mode
-    setCurrentLevel(0);
-    setSubmittedAnswers([]);
-    setGameOver(false);
-    setInput("");
-    setAvailableOptions([]);
-    setStartTime(null);
     const today = new Date().toDateString();
     let selectedTicker;
     let pickedQuestions = [];
