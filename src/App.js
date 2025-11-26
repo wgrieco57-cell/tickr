@@ -42,6 +42,7 @@ const googleProvider = new GoogleAuthProvider();
 
 async function updateDailyStats({ won = false }) {
   const today = new Date().toISOString().split("T")[0];
+  // Always produce a valid 2-segment path: analytics / daily_2025-11-24
   const docRef = doc(db, "analytics", `daily_${today}`);
   try {
     const docSnap = await getDoc(docRef);
@@ -61,7 +62,6 @@ async function updateDailyStats({ won = false }) {
     console.error("Error updating daily stats:", err);
   }
 }
-
 // Helper functions for deterministic daily selection
 function hashCode(str) {
   let hash = 0;
@@ -121,7 +121,7 @@ function App() {
   const [availableOptions, setAvailableOptions] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [quotes, setQuotes] = useState(FALLBACK_QUOTES);
+  const [quotes, setQuotes] = useState([]);
   const [showStats, setShowStats] = useState(false);
   const [showHowToPlay, setShowHowToPlay] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
@@ -225,12 +225,7 @@ function App() {
     const userStatsRef = doc(db, 'users', user.uid, 'stats', 'profile');
     const unsubscribe = onSnapshot(userStatsRef, (docSnap) => {
       if (docSnap.exists()) {
-        const loadedStats = docSnap.data();
-        // Merge with defaults to avoid undefined keys
-        setStats({
-          ...stats, // Current state as fallback
-          ...loadedStats
-        });
+        setStats(docSnap.data());
       } else {
         // Migrate from localStorage if new user
         try {
@@ -269,7 +264,6 @@ function App() {
           }
         } catch (e) {
           console.error('Error migrating stats:', e);
-          setStats(stats); // Fallback to initial
         }
       }
     }, (error) => {
@@ -278,18 +272,15 @@ function App() {
     return unsubscribe;
   }, [user, loadingAuth]);
 
-  // Load dark mode and how to play from localStorage
-  useEffect(() => {
-    const savedDarkMode = localStorage.getItem('tickrDailyDarkMode');
-    if (savedDarkMode !== null) {
-      setDarkMode(JSON.parse(savedDarkMode));
-    }
-    const hasVisited = localStorage.getItem('tickrDailyVisited');
-    if (!hasVisited) {
-      setShowHowToPlay(true);
-      localStorage.setItem('tickrDailyVisited', 'true');
-    }
-  }, []);
+  const savedDarkMode = localStorage.getItem('tickrDailyDarkMode');
+  if (savedDarkMode !== null) {
+    setDarkMode(JSON.parse(savedDarkMode));
+  }
+  const hasVisited = localStorage.getItem('tickrDailyVisited');
+  if (!hasVisited) {
+    setShowHowToPlay(true);
+    localStorage.setItem('tickrDailyVisited', 'true');
+  }
 
   // Load progress if same day (only for daily) - now from Firestore
   useEffect(() => {
@@ -350,6 +341,7 @@ function App() {
     const sortedData = [...data].sort((a, b) => a.ticker.localeCompare(b.ticker));
     // Filter data based on mode/difficulty (for now, no per-ticker difficulty tag, so use all)
     let filteredData = sortedData;
+    // (Future: filteredData = sortedData.filter(t => (t.difficulty || 'medium') === difficulty);)
     if (gameMode === 'daily' && !testMode) {
       // Deterministic: same ticker and questions for everyone on the same day
       const seed = hashCode(today);
@@ -358,7 +350,7 @@ function App() {
       selectedTicker = filteredData[randomIndex];
       for (let i = 1; i <= 5; i++) {
         const levelQuestions = selectedTicker.questions[`level_${i}`];
-        if (levelQuestions && levelQuestions.length > 0) {
+        if (levelQuestions) {
           const qIndex = Math.floor(rnd() * levelQuestions.length);
           const question = levelQuestions[qIndex];
           pickedQuestions.push({
@@ -378,7 +370,7 @@ function App() {
       let maxLevels = difficulty === 'hard' ? 3 : difficulty === 'medium' ? 5 : 6;
       for (let i = 1; i <= maxLevels; i++) {
         const levelQuestions = selectedTicker.questions[`level_${i}`];
-        if (levelQuestions && levelQuestions.length > 0) {
+        if (levelQuestions) {
           const qIndex = Math.floor(Math.random() * levelQuestions.length);
           const question = levelQuestions[qIndex];
           pickedQuestions.push({
@@ -390,7 +382,7 @@ function App() {
         }
       }
       // For easy (6 clues): Add a bonus question (reuse from level_5)
-      if (difficulty === 'easy' && pickedQuestions.length >= 5 && selectedTicker.questions.level_5 && selectedTicker.questions.level_5.length > 0) {
+      if (difficulty === 'easy' && pickedQuestions.length >= 5 && selectedTicker.questions.level_5) {
         const bonusQ = selectedTicker.questions.level_5[Math.floor(Math.random() * selectedTicker.questions.level_5.length)];
         pickedQuestions.push({
           level: 6,
@@ -604,22 +596,11 @@ function App() {
     // Skip if already completed today (daily only)
     if (gameMode === 'daily') {
       const today = new Date().toISOString().split('T')[0];
-      if (user) {
-        const progressRef = doc(db, 'users', user.uid, 'dailyProgress', today);
-        const progressSnap = await getDoc(progressRef);
-        if (progressSnap.exists() && progressSnap.data().gameOver) {
-          console.log('Game already completed today—no stats update');
-          return;
-        }
-      } else {
-        const progressStr = localStorage.getItem('dailyProgress');
-        if (progressStr) {
-          const progress = JSON.parse(progressStr);
-          if (progress.gameOver) {
-            console.log('Game already completed today—no stats update');
-            return;
-          }
-        }
+      const progressRef = doc(db, 'users', user.uid, 'dailyProgress', today);
+      const progressSnap = await getDoc(progressRef);
+      if (progressSnap.exists() && progressSnap.data().gameOver) {
+        console.log('Game already completed today—no stats update');
+        return;
       }
     }
     // Compute timeElapsed if not provided
@@ -733,30 +714,13 @@ function App() {
     await signOut(auth);
   };
 
-  // Single declaration of isAnon after loading checks
+  const isAnon = user && !user.email;
+
   if (loadingAuth || loading) {
     return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' }}>
       <div style={{ textAlign: 'center', color: '#94a3b8' }}>Loading...</div>
     </div>;
   }
-
-  const isAnon = user && !user.email;
-
-  if (!data || data.length === 0 || !dailyTicker || !questions.length) {
-    return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' }}>
-      <div style={{ textAlign: 'center', color: '#94a3b8' }}>Loading Market Data...</div>
-    </div>;
-  }
-
-  const todayDate = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
-  const isWinner = submittedAnswers.some(a => a.isCorrect);
-  const numClues = questions.length;
-  const bgColor = darkMode ? 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' : 'linear-gradient(135deg,#f8fafc 0%,#e2e8f0 50%,#cbd5e1 100%)';
-  const textColor = darkMode ? '#e2e8f0' : '#1e293b';
-  const mutedColor = darkMode ? '#94a3b8' : '#64748b';
-  const cardBg = darkMode ? 'rgba(15,23,42,0.7)' : 'rgba(255,255,255,0.8)';
-  const borderColor = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
-  const isDailyCompleted = gameOver && gameMode === 'daily' && !testMode;
 
   // Share results
   const shareResults = () => {
@@ -840,7 +804,7 @@ function App() {
     let maxLevels = difficulty === 'hard' ? 3 : difficulty === 'medium' ? 5 : 6;
     for (let i = 1; i <= maxLevels; i++) {
       const levelQuestions = newTicker.questions[`level_${i}`];
-      if (levelQuestions && levelQuestions.length > 0) {
+      if (levelQuestions) {
         const question = levelQuestions[Math.floor(Math.random() * levelQuestions.length)];
         pickedQuestions.push({
           level: i,
@@ -850,7 +814,7 @@ function App() {
         });
       }
     }
-    if (difficulty === 'easy' && pickedQuestions.length >= 5 && newTicker.questions.level_5 && newTicker.questions.level_5.length > 0) {
+    if (difficulty === 'easy' && pickedQuestions.length >= 5 && newTicker.questions.level_5) {
       const bonusQ = newTicker.questions.level_5[Math.floor(Math.random() * newTicker.questions.level_5.length)];
       pickedQuestions.push({ level: 6, question: bonusQ, correct: newTicker.ticker, answers: [] });
     }
@@ -871,11 +835,11 @@ function App() {
     <>
       {Array.from({ length: maxClues }, (_, i) => {
         const clue = i + 1;
-        const count = dist[clue] || 0;
-        const maxCount = Math.max(...Object.values(dist).filter(v => typeof v === 'number'));
+        const count = dist[clue];
+        const maxCount = Math.max(...Object.values(dist));
         const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
         return (
-          <div key={`clue-${clue}`} style={{ display:'flex', alignItems:'center', marginBottom:'0.5rem' }}>
+          <div key={clue} style={{ display:'flex', alignItems:'center', marginBottom:'0.5rem' }}>
             <div style={{ width:'60px', color:mutedColor, fontSize:'0.875rem', fontWeight:'600' }}>
               {clue} clue{clue > 1 ? 's' : ''}
             </div>
@@ -900,7 +864,7 @@ function App() {
         <div style={{ width:'60px', color:mutedColor, fontSize:'0.875rem', fontWeight:'600' }}>Failed</div>
         <div style={{ flex:1, background:cardBg, height:'32px', borderRadius:'0.5rem', overflow:'hidden', position:'relative', border:`1px solid ${borderColor}` }}>
           <div style={{
-            width:`${Math.max(( (dist.fail || 0) / Math.max(...Object.values(dist).filter(v => typeof v === 'number') || 1 ) * 100, 5)}%`,
+            width:`${Math.max((dist.fail / Math.max(...Object.values(dist))) * 100, 5)}%`,
             height:'100%',
             background: 'linear-gradient(90deg, #ef4444, #dc2626)',
             transition:'width 0.5s ease',
@@ -909,7 +873,7 @@ function App() {
             justifyContent:'flex-end',
             paddingRight:'0.5rem'
           }}>
-            <span style={{ color:'white', fontWeight:'700', fontSize:'0.875rem' }}>{dist.fail || 0}</span>
+            <span style={{ color:'white', fontWeight:'700', fontSize:'0.875rem' }}>{dist.fail}</span>
           </div>
         </div>
       </div>
@@ -973,223 +937,20 @@ function App() {
     </div>
   );
 
-  // Share results
-  const shareResults = () => {
-    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
-    const won = submittedAnswers.some(a => a.isCorrect);
-    const cluesUsed = won ? submittedAnswers.length : questions.length;
-    const text = `TickrDaily ${new Date().toLocaleDateString()}\n${emoji} (${cluesUsed}/${questions.length})\n\nPlay: ${window.location.href}`;
-    if (navigator.share) {
-      navigator.share({ text }).catch(() => {
-        navigator.clipboard.writeText(text);
-        alert('Results copied to clipboard!');
-      });
-    } else {
-      navigator.clipboard.writeText(text);
-      alert('Results copied to clipboard!');
-    }
-  };
-  const shareToTwitter = () => {
-    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
-    const won = submittedAnswers.some(a => a.isCorrect);
-    const cluesUsed = won ? submittedAnswers.length : questions.length;
-    const text = `TickrDaily ${new Date().toLocaleDateString()}\n${emoji} (${cluesUsed}/${questions.length})\n\nPlay: ${window.location.href}`;
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-    window.open(twitterUrl, '_blank');
-  };
-  const toggleDarkMode = () => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    localStorage.setItem('tickrDailyDarkMode', JSON.stringify(newMode));
-  };
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
-  };
-  const getAchievements = () => {
-    const achievements = [];
-    const dailyDist = stats.dailyGuessDistribution || { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, fail: 0 };
-    const unlimitedDist = stats.unlimitedGuessDistribution || { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, fail: 0 };
-    // Daily-specific
-    if (stats.dailyCurrentStreak >= 5) achievements.push({ icon: '🔥', name: 'Daily 5 Streak', desc: 'Win 5 daily puzzles in a row' });
-    if (stats.dailyCurrentStreak >= 10) achievements.push({ icon: '⚡', name: 'Daily 10 Streak', desc: 'Win 10 daily in a row' });
-    if (stats.dailyGamesWon >= 10) achievements.push({ icon: '🏆', name: 'Daily Veteran', desc: 'Win 10 daily games' });
-    // Unlimited-specific
-    if (stats.unlimitedCompletions >= 50) achievements.push({ icon: '♾️', name: 'Unlimited Marathoner', desc: 'Complete 50 unlimited puzzles' });
-    if (unlimitedDist[1] >= 10) achievements.push({ icon: '🎯', name: 'Unlimited First-Try Pro', desc: 'Win 10 unlimited on first clue' });
-    // Shared
-    if (stats.dailyGamesWon + (stats.unlimitedCompletions - unlimitedDist.fail) >= 50) achievements.push({ icon: '👑', name: 'Master Guesser', desc: '50 total wins across modes' });
-    if (stats.overallFastestTime && stats.overallFastestTime < 30) achievements.push({ icon: '⚡', name: 'Speed Demon', desc: 'Fastest win under 30s (any mode)' });
-    return achievements;
-  };
-  const handleOptionClick = (option) => {
-    setInput(option.formatted);
-    setAvailableOptions([]);
-  };
-  const resetGame = () => {
-    if (user) {
-      const today = new Date().toISOString().split('T')[0];
-      const progressRef = doc(db, 'users', user.uid, 'dailyProgress', today);
-      deleteDoc(progressRef).catch(console.error);
-    } else {
-      localStorage.removeItem('dailyProgress');
-    }
-    window.location.reload();
-  };
-  // Test mode: Skip to next random ticker
-  const skipToNextTicker = () => {
-    if (!data || data.length === 0) return;
-    setGameOver(false);
-    setCurrentLevel(0);
-    setSubmittedAnswers([]);
-    setInput("");
-    setAvailableOptions([]);
-    let newTicker;
-    do {
-      const randomIndex = Math.floor(Math.random() * data.length);
-      newTicker = data[randomIndex];
-    } while (data.length > 1 && newTicker.ticker === dailyTicker?.ticker);
-    setDailyTicker(newTicker);
-    const pickedQuestions = [];
-    let maxLevels = difficulty === 'hard' ? 3 : difficulty === 'medium' ? 5 : 6;
-    for (let i = 1; i <= maxLevels; i++) {
-      const levelQuestions = newTicker.questions[`level_${i}`];
-      if (levelQuestions && levelQuestions.length > 0) {
-        const question = levelQuestions[Math.floor(Math.random() * levelQuestions.length)];
-        pickedQuestions.push({
-          level: i,
-          question,
-          correct: newTicker.ticker,
-          answers: []
-        });
-      }
-    }
-    if (difficulty === 'easy' && pickedQuestions.length >= 5 && newTicker.questions.level_5 && newTicker.questions.level_5.length > 0) {
-      const bonusQ = newTicker.questions.level_5[Math.floor(Math.random() * newTicker.questions.level_5.length)];
-      pickedQuestions.push({ level: 6, question: bonusQ, correct: newTicker.ticker, answers: [] });
-    }
-    setQuestions(pickedQuestions);
-    setStartTime(Date.now());
-  };
-  // Next puzzle for unlimited
-  const nextPuzzle = () => {
-    setGameOver(false);
-    setCurrentLevel(0);
-    setSubmittedAnswers([]);
-    setInput("");
-    setAvailableOptions([]);
-    // Trigger re-selection via dep
-    setPuzzleSeed(prev => prev + 1);
-  };
-  const GuessDistChart = ({ dist, maxClues }) => {
-    if (!dist) return null;
-    return (
-      <>
-        {Array.from({ length: maxClues }, (_, i) => {
-          const clue = i + 1;
-          const count = dist[clue] || 0;
-          const maxCount = Math.max(...Object.values(dist).filter(v => typeof v === 'number') || 1);
-          const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
-          return (
-            <div key={`clue-${clue}`} style={{ display:'flex', alignItems:'center', marginBottom:'0.5rem' }}>
-              <div style={{ width:'60px', color:mutedColor, fontSize:'0.875rem', fontWeight:'600' }}>
-                {clue} clue{clue > 1 ? 's' : ''}
-              </div>
-              <div style={{ flex:1, background:cardBg, height:'32px', borderRadius:'0.5rem', overflow:'hidden', position:'relative', border:`1px solid ${borderColor}` }}>
-                <div style={{
-                  width:`${Math.max(percentage, 5)}%`,
-                  height:'100%',
-                  background: 'linear-gradient(90deg, #22c55e, #16a34a)',
-                  transition:'width 0.5s ease',
-                  display:'flex',
-                  alignItems:'center',
-                  justifyContent:'flex-end',
-                  paddingRight:'0.5rem'
-                }}>
-                  <span style={{ color:'white', fontWeight:'700', fontSize:'0.875rem' }}>{count}</span>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-        <div style={{ display:'flex', alignItems:'center', marginBottom:'0.5rem' }}>
-          <div style={{ width:'60px', color:mutedColor, fontSize:'0.875rem', fontWeight:'600' }}>Failed</div>
-          <div style={{ flex:1, background:cardBg, height:'32px', borderRadius:'0.5rem', overflow:'hidden', position:'relative', border:`1px solid ${borderColor}` }}>
-            <div style={{
-              width:`${Math.max(((dist.fail || 0) / (Math.max(...Object.values(dist).filter(v => typeof v === 'number')) || 1)) * 100, 5)}%`,
-              height:'100%',
-              background: 'linear-gradient(90deg, #ef4444, #dc2626)',
-              transition:'width 0.5s ease',
-              display:'flex',
-              alignItems:'center',
-              justifyContent:'flex-end',
-              paddingRight:'0.5rem'
-            }}>
-              <span style={{ color:'white', fontWeight:'700', fontSize:'0.875rem' }}>{dist.fail || 0}</span>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  };
-  // Mode Selector Component
-  const ModeSelector = () => (
-    <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-      <button
-        onClick={() => setGameMode('daily')}
-        style={{
-          padding: '0.75rem 1.5rem',
-          background: gameMode === 'daily' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : cardBg,
-          color: gameMode === 'daily' ? 'white' : textColor,
-          border: `1px solid ${borderColor}`,
-          borderRadius: '1rem',
-          fontWeight: '600',
-          cursor: 'pointer',
-          transition: 'all 0.3s ease'
-        }}
-        aria-label="Switch to Daily Mode"
-      >
-        🗓️ Daily Mode
-      </button>
-      <button
-        onClick={() => setGameMode('unlimited')}
-        style={{
-          padding: '0.75rem 1.5rem',
-          background: gameMode === 'unlimited' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : cardBg,
-          color: gameMode === 'unlimited' ? 'white' : textColor,
-          border: `1px solid ${borderColor}`,
-          borderRadius: '1rem',
-          fontWeight: '600',
-          cursor: 'pointer',
-          transition: 'all 0.3s ease'
-        }}
-        aria-label="Switch to Unlimited Mode"
-      >
-        ♾️ Unlimited Mode
-      </button>
-      {gameMode === 'unlimited' && (
-        <select
-          value={difficulty}
-          onChange={(e) => setDifficulty(e.target.value)}
-          style={{
-            padding: '0.75rem 1rem',
-            background: cardBg,
-            color: textColor,
-            border: `1px solid ${borderColor}`,
-            borderRadius: '1rem',
-            fontWeight: '600',
-            cursor: 'pointer'
-          }}
-          aria-label="Select Difficulty Level"
-        >
-          <option value="easy">😊 Easy (6 Clues)</option>
-          <option value="medium">⚖️ Medium (5 Clues)</option>
-          <option value="hard">🔥 Hard (3 Clues)</option>
-        </select>
-      )}
-    </div>
-  );
+  if(loading || !dailyTicker || !questions.length){
+    return <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background: 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' }}>
+      <div style={{ textAlign:'center', color:'#94a3b8'}}>Loading Market Data...</div>
+    </div>;
+  }
+  const todayDate = new Date().toLocaleDateString('en-US',{ weekday:'long', month:'long', day:'numeric', year:'numeric' });
+  const isWinner = submittedAnswers.some(a=>a.isCorrect);
+  const numClues = questions.length;
+  const bgColor = darkMode ? 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' : 'linear-gradient(135deg,#f8fafc 0%,#e2e8f0 50%,#cbd5e1 100%)';
+  const textColor = darkMode ? '#e2e8f0' : '#1e293b';
+  const mutedColor = darkMode ? '#94a3b8' : '#64748b';
+  const cardBg = darkMode ? 'rgba(15,23,42,0.7)' : 'rgba(255,255,255,0.8)';
+  const borderColor = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+  const isDailyCompleted = gameOver && gameMode === 'daily' && !testMode;
 
   return (
     <div style={{ minHeight:'100vh', background: bgColor, display:'flex', flexDirection:'column', alignItems:'center', padding:'2rem 1rem' }}>
@@ -1209,8 +970,8 @@ function App() {
       {/* Quotron */}
       <div className="quotron" style={{ width:'100%', overflow:'hidden', whiteSpace:'nowrap', marginBottom:'2rem', border:`1px solid ${borderColor}`, padding:'0.5rem 0', borderRadius:'1rem', background:darkMode ? 'rgba(15,23,42,0.8)' : 'rgba(255,255,255,0.8)', display: 'flex', flexDirection: 'row' }}>
         <div style={{ display:'inline-block', animation:'scroll 120s linear infinite' }}>
-          {quotes && [...quotes, ...quotes].map((q, i) => (
-            <span key={`quote-${i}`} style={{ display:'inline-block', marginRight:'3rem', color: q.change>=0 ? '#22c55e' : '#ef4444', fontWeight:'700', fontFamily:'monospace' }}>
+          {[...quotes, ...quotes].map((q,i)=>(
+            <span key={i} style={{ display:'inline-block', marginRight:'3rem', color: q.change>=0 ? '#22c55e' : '#ef4444', fontWeight:'700', fontFamily:'monospace' }}>
               {q.symbol} {q.current} {q.change>=0?`+${q.change}`:q.change}
             </span>
           ))}
