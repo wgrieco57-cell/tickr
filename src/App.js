@@ -5,7 +5,6 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, doc, increment, getDoc, setDoc, updateDoc, writeBatch } from "firebase/firestore";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { getAnalytics, logEvent } from "firebase/analytics";
-
 const FINNHUB_API_KEY = "d4g9o8pr01qm5b34j8l0d4g9o8pr01qm5b34j8lg"; // Hardcoded as requested (note: for local/dev only—expose risk in prod)
 const QUOTRON_TICKERS = [
   '^GSPC','^DJI','^IXIC', // Major indexes
@@ -25,7 +24,6 @@ const FALLBACK_QUOTES = [
   { symbol: '^DJI', current: '35000.00', change: '100.00' },
   { symbol: '^IXIC', current: '15000.00', change: '50.00' }
 ];
-
 const firebaseConfig = {
   apiKey: "AIzaSyAdgvuwk-0gU7Tucj87ny2dmFn8qIJ0xsE",
   authDomain: "tickr-2b042.firebaseapp.com",
@@ -35,11 +33,9 @@ const firebaseConfig = {
   appId: "1:866254338816:web:85b7cf91fee6225ebe91e5",
   measurementId: "G-WF8Q9HBVJN"
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const analytics = getAnalytics(app);
-
 // Extracted helper functions
 function hashCode(str) {
   let hash = 0;
@@ -49,7 +45,6 @@ function hashCode(str) {
   }
   return Math.abs(hash);
 }
-
 function createSeededRandom(initialSeed) {
   let seed = hashCode(initialSeed.toString());
   return function() {
@@ -57,7 +52,6 @@ function createSeededRandom(initialSeed) {
     return seed / 2147483647;
   };
 }
-
 async function updateDailyStats({ won = false }) {
   const today = new Date().toISOString().split("T")[0];
   const docRef = doc(db, "analytics", `daily_${today}`);
@@ -79,7 +73,6 @@ async function updateDailyStats({ won = false }) {
     console.error("Error updating daily stats:", err);
   }
 }
-
 // CSS Styles (extracted)
 const styles = {
   app: { minHeight: '100vh', background: 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem 1rem' },
@@ -109,9 +102,8 @@ const styles = {
   option: { padding: '1rem 1.25rem', cursor: 'pointer', borderBottom: '1px solid rgba(255,255,255,0.1)', transition: 'background 0.2s ease' },
   // Add more as needed...
 };
-
 // Inlined StatsModal component
-const StatsModal = ({ stats, activeModeTab, setActiveModeTab, themeStyles, formatTime, achievements, onClose }) => {
+const StatsModal = ({ stats, activeModeTab, setActiveModeTab, themeStyles, formatTime, achievements, onClose, winRate, unlimitedWinRate }) => {
   const maxCount = useMemo(() => Math.max(...Object.values(stats.dailyGuessDistribution).filter(v => typeof v === 'number')), [stats.dailyGuessDistribution]);
   const GuessDistChart = ({ dist, maxClues }) => (
     <>
@@ -160,7 +152,6 @@ const StatsModal = ({ stats, activeModeTab, setActiveModeTab, themeStyles, forma
       </div>
     </>
   );
-
   return (
     <div style={styles.modalOverlay} onClick={onClose} role="dialog" aria-modal="true" aria-label="Statistics Modal">
       <button onClick={onClose} style={styles.closeButton} aria-label="Close Statistics Modal">×</button>
@@ -310,7 +301,6 @@ const StatsModal = ({ stats, activeModeTab, setActiveModeTab, themeStyles, forma
     </div>
   );
 };
-
 // Inlined HowToPlayModal component
 const HowToPlayModal = ({ numClues, gameMode, themeStyles, onClose }) => (
   <div style={styles.modalOverlay} onClick={onClose} role="dialog" aria-modal="true" aria-label="How to Play Modal">
@@ -342,7 +332,6 @@ const HowToPlayModal = ({ numClues, gameMode, themeStyles, onClose }) => (
     </div>
   </div>
 );
-
 function App() {
   const [data, setData] = useState([]);
   const [allTickers, setAllTickers] = useState([]);
@@ -382,18 +371,16 @@ function App() {
   const [difficulty, setDifficulty] = useState('medium');
   const [puzzleSeed, setPuzzleSeed] = useState(0);
   const inputRef = useRef(null);
-
   const isWinner = useMemo(() => submittedAnswers.some(a => a.isCorrect), [submittedAnswers]);
   const numClues = useMemo(() => questions.length, [questions]);
   const todayDate = useMemo(() => new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }), []);
-  const winRate = useMemo(() => 
+  const winRate = useMemo(() =>
     stats.dailyGamesPlayed > 0 ? Math.round((stats.dailyGamesWon / stats.dailyGamesPlayed) * 100) : 0
   , [stats.dailyGamesPlayed, stats.dailyGamesWon]);
-  const unlimitedWinRate = useMemo(() => 
+  const unlimitedWinRate = useMemo(() =>
     stats.unlimitedCompletions > 0 ? Math.round(((stats.unlimitedCompletions - stats.unlimitedGuessDistribution.fail) / stats.unlimitedCompletions) * 100) : 0
   , [stats.unlimitedCompletions, stats.unlimitedGuessDistribution.fail]);
   const achievements = useMemo(() => getAchievements(stats), [stats]);
-
   const themeStyles = useMemo(() => ({
     bgColor: darkMode ? 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' : 'linear-gradient(135deg,#f8fafc 0%,#e2e8f0 50%,#cbd5e1 100%)',
     textColor: darkMode ? '#e2e8f0' : '#1e293b',
@@ -401,7 +388,7 @@ function App() {
     cardBg: darkMode ? 'rgba(15,23,42,0.7)' : 'rgba(255,255,255,0.8)',
     borderColor: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
   }), [darkMode]);
-
+  const sortedData = useMemo(() => data ? [...data].sort((a, b) => a.ticker.localeCompare(b.ticker)) : [], [data]);
   // Test mode URL param
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -409,7 +396,6 @@ function App() {
       setTestMode(true);
     }
   }, []);
-
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -421,7 +407,6 @@ function App() {
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [testMode]);
-
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Enter' && !gameOver && input.trim()) handleSubmit(e);
@@ -430,7 +415,6 @@ function App() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [input, gameOver, gameMode]);
-
   // Load stats from localStorage
   useEffect(() => {
     try {
@@ -466,14 +450,12 @@ function App() {
       console.error('Error loading stats:', e);
     }
   }, []);
-
   // Debounced input
   useEffect(() => {
     const handler = debounce((value) => setDebouncedInput(value), 200);
     handler(input);
     return () => handler.cancel();
   }, [input]);
-
   // Memoized availableOptions
   const availableOptionsMemo = useMemo(() => {
     if (!debouncedInput) return [];
@@ -501,7 +483,6 @@ function App() {
       .slice(0, 8);
   }, [debouncedInput, allTickers, submittedAnswers]);
   useEffect(() => setAvailableOptions(availableOptionsMemo), [availableOptionsMemo]);
-
   // Load local JSON data
   useEffect(() => {
     Promise.all([
@@ -524,7 +505,6 @@ function App() {
       setLoading(false);
     });
   }, []);
-
   const auth = getAuth();
   useEffect(() => {
     signInAnonymously(auth)
@@ -535,7 +515,6 @@ function App() {
         console.error("Anonymous sign-in error:", error);
       });
   }, []);
-
   // Select daily ticker
   useEffect(() => {
     if (!data || data.length === 0) return;
@@ -548,7 +527,6 @@ function App() {
     const today = new Date().toDateString();
     let selectedTicker;
     let pickedQuestions = [];
-    const sortedData = useMemo(() => [...data].sort((a, b) => a.ticker.localeCompare(b.ticker)), [data]);
     let filteredData = sortedData;
     if (gameMode === 'daily' && !testMode) {
       const seed = hashCode(today);
@@ -628,8 +606,7 @@ function App() {
       }
     }
     setStartTime(Date.now());
-  }, [data, gameMode, difficulty, puzzleSeed, testMode]);
-
+  }, [data, gameMode, difficulty, puzzleSeed, testMode, sortedData]);
   // Throttled progress save
   const debouncedSaveProgress = useCallback(
     debounce((progressToSave) => {
@@ -642,7 +619,6 @@ function App() {
     }, 500),
     [gameMode, testMode, dailyTicker, startTime]
   );
-
   useEffect(() => {
     if (gameMode !== 'daily' || testMode || !dailyTicker || !startTime) return;
     const progressToSave = {
@@ -653,7 +629,6 @@ function App() {
     };
     debouncedSaveProgress(progressToSave);
   }, [currentLevel, submittedAnswers, gameOver, startTime, dailyTicker, testMode, gameMode, debouncedSaveProgress]);
-
   // Shake animation
   useEffect(() => {
     if (shake) {
@@ -661,7 +636,6 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [shake]);
-
   // Cached quotes fetch
   useEffect(() => {
     const fetchQuotes = async () => {
@@ -674,7 +648,6 @@ function App() {
             return;
           }
         }
-
         const fetchedQuotes = await Promise.all(QUOTRON_TICKERS.map(async symbol => {
           const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`);
           const json = await res.json();
@@ -694,25 +667,21 @@ function App() {
         setQuotes(FALLBACK_QUOTES);
       }
     };
-
     fetchQuotes();
     const interval = setInterval(fetchQuotes, 60000);
     return () => clearInterval(interval);
   }, []);
-
   // Focus input
   useEffect(() => {
     if (!gameOver && inputRef.current) {
       setTimeout(() => inputRef.current.focus(), 100);
     }
   }, [currentLevel, gameOver]);
-
-  const getAlreadyGuessedSymbols = useCallback((submittedAnswers) => 
+  const getAlreadyGuessedSymbols = useCallback((submittedAnswers) =>
     submittedAnswers.map(a => {
       const paren = a.guess.indexOf('(');
       return paren > 0 ? a.guess.substring(0, paren).trim().toLowerCase() : a.guess.toLowerCase();
     }), []);
-
   const validateGuess = useCallback((guess, correctTicker, allTickers) => {
     let tickerToCheck = guess.trim().toLowerCase();
     const matchedTicker = allTickers.find(t => t.symbol.toLowerCase() === tickerToCheck);
@@ -729,7 +698,6 @@ function App() {
     const isCorrect = tickerToCheck.toUpperCase() === correctTicker.toUpperCase();
     return { formattedGuess: guess.trim(), tickerToCheck, isCorrect, matched: false };
   }, []);
-
   const handleSubmit = useCallback((e) => {
     if (e) e.preventDefault();
     if (gameOver || !input.trim()) return;
@@ -756,7 +724,6 @@ function App() {
     }
     setCurrentLevel(currentLevel + 1);
   }, [gameOver, input, currentLevel, questions, submittedAnswers, startTime, allTickers, getAlreadyGuessedSymbols, validateGuess]);
-
   // Analytics
   useEffect(() => {
     if (testMode) return;
@@ -785,7 +752,6 @@ function App() {
     };
     track();
   }, [gameMode, testMode]);
-
   const updateStats = useCallback(async (won = false, cluesUsed = 0, timeElapsed = null) => {
     if (testMode) return;
     if (gameMode === 'daily') {
@@ -850,19 +816,16 @@ function App() {
       }
     }
   }, [gameMode, testMode, startTime]);
-
   const toggleDarkMode = useCallback(() => {
     const newMode = !darkMode;
     setDarkMode(newMode);
     localStorage.setItem('tickrDailyDarkMode', JSON.stringify(newMode));
   }, [darkMode]);
-
   const formatTime = useCallback((seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
   }, []);
-
   const getAchievements = useCallback((stats) => {
     const achievements = [];
     const dailyDist = stats.dailyGuessDistribution;
@@ -876,17 +839,14 @@ function App() {
     if (stats.overallFastestTime && stats.overallFastestTime < 30) achievements.push({ icon: '⚡', name: 'Speed Demon', desc: 'Fastest win under 30s (any mode)' });
     return achievements;
   }, []);
-
   const handleOptionClick = useCallback((option) => {
     setInput(option.formatted);
     setAvailableOptions([]);
   }, []);
-
   const resetGame = useCallback(() => {
     localStorage.removeItem('dailyProgress');
     window.location.reload();
   }, []);
-
   const skipToNextTicker = useCallback(() => {
     if (!data || data.length === 0) return;
     setGameOver(false);
@@ -921,7 +881,6 @@ function App() {
     setQuestions(pickedQuestions);
     setStartTime(Date.now());
   }, [data, dailyTicker, difficulty]);
-
   const nextPuzzle = useCallback(() => {
     setGameOver(false);
     setCurrentLevel(0);
@@ -930,7 +889,6 @@ function App() {
     setAvailableOptions([]);
     setPuzzleSeed(prev => prev + 1);
   }, []);
-
   const shareResults = useCallback(() => {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
     const won = submittedAnswers.some(a => a.isCorrect);
@@ -946,7 +904,6 @@ function App() {
       alert('Results copied to clipboard!');
     }
   }, [submittedAnswers, questions]);
-
   const shareToTwitter = useCallback(() => {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
     const won = submittedAnswers.some(a => a.isCorrect);
@@ -955,7 +912,6 @@ function App() {
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
     window.open(twitterUrl, '_blank');
   }, [submittedAnswers, questions]);
-
   if (loading || !dailyTicker || !questions.length) {
     return (
       <div style={{ ...styles.app, background: themeStyles.bgColor, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -963,7 +919,6 @@ function App() {
       </div>
     );
   }
-
   const QuotronComponent = (
     <div className="quotron" style={styles.quotron}>
       <div style={{ display: 'inline-block', animation: 'scroll 120s linear infinite' }}>
@@ -975,7 +930,6 @@ function App() {
       </div>
     </div>
   );
-
   const HeaderComponent = (
     <div style={styles.header}>
       <button
@@ -1030,7 +984,6 @@ function App() {
       </div>
     </div>
   );
-
   const ModeSelectorComponent = (
     <div style={styles.modeSelector}>
       <button
@@ -1087,7 +1040,6 @@ function App() {
       )}
     </div>
   );
-
   const StatsButtonsComponent = (
     <div style={styles.statsButtons}>
       <button
@@ -1111,7 +1063,6 @@ function App() {
       </button>
     </div>
   );
-
   const QuestionsComponent = questions.map((q, idx) => {
     if (idx > currentLevel) return null;
     return (
@@ -1142,18 +1093,18 @@ function App() {
                 style={styles.input}
               />
               {availableOptions.length > 0 && (
-                <div style={{ 
-                  position: 'absolute', 
-                  top: '100%', 
-                  left: 0, 
-                  right: 0, 
-                  marginTop: '0.5rem', 
-                  background: 'rgba(15,23,42,0.95)', 
-                  borderRadius: '1rem', 
-                  overflow: 'auto', 
-                  maxHeight: '400px', 
-                  zIndex: 50, 
-                  border: '1px solid rgba(255,255,255,0.2)' 
+                <div style={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: 0,
+                  right: 0,
+                  marginTop: '0.5rem',
+                  background: 'rgba(15,23,42,0.95)',
+                  borderRadius: '1rem',
+                  overflow: 'auto',
+                  maxHeight: '400px',
+                  zIndex: 50,
+                  border: '1px solid rgba(255,255,255,0.2)'
                 }}>
                   {availableOptions.map((opt, i) => (
                     <div
@@ -1194,17 +1145,16 @@ function App() {
       </div>
     );
   });
-
   const GameOverComponent = gameOver && (
     <div style={{ ...styles.gameOver, background: themeStyles.cardBg, border: `1px solid ${themeStyles.borderColor}` }}>
       <div style={{ fontSize: '5rem', marginBottom: '1.5rem' }}>{isWinner ? '🎉' : '😔'}</div>
-      <h2 style={{ 
-        fontSize: '2.5rem', 
-        fontWeight: '800', 
-        background: isWinner ? 'linear-gradient(135deg,#22c55e 0%,#3b82f6 100%)' : 'linear-gradient(135deg,#ef4444 0%,#dc2626 100%)', 
-        WebkitBackgroundClip: 'text', 
-        WebkitTextFillColor: 'transparent', 
-        marginBottom: '1.5rem' 
+      <h2 style={{
+        fontSize: '2.5rem',
+        fontWeight: '800',
+        background: isWinner ? 'linear-gradient(135deg,#22c55e 0%,#3b82f6 100%)' : 'linear-gradient(135deg,#ef4444 0%,#dc2626 100%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        marginBottom: '1.5rem'
       }}>
         {isWinner ? 'Congratulations!' : 'Game Over'}
       </h2>
@@ -1301,7 +1251,6 @@ function App() {
       </div>
     </div>
   );
-
   return (
     <div style={{ ...styles.app, background: themeStyles.bgColor }}>
       <style>{`
@@ -1345,30 +1294,29 @@ function App() {
         {GameOverComponent}
       </div>
       {showStats && (
-        <StatsModal 
-          stats={stats} 
-          activeModeTab={activeModeTab} 
-          setActiveModeTab={setActiveModeTab} 
-          themeStyles={themeStyles} 
-          formatTime={formatTime} 
-          achievements={achievements} 
-          onClose={() => setShowStats(false)} 
+        <StatsModal
+          stats={stats}
+          activeModeTab={activeModeTab}
+          setActiveModeTab={setActiveModeTab}
+          themeStyles={themeStyles}
+          formatTime={formatTime}
+          achievements={achievements}
+          onClose={() => setShowStats(false)}
           winRate={winRate}
           unlimitedWinRate={unlimitedWinRate}
         />
       )}
       {showHowToPlay && (
-        <HowToPlayModal 
-          numClues={numClues} 
-          gameMode={gameMode} 
-          themeStyles={themeStyles} 
-          onClose={() => setShowHowToPlay(false)} 
+        <HowToPlayModal
+          numClues={numClues}
+          gameMode={gameMode}
+          themeStyles={themeStyles}
+          onClose={() => setShowHowToPlay(false)}
         />
       )}
     </div>
   );
 }
-
 const getAchievements = (stats) => {
   const achievements = [];
   const dailyDist = stats.dailyGuessDistribution;
@@ -1382,5 +1330,4 @@ const getAchievements = (stats) => {
   if (stats.overallFastestTime && stats.overallFastestTime < 30) achievements.push({ icon: '⚡', name: 'Speed Demon', desc: 'Fastest win under 30s (any mode)' });
   return achievements;
 };
-
 export default App;
