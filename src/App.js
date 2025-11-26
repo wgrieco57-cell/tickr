@@ -133,6 +133,16 @@ function App() {
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [testMode]);
+  // Auto-save stats to localStorage whenever they change
+useEffect(() => {
+  if (!testMode) {
+    try {
+      localStorage.setItem('tickrDailyStats', JSON.stringify(stats));
+    } catch (e) {
+      console.error('Failed to save stats:', e);
+    }
+  }
+}, [stats, testMode]);
   // New: Keyboard shortcuts for submit/next
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -511,77 +521,59 @@ useEffect(() => {
   track();
 }, [gameMode, testMode]);
 // Update stats in one place
-const updateStats = async (won = false, cluesUsed = 0, timeElapsed = null) => {
+const updateStats = (won, cluesUsed, timeElapsed = null) => {
   if (testMode) return;
-  // Skip if already completed today (daily only)
+
+  // Prevent double-counting today's daily puzzle
   if (gameMode === 'daily') {
-    const progressStr = localStorage.getItem('dailyProgress');
-    if (progressStr) {
-      try {
-        const progress = JSON.parse(progressStr);
-        if (progress.gameOver) {
-          console.log('Game already completed today—no stats update');
-          return;
-        }
-      } catch (e) {
-        // Ignore, proceed
-      }
-    }
+    const saved = localStorage.getItem('dailyProgress');
+    if (saved && JSON.parse(saved).gameOver) return;
   }
-  // Compute timeElapsed if not provided
-  if (timeElapsed === null) {
-    timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
-  }
+
+  const time = timeElapsed ?? (startTime ? Math.floor((Date.now() - startTime) / 1000) : 0);
   const today = new Date().toISOString().split('T')[0];
+
   setStats(prev => {
-    const newDailyGuessDist = { ...prev.dailyGuessDistribution };
-    const newUnlimitedGuessDist = { ...prev.unlimitedGuessDistribution };
-    const newDailyHistory = { ...prev.dailyPlayHistory };
-    // Mode-specific updates
+    // Copy distributions
+    const dailyDist = { ...prev.dailyGuessDistribution };
+    const unlimitedDist = { ...prev.unlimitedGuessDistribution };
+
+    // Update correct distribution
     if (gameMode === 'daily') {
-      if (won) {
-        newDailyGuessDist[cluesUsed] = (newDailyGuessDist[cluesUsed] || 0) + 1;
-      } else {
-        newDailyGuessDist.fail = (newDailyGuessDist.fail || 0) + 1;
-      }
-      newDailyHistory[today] = { won, clues: cluesUsed, time: timeElapsed };
-    } else { // unlimited
-      if (won) {
-        newUnlimitedGuessDist[cluesUsed] = (newUnlimitedGuessDist[cluesUsed] || 0) + 1;
-      } else {
-        newUnlimitedGuessDist.fail = (newUnlimitedGuessDist.fail || 0) + 1;
-      }
+      won ? dailyDist[cluesUsed]++ : dailyDist.fail++;
+    } else {
+      won ? unlimitedDist[cluesUsed]++ : unlimitedDist.fail++;
     }
-    const newDailyCurrentStreak = gameMode === 'daily' ? (won ? prev.dailyCurrentStreak + 1 : 0) : prev.dailyCurrentStreak;
-    const newDailyMaxStreak = Math.max(prev.dailyMaxStreak, newDailyCurrentStreak);
-    const updated = {
+
+    // New streak (only daily mode cares)
+    const newStreak = gameMode === 'daily' ? (won ? prev.dailyCurrentStreak + 1 : 0) : prev.dailyCurrentStreak;
+
+    return {
       ...prev,
+
       // Daily
       dailyGamesPlayed: gameMode === 'daily' ? prev.dailyGamesPlayed + 1 : prev.dailyGamesPlayed,
       dailyGamesWon: gameMode === 'daily' && won ? prev.dailyGamesWon + 1 : prev.dailyGamesWon,
-      dailyCurrentStreak: newDailyCurrentStreak,
-      dailyMaxStreak: newDailyMaxStreak,
-      dailyGuessDistribution: gameMode === 'daily' ? newDailyGuessDist : prev.dailyGuessDistribution,
-      dailyPlayHistory: gameMode === 'daily' ? newDailyHistory : prev.dailyPlayHistory,
-      dailyTotalTime: gameMode === 'daily' ? prev.dailyTotalTime + timeElapsed : prev.dailyTotalTime,
+      dailyCurrentStreak: newStreak,
+      dailyMaxStreak: Math.max(prev.dailyMaxStreak, newStreak),
+      dailyGuessDistribution: gameMode === 'daily' ? dailyDist : prev.dailyGuessDistribution,
+      dailyPlayHistory: gameMode === 'daily' ? { ...prev.dailyPlayHistory, [today]: { won, clues: cluesUsed, time } } : prev.dailyPlayHistory,
+      dailyTotalTime: gameMode === 'daily' ? prev.dailyTotalTime + time : prev.dailyTotalTime,
+
       // Unlimited
       unlimitedCompletions: gameMode === 'unlimited' ? prev.unlimitedCompletions + 1 : prev.unlimitedCompletions,
-      unlimitedGuessDistribution: gameMode === 'unlimited' ? newUnlimitedGuessDist : prev.unlimitedGuessDistribution,
-      unlimitedTotalTime: gameMode === 'unlimited' ? prev.unlimitedTotalTime + timeElapsed : prev.unlimitedTotalTime,
+      unlimitedGuessDistribution: gameMode === 'unlimited' ? unlimitedDist : prev.unlimitedGuessDistribution,
+      unlimitedTotalTime: gameMode === 'unlimited' ? prev.unlimitedTotalTime + time : prev.unlimitedTotalTime,
+
       // Shared
-      overallTotalTime: prev.overallTotalTime + timeElapsed,
-      overallFastestTime: won && (!prev.overallFastestTime || timeElapsed < prev.overallFastestTime) ? timeElapsed : prev.overallFastestTime,
+      overallTotalTime: prev.overallTotalTime + time,
+      overallFastestTime: won && (!prev.overallFastestTime || time < prev.overallFastestTime) ? time : prev.overallFastestTime,
     };
-    localStorage.setItem('tickrDailyStats', JSON.stringify(updated));
-    return updated;
   });
-  // Update Firebase daily stats (only daily)
+
+  // Optional: Firebase update (only daily)
   if (gameMode === 'daily') {
-    try {
-      await updateDailyStats({ won });
-    } catch (err) {
-      console.error('Error updating daily Firebase stats:', err);
-    }
+    updateDailyStats({ won }).catch(() => {});
   }
 };
   // Share results
