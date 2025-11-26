@@ -1232,50 +1232,78 @@ const shareToTwitter = () => {
             </div>
           </div>
         )}
-        {/* How to Play Modal (with ARIA) */}
-        {showHowToPlay && (
-          <div
-            style={{
-              position:'fixed',
-              top:0,
-              left:0,
-              right:0,
-              bottom:0,
-              background:'rgba(0,0,0,0.8)',
-              display:'flex',
-              alignItems:'center',
-              justifyContent:'center',
-              zIndex:100,
-              padding:'1rem'
-            }}
-            onClick={() => setShowHowToPlay(false)}
-            role="dialog"
-            aria-modal="true"
-            aria-label="How to Play Modal"
-          >
-            <button
-              onClick={() => setShowHowToPlay(false)}
-              style={closeButtonStyle}
-              aria-label="Close How to Play Modal"
-            >
-              ×
-            </button>
-            <div
-              style={{
-                background: darkMode ? 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))' : 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95))',
-                backdropFilter:'blur(20px)',
-                borderRadius:'2rem',
-                padding:'2.5rem',
-                maxWidth:'600px',
-                width:'100%',
-                border:`1px solid ${borderColor}`,
-                position:'relative'
-              }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h2 style={{ fontSize:'2rem', fontWeight:'800', color:textColor, marginBottom:'1.5rem', textAlign:'center' }}>
-                ❓ How to Play
-              </h2>
+       {/* How to Play Modal – iPhone-optimized, dark-only, close button inside top-right */}
+{showHowToPlay && (
+  <div
+    style={{
+      position: 'fixed',
+      inset: 0,
+      background: 'rgba(0,0,0,0.9)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 100,
+      padding: '1rem',
+    }}
+    onClick={() => setShowHowToPlay(false)}
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="how-to-play-title"
+  >
+    <div
+      style={{
+        background: 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))',
+        backdropFilter: 'blur(20px)',
+        borderRadius: '2rem',
+        padding: '2.5rem',
+        maxWidth: '600px',
+        width: '100%',
+        position: 'relative',
+        border: '1px solid rgba(255,255,255,0.1)',
+        maxHeight: '90vh',
+        overflowY: 'auto',
+      }}
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Close button – now INSIDE the modal, top-right */}
+      <button
+        onClick={() => setShowHowToPlay(false)}
+        style={{
+          position: 'absolute',
+          top: '1rem',
+          right: '1rem',
+          background: 'transparent',
+          border: 'none',
+          color: '#94a3b8',
+          fontSize: '2.5rem',
+          fontWeight: '300',
+          cursor: 'pointer',
+          width: '44px',
+          height: '44px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '50%',
+          zIndex: 10,
+        }}
+        aria-label="Close How to Play"
+      >
+        ×
+      </button>
+
+      <h2
+        id="how-to-play-title"
+        style={{
+          fontSize: '2rem',
+          fontWeight: '800',
+          color: '#e2e8f0',
+          textAlign: 'center',
+          marginBottom: '1.5rem',
+          paddingRight: '2.5rem', // makes room for the × button
+        }}
+      >
+        How to Play
+      </h2>
               <div style={{ color:textColor, lineHeight:'1.8', fontSize:'1rem' }}>
                 <p style={{ marginBottom:'1rem', fontWeight:'600', fontSize:'1.125rem' }}>
                   Guess the stock ticker in {numClues} clues or less!
