@@ -973,58 +973,71 @@ const shareToTwitter = () => {
             <span>How to Play</span>
           </button>
         </div>
-        {/* Stats Modal (updated with totalPuzzles card) */}
-        {showStats && (
-          <div
-            style={{
-              position:'fixed',
-              top:0,
-              left:0,
-              right:0,
-              bottom:0,
-              background:'rgba(0,0,0,0.8)',
-              display:'flex',
-              alignItems:'center',
-              justifyContent:'center',
-              zIndex:100,
-              padding:'1rem',
-              overflowY:'auto'
-            }}
-            onClick={() => setShowStats(false)}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Statistics Modal"
-          >
-            <button
-              onClick={() => setShowStats(false)}
-              style={closeButtonStyle}
-              aria-label="Close Statistics Modal"
-            >
-              ×
-            </button>
-            <div
-              style={{
-                background: darkMode ? 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))' : 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95))',
-                backdropFilter:'blur(20px)',
-                borderRadius:'2rem',
-                padding:'2.5rem',
-                maxWidth:'700px',
-                width:'100%',
-                border:`1px solid ${borderColor}`,
-                position:'relative',
-                maxHeight:'90vh',
-                overflowY:'auto'
-              }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h2 style={{ fontSize:'2rem', fontWeight:'800', color:textColor, marginBottom:'2rem', textAlign:'center', display:'flex', alignItems:'center', justifyContent:'center', gap:'0.75rem' }}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="20" x2="18" y2="10"></line>
-                  <line x1="12" y1="20" x2="12" y2="4"></line>
-                  <line x1="6" y1="20" x2="6" y2="14"></line>
-                </svg>
-                Your Statistics
-              </h2>
+       {/* Stats Modal – iPhone-optimized version */}
+{showStats && (
+  <div
+    style={{
+      position: 'fixed',
+      inset: 0,
+      background: 'rgba(0,0,0,0.9)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 100,
+      padding: '1rem',
+    }}
+    onClick={() => setShowStats(false)}
+  >
+    <div
+      style={{
+        background: 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))',
+        backdropFilter: 'blur(20px)',
+        borderRadius: '2rem',
+        padding: '2.5rem',
+        maxWidth: '700px',
+        width: '100%',
+        maxHeight: '90vh',
+        overflowY: 'auto',
+        position: 'relative',
+        border: '1px solid rgba(255,255,255,0.1)',
+      }}
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Close button now INSIDE top-right */}
+      <button
+        onClick={() => setShowStats(false)}
+        style={{
+          position: 'absolute',
+          top: '1rem',
+          right: '1rem',
+          background: 'transparent',
+          border: 'none',
+          color: '#94a3b8',
+          fontSize: '2.5rem',
+          cursor: 'pointer',
+          width: '44px',
+          height: '44px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '50%',
+          zIndex: 10,
+        }}
+        aria-label="Close Statistics"
+      >
+        ×
+      </button>
+
+      <h2 style={{ 
+        fontSize:'2rem', 
+        fontWeight:'800', 
+        color:'#e2e8f0', 
+        marginBottom:'2rem', 
+        textAlign:'center',
+        paddingRight: '3rem' // make space for the X button
+      }}>
+        Your Statistics
+      </h2>
               {/* Mode Tabs */}
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.5rem' }}>
                 <button
