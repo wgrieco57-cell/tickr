@@ -115,6 +115,36 @@ function App() {
   const [difficulty, setDifficulty] = useState('medium'); // 'easy' | 'medium' | 'hard'
   const [puzzleSeed, setPuzzleSeed] = useState(0);
   const inputRef = useRef(null);
+  // ────────────────────────────────
+//  LOAD STATS + DARK MODE ONCE
+// ────────────────────────────────
+useEffect(() => {
+  // Load saved stats
+  try {
+    const saved = localStorage.getItem('tickrDailyStats');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      setStats(parsed); // ← This is the missing line!
+    }
+  } catch (e) {
+    console.error('Failed to load stats:', e);
+    localStorage.removeItem('tickrDailyStats'); // Corrupted → reset
+  }
+
+  // Load dark mode
+  try {
+    const savedDark = localStorage.getItem('tickrDailyDarkMode');
+    if (savedDark !== null) {
+      setDarkMode(JSON.parse(savedDark));
+    }
+  } catch (e) {}
+
+  // First-time visitor
+  if (!localStorage.getItem('tickrDailyVisited')) {
+    setShowHowToPlay(true);
+    localStorage.setItem('tickrDailyVisited', 'true');
+  }
+}, []); // ← Runs only once on mount
   // Check for test mode via URL parameter
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
