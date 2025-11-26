@@ -371,6 +371,24 @@ function App() {
   const [difficulty, setDifficulty] = useState('medium');
   const [puzzleSeed, setPuzzleSeed] = useState(0);
   const inputRef = useRef(null);
+  const formatTime = useCallback((seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+  }, []);
+  const getAchievements = useCallback((stats) => {
+    const achievements = [];
+    const dailyDist = stats.dailyGuessDistribution;
+    const unlimitedDist = stats.unlimitedGuessDistribution;
+    if (stats.dailyCurrentStreak >= 5) achievements.push({ icon: '🔥', name: 'Daily 5 Streak', desc: 'Win 5 daily puzzles in a row' });
+    if (stats.dailyCurrentStreak >= 10) achievements.push({ icon: '⚡', name: 'Daily 10 Streak', desc: 'Win 10 daily in a row' });
+    if (stats.dailyGamesWon >= 10) achievements.push({ icon: '🏆', name: 'Daily Veteran', desc: 'Win 10 daily games' });
+    if (stats.unlimitedCompletions >= 50) achievements.push({ icon: '♾️', name: 'Unlimited Marathoner', desc: 'Complete 50 unlimited puzzles' });
+    if (unlimitedDist[1] >= 10) achievements.push({ icon: '🎯', name: 'Unlimited First-Try Pro', desc: 'Win 10 unlimited on first clue' });
+    if (stats.dailyGamesWon + (stats.unlimitedCompletions - stats.unlimitedGuessDistribution.fail) >= 50) achievements.push({ icon: '👑', name: 'Master Guesser', desc: '50 total wins across modes' });
+    if (stats.overallFastestTime && stats.overallFastestTime < 30) achievements.push({ icon: '⚡', name: 'Speed Demon', desc: 'Fastest win under 30s (any mode)' });
+    return achievements;
+  }, []);
   const isWinner = useMemo(() => submittedAnswers.some(a => a.isCorrect), [submittedAnswers]);
   const numClues = useMemo(() => questions.length, [questions]);
   const todayDate = useMemo(() => new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }), []);
@@ -422,18 +440,18 @@ function App() {
       if (savedStats) {
         const parsed = JSON.parse(savedStats);
         setStats({
-          dailyGamesPlayed: parsed.gamesPlayed || 0,
-          dailyGamesWon: parsed.gamesWon || 0,
-          dailyCurrentStreak: parsed.currentStreak || 0,
-          dailyMaxStreak: parsed.maxStreak || 0,
-          dailyGuessDistribution: parsed.guessDistribution || { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, fail: 0 },
-          dailyPlayHistory: parsed.playHistory || {},
-          dailyTotalTime: parsed.totalTime || 0,
-          unlimitedCompletions: parsed.totalPuzzles || 0,
-          unlimitedGuessDistribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, fail: 0 },
-          unlimitedTotalTime: 0,
-          overallFastestTime: parsed.fastestTime,
-          overallTotalTime: parsed.totalTime || 0,
+          dailyGamesPlayed: parsed.dailyGamesPlayed || parsed.gamesPlayed || 0,
+          dailyGamesWon: parsed.dailyGamesWon || parsed.gamesWon || 0,
+          dailyCurrentStreak: parsed.dailyCurrentStreak || parsed.currentStreak || 0,
+          dailyMaxStreak: parsed.dailyMaxStreak || parsed.maxStreak || 0,
+          dailyGuessDistribution: parsed.dailyGuessDistribution || parsed.guessDistribution || { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, fail: 0 },
+          dailyPlayHistory: parsed.dailyPlayHistory || parsed.playHistory || {},
+          dailyTotalTime: parsed.dailyTotalTime || parsed.totalTime || 0,
+          unlimitedCompletions: parsed.unlimitedCompletions || parsed.totalPuzzles || 0,
+          unlimitedGuessDistribution: parsed.unlimitedGuessDistribution || { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, fail: 0 },
+          unlimitedTotalTime: parsed.unlimitedTotalTime || 0,
+          overallFastestTime: parsed.overallFastestTime || parsed.fastestTime || null,
+          overallTotalTime: parsed.overallTotalTime || parsed.totalTime || 0,
           achievements: [],
         });
       }
@@ -821,24 +839,6 @@ function App() {
     setDarkMode(newMode);
     localStorage.setItem('tickrDailyDarkMode', JSON.stringify(newMode));
   }, [darkMode]);
-  const formatTime = useCallback((seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
-  }, []);
-  const getAchievements = useCallback((stats) => {
-    const achievements = [];
-    const dailyDist = stats.dailyGuessDistribution;
-    const unlimitedDist = stats.unlimitedGuessDistribution;
-    if (stats.dailyCurrentStreak >= 5) achievements.push({ icon: '🔥', name: 'Daily 5 Streak', desc: 'Win 5 daily puzzles in a row' });
-    if (stats.dailyCurrentStreak >= 10) achievements.push({ icon: '⚡', name: 'Daily 10 Streak', desc: 'Win 10 daily in a row' });
-    if (stats.dailyGamesWon >= 10) achievements.push({ icon: '🏆', name: 'Daily Veteran', desc: 'Win 10 daily games' });
-    if (stats.unlimitedCompletions >= 50) achievements.push({ icon: '♾️', name: 'Unlimited Marathoner', desc: 'Complete 50 unlimited puzzles' });
-    if (unlimitedDist[1] >= 10) achievements.push({ icon: '🎯', name: 'Unlimited First-Try Pro', desc: 'Win 10 unlimited on first clue' });
-    if (stats.dailyGamesWon + (stats.unlimitedCompletions - stats.unlimitedGuessDistribution.fail) >= 50) achievements.push({ icon: '👑', name: 'Master Guesser', desc: '50 total wins across modes' });
-    if (stats.overallFastestTime && stats.overallFastestTime < 30) achievements.push({ icon: '⚡', name: 'Speed Demon', desc: 'Fastest win under 30s (any mode)' });
-    return achievements;
-  }, []);
   const handleOptionClick = useCallback((option) => {
     setInput(option.formatted);
     setAvailableOptions([]);
@@ -1317,17 +1317,4 @@ function App() {
     </div>
   );
 }
-const getAchievements = (stats) => {
-  const achievements = [];
-  const dailyDist = stats.dailyGuessDistribution;
-  const unlimitedDist = stats.unlimitedGuessDistribution;
-  if (stats.dailyCurrentStreak >= 5) achievements.push({ icon: '🔥', name: 'Daily 5 Streak', desc: 'Win 5 daily puzzles in a row' });
-  if (stats.dailyCurrentStreak >= 10) achievements.push({ icon: '⚡', name: 'Daily 10 Streak', desc: 'Win 10 daily in a row' });
-  if (stats.dailyGamesWon >= 10) achievements.push({ icon: '🏆', name: 'Daily Veteran', desc: 'Win 10 daily games' });
-  if (stats.unlimitedCompletions >= 50) achievements.push({ icon: '♾️', name: 'Unlimited Marathoner', desc: 'Complete 50 unlimited puzzles' });
-  if (unlimitedDist[1] >= 10) achievements.push({ icon: '🎯', name: 'Unlimited First-Try Pro', desc: 'Win 10 unlimited on first clue' });
-  if (stats.dailyGamesWon + (stats.unlimitedCompletions - stats.unlimitedGuessDistribution.fail) >= 50) achievements.push({ icon: '👑', name: 'Master Guesser', desc: '50 total wins across modes' });
-  if (stats.overallFastestTime && stats.overallFastestTime < 30) achievements.push({ icon: '⚡', name: 'Speed Demon', desc: 'Fastest win under 30s (any mode)' });
-  return achievements;
-};
 export default App;
