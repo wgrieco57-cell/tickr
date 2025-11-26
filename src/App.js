@@ -5,7 +5,6 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, doc, increment, getDoc, setDoc, updateDoc, onSnapshot, serverTimestamp, collection, query, where, deleteDoc } from "firebase/firestore";
 import { getAuth, signInAnonymously, GoogleAuthProvider, signOut } from "firebase/auth";
 import { getAnalytics, logEvent } from "firebase/analytics";
-
 const FINNHUB_API_KEY = "d4g9o8pr01qm5b34j8l0d4g9o8pr01qm5b34j8lg"; // Hardcoded as requested (note: for local/dev only—expose risk in prod)
 const QUOTRON_TICKERS = [
   '^GSPC','^DJI','^IXIC', // Major indexes
@@ -39,7 +38,6 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const analytics = getAnalytics(app);
 const googleProvider = new GoogleAuthProvider();
-
 async function updateDailyStats({ won = false }) {
   const today = new Date().toISOString().split("T")[0];
   // Always produce a valid 2-segment path: analytics / daily_2025-11-24
@@ -78,31 +76,25 @@ function createSeededRandom(initialSeed) {
     return seed / 2147483647;
   };
 }
-
 // Custom hook for debouncing
 function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
-
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedValue(value);
     }, delay);
-
     return () => {
       clearTimeout(handler);
     };
   }, [value, delay]);
-
   return debouncedValue;
 }
-
 function App() {
   // Auth hooks
   const [user, loadingAuth] = useAuthState(auth);
   const [createUserWithEmailAndPassword, , createError] = useCreateUserWithEmailAndPassword(auth);
   const [signInWithEmailAndPassword, , signInError] = useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, , googleError] = useSignInWithGoogle(auth);
-
   // Auth states
   const [showLogin, setShowLogin] = useState(false);
   const [loginEmail, setLoginEmail] = useState('');
@@ -110,7 +102,6 @@ function App() {
   const [createEmail, setCreateEmail] = useState('');
   const [createPassword, setCreatePassword] = useState('');
   const [authError, setAuthError] = useState('');
-
   const [data, setData] = useState([]);
   const [allTickers, setAllTickers] = useState([]);
   const [dailyTicker, setDailyTicker] = useState(null);
@@ -154,10 +145,170 @@ function App() {
   const inputRef = useRef(null);
   const statsSaveTimeoutRef = useRef(null); // For batching saves
   const analyticsTrackedRef = useRef(false); // For analytics useEffect
-
   // Debounced input for autocomplete
   const debouncedInput = useDebounce(input, 300);
-
+  // Colors based on darkMode
+  const bgColor = darkMode ? 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' : 'linear-gradient(135deg,#f8fafc 0%,#e2e8f0 50%,#cbd5e1 100%)';
+  const textColor = darkMode ? '#e2e8f0' : '#1e293b';
+  const mutedColor = darkMode ? '#94a3b8' : '#64748b';
+  const cardBg = darkMode ? 'rgba(15,23,42,0.7)' : 'rgba(255,255,255,0.8)';
+  const borderColor = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+  // Batched stats save to Firestore
+  const saveStatsToStorage = useCallback((updatedStats) => {
+    if (statsSaveTimeoutRef.current) {
+      clearTimeout(statsSaveTimeoutRef.current);
+    }
+    statsSaveTimeoutRef.current = setTimeout(() => {
+      if (user) {
+        const userStatsRef = doc(db, 'users', user.uid, 'stats', 'profile');
+        setDoc(userStatsRef, { ...updatedStats, uid: user.uid, updatedAt: serverTimestamp() }, { merge: true });
+      } else {
+        // Fallback to localStorage for anon
+        localStorage.setItem('tickrDailyStats', JSON.stringify(updatedStats));
+      }
+    }, 1000); // Batch: save after 1s idle
+  }, [user]);
+  // Next puzzle for unlimited
+  const nextPuzzle = useCallback(() => {
+    setGameOver(false);
+    setCurrentLevel(0);
+    setSubmittedAnswers([]);
+    setInput("");
+    setAvailableOptions([]);
+    setPuzzleSeed(prev => prev + 1);
+  }, []);
+  // Update stats in one place (with batched save)
+  const updateStats = useCallback(async (won = false, cluesUsed = 0, timeElapsed = null) => {
+    if (testMode) return;
+    // Skip if already completed today (daily only)
+    if (gameMode === 'daily') {
+      const today = new Date().toISOString().split('T')[0];
+      const progressRef = doc(db, 'users', user.uid, 'dailyProgress', today);
+      const progressSnap = await getDoc(progressRef);
+      if (progressSnap.exists() && progressSnap.data().gameOver) {
+        console.log('Game already completed today—no stats update');
+        return;
+      }
+    }
+    // Compute timeElapsed if not provided
+    if (timeElapsed === null) {
+      timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
+    }
+    const today = new Date().toISOString().split('T')[0];
+    setStats(prev => {
+      const newDailyGuessDist = { ...prev.dailyGuessDistribution };
+      const newUnlimitedGuessDist = { ...prev.unlimitedGuessDistribution };
+      const newDailyHistory = { ...prev.dailyPlayHistory };
+      // Mode-specific updates
+      if (gameMode === 'daily') {
+        if (won) {
+          newDailyGuessDist[cluesUsed] = (newDailyGuessDist[cluesUsed] || 0) + 1;
+        } else {
+          newDailyGuessDist.fail = (newDailyGuessDist.fail || 0) + 1;
+        }
+        newDailyHistory[today] = { won, clues: cluesUsed, time: timeElapsed };
+      } else { // unlimited
+        if (won) {
+          newUnlimitedGuessDist[cluesUsed] = (newUnlimitedGuessDist[cluesUsed] || 0) + 1;
+        } else {
+          newUnlimitedGuessDist.fail = (newUnlimitedGuessDist.fail || 0) + 1;
+        }
+      }
+      const newDailyCurrentStreak = gameMode === 'daily' ? (won ? prev.dailyCurrentStreak + 1 : 0) : prev.dailyCurrentStreak;
+      const newDailyMaxStreak = Math.max(prev.dailyMaxStreak, newDailyCurrentStreak);
+      const updated = {
+        ...prev,
+        // Daily
+        dailyGamesPlayed: gameMode === 'daily' ? prev.dailyGamesPlayed + 1 : prev.dailyGamesPlayed,
+        dailyGamesWon: gameMode === 'daily' && won ? prev.dailyGamesWon + 1 : prev.dailyGamesWon,
+        dailyCurrentStreak: newDailyCurrentStreak,
+        dailyMaxStreak: newDailyMaxStreak,
+        dailyGuessDistribution: gameMode === 'daily' ? newDailyGuessDist : prev.dailyGuessDistribution,
+        dailyPlayHistory: gameMode === 'daily' ? newDailyHistory : prev.dailyPlayHistory,
+        dailyTotalTime: gameMode === 'daily' ? prev.dailyTotalTime + timeElapsed : prev.dailyTotalTime,
+        // Unlimited
+        unlimitedCompletions: gameMode === 'unlimited' ? prev.unlimitedCompletions + 1 : prev.unlimitedCompletions,
+        unlimitedGuessDistribution: gameMode === 'unlimited' ? newUnlimitedGuessDist : prev.unlimitedGuessDistribution,
+        unlimitedTotalTime: gameMode === 'unlimited' ? prev.unlimitedTotalTime + timeElapsed : prev.unlimitedTotalTime,
+        // Shared
+        overallTotalTime: prev.overallTotalTime + timeElapsed,
+        overallFastestTime: won && (!prev.overallFastestTime || timeElapsed < prev.overallFastestTime) ? timeElapsed : prev.overallFastestTime,
+      };
+      saveStatsToStorage(updated); // Batched save
+      return updated;
+    });
+    // Update Firebase daily stats (only daily)
+    if (gameMode === 'daily') {
+      try {
+        await updateDailyStats({ won });
+      } catch (err) {
+        console.error('Error updating daily Firebase stats:', err);
+      }
+    }
+  }, [testMode, gameMode, startTime, user, saveStatsToStorage]);
+  // Helper to process guess and get symbol for consistency
+  const processGuess = useCallback((guess) => {
+    const trimmed = guess.trim().toLowerCase();
+    const matchedTicker = allTickers.find(t => t.symbol.toLowerCase() === trimmed || t.company.toLowerCase() === trimmed);
+    if (matchedTicker) {
+      return {
+        formatted: matchedTicker.formatted,
+        symbol: matchedTicker.symbol.toLowerCase(),
+        isMatched: true
+      };
+    }
+    // Partial match for company/symbol
+    const partialMatch = allTickers.find(t =>
+      t.symbol.toLowerCase().includes(trimmed) || t.company.toLowerCase().includes(trimmed)
+    );
+    return {
+      formatted: guess.trim(),
+      symbol: partialMatch ? partialMatch.symbol.toLowerCase() : trimmed,
+      isMatched: !!partialMatch
+    };
+  }, [allTickers]);
+  // Helper to check if guess is duplicate (using resolved symbols)
+  const isDuplicateGuess = useCallback((newSymbol) => {
+    const alreadyGuessedSymbols = submittedAnswers.map(a => {
+      // For each prior answer, resolve its symbol consistently
+      const parenIndex = a.guess.indexOf('(');
+      let priorTrimmed = parenIndex > 0 ? a.guess.substring(0, parenIndex).trim().toLowerCase() : a.guess.toLowerCase();
+      const priorProcessed = processGuess(priorTrimmed);
+      return priorProcessed.symbol;
+    });
+    return alreadyGuessedSymbols.includes(newSymbol);
+  }, [submittedAnswers, processGuess]);
+  // Helper to handle submission logic (refactored to reduce duplication)
+  const handleSubmission = useCallback((formattedGuess, resolvedSymbol, isCorrect) => {
+    const updatedQuestions = [...questions];
+    updatedQuestions[currentLevel].answers.push({ guess: formattedGuess, isCorrect });
+    setQuestions(updatedQuestions);
+    setSubmittedAnswers(prev => [...prev, { level: currentLevel + 1, guess: formattedGuess, isCorrect }]);
+    setInput("");
+    setAvailableOptions([]);
+    if (isCorrect || currentLevel === questions.length - 1) {
+      setGameOver(true);
+      const timeElapsed = startTime ? Math.floor((Date.now() - startTime)/1000) : 0;
+      if (isCorrect) confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      updateStats(isCorrect, currentLevel + 1, timeElapsed);
+      return;
+    }
+    setCurrentLevel(currentLevel + 1);
+ }, [currentLevel, questions, startTime, updateStats]);
+  // Handle submit (refactored)
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+    if (gameOver || !input.trim()) return;
+    const { formatted, symbol: resolvedSymbol, isMatched } = processGuess(input);
+    if (isDuplicateGuess(resolvedSymbol)) {
+      setShake(true);
+      return;
+    }
+    const correctTicker = questions[currentLevel].correct.toUpperCase();
+    const guessSymbol = isMatched ? resolvedSymbol.toUpperCase() : resolvedSymbol.toUpperCase();
+    const isCorrect = guessSymbol === correctTicker;
+    handleSubmission(formatted, resolvedSymbol, isCorrect);
+  }, [gameOver, input, processGuess, isDuplicateGuess, questions, currentLevel, handleSubmission]);
   // Check for test mode via URL parameter
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -165,7 +316,18 @@ function App() {
       setTestMode(true);
     }
   }, []);
-
+  // Load local storage for darkMode and visited
+  useEffect(() => {
+    const savedDarkMode = localStorage.getItem('tickrDailyDarkMode');
+    if (savedDarkMode !== null) {
+      setDarkMode(JSON.parse(savedDarkMode));
+    }
+    const hasVisited = localStorage.getItem('tickrDailyVisited');
+    if (!hasVisited) {
+      setShowHowToPlay(true);
+      localStorage.setItem('tickrDailyVisited', 'true');
+    }
+  }, []);
   // Keyboard shortcut to toggle test mode (Ctrl+Shift+T)
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -177,17 +339,6 @@ function App() {
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [testMode]);
-
-  // New: Keyboard shortcuts for submit/next
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Enter' && !gameOver && input.trim()) handleSubmit();
-      if (e.key.toLowerCase() === 'n' && gameOver && gameMode === 'unlimited') nextPuzzle();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [input, gameOver, gameMode]);
-
   // Load local JSON data
   useEffect(() => {
     Promise.all([
@@ -210,7 +361,6 @@ function App() {
       setLoading(false);
     });
   }, []);
-
   // Anonymous sign-in on mount if no user
   useEffect(() => {
     if (loadingAuth) return;
@@ -218,7 +368,6 @@ function App() {
       signInAnonymously(auth).catch(console.error);
     }
   }, [user, loadingAuth]);
-
   // Load stats from Firestore (or migrate from localStorage on first auth)
   useEffect(() => {
     if (!user || loadingAuth) return;
@@ -270,18 +419,7 @@ function App() {
       console.error('Error loading stats:', error);
     });
     return unsubscribe;
-  }, [user, loadingAuth]);
-
-  const savedDarkMode = localStorage.getItem('tickrDailyDarkMode');
-  if (savedDarkMode !== null) {
-    setDarkMode(JSON.parse(savedDarkMode));
-  }
-  const hasVisited = localStorage.getItem('tickrDailyVisited');
-  if (!hasVisited) {
-    setShowHowToPlay(true);
-    localStorage.setItem('tickrDailyVisited', 'true');
-  }
-
+  }, [user, loadingAuth, stats]);
   // Load progress if same day (only for daily) - now from Firestore
   useEffect(() => {
     if (gameMode !== 'daily' || testMode || !user || !dailyTicker || !startTime) return;
@@ -308,7 +446,6 @@ function App() {
     });
     return unsubscribe;
   }, [gameMode, testMode, user, dailyTicker, startTime, questions]);
-
   // Auto-save progress after changes (only for daily) - to Firestore
   useEffect(() => {
     if (gameMode !== 'daily' || testMode || !user || !dailyTicker || !startTime) return;
@@ -323,7 +460,6 @@ function App() {
     const progressRef = doc(db, 'users', user.uid, 'dailyProgress', today);
     setDoc(progressRef, progressToSave, { merge: true });
   }, [currentLevel, submittedAnswers, gameOver, startTime, dailyTicker, testMode, gameMode, user]);
-
   // Select daily ticker and pick questions (deterministic for non-test mode)
   useEffect(() => {
     if (!data || data.length === 0) return;
@@ -396,7 +532,6 @@ function App() {
     setQuestions(pickedQuestions);
     setStartTime(Date.now()); // Only if new game
   }, [data, testMode, gameMode, difficulty, puzzleSeed]);
-
   // Update available options for autocomplete (using debounced input)
   useEffect(() => {
     if (!debouncedInput) {
@@ -430,7 +565,6 @@ function App() {
       .slice(0,8);
     setAvailableOptions(filtered);
   }, [debouncedInput, allTickers, submittedAnswers]);
-
   // Shake animation clear
   useEffect(() => {
     if (shake) {
@@ -438,7 +572,6 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [shake]);
-
   // Fetch Quotron quotes (with error handling) - cached in state
   useEffect(() => {
     const fetchQuotes = async () => {
@@ -464,7 +597,6 @@ function App() {
     const interval = setInterval(fetchQuotes, 60000);
     return () => clearInterval(interval);
   }, []); // Empty deps: fetch once on mount, cache in state
-
   // Focus input after submit
   useEffect(() => {
     if (!gameOver && inputRef.current) {
@@ -473,90 +605,16 @@ function App() {
       }, 100);
     }
   }, [currentLevel, gameOver]);
-
-  // Batched stats save to Firestore
-  const saveStatsToStorage = useCallback((updatedStats) => {
-    if (statsSaveTimeoutRef.current) {
-      clearTimeout(statsSaveTimeoutRef.current);
-    }
-    statsSaveTimeoutRef.current = setTimeout(() => {
-      if (user) {
-        const userStatsRef = doc(db, 'users', user.uid, 'stats', 'profile');
-        setDoc(userStatsRef, { ...updatedStats, uid: user.uid, updatedAt: serverTimestamp() }, { merge: true });
-      } else {
-        // Fallback to localStorage for anon
-        localStorage.setItem('tickrDailyStats', JSON.stringify(updatedStats));
-      }
-    }, 1000); // Batch: save after 1s idle
-  }, [user]);
-
-  // Helper to process guess and get symbol for consistency
-  const processGuess = useCallback((guess) => {
-    const trimmed = guess.trim().toLowerCase();
-    const matchedTicker = allTickers.find(t => t.symbol.toLowerCase() === trimmed || t.company.toLowerCase() === trimmed);
-    if (matchedTicker) {
-      return {
-        formatted: matchedTicker.formatted,
-        symbol: matchedTicker.symbol.toLowerCase(),
-        isMatched: true
-      };
-    }
-    // Partial match for company/symbol
-    const partialMatch = allTickers.find(t =>
-      t.symbol.toLowerCase().includes(trimmed) || t.company.toLowerCase().includes(trimmed)
-    );
-    return {
-      formatted: guess.trim(),
-      symbol: partialMatch ? partialMatch.symbol.toLowerCase() : trimmed,
-      isMatched: !!partialMatch
+  // New: Keyboard shortcuts for submit/next
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Enter' && !gameOver && input.trim()) handleSubmit(e);
+      if (e.key.toLowerCase() === 'n' && gameOver && gameMode === 'unlimited') nextPuzzle();
     };
-  }, [allTickers]);
-
-  // Helper to check if guess is duplicate (using resolved symbols)
-  const isDuplicateGuess = useCallback((newSymbol) => {
-    const alreadyGuessedSymbols = submittedAnswers.map(a => {
-      // For each prior answer, resolve its symbol consistently
-      const parenIndex = a.guess.indexOf('(');
-      let priorTrimmed = parenIndex > 0 ? a.guess.substring(0, parenIndex).trim().toLowerCase() : a.guess.toLowerCase();
-      const priorProcessed = processGuess(priorTrimmed);
-      return priorProcessed.symbol;
-    });
-    return alreadyGuessedSymbols.includes(newSymbol);
-  }, [submittedAnswers, processGuess]);
-
-  // Helper to handle submission logic (refactored to reduce duplication)
-  const handleSubmission = useCallback((formattedGuess, resolvedSymbol, isCorrect) => {
-    const updatedQuestions = [...questions];
-    updatedQuestions[currentLevel].answers.push({ guess: formattedGuess, isCorrect });
-    setQuestions(updatedQuestions);
-    setSubmittedAnswers(prev => [...prev, { level: currentLevel + 1, guess: formattedGuess, isCorrect }]);
-    setInput("");
-    setAvailableOptions([]);
-    if (isCorrect || currentLevel === questions.length - 1) {
-      setGameOver(true);
-      const timeElapsed = startTime ? Math.floor((Date.now() - startTime)/1000) : 0;
-      if (isCorrect) confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-      updateStats(isCorrect, currentLevel + 1);
-      return;
-    }
-    setCurrentLevel(currentLevel + 1);
-  }, [currentLevel, questions, startTime]);
-
-  // Handle submit (refactored)
-  const handleSubmit = (e) => {
-    if (e) e.preventDefault();
-    if (gameOver || !input.trim()) return;
-    const { formatted, symbol: resolvedSymbol, isMatched } = processGuess(input);
-    if (isDuplicateGuess(resolvedSymbol)) {
-      setShake(true);
-      return;
-    }
-    const correctTicker = questions[currentLevel].correct.toUpperCase();
-    const guessSymbol = isMatched ? resolvedSymbol.toUpperCase() : resolvedSymbol.toUpperCase();
-    const isCorrect = guessSymbol === correctTicker;
-    handleSubmission(formatted, resolvedSymbol, isCorrect);
-  };
-
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+ }, [input, gameOver, gameMode, handleSubmit, nextPuzzle]);
+  // Analytics tracking
   useEffect(() => {
     if (testMode) return; // skip in test mode
     if (analyticsTrackedRef.current) return; // Track only once per session
@@ -589,77 +647,6 @@ function App() {
     };
     track();
   }, [gameMode, testMode]);
-
-  // Update stats in one place (with batched save)
-  const updateStats = async (won = false, cluesUsed = 0, timeElapsed = null) => {
-    if (testMode) return;
-    // Skip if already completed today (daily only)
-    if (gameMode === 'daily') {
-      const today = new Date().toISOString().split('T')[0];
-      const progressRef = doc(db, 'users', user.uid, 'dailyProgress', today);
-      const progressSnap = await getDoc(progressRef);
-      if (progressSnap.exists() && progressSnap.data().gameOver) {
-        console.log('Game already completed today—no stats update');
-        return;
-      }
-    }
-    // Compute timeElapsed if not provided
-    if (timeElapsed === null) {
-      timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
-    }
-    const today = new Date().toISOString().split('T')[0];
-    setStats(prev => {
-      const newDailyGuessDist = { ...prev.dailyGuessDistribution };
-      const newUnlimitedGuessDist = { ...prev.unlimitedGuessDistribution };
-      const newDailyHistory = { ...prev.dailyPlayHistory };
-      // Mode-specific updates
-      if (gameMode === 'daily') {
-        if (won) {
-          newDailyGuessDist[cluesUsed] = (newDailyGuessDist[cluesUsed] || 0) + 1;
-        } else {
-          newDailyGuessDist.fail = (newDailyGuessDist.fail || 0) + 1;
-        }
-        newDailyHistory[today] = { won, clues: cluesUsed, time: timeElapsed };
-      } else { // unlimited
-        if (won) {
-          newUnlimitedGuessDist[cluesUsed] = (newUnlimitedGuessDist[cluesUsed] || 0) + 1;
-        } else {
-          newUnlimitedGuessDist.fail = (newUnlimitedGuessDist.fail || 0) + 1;
-        }
-      }
-      const newDailyCurrentStreak = gameMode === 'daily' ? (won ? prev.dailyCurrentStreak + 1 : 0) : prev.dailyCurrentStreak;
-      const newDailyMaxStreak = Math.max(prev.dailyMaxStreak, newDailyCurrentStreak);
-      const updated = {
-        ...prev,
-        // Daily
-        dailyGamesPlayed: gameMode === 'daily' ? prev.dailyGamesPlayed + 1 : prev.dailyGamesPlayed,
-        dailyGamesWon: gameMode === 'daily' && won ? prev.dailyGamesWon + 1 : prev.dailyGamesWon,
-        dailyCurrentStreak: newDailyCurrentStreak,
-        dailyMaxStreak: newDailyMaxStreak,
-        dailyGuessDistribution: gameMode === 'daily' ? newDailyGuessDist : prev.dailyGuessDistribution,
-        dailyPlayHistory: gameMode === 'daily' ? newDailyHistory : prev.dailyPlayHistory,
-        dailyTotalTime: gameMode === 'daily' ? prev.dailyTotalTime + timeElapsed : prev.dailyTotalTime,
-        // Unlimited
-        unlimitedCompletions: gameMode === 'unlimited' ? prev.unlimitedCompletions + 1 : prev.unlimitedCompletions,
-        unlimitedGuessDistribution: gameMode === 'unlimited' ? newUnlimitedGuessDist : prev.unlimitedGuessDistribution,
-        unlimitedTotalTime: gameMode === 'unlimited' ? prev.unlimitedTotalTime + timeElapsed : prev.unlimitedTotalTime,
-        // Shared
-        overallTotalTime: prev.overallTotalTime + timeElapsed,
-        overallFastestTime: won && (!prev.overallFastestTime || timeElapsed < prev.overallFastestTime) ? timeElapsed : prev.overallFastestTime,
-      };
-      saveStatsToStorage(updated); // Batched save
-      return updated;
-    });
-    // Update Firebase daily stats (only daily)
-    if (gameMode === 'daily') {
-      try {
-        await updateDailyStats({ won });
-      } catch (err) {
-        console.error('Error updating daily Firebase stats:', err);
-      }
-    }
-  };
-
   // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
@@ -668,14 +655,12 @@ function App() {
       }
     };
   }, []);
-
   // Auth handlers
   useEffect(() => {
     if (createError || signInError || googleError) {
       setAuthError(createError?.message || signInError?.message || googleError?.message || 'An auth error occurred');
     }
   }, [createError, signInError, googleError]);
-
   const handleCreateAccount = async () => {
     if (createPassword.length < 6) {
       setAuthError('Password must be at least 6 characters');
@@ -689,7 +674,6 @@ function App() {
       setAuthError(err.message);
     }
   };
-
   const handleSignIn = async () => {
     try {
       await signInWithEmailAndPassword(loginEmail, loginPassword);
@@ -699,7 +683,6 @@ function App() {
       setAuthError(err.message);
     }
   };
-
   const handleGoogleSignIn = async () => {
     try {
       await signInWithGoogle(googleProvider);
@@ -709,19 +692,24 @@ function App() {
       setAuthError(err.message);
     }
   };
-
   const handleLogout = async () => {
     await signOut(auth);
   };
-
   const isAnon = user && !user.email;
-
   if (loadingAuth || loading) {
-    return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' }}>
-      <div style={{ textAlign: 'center', color: '#94a3b8' }}>Loading...</div>
+    return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: bgColor }}>
+      <div style={{ textAlign: 'center', color: mutedColor }}>Loading...</div>
     </div>;
   }
-
+  if(loading || !dailyTicker || !questions.length){
+    return <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background: bgColor }}>
+      <div style={{ textAlign:'center', color:mutedColor}}>Loading Market Data...</div>
+    </div>;
+  }
+  const todayDate = new Date().toLocaleDateString('en-US',{ weekday:'long', month:'long', day:'numeric', year:'numeric' });
+  const isWinner = submittedAnswers.some(a=>a.isCorrect);
+  const numClues = questions.length;
+  const isDailyCompleted = gameOver && gameMode === 'daily' && !testMode;
   // Share results
   const shareResults = () => {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
@@ -758,7 +746,6 @@ function App() {
   };
   const getAchievements = () => {
     const achievements = [];
-    const dailyDist = stats.dailyGuessDistribution;
     const unlimitedDist = stats.unlimitedGuessDistribution;
     // Daily-specific
     if (stats.dailyCurrentStreak >= 5) achievements.push({ icon: '🔥', name: 'Daily 5 Streak', desc: 'Win 5 daily puzzles in a row' });
@@ -821,16 +808,7 @@ function App() {
     setQuestions(pickedQuestions);
     setStartTime(Date.now());
   };
-  // Next puzzle for unlimited
-  const nextPuzzle = () => {
-    setGameOver(false);
-    setCurrentLevel(0);
-    setSubmittedAnswers([]);
-    setInput("");
-    setAvailableOptions([]);
-    // Trigger re-selection via dep
-    setPuzzleSeed(prev => prev + 1);
-  };
+  // GuessDistChart component
   const GuessDistChart = ({ dist, maxClues }) => (
     <>
       {Array.from({ length: maxClues }, (_, i) => {
@@ -936,22 +914,6 @@ function App() {
       )}
     </div>
   );
-
-  if(loading || !dailyTicker || !questions.length){
-    return <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background: 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' }}>
-      <div style={{ textAlign:'center', color:'#94a3b8'}}>Loading Market Data...</div>
-    </div>;
-  }
-  const todayDate = new Date().toLocaleDateString('en-US',{ weekday:'long', month:'long', day:'numeric', year:'numeric' });
-  const isWinner = submittedAnswers.some(a=>a.isCorrect);
-  const numClues = questions.length;
-  const bgColor = darkMode ? 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' : 'linear-gradient(135deg,#f8fafc 0%,#e2e8f0 50%,#cbd5e1 100%)';
-  const textColor = darkMode ? '#e2e8f0' : '#1e293b';
-  const mutedColor = darkMode ? '#94a3b8' : '#64748b';
-  const cardBg = darkMode ? 'rgba(15,23,42,0.7)' : 'rgba(255,255,255,0.8)';
-  const borderColor = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
-  const isDailyCompleted = gameOver && gameMode === 'daily' && !testMode;
-
   return (
     <div style={{ minHeight:'100vh', background: bgColor, display:'flex', flexDirection:'column', alignItems:'center', padding:'2rem 1rem' }}>
       {/* Auth Banner if anon */}
@@ -1227,7 +1189,6 @@ function App() {
             </div>
           </div>
         )}
-
         {/* Stats Modal (updated with totalPuzzles card) */}
         {showStats && (
           <div
@@ -1842,5 +1803,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
