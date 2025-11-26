@@ -37,7 +37,6 @@ const db = getFirestore();
 const analytics = getAnalytics(app);
  async function updateDailyStats({ won = false }) {
   const today = new Date().toISOString().split("T")[0];
-
   // Always produce a valid 2-segment path: analytics / daily_2025-11-24
   const docRef = doc(db, "analytics", `daily_${today}`);
   try {
@@ -111,7 +110,6 @@ function App() {
     overallTotalTime: 0,
     achievements: [], // Populate via getAchievements (update it to check both distros)
   });
-
   // New states for modes
   const [gameMode, setGameMode] = useState('daily'); // 'daily' | 'unlimited'
   const [difficulty, setDifficulty] = useState('medium'); // 'easy' | 'medium' | 'hard'
@@ -512,7 +510,6 @@ useEffect(() => {
   };
   track();
 }, [gameMode, testMode]);
-
 // Update stats in one place
 const updateStats = async (won = false, cluesUsed = 0, timeElapsed = null) => {
   if (testMode) return;
@@ -540,7 +537,6 @@ const updateStats = async (won = false, cluesUsed = 0, timeElapsed = null) => {
     const newDailyGuessDist = { ...prev.dailyGuessDistribution };
     const newUnlimitedGuessDist = { ...prev.unlimitedGuessDistribution };
     const newDailyHistory = { ...prev.dailyPlayHistory };
-
     // Mode-specific updates
     if (gameMode === 'daily') {
       if (won) {
@@ -556,10 +552,8 @@ const updateStats = async (won = false, cluesUsed = 0, timeElapsed = null) => {
         newUnlimitedGuessDist.fail = (newUnlimitedGuessDist.fail || 0) + 1;
       }
     }
-
     const newDailyCurrentStreak = gameMode === 'daily' ? (won ? prev.dailyCurrentStreak + 1 : 0) : prev.dailyCurrentStreak;
     const newDailyMaxStreak = Math.max(prev.dailyMaxStreak, newDailyCurrentStreak);
-
     const updated = {
       ...prev,
       // Daily
@@ -595,8 +589,6 @@ const shareResults = () => {
   const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
   const won = submittedAnswers.some(a => a.isCorrect);
   const cluesUsed = won ? submittedAnswers.length : questions.length;
-  const modeText = gameMode === 'daily' ? 'Daily' : `${difficulty} Unlimited`;
-  const text = `TickrDaily ${modeText} ${new Date().toLocaleDateString()}\n${emoji} (${cluesUsed}/${questions.length})\n\nPlay: ${window.location.href}`;
   const text = `TickrDaily ${new Date().toLocaleDateString()}\n${emoji} (${cluesUsed}/${questions.length})\n\nPlay: ${window.location.href}`;
   if (navigator.share) {
     navigator.share({ text }).catch(() => {
@@ -608,13 +600,10 @@ const shareResults = () => {
     alert('Results copied to clipboard!');
   }
 };
- const shareToTwitter = () => {
 const shareToTwitter = () => {
   const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
   const won = submittedAnswers.some(a => a.isCorrect);
   const cluesUsed = won ? submittedAnswers.length : questions.length;
-  const modeText = gameMode === 'daily' ? 'Daily' : `${difficulty} Unlimited`;
-  const text = `TickrDaily ${modeText} ${new Date().toLocaleDateString()}\n${emoji} (${cluesUsed}/${questions.length})\n\nPlay: ${window.location.href}`;
   const text = `TickrDaily ${new Date().toLocaleDateString()}\n${emoji} (${cluesUsed}/${questions.length})\n\nPlay: ${window.location.href}`;
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
   window.open(twitterUrl, '_blank');
@@ -816,6 +805,24 @@ const shareToTwitter = () => {
   const mutedColor = darkMode ? '#94a3b8' : '#64748b';
   const cardBg = darkMode ? 'rgba(15,23,42,0.7)' : 'rgba(255,255,255,0.8)';
   const borderColor = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+  const closeButtonStyle = {
+    position: 'fixed',
+    top: '1rem',
+    right: '1rem',
+    background: cardBg,
+    border: 'none',
+    color: textColor,
+    fontSize: '1.5rem',
+    cursor: 'pointer',
+    width: '40px',
+    height: '40px',
+    borderRadius: '50%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 101,
+    transition: 'all 0.3s ease'
+  };
   return (
     <div style={{ minHeight:'100vh', background: bgColor, display:'flex', flexDirection:'column', alignItems:'center', padding:'2rem 1rem' }}>
       {/* Quotron */}
@@ -1000,6 +1007,13 @@ const shareToTwitter = () => {
             aria-modal="true"
             aria-label="Statistics Modal"
           >
+            <button
+              onClick={() => setShowStats(false)}
+              style={closeButtonStyle}
+              aria-label="Close Statistics Modal"
+            >
+              ×
+            </button>
             <div
               style={{
                 background: darkMode ? 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))' : 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95))',
@@ -1015,28 +1029,6 @@ const shareToTwitter = () => {
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button
-                onClick={() => setShowStats(false)}
-                style={{
-                  position:'absolute',
-                  top:'1rem',
-                  right:'1rem',
-                  background:cardBg,
-                  border:'none',
-                  color:textColor,
-                  fontSize:'1.5rem',
-                  cursor:'pointer',
-                  width:'40px',
-                  height:'40px',
-                  borderRadius:'50%',
-                  display:'flex',
-                  alignItems:'center',
-                  justifyContent:'center'
-                }}
-                aria-label="Close Statistics Modal"
-              >
-                ×
-              </button>
               <h2 style={{ fontSize:'2rem', fontWeight:'800', color:textColor, marginBottom:'2rem', textAlign:'center', display:'flex', alignItems:'center', justifyContent:'center', gap:'0.75rem' }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="18" y1="20" x2="18" y2="10"></line>
@@ -1260,6 +1252,13 @@ const shareToTwitter = () => {
             aria-modal="true"
             aria-label="How to Play Modal"
           >
+            <button
+              onClick={() => setShowHowToPlay(false)}
+              style={closeButtonStyle}
+              aria-label="Close How to Play Modal"
+            >
+              ×
+            </button>
             <div
               style={{
                 background: darkMode ? 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))' : 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95))',
@@ -1273,28 +1272,6 @@ const shareToTwitter = () => {
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button
-                onClick={() => setShowHowToPlay(false)}
-                style={{
-                  position:'absolute',
-                  top:'1rem',
-                  right:'1rem',
-                  background:cardBg,
-                  border:'none',
-                  color:textColor,
-                  fontSize:'1.5rem',
-                  cursor:'pointer',
-                  width:'40px',
-                  height:'40px',
-                  borderRadius:'50%',
-                  display:'flex',
-                  alignItems:'center',
-                  justifyContent:'center'
-                }}
-                aria-label="Close How to Play Modal"
-              >
-                ×
-              </button>
               <h2 style={{ fontSize:'2rem', fontWeight:'800', color:textColor, marginBottom:'1.5rem', textAlign:'center' }}>
                 ❓ How to Play
               </h2>
