@@ -152,41 +152,7 @@ useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [input, gameOver, gameMode]);
-  // Load stats from localStorage (updated for totalPuzzles)
-  useEffect(() => {
-    try {
-      const savedStats = localStorage.getItem('tickrDailyStats');
-      if (savedStats) {
-        const parsed = JSON.parse(savedStats);
-        setStats({
-          dailyGamesPlayed: parsed.gamesPlayed || 0,
-          dailyGamesWon: parsed.gamesWon || 0,
-          dailyCurrentStreak: parsed.currentStreak || 0,
-          dailyMaxStreak: parsed.maxStreak || 0,
-          dailyGuessDistribution: parsed.guessDistribution || { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, fail: 0 },
-          dailyPlayHistory: parsed.playHistory || {},
-          dailyTotalTime: parsed.totalTime || 0, // Old total was mixed; approximate as daily
-          unlimitedCompletions: parsed.totalPuzzles || 0, // Map old totalPuzzles to unlimited
-          unlimitedGuessDistribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, fail: 0 }, // Reset if no old data
-          unlimitedTotalTime: 0, // Start fresh
-          overallFastestTime: parsed.fastestTime,
-          overallTotalTime: parsed.totalTime || 0,
-          achievements: [],
-        });
-      }
-      const savedDarkMode = localStorage.getItem('tickrDailyDarkMode');
-      if (savedDarkMode !== null) {
-        setDarkMode(JSON.parse(savedDarkMode));
-      }
-      const hasVisited = localStorage.getItem('tickrDailyVisited');
-      if (!hasVisited) {
-        setShowHowToPlay(true);
-        localStorage.setItem('tickrDailyVisited', 'true');
-      }
-    } catch (e) {
-      console.error('Error loading stats:', e);
-    }
-  }, []);
+
   // Load local JSON data
   useEffect(() => {
     Promise.all([
