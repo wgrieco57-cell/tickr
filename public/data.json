@@ -5158,392 +5158,391 @@
 ]
 }
 },
+ {
+    "ticker": "CPRT",
+    "company": "Copart Inc.",
+    "sector": "Industrials",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I am the online vehicle auction platform salvaging total-losses for global buyers.",
+        "My salvage yards stage cars for VB3 inspections and lot postings swiftly.",
+        "I run live webcast auctions where insurers and dealers bid up salvage.",
+        "I ship containers to 200 countries' rebuilding markets through my export logistics.",
+        "As a remarketing innovator, I turn wrecks into economic recoveries."
+      ],
+      "level_2": [
+        "My Copart 360 photos capture 80 angles for remote condition assessments.",
+        "I provide virtual buying tools that zoom interiors for cross-border due diligence.",
+        "I forecast repair costs using salvage analytics and damage code algorithms.",
+        "My broker networks connect U.S. inventory to international rebuilders.",
+        "I grow revenue through service fees, lot sales, and storage volume."
+      ],
+      "level_3": [
+        "I began in California in 1982 as a junkyard and digitized auctions in the 1990s.",
+        "From my Dallas HQ, I oversee 200 locations across North America and Europe.",
+        "I added ATVs to auto salvage with my 2019 buyout of National Powersports.",
+        "My 1990s online pivot crushed inefficiencies of physical auction lanes.",
+        "I rewarded scale with stock splits as I grew from regional to global remarketing."
+      ],
+      "level_4": [
+        "My OASIS platform integrates with insurers for seamless claim uploads.",
+        "I let buyers bid in real-time from phones through my mobile app.",
+        "I use AI pricing models to value salvage based on regional repair ecosystems.",
+        "I consolidate shipments in export yards for cost-effective ocean freights.",
+        "I recycle 90% of vehicle materials sustainably through green initiatives."
+      ],
+      "level_5": [
+        "I flip 2 million vehicles yearly through my global auction cart.",
+        "I host 11,000 listers staging auctions in 11 countries' salvage streams.",
+        "I birthed online auto’s digital auction dawn from my 1982 Folsom yard.",
+        "Johnson’s vision scaled my yards into virtual global marketplaces.",
+        "From Dallas to Dubai, I dismantle dents into dollars efficiently."
+      ]
+    }
+  },
+  {
+    "ticker": "ODFL",
+    "company": "Old Dominion Freight Line Inc.",
+    "sector": "Industrials",
+    "difficulty": "hard",
+    "questions": {
+      "level_1": [
+        "I am the LTL carrier optimizing less-than-truckload shipments with linehaul efficiency.",
+        "My breakbulk terminals consolidate freight for regional density and on-time deliveries.",
+        "I balance transit times with reliable door-to-door LTL rates.",
+        "I rush priority pallets through expedited options at dedicated service centers.",
+        "As a logistics integrator, I connect 260 terminals for seamless coverage."
+      ],
+      "level_2": [
+        "My hub-and-spoke network minimizes empty miles in inter-regional hauls.",
+        "I track shipments from pickup to proof of delivery with electronic PODs.",
+        "I guarantee service levels, refunding delays against my 98% on-time metrics.",
+        "I optimize inbound supply chains for just-in-time manufacturing.",
+        "I layer fuel surcharges and accessorials atop base linehaul tariffs."
+      ],
+      "level_3": [
+        "I began in Virginia in 1934, scaling LTL’s regional model nationally.",
+        "From my Thomasville HQ, I dispatch 10,000 tractors across 50 states.",
+        "I honed density in Southeast corridors through rivalry with Pitt Ohio in the 2010s.",
+        "I expanded beyond trucking in the 1980s with deregulation unlocking intermodal growth.",
+        "I earned dividend aristocrat status through compounding service center investments."
+      ],
+      "level_4": [
+        "My SmartWay certified fleets cut emissions with aero kits and idle tech.",
+        "I partner with rail using container-on-flatcar for long-haul cost savings.",
+        "I buffer peak seasons with warehouse cross-docks and surge capacity.",
+        "I trace hazmat shipments in real time with RFID compliance dashboards.",
+        "I extend e-commerce fulfillment into last-mile for DTC parcel volumes."
+      ],
+      "level_5": [
+        "I log 4 billion miles yearly across North America’s LTL web.",
+        "I employ 23,000 drivers navigating 260 docks in my network.",
+        "I birthed national density from my 1934 Richlands route.",
+        "Garrett’s vision built my terminals into transit time’s unbeatable moat.",
+        "From Thomasville to Toronto, I haul 2 million shipments weekly."
+      ]
+    }
+  },
 {
-"ticker": "CPRT",
-"company": "Copart Inc.",
-"sector": "Industrials",
-"difficulty": "medium",
-"questions": {
-"level_1": [
-"I'm the online vehicle auction platform salvaging total-losses for global buyers.",
-"Salvage yards stage cars for VB3 inspections and lot postings swiftly.",
-"Live webcast auctions bid up salvage from insurers and dealers.",
-"Export logistics ship containers to 200 countries' rebuilding markets.",
-"As a remarketing innovator, I turn wrecks into economic recoveries."
-],
-"level_2": [
-"Copart 360 photos capture 80 angles for remote condition assessments.",
-"Virtual buying tools zoom interiors for cross-border due diligence.",
-"Salvage analytics forecast repair costs via damage code algorithms.",
-"Broker networks connect U.S. inventory to international rebuilders.",
-"Service fees, lot sales, and storage compound on volume growth."
-],
-"level_3": [
-"California's 1982 junkyard roots digitized auctions in the 1990s.",
-"Dallas's HQ oversees 200 locations spanning North America and Europe.",
-"National Powersports' 2019 buyout added ATVs to auto salvage.",
-"1990s' online pivot crushed physical lane inefficiencies dramatically.",
-"Stock splits rewarded scale from regional to global remarketing."
-],
-"level_4": [
-"OASIS platform integrates with insurers for seamless claim uploads.",
-"Mobile app bids real-time from phones in global auction theaters.",
-"AI pricing models value salvage based on regional repair ecosystems.",
-"Export yards consolidate shipments for cost-effective ocean freights.",
-"Green initiatives recycle 90% of vehicle materials sustainably."
-],
-"level_5": [
-"This Nasdaq wreck wizard's CPRT cart flips 2 million vehicles yearly.",
-"11,000 listers stage auctions in 11 countries' salvage streams.",
-"1982's Folsom yard birthed online auto's digital auction dawn.",
-"Johnson's vision scaled yards to yards' virtual global marketplaces.",
-"Yards from Dallas to Dubai dismantle dents into dollars efficiently."
-]
-}
-},
+    "ticker": "CTAS",
+    "company": "Cintas Corporation",
+    "sector": "Industrials",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I am the uniform and facility services provider outfitting workforces with branded apparel.",
+        "I run rental programs that launder and deliver fresh uniforms weekly.",
+        "I stock AEDs and first aid kits for OSHA-compliant workplaces.",
+        "I refresh high-traffic areas hygienically with mat and linen services.",
+        "As a B2B essential, I embed safety and image in daily operations."
+      ],
+      "level_2": [
+        "I embroider logos on polos for fleet branding and compliance.",
+        "I dispense towels and sanitizers through automated restroom cabinets.",
+        "I trap dirt at entrances with floor mats, reducing slips and cleaning costs.",
+        "I inspect fire extinguishers with digital tagging and reporting.",
+        "I optimize service routes with GPS-enabled subscription models."
+      ],
+      "level_3": [
+        "I began in Ohio in 1929 as a rag route and evolved into a national rental network.",
+        "From my Mason HQ, I manage 600 facilities across the U.S. and Canada.",
+        "I doubled my industrial market share with G&K’s 2017 merger.",
+        "I launched flame-resistant uniforms in the 1960s to protect welders.",
+        "I reflect disciplined capital growth through family-controlled share repurchases."
+      ],
+      "level_4": [
+        "I supply cleanroom garments for sterile pharma and aerospace environments.",
+        "I shred sensitive documents with NAID-certified destruction chains.",
+        "I certify forklift and hazmat handling through safety training portals.",
+        "I cut fuel 20% with EcoDrive telematics and EV pilots.",
+        "I brand hospitality with monogrammed linens through private label towels."
+      ],
+      "level_5": [
+        "I outfit 1 million associates daily with my uniforms.",
+        "I deliver to 1 million stops in North America through 46,000 route sales reps.",
+        "I birthed recurring B2B revenue from my 1929 laundry startup.",
+        "Hollan’s vision scaled my rag routes into essential workplace ecosystems.",
+        "From Reno to Richmond, I press 100 million garments yearly."
+      ]
+    }
+  },
+  {
+    "ticker": "VRSK",
+    "company": "Verisk Analytics Inc.",
+    "sector": "Industrials",
+    "difficulty": "hard",
+    "questions": {
+      "level_1": [
+        "I am the risk analytics provider modeling catastrophes and claims for insurers worldwide.",
+        "I simulate hurricanes’ wind speeds and flood depths probabilistically through AIR Worldwide.",
+        "I predict fraud with graph analytics on policyholder networks using ISO Claims.",
+        "I price repairs with localized labor and material databases through Xactimate.",
+        "As a data oracle, I illuminate uncertainties for underwriting and reserves."
+      ],
+      "level_2": [
+        "I blend catastrophe models with portfolio risk aggregations through Touchstone.",
+        "I detect fraud patterns in 1 trillion medical procedure codes with ClaimSearch.",
+        "I value homes with AVMs and comps using CoreLogic’s property data.",
+        "I forecast energy transition disruptions through Wood Mackenzie’s insights.",
+        "I feed real-time insights into enterprise dashboards via subscription APIs."
+      ],
+      "level_3": [
+        "I began in New Jersey in 1971 with insurance data roots that scaled globally.",
+        "From my Jersey City HQ, I fuse ISO’s claims with AIR’s catastrophe expertise.",
+        "I layered energy analytics into insurance risk with my 2015 Wood Mac acquisition.",
+        "I birthed auto claims’ longitudinal tracking with the 1980s CLUE database.",
+        "I unlocked focused growth capital with my 2009 spin-off from Moody’s."
+      ],
+      "level_4": [
+        "I deploy drones for post-event damage assessments through Cat Response teams.",
+        "I flag anomalies in telematics driving behaviors with FraudCloud’s machine learning.",
+        "I map wildfire burn scars for reserves using Precise satellite imagery.",
+        "I estimate roof pitches for solar quoting with EagleView’s aerials.",
+        "I project insured losses from tipping point scenarios with climate analytics."
+      ],
+      "level_5": [
+        "I scan $50B in annual premiums with my risk radar.",
+        "I model quadrillions of scenarios in virtual catastrophe events with 8,000 quants.",
+        "I standardized P&C data sharing protocols in 1971 through ISO.",
+        "Geller’s vision wove claims into catastrophe predictive analytics.",
+        "From Boston to London, I forecast perils’ probabilistic futures."
+      ]
+    }
+  },
+ {
+    "ticker": "MSCI",
+    "company": "MSCI Inc.",
+    "sector": "Financials",
+    "difficulty": "hard",
+    "questions": {
+      "level_1": [
+        "I benchmark trillions in assets worldwide with my indexes and ESG analytics.",
+        "My World Index tracks 1,500 large-cap companies across 23 developed markets.",
+        "Through RiskMetrics, I model portfolio tail risks using VaR.",
+        "I value illiquid assets with my Private Capital Solutions platform.",
+        "I shape global allocations with my factor and climate data."
+      ],
+      "level_2": [
+        "My ACWI ex-US index captures emerging growth, even with currency-hedged variants.",
+        "My Barra engine decomposes returns into multi-factor style attributions.",
+        "I score companies on ESG controversies and carbon footprints with quantitative ratings.",
+        "In my Analytics Lab, I backtest strategies using historical index reconstitutions.",
+        "I deliver real-time factor tilts and peer benchmarks through subscription terminals."
+      ],
+      "level_3": [
+        "My roots trace back to 1968 in New York, evolving from Capital International benchmarks.",
+        "From my HQ, I now innovate AI-driven index construction methodologies.",
+        "My 2004 acquisition of Barra layered risk analytics onto my factor models.",
+        "In the 1990s, I launched the MSCI Standard, making global cap-weighted tracking ubiquitous.",
+        "My 2007 IPO fueled ESG’s integration into mainstream asset management."
+      ],
+      "level_4": [
+        "I visualize carbon budgets under Paris-aligned scenarios with Climate Search.",
+        "I design custom indexes that slice sectors with thematic overlays like cyber or water.",
+        "I monitor private assets by aggregating NAVs from 5,000 PE and VC funds.",
+        "I track REITs and direct property comparables with my real estate indexes.",
+        "My factor models now incorporate machine learning for dynamic beta estimation."
+      ],
+      "level_5": [
+        "I measure $15 trillion in benchmarks through my MSCI mosaic.",
+        "My 3,500 quants reconstitute indexes quarterly, steering trillions in passive flows.",
+        "Since 1968, I’ve unified fragmented regional benchmarks into global standards.",
+        "McQuown’s vision fused my market proxies with Barra’s risk analytics.",
+        "From Mumbai to Tokyo, I tailor emerging market indexes to local nuances."
+      ]
+    }
+  },
+  {
+    "ticker": "ICE",
+    "company": "Intercontinental Exchange Inc.",
+    "sector": "Financials",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I operate exchanges that clear derivatives, equities, and fixed income globally.",
+        "My NYSE auctions match orders in hybrid electronic and floor formats.",
+        "I trade Brent, gasoil, and soft commodities through ICE Futures with central clearing.",
+        "I digitize mortgage-backed securities pools to enhance secondary market liquidity.",
+        "As market infrastructure, I mitigate counterparty risks with CCPs."
+      ],
+      "level_2": [
+        "I route interest rate swaps to SEFs for regulatory compliance.",
+        "I sell benchmark curves and reference rates through my Fixed Income & Data business.",
+        "I secure digital assets with institutional crypto custody solutions.",
+        "My DataLake aggregates tick data for algo backtesting and surveillance.",
+        "I earn revenue through transaction fees, clearing margins, and data subscriptions."
+      ],
+      "level_3": [
+        "I began in Georgia in 2000 as an energy trader building an electronic futures platform.",
+        "From my Atlanta HQ, I oversee NYSE’s 2,400 listed firms raising capital.",
+        "My 2013 merger with NYSE Euronext integrated continental equity venues.",
+        "My 2005 buyout of NYBOT added agricultural and soft commodities to my core.",
+        "My 2005 public debut scaled me from niche to global infrastructure."
+      ],
+      "level_4": [
+        "I streamline loan pipelines digitally with Black Knight’s origination software.",
+        "I administer LIBOR successor rates for smooth benchmark transitions.",
+        "I list BTC and ETH on crypto trading venues with 24/7 surveillance.",
+        "I host colocation data centers for low-latency HFT strategies.",
+        "I monitor wash trades in real time with RegTech compliance tools."
+      ],
+      "level_5": [
+        "I process $1 quadrillion in notional value yearly through my ICE cube of venues.",
+        "I host 25,000 listers executing 4 billion contracts across 50 venues.",
+        "I birthed electronic crude’s benchmark era in 2000 as IntercontinentalEnergy.",
+        "Sprecher’s vision fused futures trading with equities’ auction traditions.",
+        "My servers in Mahwah and Basildon pulse markets with millisecond precision."
+      ]
+    }
+  },
+  {
+    "ticker": "AON",
+    "company": "Aon plc",
+    "sector": "Financials",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I broker risk solutions and human capital strategies worldwide.",
+        "I place reinsurance capacity for carriers exposed to catastrophic risks.",
+        "I optimize self-funded health plans with benefits consulting.",
+        "I quantify cyber exposures to ransomware and supply chain hacks.",
+        "I align insurance with strategic resilience programs as a trusted advisor."
+      ],
+      "level_2": [
+        "I embed insurance into e-commerce checkouts through Affinity solutions.",
+        "I model DC outcomes with longevity swaps via Mercer’s wealth platforms.",
+        "I upskill workforces using AI-driven talent strategies.",
+        "I stress-test property books under RCP scenarios with climate analytics.",
+        "I diversify revenue streams through fee-based consulting and brokerage commissions."
+      ],
+      "level_3": [
+        "I scaled Ryan’s retail into global reinsurance through a 1982 London merger.",
+        "From my London HQ, I fuse Willis’s aviation with Towers Watson’s pensions expertise.",
+        "My 2016 Willis buyout added marine and energy specialties.",
+        "I unlocked alternative risk transfers in the 1980s captive era.",
+        "I optimized tax efficiency with an Irish domicile after inversion."
+      ],
+      "level_4": [
+        "I pool cat premiums for swift parametric triggers through Aon Re’s cat fund.",
+        "I outsource CIO functions for endowments via Mercer Invest’s OCIO.",
+        "I bundle cyber solutions with D&O and incident response retainers.",
+        "I predict claims using wearable biometrics through Health IQ analytics.",
+        "I integrate ESG advisory with fiduciary duties for impact investing."
+      ],
+      "level_5": [
+        "I broker $100 billion in premiums across 200 countries with data-driven placements.",
+        "I birthed broking’s global scale playbook through the 1982 Alexander merger.",
+        "Ryan’s vision wove retail with reinsurance’s capacity conduits.",
+        "I navigate probabilistic perils from offices in Singapore and Dubai."
+      ]
+    }
+  },
+  {
+    "ticker": "STZ",
+    "company": "Constellation Brands Inc.",
+    "sector": "Consumer Staples",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I import premium Mexican beers and wines as a global powerhouse.",
+        "My Corona Extra refreshes beachgoers with its lime ritual.",
+        "My Modelo Especial dominates import beer’s market share with bold flavors.",
+        "My wine portfolio spans Robert Mondavi to Kim Crawford.",
+        "I elevate occasions with crafted libations as a high-end curator."
+      ],
+      "level_2": [
+        "I age Casa Noble tequilas in French oak for sipping smoothness.",
+        "I blend Fresca Mixed RTDs with grapefruit and vodka for convenience.",
+        "I ferment Prisoner Wine’s bold reds in stainless steel for fruit-forward profiles.",
+        "I secure shelf space in 40 states through my distribution arms.",
+        "I drive beer and wine volumes through depletions and A&P investments."
+      ],
+      "level_3": [
+        "I began in 1945 as a New York juice startup before pivoting to beer imports.",
+        "From my Victor, NY HQ, I brew innovation in Corona’s U.S. production.",
+        "I diversified beyond imports with Ballast Point’s 2015 craft buyout.",
+        "I launched Svedka vodka RTDs in the 1990s, fueling flavored category growth.",
+        "My stock surges track seasonal beer depletions each summer."
+      ],
+      "level_4": [
+        "I double-barrel High West rye whiskeys for complex spice notes.",
+        "I age Meiomi’s pinot noir sur lie for creamy coastal textures.",
+        "I ferment Pacifico Clara’s lager with adjunct rice for lightness.",
+        "I infuse Svedka cocktails with botanicals for millennial twists.",
+        "I refocus on premium core brands after divesting craft ventures."
+      ],
+      "level_5": [
+        "I toast 40 million cases quarterly as STZ’s NYSE pour master.",
+        "I stock shelves in 80 countries through 10,000 distributors.",
+        "I birthed Mexican beer’s U.S. dynasty from 1945’s Canandaigua wine roots.",
+        "Sands scaled Corona from imports to U.S. brewing under my vision.",
+        "I brew 10 million barrels yearly from facilities in Nava and Obregón."
+      ]
+    }
+  },
 {
-"ticker": "ODFL",
-"company": "Old Dominion Freight Line Inc.",
-"sector": "Industrials",
-"difficulty": "hard",
-"questions": {
-"level_1": [
-"I'm the LTL carrier optimizing less-than-truckload shipments with linehaul efficiency.",
-"Breakbulk terminals consolidate freight for regional density and on-time deliveries.",
-"LTL rates balance transit times with door-to-door service reliability.",
-"Expedited options rush priority pallets via dedicated service centers.",
-"As a logistics integrator, I network 260 terminals for seamless coverage."
-],
-"level_2": [
-"OD Network's hub-and-spoke minimizes empty miles in inter-regional hauls.",
-"Electronic PODs track shipments from pickup to proof of delivery.",
-"Guaranteed service levels refund delays in 98% on-time metrics.",
-"Supply chain consulting optimizes inbound for just-in-time manufacturing.",
-"Fuel surcharges and accessorials layer atop base linehaul tariffs."
-],
-"level_3": [
-"Virginia's 1934 startup scaled LTL's regional model nationally.",
-"Thomasville's HQ dispatches 10,000 tractors across 50 states.",
-"Pitt Ohio's 2010s rivalry honed density in Southeast corridors.",
-"1980s' deregulation unlocked intermodal expansions beyond trucking.",
-"Dividend aristocrat status reflects compounding service center investments."
-],
-"level_4": [
-"SmartWay certified fleets cut emissions with aero kits and idle tech.",
-"Container on flatcar partners rail for long-haul cost savings.",
-"Warehouse cross-docks buffer peak seasons with surge capacity.",
-"RFID tagging traces hazmat in real-time compliance dashboards.",
-"E-commerce fulfillment arms last-mile for DTC parcel volumes."
-],
-"level_5": [
-"This Nasdaq truck titan' ODFL odometer logs 4 billion miles yearly.",
-"23,000 drivers navigate 260 docks in North America's LTL web.",
-"1934's Richlands route birthed regional carrier's national density.",
-"Garrett's vision built terminals into transit time's unbeatable moat.",
-"Fleets from Thomasville to Toronto haul 2 million shipments weekly."
-]
+  "ticker": "EL",
+  "company": "The Estee Lauder Companies Inc.",
+  "sector": "Consumer Staples",
+  "difficulty": "medium",
+  "questions": {
+    "level_1": [
+      "I am the prestige beauty conglomerate crafting skincare, makeup, and fragrances for luxury.",
+      "My Clinique regimens are dermatologist-tested to hydrate with hypoallergenic formulas.",
+      "My MAC artistry palettes empower bold lips and smoky eyes.",
+      "My La Mer creme restores skin with sea-sourced miracle broth.",
+      "As a glamour curator, I elevate routines with science-backed indulgence."
+    ],
+    "level_2": [
+      "My Origins serums soothe skin with plant-powered gin zing adaptogen blends.",
+      "My Bobbi Brown gel eyeliners define eyes with smudge-proof precision.",
+      "My Jo Malone colognes layer lime basil for bespoke scent signatures.",
+      "My Estee Lauder night repair revives skin with peptide-packed elixirs.",
+      "I entice travelers with duty-free exclusives and gift sets at airports."
+    ],
+    "level_3": [
+      "I began in 1946 as a New York kitchen startup that scaled into global icons.",
+      "From my Manhattan HQ, I innovate fragrances like Youth Dew’s oriental chypre evolutions.",
+      "I pioneered clean clinical appeal with Clinique’s 1995 launch.",
+      "I birthed inclusive artistry in the 1990s through MAC’s pro counters.",
+      "I remain family-controlled post-IPO, tempering beauty’s cyclical trend swings."
+    ],
+    "level_4": [
+      "I craft Le Labo’s Santal 33 candles to wick urban oud ambiance.",
+      "I bake Too Faced’s peach palettes with cocoa butter for playful shadows.",
+      "I hydrate pre-makeup routines with Smashbox’s primer water for flawless longevity.",
+      "I perfume rarity with Frederic Malle’s Carnal Flower tuberose absolutes.",
+      "I tap millennial minimalism through e-commerce exclusives like Glossier collaborations."
+    ],
+    "level_5": [
+      "I empower 62,000 beauty advisors to sell $15B in prestige potions yearly.",
+      "I birthed department store ritual revolutions with Mrs. Lauder’s oils in 1946.",
+      "I layered scents atop creams to create my foundational formulas.",
+      "I ferment miracles in labs from Melville to Liebefeld, perfecting skincare innovations."
+    ]
+  }
 }
-},
-{
-"ticker": "CTAS",
-"company": "Cintas Corporation",
-"sector": "Industrials",
-"difficulty": "medium",
-"questions": {
-"level_1": [
-"I'm the uniform and facility services provider outfitting workforces with branded apparel.",
-"Rental programs launder and route fresh uniforms weekly for consistent professionalism.",
-"First aid cabinets stock AEDs and kits for OSHA-compliant workplaces.",
-"Mat and linen services refresh high-traffic areas hygienically.",
-"As a B2B essential, I embed safety and image in daily operations."
-],
-"level_2": [
-"Logo embroidery customizes polos for fleet branding and compliance.",
-"Restroom supplies dispense towels and sanitizers in automated cabinets.",
-"Floor mats trap dirt at entrances, reducing slips and cleaning costs.",
-"Fire protection inspects extinguishers with digital tagging and reports.",
-"Subscription models route routes with GPS-optimized service vans."
-],
-"level_3": [
-"Ohio's 1929 rag route evolved into uniform's national rental network.",
-"Mason's HQ manages 600 facilities spanning U.S. and Canada.",
-"G&K's 2017 merger doubled industrial segment's market share.",
-"1960s' flame-resistant launch protected welders' safety standards.",
-"Share repurchases reflect family-controlled growth's disciplined capital."
-],
-"level_4": [
-"Cleanroom garments seal sterile environments for pharma and aero fabs.",
-"Document destruction shreds sensitive papers with NAID-certified chains.",
-"Safety training portals certify forklift ops and hazwhack handling.",
-"EcoDrive routes cut fuel 20% with telematics and EV pilots.",
-"Private label towels brand hospitality with monogrammed linens."
-],
-"level_5": [
-"This Nasdaq cloth king's CTAS crest uniforms 1 million associates daily.",
-"46,000 route sales deliver to 1 million stops in North America.",
-"1929's laundry startup birthed B2B services' recurring revenue model.",
-"Hollan's vision scaled rags to routes' essential workplace ecosystems.",
-"Plants from Reno to Richmond press 100 million garments yearly."
-]
-}
-},
-{
-"ticker": "VRSK",
-"company": "Verisk Analytics Inc.",
-"sector": "Industrials",
-"difficulty": "hard",
-"questions": {
-"level_1": [
-"I'm the risk analytics provider modeling catastrophes and claims for insurers worldwide.",
-"AIR Worldwide simulates hurricanes' wind speeds and flood depths probabilistically.",
-"ISO Claims predict fraud with graph analytics on policyholder networks.",
-"Xactimate prices repairs with localized labor and material databases.",
-"As a data oracle, I illuminate uncertainties for underwriting and reserves."
-],
-"level_2": [
-"Touchstone platforms blend cat models with portfolio risk aggregations.",
-"ClaimSearch detects patterns in 1 trillion medical procedure codes.",
-"CoreLogic's property data values homes with AVMs and comps.",
-"Wood Mackenzie forecasts energy transitions' supply chain disruptions.",
-"Subscription APIs feed real-time insights into enterprise dashboards."
-],
-"level_3": [
-"New Jersey's 1971 insurance roots scaled to analytics' global dominion.",
-"Jersey City's HQ fuses ISO's claims with AIR's cat expertise.",
-"Wood Mac's 2015 buyout layered energy into insurance's risk mosaic.",
-"1980s' CLUE database birthed auto claims' longitudinal tracking.",
-"Public spin from Moody's in 2009 unlocked focused growth capital."
-],
-"level_4": [
-"Cat Response teams deploy drones for post-event damage assessments.",
-"FraudCloud's ML flags anomalies in telematics driving behaviors.",
-"Precise's satellite imagery maps wildfires' burn scars for reserves.",
-"EagleView's aerials estimate roof pitches for solar quoting.",
-"Climate analytics project insured losses from tipping point scenarios."
-],
-"level_5": [
-"This Nasdaq risk radar's VRSK visor scans $50B in annual premiums.",
-"8,000 quants model quadrillions of scenarios in virtual cat events.",
-"1971's ISO forms standardized P&C's data sharing protocols.",
-"Geller's vision wove claims into cats' predictive analytics.",
-"Centers in Boston and London forecast perils' probabilistic futures."
-]
-}
-},
-{
-"ticker": "MSCI",
-"company": "MSCI Inc.",
-"sector": "Financials",
-"difficulty": "hard",
-"questions": {
-"level_1": [
-"I'm the index and ESG analytics provider benchmarking trillions in assets globally.",
-"World Index tracks 1,500 large-caps across 23 developed markets.",
-"RiskMetrics models VaR for portfolios' tail risk exposures.",
-"Private Capital Solutions values illiquids with comparable transactions.",
-"As a benchmarker, I shape allocations with factor and climate data."
-],
-"level_2": [
-"ACWI ex-US captures emerging growth with currency-hedged variants.",
-" Barra's multi-factor engine decomposes returns into style attributions.",
-"ESG ratings score controversies and carbon footprints quantitatively.",
-"Analytics Lab backtests strategies with historical index reconstitutions.",
-"Subscription terminals deliver real-time factor tilts and peer benchmarks."
-],
-"level_3": [
-"New York's 1968 index roots evolved from Capital International's benchmarks.",
-"Same city's HQ innovates AI-driven index construction methodologies.",
-"Barra's 2004 acquisition layered risk onto indexing's factor frontiers.",
-"1990s' MSCI Standard birthed global cap-weighted tracking's ubiquity.",
-"IPO in 2007 fueled ESG's integration into mainstream asset management."
-],
-"level_4": [
-"Climate Search visualizes carbon budgets under Paris-aligned scenarios.",
-"Custom indexes slice sectors with thematic overlays like cyber or water.",
-"Private Asset Monitor aggregates NAVs from 5,000 PE and VC funds.",
-"Real Estate indexes track REITs with direct property comparables.",
-"Factor models now incorporate ML for dynamic beta estimations."
-],
-"level_5": [
-"This NYSE index icon's MSCI mosaic measures $15T in benchmarks.",
-"3,500 quants reconstitute indexes quarterly for trillions' passive flows.",
-"1968's global indexes unified fragmented regional benchmarks.",
-"McQuown's vision fused Barra's risk with MSCI's market proxies.",
-"Offices in Mumbai and Tokyo tailor EM indexes' local nuances."
-]
-}
-},
-{
-"ticker": "ICE",
-"company": "Intercontinental Exchange Inc.",
-"sector": "Financials",
-"difficulty": "medium",
-"questions": {
-"level_1": [
-"I'm the exchange operator clearing derivatives, equities, and fixed income globally.",
-"NYSE's auction matches orders in hybrid electronic and floor formats.",
-"ICE Futures trades Brent, gasoil, and softs with central clearing.",
-"Mortgage Technology digitizes MBS pools for secondary market liquidity.",
-"As a market infrastructure, I mitigate counterparty risks with CCPs."
-],
-"level_2": [
-"Swap Execution Facilities route IRS to SEFs for regulatory compliance.",
-"Fixed Income & Data sells benchmark curves and reference rates.",
-"Elliptic's crypto custody secures digital assets with institutional wallets.",
-"DataLake aggregates tick data for algo backtesting and surveillance.",
-"Transaction fees, clearing margins, and data subscriptions interweave."
-],
-"level_3": [
-"Georgia's 2000 energy trader built ICE's electronic futures platform.",
-"Atlanta's HQ oversees NYSE's 2,400 listed firms' capital raises.",
-"NYSE Euronext's 2013 merger integrated continental equity venues.",
-"2005's NYBOT buyout added ags and softs to energy's core.",
-"Public debut in 2005 scaled from niche to global infrastructure."
-],
-"level_4": [
-"Black Knight's origination software streamlines loan pipelines digitally.",
-"Benchmark Administration's LIBOR successor rates transition smoothly.",
-"Crypto trading venues list BTC and ETH with 24/7 surveillance.",
-"Colocation data centers low-latency co-lo for HFT strategies.",
-"RegTech tools monitor wash trades in real-time compliance."
-],
-"level_5": [
-"This NYSE venue visionary's ICE cube chills $1Q notional yearly.",
-"25,000 listers execute 4 billion contracts in 50 venues.",
-"2000's IntercontinentalEnergy birthed electronic crude's benchmark era.",
-"Sprecher's vision fused futures with equities' auction traditions.",
-"Servers in Mahwah and Basildon pulse markets' millisecond machinations."
-]
-}
-},
-{
-"ticker": "AON",
-"company": "Aon plc",
-"sector": "Financials",
-"difficulty": "medium",
-"questions": {
-"level_1": [
-"I'm the professional services firm brokering risk solutions and human capital strategies.",
-"Reinsurance placements layer capacity for cat-prone carriers' portfolios.",
-"Health and benefits consulting optimizes self-funded plans' cost curves.",
-"Cyber risk models quantify exposures to ransomware and supply chain hacks.",
-"As a risk advisor, I align insurance with strategic resilience programs."
-],
-"level_2": [
-"Affinity's embedded insurance weaves coverage into e-comm checkouts.",
-"Mercer's wealth platforms model DC outcomes with longevity swaps.",
-"Talent strategies upskill workforces via AI-driven skills ontologies.",
-"Climate analytics stress-test property books under RCP scenarios.",
-"Fee-based consulting and brokerage commissions diversify revenue streams."
-],
-"level_3": [
-"London's 1982 merger scaled Ryan's retail to global reinsurance.",
-"Same city's HQ fuses Willis's aviation with Towers Watson's pensions.",
-"Willis's 2016 buyout layered marine and energy specialties.",
-"1980s' deregulation unlocked alternative risk transfers' captive era.",
-"Irish domicile post-inversion optimized tax for transatlantic flows."
-],
-"level_4": [
-"Aon Re's cat fund pools premiums for parametric triggers swiftly.",
-"Mercer Invest's OCIO outsources CIO functions for endowments.",
-"Cyber solutions bundle D&O with incident response retainers.",
-"Health IQ's analytics predict claims from wearable biometrics.",
-"ESG advisory integrates impact investing with fiduciary duties."
-],
-"level_5": [
-"This NYSE risk ranger's AON arrow aims 50,000 advisors' insights.",
-"200 countries broker $100B premiums with data-driven placements.",
-"1982's Alexander merger birthed broking's global scale playbook.",
-"Ryan's vision wove retail with reinsurance's capacity conduits.",
-"Offices in Singapore and Dubai navigate perils' probabilistic frontiers."
-]
-}
-},
-{
-"ticker": "STZ",
-"company": "Constellation Brands Inc.",
-"sector": "Consumer Staples",
-"difficulty": "medium",
-"questions": {
-"level_1": [
-"I'm the beer and spirits powerhouse importing premium Mexican brews and wines.",
-"Corona Extra's lime ritual refreshes beachgoers with crisp lager lightness.",
-"Modelo Especial's bold flavors dominate import beer's market share.",
-"Wine portfolio spans Robert Mondavi to Kim Crawford's sauvignon.",
-"As a high-end curator, I elevate occasions with crafted libations."
-],
-"level_2": [
-"Casa Noble tequilas age in French oak for sipping smoothness.",
-"Fresca Mixed's RTDs blend grapefruit with vodka for low-cal convenience.",
-"Prisoner Wine's bold reds ferment in stainless for fruit-forward profiles.",
-"Distribution arms place shelf space in 40 states' retail chains.",
-"Depletions and A&Ps drive volume in beer and wine segments."
-],
-"level_3": [
-"New York's 1945 juice startup pivoted to beer's import niche.",
-"Victor, NY's HQ brews innovation in Corona's U.S. production.",
-"Ballast Point's 2015 craft buyout diversified beyond imports.",
-"1990s' Svedka vodka launched flavored RTDs' category growth.",
-"Stock pops track summer depletions' seasonal beer surges."
-],
-"level_4": [
-"High West rye whiskeys double-barrel for complex spice notes.",
-"Meiomi's pinot noir sur lie ages for creamy coastal textures.",
-"Pacifico Clara's beachy lager ferments with adjunct rice lightness.",
-"Svedka's collabs infuse botanicals for millennial cocktail twists.",
-"Craft divestitures refocus on premium core brands' expansions."
-],
-"level_5": [
-"This NYSE pour master's STZ star toasts 40 million cases quarterly.",
-"10,000 distributors stock shelves in 80 countries' bars.",
-"1945's Canandaigua wine birthed beer's Mexican import dynasty.",
-"Sands' vision scaled Corona from imports to U.S. brewing.",
-"Facilities in Nava and Obregón brew 10 million barrels yearly."
-]
-}
-},
-{
-"ticker": "EL",
-"company": "The Estee Lauder Companies Inc.",
-"sector": "Consumer Staples",
-"difficulty": "medium",
-"questions": {
-"level_1": [
-"I'm the prestige beauty conglomerate crafting skincare, makeup, and fragrances for luxury.",
-"Clinique's dermatologist-tested regimens hydrate with hypoallergenic formulas.",
-"MAC's pro artistry palettes empower bold lips and smoky eyes.",
-"La Mer's creme de la mer restores with sea-sourced miracle broth.",
-"As a glamour curator, I elevate routines with science-backed indulgence."
-],
-"level_2": [
-"Origins' plant-powered serums soothe with gin zing adaptogen blends.",
-"Bobbi Brown's gel eyeliners define with smudge-proof precision.",
-"Jo Malone's colognes layer lime basil for bespoke scent signatures.",
-"Estee Lauder's night repair revives with peptide-packed elixirs.",
-"Travel retail exclusives gift-set duty-free airports' impulse buys."
-],
-"level_3": [
-"New York's 1946 kitchen startup scaled to counter's global icons.",
-"Manhattan's HQ innovates Youth Dew's oriental chypre evolutions.",
-"Tomas's 1995 Clinique launch pioneered clean clinical's mass appeal.",
-"1990s' MAC pro counter birthed color's inclusive artistry ethos.",
-"Family control post-IPO tempers beauty's cyclical trend swings."
-],
-"level_4": [
-"Le Labo's santal 33 candles wick urban oud for home ambiance.",
-"Too Faced's melt peach palette bakes shadows with cocoa butter.",
-"Smashbox's primer water hydrates pre-makeup for flawless longevity.",
-"Frederic Malle's carnal flower tuberose absolutes perfume rarity.",
-"E-commerce exclusives like Glossier collabs tap millennial minimalism."
-],
-"level_5": [
-"This NYSE glow guardian's EL emblem adorns 150 countries' vanities.",
-"62,000 beauty advisors sell $15B in prestige potions yearly.",
-"1946's Mrs. Lauder's oils birthed department store's ritual revolutions.",
-"Lauder's vision layered scents atop creams' foundational formulas.",
-"Labs in Melville and Liebefeld ferment ferments' fermented miracles."
-]
-}
-}  
+
 ]
 }
