@@ -4,14 +4,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, doc, increment, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { getAnalytics, logEvent } from "firebase/analytics";
-
 const FINNHUB_API_KEY = "d4g9o8pr01qm5b34j8l0d4g9o8pr01qm5b34j8lg"; // Hardcoded as requested (note: for local/dev only—expose risk in prod)
 const QUOTRON_TICKERS = [
   '^GSPC','^DJI','^IXIC', // Major indexes
   'AAPL','MSFT','GOOGL','AMZN','META','TSLA','NVDA', // MAG7
   'BRK.B','JPM','JNJ','V','PG','DIS','MA','HD','UNH','BAC' // 10 more
 ];
-
 // Fallback quotes for API errors or non-market hours
 const FALLBACK_QUOTES = [
   { symbol: 'AAPL', current: '150.00', change: '1.50' },
@@ -25,7 +23,6 @@ const FALLBACK_QUOTES = [
   { symbol: '^DJI', current: '35000.00', change: '100.00' },
   { symbol: '^IXIC', current: '15000.00', change: '50.00' }
 ];
-
 const firebaseConfig = {
   apiKey: "AIzaSyAdgvuwk-0gU7Tucj87ny2dmFn8qIJ0xsE",
   authDomain: "tickr-2b042.firebaseapp.com",
@@ -35,11 +32,9 @@ const firebaseConfig = {
   appId: "1:866254338816:web:85b7cf91fee6225ebe91e5",
   measurementId: "G-WF8Q9HBVJN"
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const analytics = getAnalytics(app);
-
 async function updateDailyStats({ won = false }) {
   const today = new Date().toISOString().split("T")[0];
   // Always produce a valid 2-segment path: analytics / daily_2025-11-24
@@ -62,7 +57,6 @@ async function updateDailyStats({ won = false }) {
     console.error("Error updating daily stats:", err);
   }
 }
-
 // Helper functions for deterministic daily selection
 function hashCode(str) {
   let hash = 0;
@@ -72,7 +66,6 @@ function hashCode(str) {
   }
   return Math.abs(hash);
 }
-
 function createSeededRandom(initialSeed) {
   let seed = hashCode(initialSeed.toString());
   return function() {
@@ -80,13 +73,11 @@ function createSeededRandom(initialSeed) {
     return seed / 2147483647;
   };
 }
-
 // Helper to check if current time is market hours (Mon-Fri, 9:30-16:00 ET)
 function isMarketHours() {
   const now = new Date();
   const day = now.getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
   if (day === 0 || day === 6) return false; // Weekend
-
   // Get ET time
   const etTime = now.toLocaleString("en-US", { timeZone: "America/New_York" });
   const [, timeStr] = etTime.split(', ');
@@ -94,19 +85,15 @@ function isMarketHours() {
   const [hourStr, minStr] = time.split(':');
   const hour = parseInt(hourStr, 10);
   const min = parseInt(minStr, 10);
-
   const openHour = 9;
   const openMin = 30;
   const closeHour = 16;
   const closeMin = 0;
-
   const currentMins = hour * 60 + min;
   const openMins = openHour * 60 + openMin;
   const closeMins = closeHour * 60 + closeMin;
-
   return currentMins >= openMins && currentMins < closeMins;
 }
-
 function App() {
   const [data, setData] = useState([]);
   const [allTickers, setAllTickers] = useState([]);
@@ -150,7 +137,6 @@ function App() {
   const [puzzleSeed, setPuzzleSeed] = useState(0);
   const inputRef = useRef(null);
   let quoteIntervalRef = useRef(null);
-
   // ────────────────────────────────
   // LOAD STATS + DARK MODE ONCE
   // ────────────────────────────────
@@ -179,7 +165,6 @@ function App() {
       localStorage.setItem('tickrDailyVisited', 'true');
     }
   }, []); // ← Runs only once on mount
-
   // Mobile detection
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -187,7 +172,6 @@ function App() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
   // Auto-save stats to localStorage whenever they change
   useEffect(() => {
     try {
@@ -196,7 +180,6 @@ function App() {
       console.error('Failed to save stats:', e);
     }
   }, [stats]);
-
   // New: Keyboard shortcuts for submit/next
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -206,7 +189,6 @@ function App() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [input, gameOver, gameMode]);
-
   // Load local JSON data
   useEffect(() => {
     Promise.all([
@@ -229,7 +211,6 @@ function App() {
       setLoading(false);
     });
   }, []);
-
   const auth = getAuth();
   useEffect(() => {
     signInAnonymously(auth)
@@ -240,7 +221,6 @@ function App() {
         console.error("Anonymous sign-in error:", error);
       });
   }, []);
-
   // Select daily ticker and pick questions (deterministic for non-test mode)
   useEffect(() => {
     if (!data || data.length === 0) return;
@@ -337,7 +317,6 @@ function App() {
     }
     setStartTime(Date.now()); // Only if new game
   }, [data, gameMode, difficulty, puzzleSeed]);
-
   // Update available options for autocomplete
   useEffect(() => {
     if (!input) {
@@ -368,7 +347,6 @@ function App() {
       .slice(0,8);
     setAvailableOptions(filtered);
   }, [input, allTickers, submittedAnswers]);
-
   // Auto-save progress after changes (only for daily)
   useEffect(() => {
     if (gameMode !== 'daily' || !dailyTicker || !startTime) return;
@@ -384,7 +362,6 @@ function App() {
       localStorage.setItem('dailyProgress', JSON.stringify(progressToSave));
     }
   }, [currentLevel, submittedAnswers, gameOver, startTime, dailyTicker, gameMode]);
-
   // Shake animation clear
   useEffect(() => {
     if (shake) {
@@ -392,15 +369,14 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [shake]);
-
-  // Fetch Quotron quotes (with market hours check, 5-min updates)
+  // Fetch Quotron quotes (always fetch on load; update only during market hours)
   useEffect(() => {
     const fetchQuotes = async () => {
       try {
         const fetchedQuotes = await Promise.all(QUOTRON_TICKERS.map(async symbol => {
           const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`);
           const json = await res.json();
-          if (!json.c) return null;
+          if (!json.c) return null; // No data? Skip this ticker
           return {
             symbol,
             current: json.c.toFixed(2),
@@ -411,7 +387,7 @@ function App() {
         if (validQuotes.length > 0) {
           setQuotes(validQuotes);
         } else {
-          setQuotes(FALLBACK_QUOTES);
+          setQuotes(FALLBACK_QUOTES); // Only fallback if *no* valid data from API
         }
       } catch (e) {
         console.error("Error fetching quotes:", e);
@@ -419,20 +395,18 @@ function App() {
       }
     };
 
-    // Initial fetch if in market hours
+    // Always fetch initial quotes (gets live or close, depending on time)
+    fetchQuotes();
+
+    // Set up interval *only* if currently in market hours
     if (isMarketHours()) {
-      fetchQuotes();
-      // Set interval for every 5 minutes (300000 ms)
       quoteIntervalRef.current = setInterval(() => {
-        if (isMarketHours()) {
-          fetchQuotes();
-        } else {
-          setQuotes(FALLBACK_QUOTES);
+        fetchQuotes(); // Always fetch latest
+        if (!isMarketHours()) {
+          // After hours? Stop updating (we'll have the close price)
           clearInterval(quoteIntervalRef.current);
         }
-      }, 300000);
-    } else {
-      setQuotes(FALLBACK_QUOTES);
+      }, 300000); // 5 min
     }
 
     // Cleanup interval on unmount
@@ -442,7 +416,6 @@ function App() {
       }
     };
   }, []);
-
   // Focus input after submit
   useEffect(() => {
     if (!gameOver && inputRef.current) {
@@ -451,7 +424,6 @@ function App() {
       }, 100);
     }
   }, [currentLevel, gameOver]);
-
   // Handle submit (with confetti on win)
   const handleSubmit = (e) => {
     if (e) e.preventDefault();
@@ -533,7 +505,6 @@ function App() {
     }
     setCurrentLevel(currentLevel + 1);
   }; // <-- Single closing brace for entire handleSubmit
-
   useEffect(() => {
     const track = async () => {
       try {
@@ -563,7 +534,6 @@ function App() {
     };
     track();
   }, [gameMode]);
-
   // Update stats in one place
   const updateStats = (won, cluesUsed, timeElapsed = null) => {
     // Prevent double-counting today's daily puzzle
@@ -609,7 +579,6 @@ function App() {
       updateDailyStats({ won }).catch(() => {});
     }
   };
-
   // Share results
   const shareResults = () => {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
@@ -628,7 +597,6 @@ function App() {
       alert('Results copied to clipboard!');
     }
   };
-
   const shareToTwitter = () => {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
     const won = submittedAnswers.some(a => a.isCorrect);
@@ -639,19 +607,16 @@ function App() {
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
     window.open(twitterUrl, '_blank');
   };
-
   const toggleDarkMode = () => {
     const newMode = !darkMode;
     setDarkMode(newMode);
     localStorage.setItem('tickrDailyDarkMode', JSON.stringify(newMode));
   };
-
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
   };
-
   const getAchievements = () => {
     const achievements = [];
     const dailyDist = stats.dailyGuessDistribution;
@@ -668,17 +633,14 @@ function App() {
     if (stats.overallFastestTime && stats.overallFastestTime < 30) achievements.push({ icon: '⚡', name: 'Speed Demon', desc: 'Fastest win under 30s (any mode)' });
     return achievements;
   };
-
   const handleOptionClick = (option) => {
     setInput(option.formatted);
     setAvailableOptions([]);
   };
-
   const resetGame = () => {
     localStorage.removeItem('dailyProgress');
     window.location.reload();
   };
-
   // Next puzzle for unlimited
   const nextPuzzle = () => {
     setGameOver(false);
@@ -689,7 +651,6 @@ function App() {
     // Trigger re-selection via dep
     setPuzzleSeed(prev => prev + 1);
   };
-
   const GuessDistChart = ({ dist, maxClues }) => (
     <>
       {Array.from({ length: maxClues }, (_, i) => {
@@ -738,7 +699,6 @@ function App() {
       </div>
     </>
   );
-
   // Mode Selector Component
   const ModeSelector = () => (
     <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -796,13 +756,11 @@ function App() {
       )}
     </div>
   );
-
   if(loading || !dailyTicker || !questions.length){
     return <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background: 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' }}>
       <div style={{ textAlign:'center', color:'#94a3b8'}}>Loading Market Data...</div>
     </div>;
   }
-
   const todayDate = new Date().toLocaleDateString('en-US',{ weekday:'long', month:'long', day:'numeric', year:'numeric' });
   const isWinner = submittedAnswers.some(a=>a.isCorrect);
   const numClues = questions.length;
@@ -811,7 +769,6 @@ function App() {
   const mutedColor = darkMode ? '#94a3b8' : '#64748b';
   const cardBg = darkMode ? 'rgba(15,23,42,0.7)' : 'rgba(255,255,255,0.8)';
   const borderColor = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
-
   return (
     <div style={{ minHeight:'100vh', background: bgColor, display:'flex', flexDirection:'column', alignItems:'center', padding:'2rem 1rem' }}>
       {/* Quotron */}
@@ -957,7 +914,6 @@ function App() {
             <span>How to Play</span>
           </button>
         </div>
-
         {/* Stats Modal – iPhone-optimized version */}
         {showStats && (
           <div
@@ -1216,7 +1172,6 @@ function App() {
             </div>
           </div>
         )}
-
         {/* How to Play Modal – iPhone-optimized, dark-only, close button inside top-right */}
         {showHowToPlay && (
           <div
@@ -1321,7 +1276,6 @@ function App() {
             </div>
           </div>
         )}
-
         {/* Questions (input with title for shortcut hint) */}
         {questions.map((q, idx) => {
           if(idx>currentLevel) return null;
@@ -1419,7 +1373,6 @@ function App() {
             </div>
           );
         })}
-
         {/* Game Over */}
         {gameOver && (
           <div style={{ textAlign:'center', marginTop:'2rem', background:'rgba(15,23,42,0.7)', backdropFilter:'blur(20px)', padding:'3rem', borderRadius:'2rem', border:'1px solid rgba(255,255,255,0.1)', width:'100%' }}>
@@ -1523,5 +1476,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
