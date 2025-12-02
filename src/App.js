@@ -89,7 +89,6 @@ function App() {
   const [showHowToPlay, setShowHowToPlay] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
   const [startTime, setStartTime] = useState(null);
-  const [testMode, setTestMode] = useState(false);
   const [shake, setShake] = useState(false);
   const [activeModeTab, setActiveModeTab] = useState('daily'); // Default to daily
   const [isMobile, setIsMobile] = useState(false);
@@ -144,13 +143,6 @@ useEffect(() => {
     localStorage.setItem('tickrDailyVisited', 'true');
   }
 }, []); // ← Runs only once on mount
-  // Check for test mode via URL parameter
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('test') === 'true') {
-      setTestMode(true);
-    }
-  }, []);
   // Mobile detection
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -158,27 +150,14 @@ useEffect(() => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-  // Keyboard shortcut to toggle test mode (Ctrl+Shift+T)
-  useEffect(() => {
-    const handleKeyPress = (e) => {
-      if (e.ctrlKey && e.shiftKey && e.key === 'T') {
-        setTestMode(prev => !prev);
-        console.log('Test mode:', !testMode);
-      }
-    };
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [testMode]);
   // Auto-save stats to localStorage whenever they change
 useEffect(() => {
-  if (!testMode) {
-    try {
-      localStorage.setItem('tickrDailyStats', JSON.stringify(stats));
-    } catch (e) {
-      console.error('Failed to save stats:', e);
-    }
+  try {
+    localStorage.setItem('tickrDailyStats', JSON.stringify(stats));
+  } catch (e) {
+    console.error('Failed to save stats:', e);
   }
-}, [stats, testMode]);
+}, [stats]);
   // New: Keyboard shortcuts for submit/next
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -240,7 +219,7 @@ useEffect(() => {
     if (gameMode === 'unlimited') {
       filteredData = sortedData.filter(t => (t.difficulty || 'medium') === difficulty);
     }
-    if (gameMode === 'daily' && !testMode) {
+    if (gameMode === 'daily') {
       // Deterministic: same ticker and questions for everyone on the same day
       const seed = hashCode(today);
       const rnd = createSeededRandom(seed);
@@ -262,7 +241,7 @@ useEffect(() => {
       // Set the date flag to enable progress saving for today
       localStorage.setItem('dailyDate', today);
     } else {
-      // Unlimited or test: Random pick from filtered data
+      // Unlimited: Random pick from filtered data
       const randomIndex = Math.floor(Math.random() * filteredData.length);
       selectedTicker = filteredData[randomIndex];
       for (let i = 1; i <= 5; i++) {
@@ -282,7 +261,7 @@ useEffect(() => {
     setDailyTicker(selectedTicker);
     setQuestions(pickedQuestions);
     // Load progress if same day (only for daily)
-    if (gameMode === 'daily' && !testMode) {
+    if (gameMode === 'daily') {
       try {
         const progressStr = localStorage.getItem('dailyProgress');
         if (progressStr) {
@@ -315,7 +294,7 @@ useEffect(() => {
       }
     }
     setStartTime(Date.now()); // Only if new game
-  }, [data, testMode, gameMode, difficulty, puzzleSeed]);
+  }, [data, gameMode, difficulty, puzzleSeed]);
   // Update available options for autocomplete
   useEffect(() => {
     if (!input) {
@@ -348,7 +327,7 @@ useEffect(() => {
   }, [input, allTickers, submittedAnswers]);
   // Auto-save progress after changes (only for daily)
   useEffect(() => {
-    if (gameMode !== 'daily' || testMode || !dailyTicker || !startTime) return;
+    if (gameMode !== 'daily' || !dailyTicker || !startTime) return;
     const today = new Date(startTime).toDateString();
     const storedDate = localStorage.getItem('dailyDate');
     if (storedDate === today) {
@@ -360,7 +339,7 @@ useEffect(() => {
       };
       localStorage.setItem('dailyProgress', JSON.stringify(progressToSave));
     }
-  }, [currentLevel, submittedAnswers, gameOver, startTime, dailyTicker, testMode, gameMode]);
+  }, [currentLevel, submittedAnswers, gameOver, startTime, dailyTicker, gameMode]);
   // Shake animation clear
   useEffect(() => {
     if (shake) {
@@ -483,7 +462,6 @@ useEffect(() => {
   setCurrentLevel(currentLevel + 1);
 }; // <-- Single closing brace for entire handleSubmit
 useEffect(() => {
-  if (testMode) return; // skip in test mode
   const track = async () => {
     try {
       const today = new Date().toISOString().split('T')[0];
@@ -511,10 +489,9 @@ useEffect(() => {
     }
   };
   track();
-}, [gameMode, testMode]);
+}, [gameMode]);
 // Update stats in one place
 const updateStats = (won, cluesUsed, timeElapsed = null) => {
-  if (testMode) return;
   // Prevent double-counting today's daily puzzle
   if (gameMode === 'daily') {
     const saved = localStorage.getItem('dailyProgress');
@@ -619,37 +596,6 @@ const shareToTwitter = () => {
   const resetGame = () => {
     localStorage.removeItem('dailyProgress');
     window.location.reload();
-  };
-  // Test mode: Skip to next random ticker
-  const skipToNextTicker = () => {
-    if (!data || data.length === 0) return;
-    setGameOver(false);
-    setCurrentLevel(0);
-    setSubmittedAnswers([]);
-    setInput("");
-    setAvailableOptions([]);
-    const filteredData = data.filter(t => (t.difficulty || 'medium') === difficulty);
-    let newTicker;
-    do {
-      const randomIndex = Math.floor(Math.random() * filteredData.length);
-      newTicker = filteredData[randomIndex];
-    } while (filteredData.length > 1 && newTicker.ticker === dailyTicker?.ticker);
-    setDailyTicker(newTicker);
-    const pickedQuestions = [];
-    for (let i = 1; i <= 5; i++) {
-      const levelQuestions = newTicker.questions[`level_${i}`];
-      if (levelQuestions) {
-        const question = levelQuestions[Math.floor(Math.random() * levelQuestions.length)];
-        pickedQuestions.push({
-          level: i,
-          question,
-          correct: newTicker.ticker,
-          answers: []
-        });
-      }
-    }
-    setQuestions(pickedQuestions);
-    setStartTime(Date.now());
   };
   // Next puzzle for unlimited
   const nextPuzzle = () => {
@@ -871,31 +817,12 @@ const shareToTwitter = () => {
               {darkMode ? '☀️' : '🌙'}
             </button>
           )}
-          {testMode && (
-            <div style={{
-              position:'absolute',
-              left:0,
-              top:0,
-              padding:'0.75rem 1rem',
-              background:'linear-gradient(135deg, #f59e0b, #d97706)',
-              border:`1px solid ${borderColor}`,
-              borderRadius:'0.75rem',
-              color:'white',
-              fontWeight:'700',
-              fontSize:'0.75rem',
-              display:'flex',
-              alignItems:'center',
-              gap:'0.5rem'
-            }}>
-              🧪 TEST MODE
-            </div>
-          )}
           <h1 style={{ fontSize:'4rem', fontWeight:'800', background:'linear-gradient(135deg,#22c55e 0%,#3b82f6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', marginBottom:'0.5rem', letterSpacing:'-0.02em' }}>TickrDaily</h1>
           <p style={{ color:mutedColor, fontSize:'1rem', fontWeight:'500', letterSpacing:'0.05em' }}>{todayDate}</p>
           <p style={{ color:mutedColor, fontSize:'0.875rem', marginTop:'0.5rem' }}>
             {gameMode === 'daily' ? 'Guess the stock from 5 clues' : `Guess the stock from 5 clues (${difficulty} stocks)`}
           </p>
-          {gameOver && gameMode === 'daily' && !testMode && (
+          {gameOver && gameMode === 'daily' && (
             <p style={{ color: '#22c55e', fontSize: '1rem', fontWeight: '600', marginTop: '1rem' }}>
               You already completed today's puzzle! Come back tomorrow for a new one. 🎯
             </p>
@@ -1515,62 +1442,6 @@ const shareToTwitter = () => {
                 >
                   🔄 Next Puzzle
                 </button>
-              )}
-              {testMode && (
-                <>
-                  <button
-                    onClick={resetGame}
-                    style={{
-                      padding:'1rem 2rem',
-                      borderRadius:'1rem',
-                      fontWeight:'700',
-                      fontSize:'1rem',
-                      color:'white',
-                      border:'none',
-                      background:'linear-gradient(135deg,#22c55e 0%,#16a34a 100%)',
-                      cursor:'pointer',
-                      transition:'all 0.3s ease',
-                      boxShadow:'0 10px 25px -5px rgba(34, 197, 94, 0.4)'
-                    }}
-                    aria-label="Start New Game"
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(34, 197, 94, 0.5)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(34, 197, 94, 0.4)';
-                    }}
-                  >
-                    🔄 New Game
-                  </button>
-                  <button
-                    onClick={skipToNextTicker}
-                    style={{
-                      padding:'1rem 2rem',
-                      borderRadius:'1rem',
-                      fontWeight:'700',
-                      fontSize:'1rem',
-                      color:'white',
-                      border:'none',
-                      background:'linear-gradient(135deg, #f59e0b, #d97706)',
-                      cursor:'pointer',
-                      transition:'all 0.3s ease',
-                      boxShadow:'0 10px 25px -5px rgba(245, 158, 11, 0.4)'
-                    }}
-                    aria-label="Skip to Next Ticker (Test Mode)"
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(245, 158, 11, 0.5)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(245, 158, 11, 0.4)';
-                    }}
-                  >
-                    🧪 Skip to Next Ticker
-                  </button>
-                </>
               )}
             </div>
           </div>
