@@ -2365,48 +2365,48 @@
       }
     },
     {
-      "ticker": "MAR",
-      "company": "Marriott International, Inc.",
-      "sector": "Consumer Discretionary",
-      "difficulty": "medium",
-      "questions": {
-        "level_1": [
-          "I'm a worldwide hospitality leader managing luxury hotels, resorts, and branded residences for discerning business and leisure travelers.",
-          "My portfolio spans over 30 brands, from upscale full-service properties to select-service accommodations in key destinations.",
-          "I deliver exceptional guest experiences through personalized service, loyalty rewards, and innovative amenities worldwide.",
-          "My company focuses on sustainable operations, community engagement, and technology to enhance every stay seamlessly.",
-          "I'm committed to diversity and inclusion, with properties in over 140 countries serving diverse guest needs."
-        ],
-        "level_2": [
-          "My Marriott Hotels brand offers full-service accommodations for conferences and family vacations with extensive facilities.",
-          "Ritz-Carlton provides ultra-luxury escapes with world-class spas, fine dining, and bespoke concierge services.",
-          "JW Marriott delivers upscale hospitality blending local culture with consistent global standards for relaxation.",
-          "My extended-stay options like Residence Inn cater to longer visits with kitchenettes and home-like comforts.",
-          "Bonvoy loyalty program lets members earn points across stays, flights, and experiences for redemptions."
-        ],
-        "level_3": [
-          "I trace my roots to 1927 when J. Willard Marriott opened a root beer stand in Washington, D.C., evolving into hospitality.",
-          "In 1957, I debuted my first hotel, the Twin Bridges Motor Hotel in Arlington, Virginia, near the capital.",
-          "My name derives from founder J. Willard Marriott, who expanded from A&W franchises to full-service lodging.",
-          "I completed my public offering in 1953 as Hot Shoppes, funding early growth in roadside eateries and motels.",
-          "By the 1960s, I ventured internationally with the Key Bridge Marriott in Rosslyn, Virginia, as flagship."
-        ],
-        "level_4": [
-          "I acquired Promus Hotel Corporation in 1999 for $2.5 billion, adding brands like Embassy Suites and Hampton.",
-          "In 2015, I purchased Delta Hotels, bolstering my midscale offerings in Canada and North America.",
-          "I launched the Edition brand in 2010 with Ian Schrager, focusing on stylish, boutique hotel experiences.",
-          "During the 2020 pandemic, I introduced flexible booking policies and enhanced cleaning protocols for safety.",
-          "I expanded my timeshare arm with the 2012 acquisition of ILG, rebranded as Marriott Vacations Worldwide."
-        ],
-        "level_5": [
-          "My market capitalization surpassed $50 billion in 2021, fueled by recovery and portfolio diversification efforts.",
-          "Anthony Capuano has led as CEO since 2020, steering post-pandemic growth and digital transformation initiatives.",
-          "I manage over 8,000 properties, welcoming millions annually with a focus on experiential hospitality.",
-          "My eagle logo symbolizes soaring aspirations and excellence in guest service since the 1960s.",
-          "Marriott Bonvoy boasts over 190 million members, the largest loyalty program in the hospitality industry."
-        ]
-      }
-    },
+  "ticker": "MAR",
+  "company": "Marriott International, Inc.",
+  "sector": "Consumer Discretionary",
+  "difficulty": "medium",
+  "questions": {
+    "level_1": [
+      "I am a global hospitality leader managing luxury hotels, resorts, and branded residences for business and leisure travelers.",
+      "My portfolio spans over 30 brands, from upscale full-service properties to select-service accommodations in key destinations.",
+      "I deliver exceptional guest experiences through personalized service, loyalty rewards, and innovative amenities worldwide.",
+      "I focus on sustainable operations, community engagement, and technology to make every stay seamless.",
+      "I am committed to diversity and inclusion, operating in over 140 countries to serve a wide range of guest needs."
+    ],
+    "level_2": [
+      "My full-service hotels offer accommodations for conferences and family vacations with extensive facilities.",
+      "Ultra-luxury brands under my management provide world-class spas, fine dining, and bespoke concierge services.",
+      "Upscale properties blend local culture with consistent global standards for comfort and relaxation.",
+      "Extended-stay options like Residence Inn cater to longer visits with kitchenettes and home-like comforts.",
+      "My loyalty program lets members earn points across stays, flights, and experiences for future redemptions."
+    ],
+    "level_3": [
+      "I trace my roots to 1927 when my founder opened a root beer stand in Washington, D.C., evolving into hospitality.",
+      "In 1957, I opened my first hotel, the Twin Bridges Motor Hotel in Arlington, Virginia, near the capital.",
+      "My name originates from the founder who expanded from A&W franchises into full-service lodging.",
+      "I completed a public offering in 1953 as Hot Shoppes, funding early growth in roadside eateries and motels.",
+      "By the 1960s, I expanded internationally with a flagship property, the Key Bridge hotel in Rosslyn, Virginia."
+    ],
+    "level_4": [
+      "I acquired Promus Hotel Corporation in 1999 for $2.5 billion, adding brands like Embassy Suites and Hampton.",
+      "In 2015, I purchased Delta Hotels, bolstering my midscale offerings in Canada and North America.",
+      "I launched a stylish boutique brand in 2010 with Ian Schrager, focusing on design-focused experiences.",
+      "During the 2020 pandemic, I introduced flexible booking policies and enhanced cleaning protocols for guest safety.",
+      "I expanded my timeshare business with the 2012 acquisition of ILG, later rebranded as my vacation ownership arm."
+    ],
+    "level_5": [
+      "My market capitalization surpassed $50 billion in 2021, fueled by recovery and portfolio diversification efforts.",
+      "Anthony Capuano has led as CEO since 2020, steering post-pandemic growth and digital transformation initiatives.",
+      "I manage over 8,000 properties, welcoming millions annually with a focus on experiential hospitality.",
+      "My eagle logo symbolizes soaring aspirations and excellence in guest service since the 1960s.",
+      "My loyalty program boasts over 190 million members, the largest in the hospitality industry."
+    ]
+  }
+},
     {
       "ticker": "ROST",
       "company": "Ross Stores, Inc.",
