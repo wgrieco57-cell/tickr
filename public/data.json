@@ -4469,6 +4469,1081 @@
 "20,000 customers dashboard their way through microservices' misty mazes."
 ]
 }
+},
+{
+"ticker": "TXN",
+"company": "Texas Instruments Incorporated",
+"sector": "Technology",
+"difficulty": "medium",
+"questions": {
+"level_1": [
+"I'm a semiconductor powerhouse designing analog and embedded processing chips for countless devices worldwide.",
+"From smartphones to appliances, my components enable efficient power management and signal processing everywhere.",
+"My portfolio spans sensors, amplifiers, and microcontrollers that form the backbone of modern electronics.",
+"Manufacturing excellence ensures reliable, high-volume production for automotive, industrial, and consumer markets.",
+"As a chip innovator, I focus on long-lifecycle products that outlast trends in embedded systems."
+],
+"level_2": [
+"Analog signal chains convert real-world data into digital insights with precision and low noise.",
+"Embedded processors handle real-time tasks in IoT gateways and factory automation controllers.",
+"Power management ICs optimize battery life in wearables and extend runtime in portable gear.",
+"Automotive-grade silicon withstands harsh environments for ADAS and infotainment systems.",
+"Revenue balances mature markets with growth in factory automation and connected devices."
+],
+"level_3": [
+"Dallas's 1930 geophysical roots evolved into defense electronics during wartime innovations.",
+"The same Texas HQ oversees fabs and design centers spanning Asia and Europe strategically.",
+"A 1988 merger with a calculator pioneer solidified my embedded processing leadership.",
+"Military radar contracts in the 1950s seeded analog expertise still vital today.",
+"Stock splits and dividends reflect decades of shareholder-aligned semiconductor stewardship."
+],
+"level_4": [
+"Sitara processors power industrial gateways with ARM cores and Ethernet connectivity.",
+"DLP tech projects cinema screens and automotive HUDs with micromirror arrays.",
+"Wi-Fi 6 chips enable mesh networks for smart homes and enterprise access points.",
+"Supply chain resilience post-chips act diversified wafer production globally.",
+"Sensor innovations like mmWave radar detect gestures in touchless interfaces."
+],
+"level_5": [
+"This Nasdaq analog anchor's TI emblem circuits billions of devices annually.",
+"Over 30,000 engineers craft silicon that powers 95% of the world's handhelds.",
+"Geophysical seismographs in 1930 birthed integrated circuits' foundational waves.",
+"Calculator dominance in the 1970s launched education's digital revolution.",
+"Fabs in seven countries forge a moat in analog's irreplaceable precision."
+]
 }
+},
+{
+"ticker": "AMAT",
+"company": "Applied Materials Inc.",
+"sector": "Technology",
+"difficulty": "hard",
+"questions": {
+"level_1": [
+"I'm the semiconductor equipment leader fabricating nanoscale wonders for chipmakers globally.",
+"Deposition, etching, and metrology tools etch circuits smaller than viruses with atomic precision.",
+"My systems power the foundries building AI accelerators, memory, and logic miracles.",
+"Display and solar innovations extend my reach beyond silicon to flexible screens and panels.",
+"As a fab enabler, I accelerate Moore's Law through relentless process advancements."
+],
+"level_2": [
+"CVD chambers layer thin films uniformly for high-k dielectrics in advanced nodes.",
+"Plasma etch reactors sculpt 3D structures in FinFETs and gate-all-around transistors.",
+"Inspection tools detect defects at angstrom scales, yielding higher die per wafer.",
+"Solar deposition boosts cell efficiencies for renewable energy's silicon substrates.",
+"Revenue cycles with capex booms in leading-edge nodes and mature process upgrades."
+],
+"level_3": [
+"California's 1967 materials analysis lab scaled to equipment dominance by the 1980s.",
+"Santa Clara's innovation campus prototypes next-gen tools for 2nm and beyond.",
+"Acquisitions like Varian deepened ion implant and deposition portfolios strategically.",
+"DRAM etch leadership in the 1990s fueled memory's density explosions.",
+"Stock surges mirrored semi cycles, rewarding patient holders through expansions."
+],
+"level_4": [
+"Endura platforms deposit barriers preventing copper diffusion in interconnects.",
+"Selective etch breakthroughs enable self-aligned vias in EUV lithography flows.",
+"Metrology suites integrate AI for predictive yield analytics in HBM stacks.",
+"OLED evaporation tools coat flexible substrates for foldable display revolutions.",
+"Chiplet packaging solutions bridge heterogeneous integration challenges."
+],
+"level_5": [
+"This Nasdaq fab forge's AMAT initials equip 90% of the world's wafer production.",
+"34,000 specialists etch progress in tools processing quadrillions of transistors yearly.",
+"Chemical analysis origins in 1967 birthed CVD's thin-film deposition dynasty.",
+"1980s flat-panel pilots pivoted to semi, igniting equipment's golden era.",
+"Global service networks sustain uptime in 24/7 foundry marathons worldwide."
+]
+}
+},
+{
+"ticker": "MU",
+"company": "Micron Technology Inc.",
+"sector": "Technology",
+"difficulty": "medium",
+"questions": {
+"level_1": [
+"I'm the memory and storage specialist crafting DRAM, NAND, and SSDs for data-hungry devices.",
+"High-bandwidth modules fuel servers, PCs, and mobiles with faster, denser capacities.",
+"My tech enables AI training, 5G caching, and automotive infotainment ecosystems.",
+"From consumer flash to enterprise arrays, I scale storage for the zettabyte era.",
+"As a memory innovator, I push density limits while optimizing power and endurance."
+],
+"level_2": [
+"DDR5 DRAM accelerates HPC workloads with error correction and on-die ECC.",
+"3D NAND stacks terabits vertically, slashing costs per gigabyte dramatically.",
+"NVMe SSDs deliver petabyte-scale performance in data centers and creators' rigs.",
+"Automotive-grade memory withstands vibrations for ADAS vision systems.",
+"Cyclical revenues swing with bit demand in cloud, client, and embedded segments."
+],
+"level_3": [
+"Idaho's 1978 startup rode DRAM's waves to become a fabless-to-integrated giant.",
+"Boise's mountain-view HQ designs and fabs spanning Asia's silicon heartlands.",
+"Crucial brand's consumer SSDs democratized high-speed storage in the 2000s.",
+"NAND joint ventures with rivals pooled risks in flash's exponential scaling.",
+"Stock volatility mirrored memory's boom-bust, rewarding long-term density bets."
+],
+"level_4": [
+"HBM3E stacks 24GB for GPU monsters training trillion-parameter models.",
+"CXL interfaces pool memory across servers for disaggregated AI architectures.",
+"QLC NAND crams four bits per cell, exploding capacities in hyperscale clouds.",
+"Automotive eMMC endures -40C to 105C for telematics black boxes.",
+"HBM roadmaps target 50% annual bandwidth leaps for exascale computing."
+],
+"level_5": [
+"This Nasdaq byte behemoth's MU emblem stores humanity's digital deluge.",
+"48,000 minds fabricate zettabytes yearly in 20 fabs worldwide.",
+"1978's custom chips for calculators seeded DRAM's desktop dominance.",
+"2006's flash pivot birthed SSDs' storage class memory revolution.",
+"Global fabs in Singapore, Japan, and Taiwan forge memory's multipolar future."
+]
+}
+},
+{
+"ticker": "AVGO",
+"company": "Broadcom Inc.",
+"sector": "Technology",
+"difficulty": "hard",
+"questions": {
+"level_1": [
+"I'm the connectivity and infrastructure semiconductor titan linking networks and data centers.",
+"Custom ASICs and FPGAs accelerate AI inference at hyperscale efficiencies.",
+"Wireless chips power 5G base stations and Wi-Fi 7 routers globally.",
+"Broadband SoCs enable DOCSIS gateways for gigabit home internet.",
+"As a semi consolidator, I blend analog, digital, and software for end-to-end solutions."
+],
+"level_2": [
+"Jericho routers route terabits in cloud spines with programmable pipelines.",
+"Tomahawk switches aggregate 51.2Tbps for Ethernet fabrics in mega-PoPs.",
+"BCM chips encode video for streaming services' 8K transcodes.",
+"Enterprise storage HBAs offload NVMe-oF for disaggregated data lakes.",
+"Acquisitions fuel revenue mix of semis, software, and IP licensing."
+],
+"level_3": [
+"California's 1961 avionics roots merged into broadband leadership by 1990s.",
+"Palo Alto's campus designs Jericho's next-gen silicon photonics integrations.",
+"VMware's 2023 buyout layered HCI software atop networking silicon.",
+"Set-top box dominance in 2000s birthed video codec expertise.",
+"Stock splits post-mergers reflected compounding scale in semi services."
+],
+"level_4": [
+"Bailley ASICs crunch hyperscaler workloads with 2.6T MACsec encryption.",
+"Jericho3-AI's 1.6T ports enable 800G Ethernet for AI backends.",
+"Wi-Fi 7's MLO aggregates bands for 46Gbps in dense environments.",
+"DOCSIS 4.0 modems push 10G symmetric for fiber-like cable speeds.",
+"Custom silicon for cloud giants like Google shaves watts per inference."
+],
+"level_5": [
+"This Nasdaq connector's AVGO wings span 100 billion chips shipped.",
+"45,000 engineers weave semis and software for 100G-to-1.6T leaps.",
+"1961's missile guidance birthed RF's wireless foundational waves.",
+"1999's merger wave consolidated broadband's cable modem dynasty.",
+"Fabs in Asia and U.S. forge a diversified, resilient supply fortress."
+]
+}
+},
+{
+"ticker": "SCHW",
+"company": "The Charles Schwab Corporation",
+"sector": "Financials",
+"difficulty": "medium",
+"questions": {
+"level_1": [
+"I'm the discount brokerage pioneer democratizing investing with zero-commission trades and tools.",
+"Self-directed platforms empower retail traders with real-time data and robo-advisors.",
+"Advisory services guide high-net-worth clients through personalized wealth strategies.",
+"Banking integrations offer high-yield savings and margin lending seamlessly.",
+"As a fiduciary giant, I prioritize client outcomes in a low-cost, transparent model."
+],
+"level_2": [
+"Thinkorswim's advanced charting fuels active traders' technical analysis workflows.",
+"Schwab Intelligent Portfolios auto-rebalances ETFs for hands-off diversification.",
+"Futures and options chains enable hedged bets on indices and commodities.",
+"Cash sweep programs maximize uninvested balances in FDIC-insured sweeps.",
+"Acquisitions blend custody, clearing, and advisory for integrated ecosystems."
+],
+"level_3": [
+"San Francisco's 1971 startup upended commissions with fixed-rate innovations.",
+"West Bay HQ's iconic tower overlooks trades executing billions daily.",
+"TD Ameritrade's 2020 merger scaled platforms to 30 million accounts.",
+"1987 crash's survival honed risk management's client-first ethos.",
+"Stock conversions from mutual to public unlocked growth capital infusions."
+],
+"level_4": [
+"StreetSmart Edge desktop rivals Bloomberg for pro-level market scans.",
+"Plaid integrations streamline ACH transfers for crypto and peer funding.",
+"Advisor Network aggregates RIAs under my compliant, scalable umbrella.",
+"Futures commission cuts post-merger lured institutional flow traders.",
+"Crypto exposure via ETFs bridges traditional portfolios to digital assets."
+],
+"level_5": [
+"This NYSE steward's SCHW shield guards $8 trillion in client assets.",
+"35,000 associates execute 4 million trades daily with precision.",
+"1971's fixed commissions sparked brokerage's fee compression revolution.",
+"1987's Black Monday tested resolve, birthing modern risk disclosures.",
+"Mutual-to-public shift in 1987 fueled expansions into banking hybrids."
+]
+}
+},
+{
+"ticker": "BX",
+"company": "Blackstone Inc.",
+"sector": "Financials",
+"difficulty": "hard",
+"questions": {
+"level_1": [
+"I'm the world's largest alternative asset manager deploying capital across private equity, real estate, and credit.",
+"Buyouts transform underperformers into value-unlocking powerhouses through operational turnarounds.",
+"Real assets portfolios span logistics hubs, data centers, and multifamily residences globally.",
+"Credit strategies yield income from distressed debt and direct lending opportunities.",
+"As an alternatives pioneer, I harness scale for institutional-grade returns in illiquids."
+],
+"level_2": [
+"PE platforms acquire control stakes in tech, healthcare, and consumer verticals.",
+"Opportunistic realty funds capitalize on dislocations in office and hospitality.",
+"Hedge fund seeding and GP stakes amplify returns via secondaries and primaries.",
+"Infrastructure bets on renewables and digital infra ride megatrends long-term.",
+"Fee and carry structures compound through evergreen vehicles and co-invests."
+],
+"level_3": [
+"New York's 1985 buyout shop scaled to alt assets' undisputed throne.",
+"Park Avenue's fortress HQ orchestrates $1 trillion in dry powder deployments.",
+"Hilton's 2007 carve-out pioneered hotel REITs' public-private hybrids.",
+"Credit arm's 2010s growth filled banks' lending voids post-Dodd-Frank.",
+"Public listing in 2007 unlocked perpetual capital for perpetual vehicles."
+],
+"level_4": [
+"Gso's distressed plays scooped bargains in energy bankruptcies profitably.",
+"BioMed realty's life sciences pivot rode biotech's lab space boom.",
+"Secondaries platform liquidates LP interests at discounts to NAVs.",
+"Evergreen REITs democratize realty access for retail via non-traded shares.",
+"AI data center acquisitions bet on hyperscalers' insatiable power needs."
+],
+"level_5": [
+"This NYSE alt empire's BX bastion manages $1T across 100 offices.",
+"13,000 dealmakers deploy $200B yearly in opportunistic capital.",
+"1985's leveraged buyout roots birthed private equity's modern playbook.",
+"Schwarzman's vision scaled from $400K seed to mega-fund milestones.",
+"Global footprint from London to Mumbai diversifies vintage risk exposures."
+]
+}
+},
+{
+"ticker": "MDT",
+"company": "Medtronic plc",
+"sector": "Health Care",
+"difficulty": "medium",
+"questions": {
+"level_1": [
+"I'm the medtech leader innovating therapies for chronic diseases and surgical interventions.",
+"Pacemakers, insulin pumps, and neuromodulators restore quality to millions' lives.",
+"Minimally invasive tools enable precise spine, cardio, and neuro procedures.",
+"Digital health platforms connect devices to outcomes for personalized care.",
+"As a therapy innovator, I pioneer from concept to clinic with patient focus."
+],
+"level_2": [
+"CRM devices monitor arrhythmias with remote alerts and MRI compatibility.",
+"Diabetes closed-loop systems automate insulin delivery via CGM integration.",
+"Surgical navigation fuses imaging for robotic-assisted precision in ORs.",
+"Spinal cord stimulators interrupt pain signals non-destructively.",
+"Revenue diversifies across cardio, diabetes, neuro, and surgical segments."
+],
+"level_3": [
+"Minneapolis's 1949 repair shop birthed pacemakers' implantable era.",
+"Ireland's tax-smart HQ post-inversion oversees global R&D hubs.",
+"Covidien's 2015 merger added vascular and surgical disposables.",
+"1970s' lithium battery extended ICDs' longevity dramatically.",
+"Stock stability reflects medtech's defensive growth in healthcare."
+],
+"level_4": [
+"Hugo robot's modular arms scale minimally invasive general surgery.",
+"Symplicity's renal denervation targets hypertension's sympathetic roots.",
+"Evolut pro valves self-expand for high-risk TAVR procedures.",
+"Guardian sensor's 7-day wear tracks glucose for pump algorithms.",
+"Deep brain stimulation apps titrate Parkinson's tremors adaptively."
+],
+"level_5": [
+"This NYSE healer's MDT monogram implants hope in 150 countries.",
+"95,000 clinicians deploy my devices in 10 million procedures yearly.",
+"1949's wearable pacemaker sparked cardio rhythm's therapeutic dawn.",
+"Bakken brothers' vision electrified medtech's innovation continuum.",
+"95-year legacy spans from X-ray tubes to AI-guided ablations."
+]
+}
+},
+{
+"ticker": "SYK",
+"company": "Stryker Corporation",
+"sector": "Health Care",
+"difficulty": "medium",
+"questions": {
+"level_1": [
+"I'm the orthopedics and surgical powerhouse equipping ORs with implants and enabling tech.",
+"Joint replacements restore mobility with cementless stems and robotic precision.",
+"Endoscopy towers visualize minimally invasive scopes for neuro and ENT suites.",
+"Trauma plating systems stabilize fractures with bioabsorbable innovations.",
+"As a medtech integrator, I blend devices, software, and services for outcomes."
+],
+"level_2": [
+"Mako robotics plans knee resurfacings with haptic boundaries intra-op.",
+"Interventional spine rods correct scoliosis with minimally invasive corridors.",
+"Neurovascular stents divert aneurysms in endovascular rescues.",
+"EMS stretchers transport critically ill with bariatric and power features.",
+"Acquisitions layer sports med and extremities into core ortho franchises."
+],
+"level_3": [
+"Michigan's 1941 lab coat startup pioneered walking heel's cast designs.",
+"Kalamazoo's heritage HQ innovates in a collaborative medtech ecosystem.",
+"Howmedica's 1998 buyout doubled hips and knees' market leadership.",
+"1970s' power tools revolutionized osteotomies' speed and safety.",
+"Dividend aristocrat status underscores consistent innovation dividends."
+],
+"level_4": [
+"Variax plates compress fractures with locking screws and compression holes.",
+"T2 nails antegrade femur stems with proximal locking options.",
+"Blue Belt's navigation fused CT for partial knee restorations.",
+"CereTom portable CT images neuro ICUs with low-dose protocols.",
+"Scopis' augmented reality overlays scopes for spine pedicle accuracy."
+],
+"level_5": [
+"This NYSE bone builder's SYK saw etches 2 million joints yearly.",
+"51,000 surgeons rely on my portfolio in 100+ countries.",
+"1941's cast innovations birthed ortho's reconstructive renaissance.",
+"O'Malley's vision scaled from heels to hips' global dominance.",
+"Fabs and labs in Ireland and U.S. forge titanium's therapeutic alloys."
+]
+}
+},
+{
+"ticker": "HAL",
+"company": "Halliburton Company",
+"sector": "Energy",
+"difficulty": "hard",
+"questions": {
+"level_1": [
+"I'm the oilfield services colossus delivering drilling, completion, and production solutions.",
+"Cementing and frac fleets optimize well integrity in unconventional plays.",
+"Reservoir simulation models forecast recovery from complex carbonates.",
+"Integrated project management coordinates mega-projects onshore and offshore.",
+"As an energy enabler, I harness digital and subsurface tech for efficiency."
+],
+"level_2": [
+"Landmark's Drillbits design PDC cutters for hard rock penetration.",
+"Sperry's LWD logs real-time pressures in HPHT environments.",
+"Baroid's fluids stabilize shales while minimizing formation damage.",
+"Wireline conveyance deploys perforators in deviated laterals.",
+"Revenue ties to rig counts and service intensities in basins."
+],
+"level_3": [
+"Texas's 1919 cementing startup rode booms to global services.",
+"Houston's HQ deploys fleets from Permian to Permian analogs.",
+"Baker Hughes' 2015 flirtation honed competitive benchmarking.",
+"1960s' offshore rigs pioneered subsea completions' deepwater dives.",
+"Stock resilience weathers cycles with diversified completions focus."
+],
+"level_4": [
+"DeepSense AI predicts stuck pipe from torque and drag data.",
+"SmartFleet fracs cluster simultaneously for parent-child optimizations.",
+"Decisionsciences' reservoir navigation geosteers laterals precisely.",
+"Cement's expandable liners isolate zones in extended reach wells.",
+"Carbon capture pilots inject CO2 for EOR in legacy fields."
+],
+"level_5": [
+"This NYSE driller's HAL hammer pounds 50 countries' subsurface.",
+"45,000 roughnecks service 5,000 rigs with digital twins.",
+"1919's Halliburton cement sealed the first Gulf well ever.",
+"Otis merger's 1980s echoes in wireline's conveyance evolutions.",
+"Fabs in Oklahoma and Duncan forge tools for 20,000-foot depths."
+]
+}
+},
+{
+"ticker": "BKR",
+"company": "Baker Hughes Company",
+"sector": "Energy",
+"difficulty": "hard",
+"questions": {
+"level_1": [
+"I'm the energy tech firm advancing drilling, LNG, and carbon solutions for net-zero transitions.",
+"Subsea tiebacks connect marginal fields with modular, low-cost architectures.",
+"Turboexpanders compress gases for LNG trains' cryogenic chills.",
+"Digital twins simulate FPSOs for offshore optimization in real-time.",
+"As a transition enabler, I blend oilfield roots with clean energy innovations."
+],
+"level_2": [
+"Drilco's PDC bits steer directional wells with real-time vibration control.",
+"Wireline's cased-hole logging evaluates perforations post-frac.",
+"Cement's expandable designs seal annuli in geothermal bores.",
+"Subsea 7's ROVs intervene in umbilicals for deepwater interventions.",
+"IHIs' turbines spin at 160MW for power islands in mega-plants."
+],
+"level_3": [
+"Texas's 1907 casing startup merged into GE's oilfield arm in 2017.",
+"Houston's campus fuses GE's digital with Baker's subsurface savvy.",
+"Halliburton's 2015 near-miss sharpened competitive service integrations.",
+"1950s' turbomachinery pioneered LNG's liquefaction cascades.",
+"Spin-off from GE unlocked focused energy tech investments."
+],
+"level_4": [
+"JewelSuite models reservoirs with seismic inversion for 4D changes.",
+"Panorama's control systems automate platforms with edge analytics.",
+"FlexFLO's artificial lift optimizes ESPs in unconventional horizontals.",
+"CarbonSafe's capture tech sequesters CO2 in saline aquifers.",
+"LNG's midscale trains modularize liquefaction for remote gas."
+],
+"level_5": [
+"This Nasdaq energizer's BKR bolt powers 120 countries' transitions.",
+"58,000 technologists deploy $25B in annual energy solutions.",
+"1907's Baker casing threaded the first rotary table ever.",
+"GE merger's 2017 birth blended turbos with wireline wisdom.",
+"Fabs in Italy and U.S. forge compressors for 50 million tons LNG."
+]
+}
+},
+{
+"ticker": "RTX",
+"company": "RTX Corporation",
+"sector": "Industrials",
+"difficulty": "medium",
+"questions": {
+"level_1": [
+"I'm the aerospace and defense integrator building fighters, missiles, and radars for security.",
+"Pratt & Whitney engines power commercial jets and military afterburners alike.",
+"Collins Aerospace avionics fuse sensors for next-gen cockpits and cabins.",
+"Raytheon missiles intercept hypersonics with hit-to-kill precision.",
+"As a systems architect, I connect platforms for joint all-domain ops."
+],
+"level_2": [
+"F135's adaptive cycle variants thrust F-35s to supercruise speeds.",
+"GTF's geared fans slash fuel burn 20% in narrowbody fleets.",
+"SPY-6 radars track stealth threats over 200-mile horizons.",
+"JASSM-ER cruises 600 miles with stealthy terrain following.",
+"Revenue spans commercial aftermarket and defense development contracts."
+],
+"level_3": [
+"Raytheon's 2020 merger with UTC birthed integrated aero-defense.",
+"Arlington's HQ coordinates labs from Connecticut to California.",
+"Pratt's 1925 Wasp radial winged interwar aviation's golden age.",
+"Falcon missile's 1980s debut pioneered air-to-air beyond-visual.",
+"Stock stability buffers cycles with long-term backlog visibility."
+],
+"level_4": [
+"NGAD's sixth-gen concepts fuse AI for manned-unmanned teaming.",
+"Boom Supersonic's SB-1 engines enable Mach 1.7 civil travel.",
+"Lower Tier Air Defense intercepts drones with directed energy.",
+"Coyote Block 3 loiters as decoys in electronic warfare.",
+"Hypersonic Glide Vehicle countermeasures evolve for peer threats."
+],
+"level_5": [
+"This NYSE sky sentinel's RTX ray traces 180,000 employees' innovations.",
+"200 countries deploy my systems in 1 million flight hours yearly.",
+"1925's radial engines birthed commercial aviation's turbine-free era.",
+"Kaman merger's 2023 echoes in rotorcraft's composite revolutions.",
+"Labs in Tucson and East Hartford forge hypersonics' Mach 5+ materials."
+]
+}
+},
+{
+"ticker": "NOC",
+"company": "Northrop Grumman Corporation",
+"sector": "Industrials",
+"difficulty": "medium",
+"questions": {
+"level_1": [
+"I'm the autonomous systems pioneer crafting stealth bombers, satellites, and cyber defenses.",
+"B-21 Raiders penetrate denied airspace with low-observable signatures.",
+"Space logistics dock capsules in orbit for refueling and repairs.",
+"Mission systems fuse ISR data for all-domain command dominance.",
+"As a defense innovator, I advance autonomy from sea to space."
+],
+"level_2": [
+"E-2D Hawkeye's rotodome radars track 2,000 targets simultaneously.",
+"Triton drones surveil Pacific expanses with 30-hour endurances.",
+"SBIRS satellites cue missile warnings in geosynchronous vigils.",
+"Cyber JADC2 networks link services for joint fires rapidly.",
+"Backlogs span fixed-price developments and sustainment contracts."
+],
+"level_3": [
+"Virginia's 1994 merger consolidated Grumman's naval aviation legacy.",
+"Falls Church's HQ overlooks Potomac where strategy sessions unfold.",
+"TRW's 2002 acquisition added space systems' propulsion expertise.",
+"1970s' F-14 Tomcat swung wings for carrier-based intercepts.",
+"Dividend growth reflects stable defense spending's fiscal anchors."
+],
+"level_4": [
+"NGAD's digital engineering prototypes sixth-gen in virtual twins.",
+"Lunar Gateway's HALO module sustains Artemis' orbital outposts.",
+"Fire Scout's autonomy lands MQ-8Cs on pitching decks unaided.",
+"AARGM-ER's seekers home on radiating emitters in SEAD missions.",
+"Space fence radars catalog orbital debris in real-time sweeps."
+],
+"level_5": [
+"This NYSE stealth shaper's NOC nose cones 95,000 missions.",
+"150 countries field my platforms in 500,000 flight hours annually.",
+"1939's Beta aircraft birthed carrier aviation's folding wing designs.",
+"Atwood's vision scaled from fighters to ICBMs' silo guardians.",
+"Labs in Melbourne and Redondo forge autonomy's AI-piloted swarms."
+]
+}
+},
+{
+"ticker": "CHTR",
+"company": "Charter Communications Inc.",
+"sector": "Communication Services",
+"difficulty": "medium",
+"questions": {
+"level_1": [
+"I'm the cable broadband behemoth delivering gigabit internet and video to millions.",
+"DOCSIS 3.1 networks push 940Mbps downstream in hybrid fiber-coax grids.",
+"Spectrum TV apps stream 4K content across devices cord-free.",
+"Mobile virtual networks ride Verizon's towers for bundled wireless.",
+"As a connectivity provider, I upgrade infrastructure for streaming eras."
+],
+"level_2": [
+"Advanced WiFi 6 pods mesh coverage in multi-gig homes seamlessly.",
+"Outage predictors use ML to preempt fiber cuts proactively.",
+"Business class fiber serves SMBs with SD-WAN overlays.",
+"Video-on-demand libraries curate originals and licensed blockbusters.",
+"Subscriber fees, equipment rentals, and ads diversify revenue streams."
+],
+"level_3": [
+"Stamford's 1993 rebirth from TCI's assets scaled to Time Warner.",
+"Connecticut's HQ strategizes DOCSIS 4.0's symmetric gigabit rollouts.",
+"2016's Bright House merger doubled Sunbelt footprints overnight.",
+"1990s' dial-up roots evolved to cable modem's broadband birth.",
+"Stock trades reflect capex cycles in network densification pushes."
+],
+"level_4": [
+"Spectrum Mobile's MVNO saves 20% on lines via deprioritized access.",
+"Full duplex DOCSIS trials uplink 10G in upstream-starved homes.",
+"One app unifies TV, phone, and internet for self-service portals.",
+"Regional sports nets carriage deals fuel live event monetizations.",
+"Fiber overbuilds target urban pockets with FTTH alternatives."
+],
+"level_5": [
+"This Nasdaq cable king's CHTR charter serves 32 million broadband homes.",
+"101,000 installers upgrade 100,000 miles of plant yearly.",
+"1993's Marcus cable consolidated into Time Warner's triple-play pioneer.",
+"Liberty's vision birthed video's digital tiered packaging.",
+"HFC networks span 55 states, forging America's wired backbone."
+]
+}
+},
+{
+"ticker": "PARA",
+"company": "Paramount Global",
+"sector": "Communication Services",
+"difficulty": "medium",
+"questions": {
+"level_1": [
+"I'm the media conglomerate streaming CBS, MTV, and Nickelodeon across platforms.",
+"Paramount+ originals blend franchises with prestige series for binge audiences.",
+"Linear nets like Showtime premium cable draw ad dollars and subs.",
+"Film slate from Skydance powers blockbusters and awards contenders.",
+"As a content creator, I license IP for global reach and relevance."
+],
+"level_2": [
+"BET and VH1 curate urban and music video ecosystems culturally.",
+"NFL on CBS broadcasts draw 20 million viewers weekly for football.",
+"Pluto TV's free ad-supported channels aggregate 250+ linear feeds.",
+"Merchandising from SpongeBob spans toys to theme park attractions.",
+"Affiliate fees, streaming subs, and theatrical box office intermix."
+],
+"level_3": [
+"New York's 2019 Viacom-CBS merger reunited storied Hollywood siblings.",
+"Times Square's HQ scripts Paramount+'s 60 million sub ambitions.",
+"BET's 2001 launch pioneered cable's African-American targeting.",
+"1980s' UA-Columbia merger birthed video's home rental revolution.",
+"Stock volatility mirrors cord-cutting's linear-to-streaming pivots."
+],
+"level_4": [
+"Yellowstone's Taylor Sheridan universe spins spinoffs across Paramount+.",
+"Mission: Impossible's stunts gross billions in globe-trotting franchises.",
+"CBS Mornings' studio innovations blend virtual sets with live news.",
+"Showtime's prestige like Billions licenses to Netflix globally.",
+"Ad tech platforms target viewers with contextual and first-party data."
+],
+"level_5": [
+"This Nasdaq storyteller's PARA mountain peaks 22,000 episodes yearly.",
+"28,000 creatives produce for 200 countries' diverse audiences.",
+"1912's Famous Players birthed Hollywood's feature-length golden age.",
+"Redstone's vision merged Viacom's cable with CBS's broadcast might.",
+"Studios in LA and NY forge IP's timeless transmedia empires."
+]
+}
+},
+{
+"ticker": "SNPS",
+"company": "Synopsys Inc.",
+"sector": "Technology",
+"difficulty": "hard",
+"questions": {
+"level_1": [
+"I'm the EDA software vanguard simulating chips from RTL to GDSII tapeout.",
+"Design compilers synthesize Verilog into optimized netlists for ASICs.",
+"Verification suites catch bugs with UVM testbenches and formal proofs.",
+"Optical proximity correction shapes masks for sub-3nm lithography.",
+"As a silicon lifecycle partner, I accelerate tapeouts for hyperscalers."
+],
+"level_2": [
+"Fusion Compiler's place-and-route flows yield PPA gains in 2nm blocks.",
+"VC SpyGlass lints RTL for synthesizability and power intent compliance.",
+"ZeBu emulates SoCs at 1GHz for software bring-up pre-silicon.",
+"Sentaurus TCAD models devices at atomic scales for FinFET tuning.",
+"IP licensing and cloud EDA subscriptions compound recurring revenues."
+],
+"level_3": [
+"California's 1986 logic synthesis bet scaled to EDA's duopoly.",
+"Sunnyvale's campus prototypes AI-driven place-and-route evolutions.",
+"Ansys' 2024 merger layered multiphysics into chip-package co-design.",
+"1990s' PrimeTime static timing birthed signoff's golden standard.",
+"Stock appreciation tracks semi design complexity's exponential climbs."
+],
+"level_4": [
+"DSO.ai's ML auto-tunes designs for 10% better power at iso-performance.",
+"TestMAX generates patterns for ATPG coverage exceeding 99%.",
+"SiliconSmart libraries characterize cells for low-voltage IoT nodes.",
+"3DIC Compiler stacks chiplets with TSV planning and thermal analysis.",
+"Formal verification proves assertions in safety-critical automotive SoCs."
+],
+"level_5": [
+"This Nasdaq design doc's SNPS synapse sparks 90% of world's chips.",
+"20,000 engineers flow 10 million gates daily in virtual fabs.",
+"1986's logic compiler automated ASIC's manual netlist drudgery.",
+"Kundert's vision fused verification with synthesis for full-flow EDA.",
+"Global centers in India and China accelerate tapeouts' 24/7 cadences."
+]
+}
+},
+{
+"ticker": "CDNS",
+"company": "Cadence Design Systems Inc.",
+"sector": "Technology",
+"difficulty": "hard",
+"questions": {
+"level_1": [
+"I'm the electronic design automation maestro orchestrating ICs from concept to silicon success.",
+"Genus synthesis optimizes RTL for area, timing, and power in advanced nodes.",
+"Innovus placer routes blocks with pin access optimization for 3D stacks.",
+"JasperGold formals exhaustively verifies protocols in SoC interconnects.",
+"As an IP and tools provider, I enable 5nm tapeouts for mobile and auto."
+],
+"level_2": [
+"Palladium emulates billion-gate designs at RTL speeds for firmware debug.",
+"Tempus timing signs off OCV corners with statistical STA flows.",
+"Celsius thermal analysis co-simulates power maps for 3DIC hotspots.",
+"Tensilica cores configure DSPs for edge AI inferencing efficiently.",
+"Cloud bursting and SaaS models scale compute for peak design loads."
+],
+"level_3": [
+"California's 1988 verification startup conquered EDA's fragmented landscape.",
+"San Jose's HQ innovates Cerebrus AI for autonomous design closures.",
+"Mentor's 2020 acquisition integrated PCB and systems analysis.",
+"1990s' Specman constrained-random testing revolutionized coverage.",
+"Revenue growth outpaces semis via IP's recurring royalty streams."
+],
+"level_4": [
+"Cerebrus ML explores PPA tradeoffs, converging 2x faster than engineers.",
+"Modus DFT inserts scan chains with minimal area overheads.",
+"Legato reliability models EM and IR drop for automotive qual.",
+"Clarity 3D-IC extracts parasitics across multi-die interconnects.",
+"Verisium platform unifies emulation, prototyping, and silicon debug."
+],
+"level_5": [
+"This Nasdaq EDA engine's CDNS cadence clocks 85% of advanced nodes.",
+"11,000 architects route quadrillion transistors in virtual realms.",
+"1988's bug hunter birthed constrained-random's verification paradigm.",
+"Sangiovanni's vision synthesized gates into full-chip ecosystems.",
+"Centers in Austin and Hyderabad pulse with AI's design accelerations."
+]
+}
+},
+{
+"ticker": "CPRT",
+"company": "Copart Inc.",
+"sector": "Industrials",
+"difficulty": "medium",
+"questions": {
+"level_1": [
+"I'm the online vehicle auction platform salvaging total-losses for global buyers.",
+"Salvage yards stage cars for VB3 inspections and lot postings swiftly.",
+"Live webcast auctions bid up salvage from insurers and dealers.",
+"Export logistics ship containers to 200 countries' rebuilding markets.",
+"As a remarketing innovator, I turn wrecks into economic recoveries."
+],
+"level_2": [
+"Copart 360 photos capture 80 angles for remote condition assessments.",
+"Virtual buying tools zoom interiors for cross-border due diligence.",
+"Salvage analytics forecast repair costs via damage code algorithms.",
+"Broker networks connect U.S. inventory to international rebuilders.",
+"Service fees, lot sales, and storage compound on volume growth."
+],
+"level_3": [
+"California's 1982 junkyard roots digitized auctions in the 1990s.",
+"Dallas's HQ oversees 200 locations spanning North America and Europe.",
+"National Powersports' 2019 buyout added ATVs to auto salvage.",
+"1990s' online pivot crushed physical lane inefficiencies dramatically.",
+"Stock splits rewarded scale from regional to global remarketing."
+],
+"level_4": [
+"OASIS platform integrates with insurers for seamless claim uploads.",
+"Mobile app bids real-time from phones in global auction theaters.",
+"AI pricing models value salvage based on regional repair ecosystems.",
+"Export yards consolidate shipments for cost-effective ocean freights.",
+"Green initiatives recycle 90% of vehicle materials sustainably."
+],
+"level_5": [
+"This Nasdaq wreck wizard's CPRT cart flips 2 million vehicles yearly.",
+"11,000 listers stage auctions in 11 countries' salvage streams.",
+"1982's Folsom yard birthed online auto's digital auction dawn.",
+"Johnson's vision scaled yards to yards' virtual global marketplaces.",
+"Yards from Dallas to Dubai dismantle dents into dollars efficiently."
+]
+}
+},
+{
+"ticker": "ODFL",
+"company": "Old Dominion Freight Line Inc.",
+"sector": "Industrials",
+"difficulty": "hard",
+"questions": {
+"level_1": [
+"I'm the LTL carrier optimizing less-than-truckload shipments with linehaul efficiency.",
+"Breakbulk terminals consolidate freight for regional density and on-time deliveries.",
+"LTL rates balance transit times with door-to-door service reliability.",
+"Expedited options rush priority pallets via dedicated service centers.",
+"As a logistics integrator, I network 260 terminals for seamless coverage."
+],
+"level_2": [
+"OD Network's hub-and-spoke minimizes empty miles in inter-regional hauls.",
+"Electronic PODs track shipments from pickup to proof of delivery.",
+"Guaranteed service levels refund delays in 98% on-time metrics.",
+"Supply chain consulting optimizes inbound for just-in-time manufacturing.",
+"Fuel surcharges and accessorials layer atop base linehaul tariffs."
+],
+"level_3": [
+"Virginia's 1934 startup scaled LTL's regional model nationally.",
+"Thomasville's HQ dispatches 10,000 tractors across 50 states.",
+"Pitt Ohio's 2010s rivalry honed density in Southeast corridors.",
+"1980s' deregulation unlocked intermodal expansions beyond trucking.",
+"Dividend aristocrat status reflects compounding service center investments."
+],
+"level_4": [
+"SmartWay certified fleets cut emissions with aero kits and idle tech.",
+"Container on flatcar partners rail for long-haul cost savings.",
+"Warehouse cross-docks buffer peak seasons with surge capacity.",
+"RFID tagging traces hazmat in real-time compliance dashboards.",
+"E-commerce fulfillment arms last-mile for DTC parcel volumes."
+],
+"level_5": [
+"This Nasdaq truck titan' ODFL odometer logs 4 billion miles yearly.",
+"23,000 drivers navigate 260 docks in North America's LTL web.",
+"1934's Richlands route birthed regional carrier's national density.",
+"Garrett's vision built terminals into transit time's unbeatable moat.",
+"Fleets from Thomasville to Toronto haul 2 million shipments weekly."
+]
+}
+},
+{
+"ticker": "CTAS",
+"company": "Cintas Corporation",
+"sector": "Industrials",
+"difficulty": "medium",
+"questions": {
+"level_1": [
+"I'm the uniform and facility services provider outfitting workforces with branded apparel.",
+"Rental programs launder and route fresh uniforms weekly for consistent professionalism.",
+"First aid cabinets stock AEDs and kits for OSHA-compliant workplaces.",
+"Mat and linen services refresh high-traffic areas hygienically.",
+"As a B2B essential, I embed safety and image in daily operations."
+],
+"level_2": [
+"Logo embroidery customizes polos for fleet branding and compliance.",
+"Restroom supplies dispense towels and sanitizers in automated cabinets.",
+"Floor mats trap dirt at entrances, reducing slips and cleaning costs.",
+"Fire protection inspects extinguishers with digital tagging and reports.",
+"Subscription models route routes with GPS-optimized service vans."
+],
+"level_3": [
+"Ohio's 1929 rag route evolved into uniform's national rental network.",
+"Mason's HQ manages 600 facilities spanning U.S. and Canada.",
+"G&K's 2017 merger doubled industrial segment's market share.",
+"1960s' flame-resistant launch protected welders' safety standards.",
+"Share repurchases reflect family-controlled growth's disciplined capital."
+],
+"level_4": [
+"Cleanroom garments seal sterile environments for pharma and aero fabs.",
+"Document destruction shreds sensitive papers with NAID-certified chains.",
+"Safety training portals certify forklift ops and hazwhack handling.",
+"EcoDrive routes cut fuel 20% with telematics and EV pilots.",
+"Private label towels brand hospitality with monogrammed linens."
+],
+"level_5": [
+"This Nasdaq cloth king's CTAS crest uniforms 1 million associates daily.",
+"46,000 route sales deliver to 1 million stops in North America.",
+"1929's laundry startup birthed B2B services' recurring revenue model.",
+"Hollan's vision scaled rags to routes' essential workplace ecosystems.",
+"Plants from Reno to Richmond press 100 million garments yearly."
+]
+}
+},
+{
+"ticker": "VRSK",
+"company": "Verisk Analytics Inc.",
+"sector": "Industrials",
+"difficulty": "hard",
+"questions": {
+"level_1": [
+"I'm the risk analytics provider modeling catastrophes and claims for insurers worldwide.",
+"AIR Worldwide simulates hurricanes' wind speeds and flood depths probabilistically.",
+"ISO Claims predict fraud with graph analytics on policyholder networks.",
+"Xactimate prices repairs with localized labor and material databases.",
+"As a data oracle, I illuminate uncertainties for underwriting and reserves."
+],
+"level_2": [
+"Touchstone platforms blend cat models with portfolio risk aggregations.",
+"ClaimSearch detects patterns in 1 trillion medical procedure codes.",
+"CoreLogic's property data values homes with AVMs and comps.",
+"Wood Mackenzie forecasts energy transitions' supply chain disruptions.",
+"Subscription APIs feed real-time insights into enterprise dashboards."
+],
+"level_3": [
+"New Jersey's 1971 insurance roots scaled to analytics' global dominion.",
+"Jersey City's HQ fuses ISO's claims with AIR's cat expertise.",
+"Wood Mac's 2015 buyout layered energy into insurance's risk mosaic.",
+"1980s' CLUE database birthed auto claims' longitudinal tracking.",
+"Public spin from Moody's in 2009 unlocked focused growth capital."
+],
+"level_4": [
+"Cat Response teams deploy drones for post-event damage assessments.",
+"FraudCloud's ML flags anomalies in telematics driving behaviors.",
+"Precise's satellite imagery maps wildfires' burn scars for reserves.",
+"EagleView's aerials estimate roof pitches for solar quoting.",
+"Climate analytics project insured losses from tipping point scenarios."
+],
+"level_5": [
+"This Nasdaq risk radar's VRSK visor scans $50B in annual premiums.",
+"8,000 quants model quadrillions of scenarios in virtual cat events.",
+"1971's ISO forms standardized P&C's data sharing protocols.",
+"Geller's vision wove claims into cats' predictive analytics.",
+"Centers in Boston and London forecast perils' probabilistic futures."
+]
+}
+},
+{
+"ticker": "MSCI",
+"company": "MSCI Inc.",
+"sector": "Financials",
+"difficulty": "hard",
+"questions": {
+"level_1": [
+"I'm the index and ESG analytics provider benchmarking trillions in assets globally.",
+"World Index tracks 1,500 large-caps across 23 developed markets.",
+"RiskMetrics models VaR for portfolios' tail risk exposures.",
+"Private Capital Solutions values illiquids with comparable transactions.",
+"As a benchmarker, I shape allocations with factor and climate data."
+],
+"level_2": [
+"ACWI ex-US captures emerging growth with currency-hedged variants.",
+" Barra's multi-factor engine decomposes returns into style attributions.",
+"ESG ratings score controversies and carbon footprints quantitatively.",
+"Analytics Lab backtests strategies with historical index reconstitutions.",
+"Subscription terminals deliver real-time factor tilts and peer benchmarks."
+],
+"level_3": [
+"New York's 1968 index roots evolved from Capital International's benchmarks.",
+"Same city's HQ innovates AI-driven index construction methodologies.",
+"Barra's 2004 acquisition layered risk onto indexing's factor frontiers.",
+"1990s' MSCI Standard birthed global cap-weighted tracking's ubiquity.",
+"IPO in 2007 fueled ESG's integration into mainstream asset management."
+],
+"level_4": [
+"Climate Search visualizes carbon budgets under Paris-aligned scenarios.",
+"Custom indexes slice sectors with thematic overlays like cyber or water.",
+"Private Asset Monitor aggregates NAVs from 5,000 PE and VC funds.",
+"Real Estate indexes track REITs with direct property comparables.",
+"Factor models now incorporate ML for dynamic beta estimations."
+],
+"level_5": [
+"This NYSE index icon's MSCI mosaic measures $15T in benchmarks.",
+"3,500 quants reconstitute indexes quarterly for trillions' passive flows.",
+"1968's global indexes unified fragmented regional benchmarks.",
+"McQuown's vision fused Barra's risk with MSCI's market proxies.",
+"Offices in Mumbai and Tokyo tailor EM indexes' local nuances."
+]
+}
+},
+{
+"ticker": "ICE",
+"company": "Intercontinental Exchange Inc.",
+"sector": "Financials",
+"difficulty": "medium",
+"questions": {
+"level_1": [
+"I'm the exchange operator clearing derivatives, equities, and fixed income globally.",
+"NYSE's auction matches orders in hybrid electronic and floor formats.",
+"ICE Futures trades Brent, gasoil, and softs with central clearing.",
+"Mortgage Technology digitizes MBS pools for secondary market liquidity.",
+"As a market infrastructure, I mitigate counterparty risks with CCPs."
+],
+"level_2": [
+"Swap Execution Facilities route IRS to SEFs for regulatory compliance.",
+"Fixed Income & Data sells benchmark curves and reference rates.",
+"Elliptic's crypto custody secures digital assets with institutional wallets.",
+"DataLake aggregates tick data for algo backtesting and surveillance.",
+"Transaction fees, clearing margins, and data subscriptions interweave."
+],
+"level_3": [
+"Georgia's 2000 energy trader built ICE's electronic futures platform.",
+"Atlanta's HQ oversees NYSE's 2,400 listed firms' capital raises.",
+"NYSE Euronext's 2013 merger integrated continental equity venues.",
+"2005's NYBOT buyout added ags and softs to energy's core.",
+"Public debut in 2005 scaled from niche to global infrastructure."
+],
+"level_4": [
+"Black Knight's origination software streamlines loan pipelines digitally.",
+"Benchmark Administration's LIBOR successor rates transition smoothly.",
+"Crypto trading venues list BTC and ETH with 24/7 surveillance.",
+"Colocation data centers low-latency co-lo for HFT strategies.",
+"RegTech tools monitor wash trades in real-time compliance."
+],
+"level_5": [
+"This NYSE venue visionary's ICE cube chills $1Q notional yearly.",
+"25,000 listers execute 4 billion contracts in 50 venues.",
+"2000's IntercontinentalEnergy birthed electronic crude's benchmark era.",
+"Sprecher's vision fused futures with equities' auction traditions.",
+"Servers in Mahwah and Basildon pulse markets' millisecond machinations."
+]
+}
+},
+{
+"ticker": "AON",
+"company": "Aon plc",
+"sector": "Financials",
+"difficulty": "medium",
+"questions": {
+"level_1": [
+"I'm the professional services firm brokering risk solutions and human capital strategies.",
+"Reinsurance placements layer capacity for cat-prone carriers' portfolios.",
+"Health and benefits consulting optimizes self-funded plans' cost curves.",
+"Cyber risk models quantify exposures to ransomware and supply chain hacks.",
+"As a risk advisor, I align insurance with strategic resilience programs."
+],
+"level_2": [
+"Affinity's embedded insurance weaves coverage into e-comm checkouts.",
+"Mercer's wealth platforms model DC outcomes with longevity swaps.",
+"Talent strategies upskill workforces via AI-driven skills ontologies.",
+"Climate analytics stress-test property books under RCP scenarios.",
+"Fee-based consulting and brokerage commissions diversify revenue streams."
+],
+"level_3": [
+"London's 1982 merger scaled Ryan's retail to global reinsurance.",
+"Same city's HQ fuses Willis's aviation with Towers Watson's pensions.",
+"Willis's 2016 buyout layered marine and energy specialties.",
+"1980s' deregulation unlocked alternative risk transfers' captive era.",
+"Irish domicile post-inversion optimized tax for transatlantic flows."
+],
+"level_4": [
+"Aon Re's cat fund pools premiums for parametric triggers swiftly.",
+"Mercer Invest's OCIO outsources CIO functions for endowments.",
+"Cyber solutions bundle D&O with incident response retainers.",
+"Health IQ's analytics predict claims from wearable biometrics.",
+"ESG advisory integrates impact investing with fiduciary duties."
+],
+"level_5": [
+"This NYSE risk ranger's AON arrow aims 50,000 advisors' insights.",
+"200 countries broker $100B premiums with data-driven placements.",
+"1982's Alexander merger birthed broking's global scale playbook.",
+"Ryan's vision wove retail with reinsurance's capacity conduits.",
+"Offices in Singapore and Dubai navigate perils' probabilistic frontiers."
+]
+}
+},
+{
+"ticker": "STZ",
+"company": "Constellation Brands Inc.",
+"sector": "Consumer Staples",
+"difficulty": "medium",
+"questions": {
+"level_1": [
+"I'm the beer and spirits powerhouse importing premium Mexican brews and wines.",
+"Corona Extra's lime ritual refreshes beachgoers with crisp lager lightness.",
+"Modelo Especial's bold flavors dominate import beer's market share.",
+"Wine portfolio spans Robert Mondavi to Kim Crawford's sauvignon.",
+"As a high-end curator, I elevate occasions with crafted libations."
+],
+"level_2": [
+"Casa Noble tequilas age in French oak for sipping smoothness.",
+"Fresca Mixed's RTDs blend grapefruit with vodka for low-cal convenience.",
+"Prisoner Wine's bold reds ferment in stainless for fruit-forward profiles.",
+"Distribution arms place shelf space in 40 states' retail chains.",
+"Depletions and A&Ps drive volume in beer and wine segments."
+],
+"level_3": [
+"New York's 1945 juice startup pivoted to beer's import niche.",
+"Victor, NY's HQ brews innovation in Corona's U.S. production.",
+"Ballast Point's 2015 craft buyout diversified beyond imports.",
+"1990s' Svedka vodka launched flavored RTDs' category growth.",
+"Stock pops track summer depletions' seasonal beer surges."
+],
+"level_4": [
+"High West rye whiskeys double-barrel for complex spice notes.",
+"Meiomi's pinot noir sur lie ages for creamy coastal textures.",
+"Pacifico Clara's beachy lager ferments with adjunct rice lightness.",
+"Svedka's collabs infuse botanicals for millennial cocktail twists.",
+"Craft divestitures refocus on premium core brands' expansions."
+],
+"level_5": [
+"This NYSE pour master's STZ star toasts 40 million cases quarterly.",
+"10,000 distributors stock shelves in 80 countries' bars.",
+"1945's Canandaigua wine birthed beer's Mexican import dynasty.",
+"Sands' vision scaled Corona from imports to U.S. brewing.",
+"Facilities in Nava and Obregón brew 10 million barrels yearly."
+]
+}
+},
+{
+"ticker": "EL",
+"company": "The Estee Lauder Companies Inc.",
+"sector": "Consumer Staples",
+"difficulty": "medium",
+"questions": {
+"level_1": [
+"I'm the prestige beauty conglomerate crafting skincare, makeup, and fragrances for luxury.",
+"Clinique's dermatologist-tested regimens hydrate with hypoallergenic formulas.",
+"MAC's pro artistry palettes empower bold lips and smoky eyes.",
+"La Mer's creme de la mer restores with sea-sourced miracle broth.",
+"As a glamour curator, I elevate routines with science-backed indulgence."
+],
+"level_2": [
+"Origins' plant-powered serums soothe with gin zing adaptogen blends.",
+"Bobbi Brown's gel eyeliners define with smudge-proof precision.",
+"Jo Malone's colognes layer lime basil for bespoke scent signatures.",
+"Estee Lauder's night repair revives with peptide-packed elixirs.",
+"Travel retail exclusives gift-set duty-free airports' impulse buys."
+],
+"level_3": [
+"New York's 1946 kitchen startup scaled to counter's global icons.",
+"Manhattan's HQ innovates Youth Dew's oriental chypre evolutions.",
+"Tomas's 1995 Clinique launch pioneered clean clinical's mass appeal.",
+"1990s' MAC pro counter birthed color's inclusive artistry ethos.",
+"Family control post-IPO tempers beauty's cyclical trend swings."
+],
+"level_4": [
+"Le Labo's santal 33 candles wick urban oud for home ambiance.",
+"Too Faced's melt peach palette bakes shadows with cocoa butter.",
+"Smashbox's primer water hydrates pre-makeup for flawless longevity.",
+"Frederic Malle's carnal flower tuberose absolutes perfume rarity.",
+"E-commerce exclusives like Glossier collabs tap millennial minimalism."
+],
+"level_5": [
+"This NYSE glow guardian's EL emblem adorns 150 countries' vanities.",
+"62,000 beauty advisors sell $15B in prestige potions yearly.",
+"1946's Mrs. Lauder's oils birthed department store's ritual revolutions.",
+"Lauder's vision layered scents atop creams' foundational formulas.",
+"Labs in Melville and Liebefeld ferment ferments' fermented miracles."
+]
+}
+}  
 ]
 }
