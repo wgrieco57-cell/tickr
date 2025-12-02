@@ -104,7 +104,7 @@ function App() {
     dailyTotalTime: 0,
     // Unlimited-specific
     unlimitedCompletions: 0,
-    unlimitedGuessDistribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, fail: 0 },
+    unlimitedGuessDistribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, fail: 0 },
     unlimitedTotalTime: 0,
     // Shared
     overallFastestTime: null,
@@ -235,9 +235,11 @@ useEffect(() => {
     let pickedQuestions = [];
     // Sort data by ticker to ensure consistent order across loads/refreshes
     const sortedData = [...data].sort((a, b) => a.ticker.localeCompare(b.ticker));
-    // Filter data based on mode/difficulty (for now, no per-ticker difficulty tag, so use all)
+    // Filter data based on mode (unlimited filters by difficulty tag)
     let filteredData = sortedData;
-    // (Future: filteredData = sortedData.filter(t => (t.difficulty || 'medium') === difficulty);)
+    if (gameMode === 'unlimited') {
+      filteredData = sortedData.filter(t => (t.difficulty || 'medium') === difficulty);
+    }
     if (gameMode === 'daily' && !testMode) {
       // Deterministic: same ticker and questions for everyone on the same day
       const seed = hashCode(today);
@@ -260,11 +262,10 @@ useEffect(() => {
       // Set the date flag to enable progress saving for today
       localStorage.setItem('dailyDate', today);
     } else {
-      // Unlimited or test: Random pick, infer difficulty by max levels
+      // Unlimited or test: Random pick from filtered data
       const randomIndex = Math.floor(Math.random() * filteredData.length);
       selectedTicker = filteredData[randomIndex];
-      let maxLevels = difficulty === 'hard' ? 3 : difficulty === 'medium' ? 5 : 6;
-      for (let i = 1; i <= maxLevels; i++) {
+      for (let i = 1; i <= 5; i++) {
         const levelQuestions = selectedTicker.questions[`level_${i}`];
         if (levelQuestions) {
           const qIndex = Math.floor(Math.random() * levelQuestions.length);
@@ -276,16 +277,6 @@ useEffect(() => {
             answers: []
           });
         }
-      }
-      // For easy (6 clues): Add a bonus question (reuse from level_5)
-      if (difficulty === 'easy' && pickedQuestions.length >= 5 && selectedTicker.questions.level_5) {
-        const bonusQ = selectedTicker.questions.level_5[Math.floor(Math.random() * selectedTicker.questions.level_5.length)];
-        pickedQuestions.push({
-          level: 6,
-          question: bonusQ,
-          correct: selectedTicker.ticker,
-          answers: []
-        });
       }
     }
     setDailyTicker(selectedTicker);
@@ -585,7 +576,6 @@ const shareResults = () => {
     alert('Results copied to clipboard!');
   }
 };
-
 const shareToTwitter = () => {
   const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
   const won = submittedAnswers.some(a => a.isCorrect);
@@ -638,15 +628,15 @@ const shareToTwitter = () => {
     setSubmittedAnswers([]);
     setInput("");
     setAvailableOptions([]);
+    const filteredData = data.filter(t => (t.difficulty || 'medium') === difficulty);
     let newTicker;
     do {
-      const randomIndex = Math.floor(Math.random() * data.length);
-      newTicker = data[randomIndex];
-    } while (data.length > 1 && newTicker.ticker === dailyTicker?.ticker);
+      const randomIndex = Math.floor(Math.random() * filteredData.length);
+      newTicker = filteredData[randomIndex];
+    } while (filteredData.length > 1 && newTicker.ticker === dailyTicker?.ticker);
     setDailyTicker(newTicker);
     const pickedQuestions = [];
-    let maxLevels = difficulty === 'hard' ? 3 : difficulty === 'medium' ? 5 : 6;
-    for (let i = 1; i <= maxLevels; i++) {
+    for (let i = 1; i <= 5; i++) {
       const levelQuestions = newTicker.questions[`level_${i}`];
       if (levelQuestions) {
         const question = levelQuestions[Math.floor(Math.random() * levelQuestions.length)];
@@ -657,10 +647,6 @@ const shareToTwitter = () => {
           answers: []
         });
       }
-    }
-    if (difficulty === 'easy' && pickedQuestions.length >= 5 && newTicker.questions.level_5) {
-      const bonusQ = newTicker.questions.level_5[Math.floor(Math.random() * newTicker.questions.level_5.length)];
-      pickedQuestions.push({ level: 6, question: bonusQ, correct: newTicker.ticker, answers: [] });
     }
     setQuestions(pickedQuestions);
     setStartTime(Date.now());
@@ -773,9 +759,9 @@ const shareToTwitter = () => {
           }}
           aria-label="Select Difficulty Level"
         >
-          <option value="easy">😊 Easy (6 Clues)</option>
-          <option value="medium">⚖️ Medium (5 Clues)</option>
-          <option value="hard">🔥 Hard (3 Clues)</option>
+          <option value="easy">😊 Easy Stocks</option>
+          <option value="medium">⚖️ Medium Stocks</option>
+          <option value="hard">🔥 Hard Stocks</option>
         </select>
       )}
     </div>
@@ -907,7 +893,7 @@ const shareToTwitter = () => {
           <h1 style={{ fontSize:'4rem', fontWeight:'800', background:'linear-gradient(135deg,#22c55e 0%,#3b82f6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', marginBottom:'0.5rem', letterSpacing:'-0.02em' }}>TickrDaily</h1>
           <p style={{ color:mutedColor, fontSize:'1rem', fontWeight:'500', letterSpacing:'0.05em' }}>{todayDate}</p>
           <p style={{ color:mutedColor, fontSize:'0.875rem', marginTop:'0.5rem' }}>
-            {gameMode === 'daily' ? 'Guess the stock from 5 clues' : `Guess the stock from ${difficulty === 'easy' ? 6 : difficulty === 'hard' ? 3 : 5} clues (${difficulty})`}
+            {gameMode === 'daily' ? 'Guess the stock from 5 clues' : `Guess the stock from 5 clues (${difficulty} stocks)`}
           </p>
           {gameOver && gameMode === 'daily' && !testMode && (
             <p style={{ color: '#22c55e', fontSize: '1rem', fontWeight: '600', marginTop: '1rem' }}>
@@ -1188,9 +1174,9 @@ const shareToTwitter = () => {
                 {activeModeTab === 'daily' ? (
                   <GuessDistChart dist={stats.dailyGuessDistribution} maxClues={5} />
                 ) : activeModeTab === 'unlimited' ? (
-                  <GuessDistChart dist={stats.unlimitedGuessDistribution} maxClues={6} />
+                  <GuessDistChart dist={stats.unlimitedGuessDistribution} maxClues={5} />
                 ) : (
-                  <GuessDistChart dist={{...stats.dailyGuessDistribution, ...stats.unlimitedGuessDistribution, 6: (stats.unlimitedGuessDistribution[6] || 0)}} maxClues={6} />
+                  <GuessDistChart dist={{...stats.dailyGuessDistribution, ...stats.unlimitedGuessDistribution}} maxClues={5} />
                 )}
               </div>
               {/* Play History (Daily Only) */}
