@@ -572,13 +572,9 @@ const shareResults = () => {
   const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
   const won = submittedAnswers.some(a => a.isCorrect);
   const cluesUsed = won ? submittedAnswers.length : questions.length;
-  const date = new Date().toLocaleDateString();
-  let text;
-  if (won) {
-    text = `Nailed TickrDaily in ${cluesUsed} guesses! ${emoji}\n\nPlay now: ${window.location.href}`;
-  } else {
-    text = `TickrDaily: ${cluesUsed}/${questions.length} ${emoji}\n\nPlay now: ${window.location.href}`;
-  }
+  const now = new Date();
+  const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
+  const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${window.location.href}`;
   if (navigator.share) {
     navigator.share({ text }).catch(() => {
       navigator.clipboard.writeText(text);
@@ -594,13 +590,9 @@ const shareToTwitter = () => {
   const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
   const won = submittedAnswers.some(a => a.isCorrect);
   const cluesUsed = won ? submittedAnswers.length : questions.length;
-  const date = new Date().toLocaleDateString();
-  let text;
-  if (won) {
-    text = `Nailed TickrDaily in ${cluesUsed} guesses! ${emoji}\n\nPlay now: ${window.location.href}`;
-  } else {
-    text = `TickrDaily: ${cluesUsed}/${questions.length} ${emoji}\n\nPlay now: ${window.location.href}`;
-  }
+  const now = new Date();
+  const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
+  const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${window.location.href}`;
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
   window.open(twitterUrl, '_blank');
 };
