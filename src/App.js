@@ -92,6 +92,7 @@ function App() {
   const [testMode, setTestMode] = useState(false);
   const [shake, setShake] = useState(false);
   const [activeModeTab, setActiveModeTab] = useState('daily'); // Default to daily
+  const [isMobile, setIsMobile] = useState(false);
   const [stats, setStats] = useState({
     // Daily-specific
     dailyGamesPlayed: 0,
@@ -149,6 +150,13 @@ useEffect(() => {
     if (urlParams.get('test') === 'true') {
       setTestMode(true);
     }
+  }, []);
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
   // Keyboard shortcut to toggle test mode (Ctrl+Shift+T)
   useEffect(() => {
@@ -564,19 +572,20 @@ const shareResults = () => {
   const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
   const won = submittedAnswers.some(a => a.isCorrect);
   const cluesUsed = won ? submittedAnswers.length : questions.length;
-  const shareText = `TickrDaily ${new Date().toLocaleDateString()}\n${emoji} (${cluesUsed}/${questions.length})`;
-  const fullText = `${shareText}\n\nPlay: ${window.location.href}`;
+  const date = new Date().toLocaleDateString();
+  let text;
+  if (won) {
+    text = `🔥 Crushed TickrDaily on ${date}! Nailed it in ${cluesUsed} clues! ${emoji}\n\nJoin the stock-guessing frenzy: ${window.location.href}`;
+  } else {
+    text = `💥 Tough market on TickrDaily today... ${cluesUsed}/${questions.length} ${emoji}\n\nThink you can do better? Dive in: ${window.location.href}`;
+  }
   if (navigator.share) {
-    navigator.share({ 
-      title: 'TickrDaily Results', 
-      text: shareText, 
-      url: window.location.href 
-    }).catch(() => {
-      navigator.clipboard.writeText(fullText);
+    navigator.share({ text }).catch(() => {
+      navigator.clipboard.writeText(text);
       alert('Results copied to clipboard!');
     });
   } else {
-    navigator.clipboard.writeText(fullText);
+    navigator.clipboard.writeText(text);
     alert('Results copied to clipboard!');
   }
 };
@@ -584,7 +593,13 @@ const shareToTwitter = () => {
   const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
   const won = submittedAnswers.some(a => a.isCorrect);
   const cluesUsed = won ? submittedAnswers.length : questions.length;
-  const text = `TickrDaily ${new Date().toLocaleDateString()}\n${emoji} (${cluesUsed}/${questions.length})\n\nPlay: ${window.location.href}`;
+  const date = new Date().toLocaleDateString();
+  let text;
+  if (won) {
+    text = `🔥 Crushed TickrDaily on ${date}! Nailed it in ${cluesUsed} clues! ${emoji}\n\nJoin the stock-guessing frenzy: ${window.location.href}`;
+  } else {
+    text = `💥 Tough market on TickrDaily today... ${cluesUsed}/${questions.length} ${emoji}\n\nThink you can do better? Dive in: ${window.location.href}`;
+  }
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
   window.open(twitterUrl, '_blank');
 };
@@ -847,9 +862,6 @@ const shareToTwitter = () => {
     animation: scroll 80s linear infinite !important;
     line-height: 38px !important;
   }
-  .logo {
-    padding-right: 3rem;
-  }
 }
         @keyframes scroll-vertical {
           0% { transform: translateY(100%); }
@@ -859,26 +871,27 @@ const shareToTwitter = () => {
       <div style={{ width:'100%', maxWidth:'900px', display:'flex', flexDirection:'column', alignItems:'center' }}>
         {/* Header with Dark Mode Toggle and Test Mode Indicator */}
         <div style={{ textAlign:'center', marginBottom:'1rem', position:'relative', width:'100%' }}>
-          <button
-            onClick={toggleDarkMode}
-            className="dark-toggle"
-            style={{
-              position:'absolute',
-              right:0,
-              top:0,
-              padding:'0.75rem',
-              background:cardBg,
-              border:`1px solid ${borderColor}`,
-              borderRadius:'0.75rem',
-              color:textColor,
-              cursor:'pointer',
-              transition:'all 0.3s ease'
-            }}
-            title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-          >
-            {darkMode ? '☀️' : '🌙'}
-          </button>
+          {!isMobile && (
+            <button
+              onClick={toggleDarkMode}
+              style={{
+                position:'absolute',
+                right:0,
+                top:0,
+                padding:'0.75rem',
+                background:cardBg,
+                border:`1px solid ${borderColor}`,
+                borderRadius:'0.75rem',
+                color:textColor,
+                cursor:'pointer',
+                transition:'all 0.3s ease'
+              }}
+              title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            >
+              {darkMode ? '☀️' : '🌙'}
+            </button>
+          )}
           {testMode && (
             <div style={{
               position:'absolute',
@@ -898,7 +911,7 @@ const shareToTwitter = () => {
               🧪 TEST MODE
             </div>
           )}
-          <h1 className="logo" style={{ fontSize:'4rem', fontWeight:'800', background:'linear-gradient(135deg,#22c55e 0%,#3b82f6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', marginBottom:'0.5rem', letterSpacing:'-0.02em' }}>TickrDaily</h1>
+          <h1 style={{ fontSize:'4rem', fontWeight:'800', background:'linear-gradient(135deg,#22c55e 0%,#3b82f6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', marginBottom:'0.5rem', letterSpacing:'-0.02em' }}>TickrDaily</h1>
           <p style={{ color:mutedColor, fontSize:'1rem', fontWeight:'500', letterSpacing:'0.05em' }}>{todayDate}</p>
           <p style={{ color:mutedColor, fontSize:'0.875rem', marginTop:'0.5rem' }}>
             {gameMode === 'daily' ? 'Guess the stock from 5 clues' : `Guess the stock from ${difficulty === 'easy' ? 6 : difficulty === 'hard' ? 3 : 5} clues (${difficulty})`}
