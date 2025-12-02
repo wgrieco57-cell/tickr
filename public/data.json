@@ -4561,48 +4561,48 @@
     }
   },
 {
-    "ticker": "MU",
-    "company": "Micron Technology Inc.",
-    "sector": "Technology",
-    "difficulty": "medium",
-    "questions": {
-      "level_1": [
-        "I am the memory and storage specialist crafting DRAM, NAND, and SSDs for data-hungry devices.",
-        "High-bandwidth modules fuel servers, PCs, and mobiles with faster, denser capacities.",
-        "My technology enables AI training, 5G caching, and automotive infotainment ecosystems.",
-        "From consumer flash to enterprise arrays, I scale storage for the zettabyte era.",
-        "As a memory innovator, I push density limits while optimizing power and endurance."
-      ],
-      "level_2": [
-        "DDR5 DRAM accelerates HPC workloads with error correction and on-die ECC.",
-        "3D NAND stacks terabits vertically, slashing costs per gigabyte dramatically.",
-        "NVMe SSDs deliver petabyte-scale performance in data centers and creators’ rigs.",
-        "Automotive-grade memory withstands vibrations for ADAS vision systems.",
-        "My revenues swing cyclically with bit demand in cloud, client, and embedded segments."
-      ],
-      "level_3": [
-        "I began in Idaho in 1978, riding DRAM’s waves to become a fabless-to-integrated giant.",
-        "From Boise HQ, I design and fabricate across Asia’s silicon heartlands.",
-        "My Crucial brand democratized high-speed storage with consumer SSDs in the 2000s.",
-        "NAND joint ventures with rivals pooled risks in flash’s exponential scaling.",
-        "My stock volatility mirrored memory’s boom-bust cycles, rewarding long-term density bets."
-      ],
-      "level_4": [
-        "HBM3E stacks 24GB for GPU monsters training trillion-parameter models.",
-        "CXL interfaces pool memory across servers for disaggregated AI architectures.",
-        "QLC NAND crams four bits per cell, exploding capacities in hyperscale clouds.",
-        "Automotive eMMC endures -40C to 105C for telematics black boxes.",
-        "My HBM roadmaps target 50% annual bandwidth leaps for exascale computing."
-      ],
-      "level_5": [
-        "I store humanity’s digital deluge across the globe.",
-        "48,000 minds fabricate zettabytes yearly in 20 fabs worldwide.",
-        "Custom chips for calculators in 1978 seeded DRAM’s desktop dominance.",
-        "My 2006 flash pivot birthed SSDs’ storage class memory revolution.",
-        "Global fabs in Singapore, Japan, and Taiwan forge memory’s multipolar future."
-      ]
-    }
-  },
+  "ticker": "MU",
+  "company": "Micron Technology Inc.",
+  "sector": "Technology",
+  "difficulty": "medium",
+  "questions": {
+    "level_1": [
+      "I am the memory and storage specialist crafting DRAM, NAND, and SSDs for data-hungry devices.",
+      "I fuel servers, PCs, and mobile devices with high-bandwidth, high-density memory modules.",
+      "My technology powers AI training, 5G networks, and advanced automotive systems.",
+      "I scale flash storage from consumer devices to enterprise arrays built for the zettabyte era.",
+      "I continually push memory density, power efficiency, and endurance to new limits."
+    ],
+    "level_2": [
+      "I advance HPC workloads with DDR5 DRAM featuring built-in error correction and on-die ECC.",
+      "I stack terabits vertically through 3D NAND, driving down cost per gigabyte.",
+      "My NVMe SSDs deliver extreme performance for data centers, creators, and enterprise workloads.",
+      "I produce automotive-grade memory engineered to survive harsh environments and constant vibration.",
+      "My revenue cycles rise and fall with global bit demand across cloud, client, and embedded markets."
+    ],
+    "level_3": [
+      "I began in Idaho in 1978 and rode DRAM’s early waves to become an integrated memory leader.",
+      "From my headquarters in Boise, I design and fabricate products across Asia’s semiconductor hubs.",
+      "Through my Crucial brand, I helped make high-speed SSDs and DRAM accessible to everyday consumers.",
+      "I entered NAND joint ventures to share risk and accelerate flash scaling as demand exploded.",
+      "My stock has mirrored the memory industry’s boom-bust cycles, rewarding long-term believers."
+    ],
+    "level_4": [
+      "I build HBM3E stacks up to 24GB to power GPUs training trillion-parameter AI models.",
+      "I support CXL, enabling shared and disaggregated memory architectures for next-gen servers.",
+      "I produce QLC NAND that stores four bits per cell, unlocking massive capacity for hyperscale clouds.",
+      "I engineer automotive eMMC that survives temperatures from -40°C to 105°C for mission-critical systems.",
+      "My HBM roadmap targets 50% yearly bandwidth growth to drive exascale computing forward."
+    ],
+    "level_5": [
+      "I store humanity’s ever-growing digital footprint across the globe.",
+      "I rely on more than 48,000 team members to produce vast memory output across 20 fabs worldwide.",
+      "I started with custom chips for calculators in 1978 and grew into a DRAM powerhouse.",
+      "My 2006 shift into flash memory helped ignite the SSD revolution.",
+      "My global fabs in Singapore, Japan, and Taiwan anchor the future of advanced memory production."
+    ]
+  }
+},
   {
     "ticker": "AVGO",
     "company": "Broadcom Inc.",
