@@ -567,7 +567,7 @@ const updateStats = (won, cluesUsed, timeElapsed = null) => {
     updateDailyStats({ won }).catch(() => {});
   }
 };
-  // Share results
+// Share results
 const shareResults = () => {
   const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
   const won = submittedAnswers.some(a => a.isCorrect);
@@ -575,9 +575,9 @@ const shareResults = () => {
   const date = new Date().toLocaleDateString();
   let text;
   if (won) {
-    text = `Nailed TickrDaily in ${cluesUsed} guesses! ${emoji}\n\nPlay: ${window.location.href}`;
+    text = `Nailed TickrDaily in ${cluesUsed} guesses! ${emoji}\n\nPlay now: ${window.location.href}`;
   } else {
-    text = `TickrDaily: ${cluesUsed}/${questions.length} ${emoji}\n\nTry it: ${window.location.href}`;
+    text = `TickrDaily: ${cluesUsed}/${questions.length} ${emoji}\n\nPlay now: ${window.location.href}`;
   }
   if (navigator.share) {
     navigator.share({ text }).catch(() => {
@@ -597,9 +597,9 @@ const shareToTwitter = () => {
   const date = new Date().toLocaleDateString();
   let text;
   if (won) {
-    text = `Nailed TickrDaily in ${cluesUsed} guesses! ${emoji}\n\nPlay: ${window.location.href}`;
+    text = `Nailed TickrDaily in ${cluesUsed} guesses! ${emoji}\n\nPlay now: ${window.location.href}`;
   } else {
-    text = `TickrDaily: ${cluesUsed}/${questions.length} ${emoji}\n\nTry it: ${window.location.href}`;
+    text = `TickrDaily: ${cluesUsed}/${questions.length} ${emoji}\n\nPlay now: ${window.location.href}`;
   }
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
   window.open(twitterUrl, '_blank');
