@@ -575,9 +575,9 @@ const shareResults = () => {
   const date = new Date().toLocaleDateString();
   let text;
   if (won) {
-    text = `🔥 Crushed TickrDaily on ${date}! Nailed it in ${cluesUsed} clues! ${emoji}\n\nJoin the stock-guessing frenzy: ${window.location.href}`;
+    text = `Nailed TickrDaily in ${cluesUsed} guesses! ${emoji}\n\nPlay: ${window.location.href}`;
   } else {
-    text = `💥 Tough market on TickrDaily today... ${cluesUsed}/${questions.length} ${emoji}\n\nThink you can do better? Dive in: ${window.location.href}`;
+    text = `TickrDaily: ${cluesUsed}/${questions.length} ${emoji}\n\nTry it: ${window.location.href}`;
   }
   if (navigator.share) {
     navigator.share({ text }).catch(() => {
@@ -589,6 +589,7 @@ const shareResults = () => {
     alert('Results copied to clipboard!');
   }
 };
+
 const shareToTwitter = () => {
   const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
   const won = submittedAnswers.some(a => a.isCorrect);
@@ -596,9 +597,9 @@ const shareToTwitter = () => {
   const date = new Date().toLocaleDateString();
   let text;
   if (won) {
-    text = `🔥 Crushed TickrDaily on ${date}! Nailed it in ${cluesUsed} clues! ${emoji}\n\nJoin the stock-guessing frenzy: ${window.location.href}`;
+    text = `Nailed TickrDaily in ${cluesUsed} guesses! ${emoji}\n\nPlay: ${window.location.href}`;
   } else {
-    text = `💥 Tough market on TickrDaily today... ${cluesUsed}/${questions.length} ${emoji}\n\nThink you can do better? Dive in: ${window.location.href}`;
+    text = `TickrDaily: ${cluesUsed}/${questions.length} ${emoji}\n\nTry it: ${window.location.href}`;
   }
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
   window.open(twitterUrl, '_blank');
