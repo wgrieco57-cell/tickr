@@ -4,13 +4,15 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, doc, increment, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { getAnalytics, logEvent } from "firebase/analytics";
+
 const FINNHUB_API_KEY = "d4g9o8pr01qm5b34j8l0d4g9o8pr01qm5b34j8lg"; // Hardcoded as requested (note: for local/dev only—expose risk in prod)
 const QUOTRON_TICKERS = [
   '^GSPC','^DJI','^IXIC', // Major indexes
   'AAPL','MSFT','GOOGL','AMZN','META','TSLA','NVDA', // MAG7
   'BRK.B','JPM','JNJ','V','PG','DIS','MA','HD','UNH','BAC' // 10 more
 ];
-// Fallback quotes for API errors
+
+// Fallback quotes for API errors or non-market hours
 const FALLBACK_QUOTES = [
   { symbol: 'AAPL', current: '150.00', change: '1.50' },
   { symbol: 'TSLA', current: '250.00', change: '-2.00' },
@@ -23,6 +25,7 @@ const FALLBACK_QUOTES = [
   { symbol: '^DJI', current: '35000.00', change: '100.00' },
   { symbol: '^IXIC', current: '15000.00', change: '50.00' }
 ];
+
 const firebaseConfig = {
   apiKey: "AIzaSyAdgvuwk-0gU7Tucj87ny2dmFn8qIJ0xsE",
   authDomain: "tickr-2b042.firebaseapp.com",
@@ -32,10 +35,12 @@ const firebaseConfig = {
   appId: "1:866254338816:web:85b7cf91fee6225ebe91e5",
   measurementId: "G-WF8Q9HBVJN"
 };
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const analytics = getAnalytics(app);
- async function updateDailyStats({ won = false }) {
+
+async function updateDailyStats({ won = false }) {
   const today = new Date().toISOString().split("T")[0];
   // Always produce a valid 2-segment path: analytics / daily_2025-11-24
   const docRef = doc(db, "analytics", `daily_${today}`);
@@ -57,6 +62,7 @@ const analytics = getAnalytics(app);
     console.error("Error updating daily stats:", err);
   }
 }
+
 // Helper functions for deterministic daily selection
 function hashCode(str) {
   let hash = 0;
@@ -66,6 +72,7 @@ function hashCode(str) {
   }
   return Math.abs(hash);
 }
+
 function createSeededRandom(initialSeed) {
   let seed = hashCode(initialSeed.toString());
   return function() {
@@ -73,6 +80,33 @@ function createSeededRandom(initialSeed) {
     return seed / 2147483647;
   };
 }
+
+// Helper to check if current time is market hours (Mon-Fri, 9:30-16:00 ET)
+function isMarketHours() {
+  const now = new Date();
+  const day = now.getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
+  if (day === 0 || day === 6) return false; // Weekend
+
+  // Get ET time
+  const etTime = now.toLocaleString("en-US", { timeZone: "America/New_York" });
+  const [, timeStr] = etTime.split(', ');
+  const [time] = timeStr.split(' ');
+  const [hourStr, minStr] = time.split(':');
+  const hour = parseInt(hourStr, 10);
+  const min = parseInt(minStr, 10);
+
+  const openHour = 9;
+  const openMin = 30;
+  const closeHour = 16;
+  const closeMin = 0;
+
+  const currentMins = hour * 60 + min;
+  const openMins = openHour * 60 + openMin;
+  const closeMins = closeHour * 60 + closeMin;
+
+  return currentMins >= openMins && currentMins < closeMins;
+}
+
 function App() {
   const [data, setData] = useState([]);
   const [allTickers, setAllTickers] = useState([]);
@@ -84,7 +118,7 @@ function App() {
   const [availableOptions, setAvailableOptions] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [quotes, setQuotes] = useState([]);
+  const [quotes, setQuotes] = useState(FALLBACK_QUOTES); // Default to fallback
   const [showStats, setShowStats] = useState(false);
   const [showHowToPlay, setShowHowToPlay] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
@@ -115,34 +149,37 @@ function App() {
   const [difficulty, setDifficulty] = useState('medium'); // 'easy' | 'medium' | 'hard'
   const [puzzleSeed, setPuzzleSeed] = useState(0);
   const inputRef = useRef(null);
+  let quoteIntervalRef = useRef(null);
+
   // ────────────────────────────────
-// LOAD STATS + DARK MODE ONCE
-// ────────────────────────────────
-useEffect(() => {
-  // Load saved stats
-  try {
-    const saved = localStorage.getItem('tickrDailyStats');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      setStats(parsed); // ← This is the missing line!
+  // LOAD STATS + DARK MODE ONCE
+  // ────────────────────────────────
+  useEffect(() => {
+    // Load saved stats
+    try {
+      const saved = localStorage.getItem('tickrDailyStats');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        setStats(parsed); // ← This is the missing line!
+      }
+    } catch (e) {
+      console.error('Failed to load stats:', e);
+      localStorage.removeItem('tickrDailyStats'); // Corrupted → reset
     }
-  } catch (e) {
-    console.error('Failed to load stats:', e);
-    localStorage.removeItem('tickrDailyStats'); // Corrupted → reset
-  }
-  // Load dark mode
-  try {
-    const savedDark = localStorage.getItem('tickrDailyDarkMode');
-    if (savedDark !== null) {
-      setDarkMode(JSON.parse(savedDark));
+    // Load dark mode
+    try {
+      const savedDark = localStorage.getItem('tickrDailyDarkMode');
+      if (savedDark !== null) {
+        setDarkMode(JSON.parse(savedDark));
+      }
+    } catch (e) {}
+    // First-time visitor
+    if (!localStorage.getItem('tickrDailyVisited')) {
+      setShowHowToPlay(true);
+      localStorage.setItem('tickrDailyVisited', 'true');
     }
-  } catch (e) {}
-  // First-time visitor
-  if (!localStorage.getItem('tickrDailyVisited')) {
-    setShowHowToPlay(true);
-    localStorage.setItem('tickrDailyVisited', 'true');
-  }
-}, []); // ← Runs only once on mount
+  }, []); // ← Runs only once on mount
+
   // Mobile detection
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -150,14 +187,16 @@ useEffect(() => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
   // Auto-save stats to localStorage whenever they change
-useEffect(() => {
-  try {
-    localStorage.setItem('tickrDailyStats', JSON.stringify(stats));
-  } catch (e) {
-    console.error('Failed to save stats:', e);
-  }
-}, [stats]);
+  useEffect(() => {
+    try {
+      localStorage.setItem('tickrDailyStats', JSON.stringify(stats));
+    } catch (e) {
+      console.error('Failed to save stats:', e);
+    }
+  }, [stats]);
+
   // New: Keyboard shortcuts for submit/next
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -167,6 +206,7 @@ useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [input, gameOver, gameMode]);
+
   // Load local JSON data
   useEffect(() => {
     Promise.all([
@@ -189,16 +229,18 @@ useEffect(() => {
       setLoading(false);
     });
   }, []);
+
   const auth = getAuth();
-useEffect(() => {
-  signInAnonymously(auth)
-    .then(() => {
-      console.log("Signed in anonymously");
-    })
-    .catch((error) => {
-      console.error("Anonymous sign-in error:", error);
-    });
-}, []);
+  useEffect(() => {
+    signInAnonymously(auth)
+      .then(() => {
+        console.log("Signed in anonymously");
+      })
+      .catch((error) => {
+        console.error("Anonymous sign-in error:", error);
+      });
+  }, []);
+
   // Select daily ticker and pick questions (deterministic for non-test mode)
   useEffect(() => {
     if (!data || data.length === 0) return;
@@ -295,6 +337,7 @@ useEffect(() => {
     }
     setStartTime(Date.now()); // Only if new game
   }, [data, gameMode, difficulty, puzzleSeed]);
+
   // Update available options for autocomplete
   useEffect(() => {
     if (!input) {
@@ -325,6 +368,7 @@ useEffect(() => {
       .slice(0,8);
     setAvailableOptions(filtered);
   }, [input, allTickers, submittedAnswers]);
+
   // Auto-save progress after changes (only for daily)
   useEffect(() => {
     if (gameMode !== 'daily' || !dailyTicker || !startTime) return;
@@ -340,6 +384,7 @@ useEffect(() => {
       localStorage.setItem('dailyProgress', JSON.stringify(progressToSave));
     }
   }, [currentLevel, submittedAnswers, gameOver, startTime, dailyTicker, gameMode]);
+
   // Shake animation clear
   useEffect(() => {
     if (shake) {
@@ -347,7 +392,8 @@ useEffect(() => {
       return () => clearTimeout(timer);
     }
   }, [shake]);
-  // Fetch Quotron quotes (with error handling)
+
+  // Fetch Quotron quotes (with market hours check, 5-min updates)
   useEffect(() => {
     const fetchQuotes = async () => {
       try {
@@ -362,16 +408,41 @@ useEffect(() => {
           };
         }));
         const validQuotes = fetchedQuotes.filter(q => q);
-        setQuotes(validQuotes.length > 0 ? validQuotes : FALLBACK_QUOTES);
+        if (validQuotes.length > 0) {
+          setQuotes(validQuotes);
+        } else {
+          setQuotes(FALLBACK_QUOTES);
+        }
       } catch (e) {
         console.error("Error fetching quotes:", e);
         setQuotes(FALLBACK_QUOTES);
       }
     };
-    fetchQuotes();
-    const interval = setInterval(fetchQuotes, 60000);
-    return () => clearInterval(interval);
+
+    // Initial fetch if in market hours
+    if (isMarketHours()) {
+      fetchQuotes();
+      // Set interval for every 5 minutes (300000 ms)
+      quoteIntervalRef.current = setInterval(() => {
+        if (isMarketHours()) {
+          fetchQuotes();
+        } else {
+          setQuotes(FALLBACK_QUOTES);
+          clearInterval(quoteIntervalRef.current);
+        }
+      }, 300000);
+    } else {
+      setQuotes(FALLBACK_QUOTES);
+    }
+
+    // Cleanup interval on unmount
+    return () => {
+      if (quoteIntervalRef.current) {
+        clearInterval(quoteIntervalRef.current);
+      }
+    };
   }, []);
+
   // Focus input after submit
   useEffect(() => {
     if (!gameOver && inputRef.current) {
@@ -380,19 +451,58 @@ useEffect(() => {
       }, 100);
     }
   }, [currentLevel, gameOver]);
+
   // Handle submit (with confetti on win)
- const handleSubmit = (e) => {
-  if (e) e.preventDefault();
-  if (gameOver || !input.trim()) return;
-  let tickerToCheck = input.trim().toLowerCase();
-  // Auto-complete if exact symbol match
-  const matchedTicker = allTickers.find(t => t.symbol.toLowerCase() === tickerToCheck);
-  if (matchedTicker) {
-    setInput(matchedTicker.formatted);
-    // Submit the formatted version
-    const formattedGuess = matchedTicker.formatted;
-    const lowerCheck = matchedTicker.symbol.toLowerCase();
-    // Check for duplicate
+  const handleSubmit = (e) => {
+    if (e) e.preventDefault();
+    if (gameOver || !input.trim()) return;
+    let tickerToCheck = input.trim().toLowerCase();
+    // Auto-complete if exact symbol match
+    const matchedTicker = allTickers.find(t => t.symbol.toLowerCase() === tickerToCheck);
+    if (matchedTicker) {
+      setInput(matchedTicker.formatted);
+      // Submit the formatted version
+      const formattedGuess = matchedTicker.formatted;
+      const lowerCheck = matchedTicker.symbol.toLowerCase();
+      // Check for duplicate
+      const alreadyGuessedSymbols = submittedAnswers.map(a => {
+        const paren = a.guess.indexOf('(');
+        return paren > 0 ? a.guess.substring(0, paren).trim().toLowerCase() : a.guess.toLowerCase();
+      });
+      if (alreadyGuessedSymbols.includes(lowerCheck)) {
+        setShake(true);
+        setInput("");
+        setAvailableOptions([]);
+        return;
+      }
+      const correctTicker = questions[currentLevel].correct;
+      const isCorrect = matchedTicker.symbol.toUpperCase() === correctTicker.toUpperCase();
+      const updatedQuestions = [...questions];
+      updatedQuestions[currentLevel].answers.push({ guess: formattedGuess, isCorrect });
+      setQuestions(updatedQuestions);
+      setSubmittedAnswers(prev => [...prev, { level: currentLevel + 1, guess: formattedGuess, isCorrect }]);
+      setInput("");
+      setAvailableOptions([]);
+      if (isCorrect || currentLevel === questions.length -1) {
+        setGameOver(true);
+        const timeElapsed = startTime ? Math.floor((Date.now() - startTime)/1000) : 0;
+        if (isCorrect) confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        updateStats(isCorrect, currentLevel + 1);
+        return;
+      }
+      // Advance if not correct (inside matchedTicker if)
+      setCurrentLevel(currentLevel + 1);
+      return;
+    }
+    // If no exact match, check if it's a partial or company name, but for now, treat as is
+    const parenIndex = input.indexOf('(');
+    if (parenIndex > 0) {
+      tickerToCheck = input.substring(0, parenIndex).trim().toLowerCase();
+    } else {
+      tickerToCheck = input.trim().toLowerCase();
+    }
+    const lowerCheck = tickerToCheck;
+    // Check for duplicate guess
     const alreadyGuessedSymbols = submittedAnswers.map(a => {
       const paren = a.guess.indexOf('(');
       return paren > 0 ? a.guess.substring(0, paren).trim().toLowerCase() : a.guess.toLowerCase();
@@ -404,199 +514,171 @@ useEffect(() => {
       return;
     }
     const correctTicker = questions[currentLevel].correct;
-    const isCorrect = matchedTicker.symbol.toUpperCase() === correctTicker.toUpperCase();
+    const isCorrect = tickerToCheck.toUpperCase() === correctTicker.toUpperCase();
     const updatedQuestions = [...questions];
-    updatedQuestions[currentLevel].answers.push({ guess: formattedGuess, isCorrect });
+    updatedQuestions[currentLevel].answers.push({ guess: input.trim(), isCorrect });
     setQuestions(updatedQuestions);
-    setSubmittedAnswers(prev => [...prev, { level: currentLevel + 1, guess: formattedGuess, isCorrect }]);
+    setSubmittedAnswers(prev => [...prev, { level: currentLevel + 1, guess: input.trim(), isCorrect }]);
     setInput("");
     setAvailableOptions([]);
     if (isCorrect || currentLevel === questions.length -1) {
       setGameOver(true);
-      const timeElapsed = startTime ? Math.floor((Date.now() - startTime)/1000) : 0;
-      if (isCorrect) confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      // Confetti on win
+      if (isCorrect) {
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      }
+      // Defer stats update to avoid double-save (only for daily)
       updateStats(isCorrect, currentLevel + 1);
       return;
     }
-    // Advance if not correct (inside matchedTicker if)
     setCurrentLevel(currentLevel + 1);
-    return;
-  }
-  // If no exact match, check if it's a partial or company name, but for now, treat as is
-  const parenIndex = input.indexOf('(');
-  if (parenIndex > 0) {
-    tickerToCheck = input.substring(0, parenIndex).trim().toLowerCase();
-  } else {
-    tickerToCheck = input.trim().toLowerCase();
-  }
-  const lowerCheck = tickerToCheck;
-  // Check for duplicate guess
-  const alreadyGuessedSymbols = submittedAnswers.map(a => {
-    const paren = a.guess.indexOf('(');
-    return paren > 0 ? a.guess.substring(0, paren).trim().toLowerCase() : a.guess.toLowerCase();
-  });
-  if (alreadyGuessedSymbols.includes(lowerCheck)) {
-    setShake(true);
-    setInput("");
-    setAvailableOptions([]);
-    return;
-  }
-  const correctTicker = questions[currentLevel].correct;
-  const isCorrect = tickerToCheck.toUpperCase() === correctTicker.toUpperCase();
-  const updatedQuestions = [...questions];
-  updatedQuestions[currentLevel].answers.push({ guess: input.trim(), isCorrect });
-  setQuestions(updatedQuestions);
-  setSubmittedAnswers(prev => [...prev, { level: currentLevel + 1, guess: input.trim(), isCorrect }]);
-  setInput("");
-  setAvailableOptions([]);
-  if (isCorrect || currentLevel === questions.length -1) {
-    setGameOver(true);
-    // Confetti on win
-    if (isCorrect) {
-      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-    }
-    // Defer stats update to avoid double-save (only for daily)
-    updateStats(isCorrect, currentLevel + 1);
-    return;
-  }
-  setCurrentLevel(currentLevel + 1);
-}; // <-- Single closing brace for entire handleSubmit
-useEffect(() => {
-  const track = async () => {
-    try {
-      const today = new Date().toISOString().split('T')[0];
-      // Firestore references
-      const dailyRef = doc(db, 'analytics', `daily_${today}`);
-      const globalRef = doc(db, 'analytics', 'global');
-      // Increment today's stats
-      await setDoc(dailyRef, { plays: increment(1) }, { merge: true });
-      // Ensure global doc exists
+  }; // <-- Single closing brace for entire handleSubmit
+
+  useEffect(() => {
+    const track = async () => {
       try {
-        await updateDoc(globalRef, { totalPlays: increment(1) });
-      } catch {
-        await setDoc(globalRef, { totalPlays: 1, uniqueUsers: 0 });
+        const today = new Date().toISOString().split('T')[0];
+        // Firestore references
+        const dailyRef = doc(db, 'analytics', `daily_${today}`);
+        const globalRef = doc(db, 'analytics', 'global');
+        // Increment today's stats
+        await setDoc(dailyRef, { plays: increment(1) }, { merge: true });
+        // Ensure global doc exists
+        try {
+          await updateDoc(globalRef, { totalPlays: increment(1) });
+        } catch {
+          await setDoc(globalRef, { totalPlays: 1, uniqueUsers: 0 });
+        }
+        // Track unique users per browser
+        if (!localStorage.getItem('td_visited')) {
+          localStorage.setItem('td_visited', 'true');
+          await updateDoc(globalRef, { uniqueUsers: increment(1) });
+        }
+        // Firebase Analytics events
+        logEvent(analytics, 'page_view', { page_path: window.location.pathname });
+        logEvent(analytics, 'visit_tickr', { mode: gameMode });
+      } catch (e) {
+        console.log("Analytics offline (normal in dev)", e);
       }
-      // Track unique users per browser
-      if (!localStorage.getItem('td_visited')) {
-        localStorage.setItem('td_visited', 'true');
-        await updateDoc(globalRef, { uniqueUsers: increment(1) });
+    };
+    track();
+  }, [gameMode]);
+
+  // Update stats in one place
+  const updateStats = (won, cluesUsed, timeElapsed = null) => {
+    // Prevent double-counting today's daily puzzle
+    if (gameMode === 'daily') {
+      const saved = localStorage.getItem('dailyProgress');
+      if (saved && JSON.parse(saved).gameOver) return;
+    }
+    const time = timeElapsed ?? (startTime ? Math.floor((Date.now() - startTime) / 1000) : 0);
+    const today = new Date().toISOString().split('T')[0];
+    setStats(prev => {
+      // Copy distributions
+      const dailyDist = { ...prev.dailyGuessDistribution };
+      const unlimitedDist = { ...prev.unlimitedGuessDistribution };
+      // Update correct distribution
+      if (gameMode === 'daily') {
+        won ? dailyDist[cluesUsed]++ : dailyDist.fail++;
+      } else {
+        won ? unlimitedDist[cluesUsed]++ : unlimitedDist.fail++;
       }
-      // Firebase Analytics events
-      logEvent(analytics, 'page_view', { page_path: window.location.pathname });
-      logEvent(analytics, 'visit_tickr', { mode: gameMode });
-    } catch (e) {
-      console.log("Analytics offline (normal in dev)", e);
+      // New streak (only daily mode cares)
+      const newStreak = gameMode === 'daily' ? (won ? prev.dailyCurrentStreak + 1 : 0) : prev.dailyCurrentStreak;
+      return {
+        ...prev,
+        // Daily
+        dailyGamesPlayed: gameMode === 'daily' ? prev.dailyGamesPlayed + 1 : prev.dailyGamesPlayed,
+        dailyGamesWon: gameMode === 'daily' && won ? prev.dailyGamesWon + 1 : prev.dailyGamesWon,
+        dailyCurrentStreak: newStreak,
+        dailyMaxStreak: Math.max(prev.dailyMaxStreak, newStreak),
+        dailyGuessDistribution: gameMode === 'daily' ? dailyDist : prev.dailyGuessDistribution,
+        dailyPlayHistory: gameMode === 'daily' ? { ...prev.dailyPlayHistory, [today]: { won, clues: cluesUsed, time } } : prev.dailyPlayHistory,
+        dailyTotalTime: gameMode === 'daily' ? prev.dailyTotalTime + time : prev.dailyTotalTime,
+        // Unlimited
+        unlimitedCompletions: gameMode === 'unlimited' ? prev.unlimitedCompletions + 1 : prev.unlimitedCompletions,
+        unlimitedGuessDistribution: gameMode === 'unlimited' ? unlimitedDist : prev.unlimitedGuessDistribution,
+        unlimitedTotalTime: gameMode === 'unlimited' ? prev.unlimitedTotalTime + time : prev.unlimitedTotalTime,
+        // Shared
+        overallTotalTime: prev.overallTotalTime + time,
+        overallFastestTime: won && (!prev.overallFastestTime || time < prev.overallFastestTime) ? time : prev.overallFastestTime,
+      };
+    });
+    // Optional: Firebase update (only daily)
+    if (gameMode === 'daily') {
+      updateDailyStats({ won }).catch(() => {});
     }
   };
-  track();
-}, [gameMode]);
-// Update stats in one place
-const updateStats = (won, cluesUsed, timeElapsed = null) => {
-  // Prevent double-counting today's daily puzzle
-  if (gameMode === 'daily') {
-    const saved = localStorage.getItem('dailyProgress');
-    if (saved && JSON.parse(saved).gameOver) return;
-  }
-  const time = timeElapsed ?? (startTime ? Math.floor((Date.now() - startTime) / 1000) : 0);
-  const today = new Date().toISOString().split('T')[0];
-  setStats(prev => {
-    // Copy distributions
-    const dailyDist = { ...prev.dailyGuessDistribution };
-    const unlimitedDist = { ...prev.unlimitedGuessDistribution };
-    // Update correct distribution
-    if (gameMode === 'daily') {
-      won ? dailyDist[cluesUsed]++ : dailyDist.fail++;
+
+  // Share results
+  const shareResults = () => {
+    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
+    const won = submittedAnswers.some(a => a.isCorrect);
+    const cluesUsed = won ? submittedAnswers.length : questions.length;
+    const now = new Date();
+    const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
+    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${window.location.href}`;
+    if (navigator.share) {
+      navigator.share({ text }).catch(() => {
+        navigator.clipboard.writeText(text);
+        alert('Results copied to clipboard!');
+      });
     } else {
-      won ? unlimitedDist[cluesUsed]++ : unlimitedDist.fail++;
-    }
-    // New streak (only daily mode cares)
-    const newStreak = gameMode === 'daily' ? (won ? prev.dailyCurrentStreak + 1 : 0) : prev.dailyCurrentStreak;
-    return {
-      ...prev,
-      // Daily
-      dailyGamesPlayed: gameMode === 'daily' ? prev.dailyGamesPlayed + 1 : prev.dailyGamesPlayed,
-      dailyGamesWon: gameMode === 'daily' && won ? prev.dailyGamesWon + 1 : prev.dailyGamesWon,
-      dailyCurrentStreak: newStreak,
-      dailyMaxStreak: Math.max(prev.dailyMaxStreak, newStreak),
-      dailyGuessDistribution: gameMode === 'daily' ? dailyDist : prev.dailyGuessDistribution,
-      dailyPlayHistory: gameMode === 'daily' ? { ...prev.dailyPlayHistory, [today]: { won, clues: cluesUsed, time } } : prev.dailyPlayHistory,
-      dailyTotalTime: gameMode === 'daily' ? prev.dailyTotalTime + time : prev.dailyTotalTime,
-      // Unlimited
-      unlimitedCompletions: gameMode === 'unlimited' ? prev.unlimitedCompletions + 1 : prev.unlimitedCompletions,
-      unlimitedGuessDistribution: gameMode === 'unlimited' ? unlimitedDist : prev.unlimitedGuessDistribution,
-      unlimitedTotalTime: gameMode === 'unlimited' ? prev.unlimitedTotalTime + time : prev.unlimitedTotalTime,
-      // Shared
-      overallTotalTime: prev.overallTotalTime + time,
-      overallFastestTime: won && (!prev.overallFastestTime || time < prev.overallFastestTime) ? time : prev.overallFastestTime,
-    };
-  });
-  // Optional: Firebase update (only daily)
-  if (gameMode === 'daily') {
-    updateDailyStats({ won }).catch(() => {});
-  }
-};
-// Share results
-const shareResults = () => {
-  const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
-  const won = submittedAnswers.some(a => a.isCorrect);
-  const cluesUsed = won ? submittedAnswers.length : questions.length;
-  const now = new Date();
-  const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
-  const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${window.location.href}`;
-  if (navigator.share) {
-    navigator.share({ text }).catch(() => {
       navigator.clipboard.writeText(text);
       alert('Results copied to clipboard!');
-    });
-  } else {
-    navigator.clipboard.writeText(text);
-    alert('Results copied to clipboard!');
-  }
-};
-const shareToTwitter = () => {
-  const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
-  const won = submittedAnswers.some(a => a.isCorrect);
-  const cluesUsed = won ? submittedAnswers.length : questions.length;
-  const now = new Date();
-  const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
-  const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${window.location.href}`;
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-  window.open(twitterUrl, '_blank');
-};
+    }
+  };
+
+  const shareToTwitter = () => {
+    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
+    const won = submittedAnswers.some(a => a.isCorrect);
+    const cluesUsed = won ? submittedAnswers.length : questions.length;
+    const now = new Date();
+    const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
+    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${window.location.href}`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+    window.open(twitterUrl, '_blank');
+  };
+
   const toggleDarkMode = () => {
     const newMode = !darkMode;
     setDarkMode(newMode);
     localStorage.setItem('tickrDailyDarkMode', JSON.stringify(newMode));
   };
+
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
   };
+
   const getAchievements = () => {
-  const achievements = [];
-  const dailyDist = stats.dailyGuessDistribution;
-  const unlimitedDist = stats.unlimitedGuessDistribution;
-  // Daily-specific
-  if (stats.dailyCurrentStreak >= 5) achievements.push({ icon: '🔥', name: 'Daily 5 Streak', desc: 'Win 5 daily puzzles in a row' });
-  if (stats.dailyCurrentStreak >= 10) achievements.push({ icon: '⚡', name: 'Daily 10 Streak', desc: 'Win 10 daily in a row' });
-  if (stats.dailyGamesWon >= 10) achievements.push({ icon: '🏆', name: 'Daily Veteran', desc: 'Win 10 daily games' });
-  // Unlimited-specific
-  if (stats.unlimitedCompletions >= 50) achievements.push({ icon: '♾️', name: 'Unlimited Marathoner', desc: 'Complete 50 unlimited puzzles' });
-  if (unlimitedDist[1] >= 10) achievements.push({ icon: '🎯', name: 'Unlimited First-Try Pro', desc: 'Win 10 unlimited on first clue' });
-  // Shared
-  if (stats.dailyGamesWon + (stats.unlimitedCompletions - stats.unlimitedGuessDistribution.fail) >= 50) achievements.push({ icon: '👑', name: 'Master Guesser', desc: '50 total wins across modes' });
-  if (stats.overallFastestTime && stats.overallFastestTime < 30) achievements.push({ icon: '⚡', name: 'Speed Demon', desc: 'Fastest win under 30s (any mode)' });
-  return achievements;
-};
+    const achievements = [];
+    const dailyDist = stats.dailyGuessDistribution;
+    const unlimitedDist = stats.unlimitedGuessDistribution;
+    // Daily-specific
+    if (stats.dailyCurrentStreak >= 5) achievements.push({ icon: '🔥', name: 'Daily 5 Streak', desc: 'Win 5 daily puzzles in a row' });
+    if (stats.dailyCurrentStreak >= 10) achievements.push({ icon: '⚡', name: 'Daily 10 Streak', desc: 'Win 10 daily in a row' });
+    if (stats.dailyGamesWon >= 10) achievements.push({ icon: '🏆', name: 'Daily Veteran', desc: 'Win 10 daily games' });
+    // Unlimited-specific
+    if (stats.unlimitedCompletions >= 50) achievements.push({ icon: '♾️', name: 'Unlimited Marathoner', desc: 'Complete 50 unlimited puzzles' });
+    if (unlimitedDist[1] >= 10) achievements.push({ icon: '🎯', name: 'Unlimited First-Try Pro', desc: 'Win 10 unlimited on first clue' });
+    // Shared
+    if (stats.dailyGamesWon + (stats.unlimitedCompletions - stats.unlimitedGuessDistribution.fail) >= 50) achievements.push({ icon: '👑', name: 'Master Guesser', desc: '50 total wins across modes' });
+    if (stats.overallFastestTime && stats.overallFastestTime < 30) achievements.push({ icon: '⚡', name: 'Speed Demon', desc: 'Fastest win under 30s (any mode)' });
+    return achievements;
+  };
+
   const handleOptionClick = (option) => {
     setInput(option.formatted);
     setAvailableOptions([]);
   };
+
   const resetGame = () => {
     localStorage.removeItem('dailyProgress');
     window.location.reload();
   };
+
   // Next puzzle for unlimited
   const nextPuzzle = () => {
     setGameOver(false);
@@ -607,54 +689,56 @@ const shareToTwitter = () => {
     // Trigger re-selection via dep
     setPuzzleSeed(prev => prev + 1);
   };
+
   const GuessDistChart = ({ dist, maxClues }) => (
-  <>
-    {Array.from({ length: maxClues }, (_, i) => {
-      const clue = i + 1;
-      const count = dist[clue];
-      const maxCount = Math.max(...Object.values(dist));
-      const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
-      return (
-        <div key={clue} style={{ display:'flex', alignItems:'center', marginBottom:'0.5rem' }}>
-          <div style={{ width:'60px', color:mutedColor, fontSize:'0.875rem', fontWeight:'600' }}>
-            {clue} clue{clue > 1 ? 's' : ''}
-          </div>
-          <div style={{ flex:1, background:cardBg, height:'32px', borderRadius:'0.5rem', overflow:'hidden', position:'relative', border:`1px solid ${borderColor}` }}>
-            <div style={{
-              width:`${Math.max(percentage, 5)}%`,
-              height:'100%',
-              background: 'linear-gradient(90deg, #22c55e, #16a34a)',
-              transition:'width 0.5s ease',
-              display:'flex',
-              alignItems:'center',
-              justifyContent:'flex-end',
-              paddingRight:'0.5rem'
-            }}>
-              <span style={{ color:'white', fontWeight:'700', fontSize:'0.875rem' }}>{count}</span>
+    <>
+      {Array.from({ length: maxClues }, (_, i) => {
+        const clue = i + 1;
+        const count = dist[clue];
+        const maxCount = Math.max(...Object.values(dist));
+        const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
+        return (
+          <div key={clue} style={{ display:'flex', alignItems:'center', marginBottom:'0.5rem' }}>
+            <div style={{ width:'60px', color:mutedColor, fontSize:'0.875rem', fontWeight:'600' }}>
+              {clue} clue{clue > 1 ? 's' : ''}
+            </div>
+            <div style={{ flex:1, background:cardBg, height:'32px', borderRadius:'0.5rem', overflow:'hidden', position:'relative', border:`1px solid ${borderColor}` }}>
+              <div style={{
+                width:`${Math.max(percentage, 5)}%`,
+                height:'100%',
+                background: 'linear-gradient(90deg, #22c55e, #16a34a)',
+                transition:'width 0.5s ease',
+                display:'flex',
+                alignItems:'center',
+                justifyContent:'flex-end',
+                paddingRight:'0.5rem'
+              }}>
+                <span style={{ color:'white', fontWeight:'700', fontSize:'0.875rem' }}>{count}</span>
+              </div>
             </div>
           </div>
-        </div>
-      );
-    })}
-    <div style={{ display:'flex', alignItems:'center', marginBottom:'0.5rem' }}>
-      <div style={{ width:'60px', color:mutedColor, fontSize:'0.875rem', fontWeight:'600' }}>Failed</div>
-      <div style={{ flex:1, background:cardBg, height:'32px', borderRadius:'0.5rem', overflow:'hidden', position:'relative', border:`1px solid ${borderColor}` }}>
-        <div style={{
-          width:`${Math.max((dist.fail / Math.max(...Object.values(dist))) * 100, 5)}%`,
-          height:'100%',
-          background: 'linear-gradient(90deg, #ef4444, #dc2626)',
-          transition:'width 0.5s ease',
-          display:'flex',
-          alignItems:'center',
-          justifyContent:'flex-end',
-          paddingRight:'0.5rem'
-        }}>
-          <span style={{ color:'white', fontWeight:'700', fontSize:'0.875rem' }}>{dist.fail}</span>
+        );
+      })}
+      <div style={{ display:'flex', alignItems:'center', marginBottom:'0.5rem' }}>
+        <div style={{ width:'60px', color:mutedColor, fontSize:'0.875rem', fontWeight:'600' }}>Failed</div>
+        <div style={{ flex:1, background:cardBg, height:'32px', borderRadius:'0.5rem', overflow:'hidden', position:'relative', border:`1px solid ${borderColor}` }}>
+          <div style={{
+            width:`${Math.max((dist.fail / Math.max(...Object.values(dist))) * 100, 5)}%`,
+            height:'100%',
+            background: 'linear-gradient(90deg, #ef4444, #dc2626)',
+            transition:'width 0.5s ease',
+            display:'flex',
+            alignItems:'center',
+            justifyContent:'flex-end',
+            paddingRight:'0.5rem'
+          }}>
+            <span style={{ color:'white', fontWeight:'700', fontSize:'0.875rem' }}>{dist.fail}</span>
+          </div>
         </div>
       </div>
-    </div>
-  </>
-);
+    </>
+  );
+
   // Mode Selector Component
   const ModeSelector = () => (
     <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -712,11 +796,13 @@ const shareToTwitter = () => {
       )}
     </div>
   );
+
   if(loading || !dailyTicker || !questions.length){
     return <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background: 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' }}>
       <div style={{ textAlign:'center', color:'#94a3b8'}}>Loading Market Data...</div>
     </div>;
   }
+
   const todayDate = new Date().toLocaleDateString('en-US',{ weekday:'long', month:'long', day:'numeric', year:'numeric' });
   const isWinner = submittedAnswers.some(a=>a.isCorrect);
   const numClues = questions.length;
@@ -725,24 +811,7 @@ const shareToTwitter = () => {
   const mutedColor = darkMode ? '#94a3b8' : '#64748b';
   const cardBg = darkMode ? 'rgba(15,23,42,0.7)' : 'rgba(255,255,255,0.8)';
   const borderColor = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
-  const closeButtonStyle = {
-    position: 'fixed',
-    top: '1rem',
-    right: '1rem',
-    background: cardBg,
-    border: 'none',
-    color: textColor,
-    fontSize: '1.5rem',
-    cursor: 'pointer',
-    width: '40px',
-    height: '40px',
-    borderRadius: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 101,
-    transition: 'all 0.3s ease'
-  };
+
   return (
     <div style={{ minHeight:'100vh', background: bgColor, display:'flex', flexDirection:'column', alignItems:'center', padding:'2rem 1rem' }}>
       {/* Quotron */}
@@ -776,25 +845,25 @@ const shareToTwitter = () => {
           20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
         @media (max-width: 768px) {
-  .quotron {
-    height: 38px !important;
-    flex-direction: row !important;
-    overflow: hidden !important;
-    white-space: nowrap !important;
-    padding: 0 !important;
-  }
-  .quotron div {
-    animation: scroll 80s linear infinite !important;
-    line-height: 38px !important;
-  }
-}
+          .quotron {
+            height: 38px !important;
+            flex-direction: row !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+            padding: 0 !important;
+          }
+          .quotron div {
+            animation: scroll 80s linear infinite !important;
+            line-height: 38px !important;
+          }
+        }
         @keyframes scroll-vertical {
           0% { transform: translateY(100%); }
           100% { transform: translateY(-100%); }
         }
       `}</style>
       <div style={{ width:'100%', maxWidth:'900px', display:'flex', flexDirection:'column', alignItems:'center' }}>
-        {/* Header with Dark Mode Toggle and Test Mode Indicator */}
+        {/* Header with Dark Mode Toggle */}
         <div style={{ textAlign:'center', marginBottom:'1rem', position:'relative', width:'100%' }}>
           {!isMobile && (
             <button
@@ -888,70 +957,71 @@ const shareToTwitter = () => {
             <span>How to Play</span>
           </button>
         </div>
-       {/* Stats Modal – iPhone-optimized version */}
-{showStats && (
-  <div
-    style={{
-      position: 'fixed',
-      inset: 0,
-      background: 'rgba(0,0,0,0.9)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 100,
-      padding: '1rem',
-    }}
-    onClick={() => setShowStats(false)}
-  >
-    <div
-      style={{
-        background: 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))',
-        backdropFilter: 'blur(20px)',
-        borderRadius: '2rem',
-        padding: '2.5rem',
-        maxWidth: '700px',
-        width: '100%',
-        maxHeight: '90vh',
-        overflowY: 'auto',
-        position: 'relative',
-        border: '1px solid rgba(255,255,255,0.1)',
-      }}
-      onClick={(e) => e.stopPropagation()}
-    >
-      {/* Close button now INSIDE top-right */}
-      <button
-        onClick={() => setShowStats(false)}
-        style={{
-          position: 'absolute',
-          top: '1rem',
-          right: '1rem',
-          background: 'transparent',
-          border: 'none',
-          color: '#94a3b8',
-          fontSize: '2.5rem',
-          cursor: 'pointer',
-          width: '44px',
-          height: '44px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderRadius: '50%',
-          zIndex: 10,
-        }}
-        aria-label="Close Statistics"
-      >
-        ×
-      </button>
-      <h2 style={{
-        fontSize:'2rem',
-        fontWeight:'800',
-        color:'#e2e8f0',
-        marginBottom:'2rem',
-        textAlign:'center',
-        paddingRight: '3rem' // make space for the X button
-      }}>
-        Your Statistics
-      </h2>
+
+        {/* Stats Modal – iPhone-optimized version */}
+        {showStats && (
+          <div
+            style={{
+              position: 'fixed',
+              inset: 0,
+              background: 'rgba(0,0,0,0.9)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 100,
+              padding: '1rem',
+            }}
+            onClick={() => setShowStats(false)}
+          >
+            <div
+              style={{
+                background: 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))',
+                backdropFilter: 'blur(20px)',
+                borderRadius: '2rem',
+                padding: '2.5rem',
+                maxWidth: '700px',
+                width: '100%',
+                maxHeight: '90vh',
+                overflowY: 'auto',
+                position: 'relative',
+                border: '1px solid rgba(255,255,255,0.1)',
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button now INSIDE top-right */}
+              <button
+                onClick={() => setShowStats(false)}
+                style={{
+                  position: 'absolute',
+                  top: '1rem',
+                  right: '1rem',
+                  background: 'transparent',
+                  border: 'none',
+                  color: '#94a3b8',
+                  fontSize: '2.5rem',
+                  cursor: 'pointer',
+                  width: '44px',
+                  height: '44px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '50%',
+                  zIndex: 10,
+                }}
+                aria-label="Close Statistics"
+              >
+                ×
+              </button>
+              <h2 style={{
+                fontSize:'2rem',
+                fontWeight:'800',
+                color:'#e2e8f0',
+                marginBottom:'2rem',
+                textAlign:'center',
+                paddingRight: '3rem' // make space for the X button
+              }}>
+                Your Statistics
+              </h2>
               {/* Mode Tabs */}
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.5rem' }}>
                 <button
@@ -1146,77 +1216,78 @@ const shareToTwitter = () => {
             </div>
           </div>
         )}
-       {/* How to Play Modal – iPhone-optimized, dark-only, close button inside top-right */}
-{showHowToPlay && (
-  <div
-    style={{
-      position: 'fixed',
-      inset: 0,
-      background: 'rgba(0,0,0,0.9)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 100,
-      padding: '1rem',
-    }}
-    onClick={() => setShowHowToPlay(false)}
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="how-to-play-title"
-  >
-    <div
-      style={{
-        background: 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))',
-        backdropFilter: 'blur(20px)',
-        borderRadius: '2rem',
-        padding: '2.5rem',
-        maxWidth: '600px',
-        width: '100%',
-        position: 'relative',
-        border: '1px solid rgba(255,255,255,0.1)',
-        maxHeight: '90vh',
-        overflowY: 'auto',
-      }}
-      onClick={(e) => e.stopPropagation()}
-    >
-      {/* Close button – now INSIDE the modal, top-right */}
-      <button
-        onClick={() => setShowHowToPlay(false)}
-        style={{
-          position: 'absolute',
-          top: '1rem',
-          right: '1rem',
-          background: 'transparent',
-          border: 'none',
-          color: '#94a3b8',
-          fontSize: '2.5rem',
-          fontWeight: '300',
-          cursor: 'pointer',
-          width: '44px',
-          height: '44px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderRadius: '50%',
-          zIndex: 10,
-        }}
-        aria-label="Close How to Play"
-      >
-        ×
-      </button>
-      <h2
-        id="how-to-play-title"
-        style={{
-          fontSize: '2rem',
-          fontWeight: '800',
-          color: '#e2e8f0',
-          textAlign: 'center',
-          marginBottom: '1.5rem',
-          paddingRight: '2.5rem', // makes room for the × button
-        }}
-      >
-        How to Play
-      </h2>
+
+        {/* How to Play Modal – iPhone-optimized, dark-only, close button inside top-right */}
+        {showHowToPlay && (
+          <div
+            style={{
+              position: 'fixed',
+              inset: 0,
+              background: 'rgba(0,0,0,0.9)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 100,
+              padding: '1rem',
+            }}
+            onClick={() => setShowHowToPlay(false)}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="how-to-play-title"
+          >
+            <div
+              style={{
+                background: 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))',
+                backdropFilter: 'blur(20px)',
+                borderRadius: '2rem',
+                padding: '2.5rem',
+                maxWidth: '600px',
+                width: '100%',
+                position: 'relative',
+                border: '1px solid rgba(255,255,255,0.1)',
+                maxHeight: '90vh',
+                overflowY: 'auto',
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button – now INSIDE the modal, top-right */}
+              <button
+                onClick={() => setShowHowToPlay(false)}
+                style={{
+                  position: 'absolute',
+                  top: '1rem',
+                  right: '1rem',
+                  background: 'transparent',
+                  border: 'none',
+                  color: '#94a3b8',
+                  fontSize: '2.5rem',
+                  fontWeight: '300',
+                  cursor: 'pointer',
+                  width: '44px',
+                  height: '44px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '50%',
+                  zIndex: 10,
+                }}
+                aria-label="Close How to Play"
+              >
+                ×
+              </button>
+              <h2
+                id="how-to-play-title"
+                style={{
+                  fontSize: '2rem',
+                  fontWeight: '800',
+                  color: '#e2e8f0',
+                  textAlign: 'center',
+                  marginBottom: '1.5rem',
+                  paddingRight: '2.5rem', // makes room for the × button
+                }}
+              >
+                How to Play
+              </h2>
               <div style={{ color:textColor, lineHeight:'1.8', fontSize:'1rem' }}>
                 <p style={{ marginBottom:'1rem', fontWeight:'600', fontSize:'1.125rem' }}>
                   Guess the stock ticker in {numClues} clues or less!
@@ -1250,6 +1321,7 @@ const shareToTwitter = () => {
             </div>
           </div>
         )}
+
         {/* Questions (input with title for shortcut hint) */}
         {questions.map((q, idx) => {
           if(idx>currentLevel) return null;
@@ -1347,6 +1419,7 @@ const shareToTwitter = () => {
             </div>
           );
         })}
+
         {/* Game Over */}
         {gameOver && (
           <div style={{ textAlign:'center', marginTop:'2rem', background:'rgba(15,23,42,0.7)', backdropFilter:'blur(20px)', padding:'3rem', borderRadius:'2rem', border:'1px solid rgba(255,255,255,0.1)', width:'100%' }}>
@@ -1450,4 +1523,5 @@ const shareToTwitter = () => {
     </div>
   );
 }
+
 export default App;
