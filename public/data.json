@@ -2236,48 +2236,48 @@
       }
     },
     {
-      "ticker": "TJX",
-      "company": "The TJX Companies, Inc.",
-      "sector": "Consumer Discretionary",
-      "difficulty": "medium",
-      "questions": {
-        "level_1": [
-          "I'm an off-price retailer sourcing brand-name apparel, home goods, and accessories at deep discounts for value-savvy shoppers nationwide.",
-          "My treasure-hunt model delivers ever-changing inventory of fashion and furnishings, appealing to bargain hunters seeking quality deals.",
-          "I operate multiple store formats under one company, blending casual discovery with reliable savings on everyday essentials.",
-          "My buying strategy focuses on opportunistic purchases of overstock and closeouts, passing savings to customers consistently.",
-          "I'm dedicated to sustainable practices, donating unsold items and supporting communities through my foundation initiatives."
-        ],
-        "level_2": [
-          "My T.J. Maxx banner offers women's, men's, and kids' clothing alongside home decor and seasonal accents for versatile wardrobes.",
-          "Marshalls provides family apparel, shoes, and gifts in a similar off-price format, emphasizing everyday value and variety.",
-          "HomeGoods specializes in furniture, rugs, lighting, and tabletop items, curating stylish spaces at fraction-of-full prices.",
-          "I carry jewelry, handbags, beauty products, and outerwear, sourcing from top designers for accessible luxury touches.",
-          "My assortment rotates weekly, featuring up to 60% off department store prices on name brands customers love."
-        ],
-        "level_3": [
-          "I was founded in 1976 as the off-price division of Zayre department stores, pioneering the treasure-hunt retail concept.",
-          "In 1987, I became an independent public company after acquiring the T.J. Maxx chain from Zayre's assets.",
-          "My headquarters in Framingham, Massachusetts, oversees operations for a network spanning the U.S. and internationally.",
-          "I launched my initial public offering in 1987, fueling expansion into new markets and store formats rapidly.",
-          "By the 1990s, I introduced HomeGoods in 1992, diversifying beyond apparel into home furnishings successfully."
-        ],
-        "level_4": [
-          "I acquired the Winners chain in Canada in 1990, establishing a strong international presence in off-price retail.",
-          "In 2003, I purchased Bob's Stores for sporting goods, though later divested to sharpen focus on core banners.",
-          "My European expansion began with TK Maxx in 1994, adapting the model for U.K. and continental markets.",
-          "During economic downturns like 2008, my sales surged as consumers sought value, proving the model's resilience.",
-          "I launched Sierra in 2018 as an outlet for outdoor and activewear, targeting adventure enthusiasts with deals."
-        ],
-        "level_5": [
-          "My ticker TJX honors the T.J. Maxx foundation, reflecting my origins in off-price apparel innovation since inception.",
-          "I operate over 4,800 stores globally, serving millions with a commitment to responsible sourcing and community giving.",
-          "My market capitalization exceeds $100 billion, positioning me as the leading off-price retailer by revenue worldwide.",
-          "Barbara Eisenberg Rentler has led as CEO since 2014, overseeing digital growth and sustainable supply chain efforts.",
-          "My 'Maxx Life' philosophy celebrates the joy of discovery, with stores designed for eclectic, personalized shopping adventures."
-        ]
-      }
-    },
+  "ticker": "TJX",
+  "company": "The TJX Companies, Inc.",
+  "sector": "Consumer Discretionary",
+  "difficulty": "medium",
+  "questions": {
+    "level_1": [
+      "I am an off-price retailer sourcing brand-name apparel, home goods, and accessories at deep discounts for value-savvy shoppers nationwide.",
+      "My treasure-hunt model delivers ever-changing inventory of fashion and furnishings, appealing to bargain hunters seeking quality deals.",
+      "I operate multiple store formats under one umbrella, blending casual discovery with reliable savings on everyday essentials.",
+      "My buying strategy focuses on opportunistic purchases of overstock and closeouts, passing savings to customers consistently.",
+      "I am dedicated to sustainable practices, donating unsold items and supporting communities through foundation initiatives."
+    ],
+    "level_2": [
+      "One banner offers women's, men's, and kids' clothing alongside home decor and seasonal accents for versatile wardrobes.",
+      "Another provides family apparel, shoes, and gifts in a similar off-price format, emphasizing everyday value and variety.",
+      "My home-focused stores specialize in furniture, rugs, lighting, and tabletop items, curating stylish spaces at fraction-of-full prices.",
+      "I carry jewelry, handbags, beauty products, and outerwear, sourcing from top designers for accessible luxury touches.",
+      "My assortment rotates weekly, featuring up to 60% off department store prices on popular name brands."
+    ],
+    "level_3": [
+      "I was founded in 1976 as the off-price division of a department store, pioneering the treasure-hunt retail concept.",
+      "In 1987, I became an independent public company after acquiring a key chain from former assets.",
+      "My headquarters in Framingham, Massachusetts, oversees operations for a network spanning the U.S. and internationally.",
+      "I launched my initial public offering in 1987, fueling expansion into new markets and store formats rapidly.",
+      "By the 1990s, I introduced a home goods division, diversifying beyond apparel into home furnishings successfully."
+    ],
+    "level_4": [
+      "I acquired a major Canadian chain in 1990, establishing a strong international presence in off-price retail.",
+      "In 2003, I purchased a sporting goods chain, though later divested to focus on my core banners.",
+      "My European expansion began in 1994, adapting the off-price model for U.K. and continental markets.",
+      "During economic downturns like 2008, my sales surged as consumers sought value, proving the model's resilience.",
+      "I launched an outdoor and activewear outlet in 2018, targeting adventure enthusiasts with curated deals."
+    ],
+    "level_5": [
+      "My ticker honors my roots in off-price apparel innovation since inception.",
+      "I operate over 4,800 stores globally, serving millions with a commitment to responsible sourcing and community giving.",
+      "My market capitalization exceeds $100 billion, positioning me as a leading off-price retailer by revenue worldwide.",
+      "My CEO since 2014 has overseen digital growth and sustainable supply chain initiatives.",
+      "My 'Maxx Life' philosophy celebrates the joy of discovery, with stores designed for eclectic, personalized shopping adventures."
+    ]
+  }
+},
     {
       "ticker": "BKNG",
       "company": "Booking Holdings Inc.",
@@ -2621,178 +2621,178 @@
         ]
       }
     },
-    {
-      "ticker": "HLT",
-      "company": "Hilton Worldwide Holdings Inc.",
-      "sector": "Consumer Discretionary",
-      "difficulty": "medium",
-      "questions": {
-        "level_1": [
-          "I'm a global hospitality powerhouse managing iconic hotel brands for luxury escapes and reliable stays in prime locations.",
-          "My portfolio delivers personalized service, from spas to conferences, across upscale and economy segments worldwide.",
-          "I prioritize guest loyalty through rewards programs and innovative amenities for seamless travel experiences.",
-          "My properties blend local flavor with consistent standards, supporting business trips and family vacations alike.",
-          "I'm advancing sustainability with green initiatives and tech like contactless check-in for modern guests."
-        ],
-        "level_2": [
-          "Hilton Hotels & Resorts offers full-service properties with pools, gyms, and event spaces for groups.",
-          "Hampton by Hilton provides free breakfast and Wi-Fi in comfortable midscale accommodations.",
-          "DoubleTree welcomes with fresh-baked cookies, featuring suites and lounges for relaxation.",
-          "My Curio Collection showcases independent hotels with unique stories and design elements.",
-          "Hilton Honors app manages bookings, points, and digital keys for effortless stays."
-        ],
-        "level_3": [
-          "I began in 1919 when Conrad Hilton bought the Mobley Hotel in Cisco, Texas, during an oil boom.",
-          "My first true Hilton hotel opened in Dallas in 1925, setting standards for luxury service.",
-          "The name Hilton honors founder Conrad Nicholson Hilton, a visionary in American hospitality.",
-          "I returned to public markets in 2013 after private equity ownership, re-energizing growth.",
-          "By the 1960s, I pioneered international expansion with the Caribe Hilton in Puerto Rico."
-        ],
-        "level_4": [
-          "I acquired Promus in 1999, adding Hampton, Embassy Suites, and DoubleTree to my family.",
-          "In 2018, I bought Bluegreen Vacations for $600 million, enhancing timeshare offerings.",
-          "I debuted Signia by Hilton in 2020 for meetings and events with advanced tech.",
-          "During 2020, I rolled out CleanStay protocols with Lysol for enhanced health safety.",
-          "I partnered with Small Luxury Hotels in 2010, curating boutique properties globally."
-        ],
-        "level_5": [
-          "My market capitalization exceeds $50 billion, leading in rooms under management worldwide.",
-          "Christopher J. Nassetta, CEO since 2007, has overseen brand expansions and digital shifts.",
-          "I manage over 7,000 properties in 125 countries, serving 190 million Honors members.",
-          "My 'H' monogram logo evokes heritage and hospitality excellence since the 1960s.",
-          "Hilton Honors, launched in 1987, remains the industry's largest loyalty program."
-        ]
-      }
-    },
-    {
-      "ticker": "WSM",
-      "company": "Williams-Sonoma, Inc.",
-      "sector": "Consumer Discretionary",
-      "difficulty": "hard",
-      "questions": {
-        "level_1": [
-          "I'm a premium specialty retailer of kitchenware, home furnishings, and gourmet foods for cooking and entertaining enthusiasts.",
-          "My brands inspire culinary creativity with high-quality tools, appliances, and stylish tableware for home chefs.",
-          "I offer everything from cookbooks to sofas, focusing on design-led products that elevate daily living.",
-          "My catalog and stores provide expert advice, registries, and inspiration for seasonal home updates.",
-          "I'm committed to sustainability, sourcing responsibly and supporting artisan makers worldwide."
-        ],
-        "level_2": [
-          "Williams Sonoma flagship sells Le Creuset cookware, All-Clad pots, and KitchenAid stand mixers.",
-          "Pottery Barn curates coastal-inspired furniture, bedding, and lighting for cozy living rooms.",
-          "West Elm features mid-century modern sofas, rugs, and sustainable wood accents for urban homes.",
-          "My gourmet foods include Williams Sonoma vanilla extract and seasonal spice blends for baking.",
-          "Registry services span wedding gifts to baby registries, with design consultations available."
-        ],
-        "level_3": [
-          "I launched in 1956 as a mail-order wine club and kitchenware catalog by founder Chuck Williams.",
-          "My first retail store opened in 1971 in the Wine Country town of Sonoma, California.",
-          "The name honors founder Charles E. Williams, a World War II veteran passionate about French cookware.",
-          "I went public in 1983 on NYSE, using funds to acquire Pottery Barn in 1986.",
-          "By the 1990s, I diversified with Williams-Sonoma Home for furnishings and accessories."
-        ],
-        "level_4": [
-          "I acquired Rejuvenation in 2011 for vintage-inspired lighting and hardware to complement homes.",
-          "In 2018, I launched West Elm Hotel, bringing retail designs into experiential hospitality.",
-          "My e-commerce platform, started in 1997, now drives over 60% of total company sales.",
-          "During 2020, online orders for home office and kitchen essentials saw massive surges.",
-          "I expanded internationally with stores in Canada, Mexico, and the Middle East by 2010s."
-        ],
-        "level_5": [
-          "My market capitalization approaches $20 billion, with strong growth in direct-to-consumer channels.",
-          "Laura Alber, CEO since 2010, has transformed me into a lifestyle brand beyond the kitchen.",
-          "I operate over 600 stores, blending physical and digital for immersive shopping experiences.",
-          "My iconic catalog, mailed since 1956, remains a cornerstone of inspiration and sales.",
-          "Williams-Sonoma is renowned for exclusive collaborations with chefs and designers annually."
-        ]
-      }
-    },
-    {
-      "ticker": "DASH",
-      "company": "DoorDash, Inc.",
-      "sector": "Consumer Discretionary",
-      "difficulty": "medium",
-      "questions": {
-        "level_1": [
-          "I'm the largest food delivery platform in North America, connecting users to restaurants, groceries, and convenience stores via app.",
-          "My Dashers deliver meals hot and fast, with real-time tracking and contactless options for ultimate convenience.",
-          "I partner with local eateries to expand reach, offering diverse cuisines from tacos to sushi deliveries.",
-          "My DashPass subscription unlocks free deliveries and exclusive deals for frequent food lovers.",
-          "I'm expanding into groceries and alcohol, making everyday errands as easy as ordering takeout."
-        ],
-        "level_2": [
-          "My core service delivers restaurant meals, from fast-casual burgers to fine-dining entrees on demand.",
-          "DashMart provides quick access to household staples, snacks, and over-the-counter essentials nearby.",
-          "I offer grocery delivery from chains like Safeway, with same-hour fulfillment for fresh produce.",
-          "Dashers use insulated bags for temperature control, ensuring food arrives fresh and enjoyable.",
-          "My app features ratings, photos, and menus, helping users discover new favorites effortlessly."
-        ],
-        "level_3": [
-          "I was co-founded in 2013 by Tony Xu, Stanley Tang, and Andy Fang while at Stanford University.",
-          "My beta launch in Palo Alto started with simple food runs using bikes and basic apps.",
-          "I raised $17.3 million in Series A funding in 2014, scaling to San Francisco operations.",
-          "My direct listing on NYSE in December 2020 valued me at $75 billion on debut day.",
-          "By 2015, I expanded to New York City, adapting to dense urban delivery challenges."
-        ],
-        "level_4": [
-          "I acquired Caviar in 2019 for $410 million, enhancing premium restaurant and sushi offerings.",
-          "In 2022, I purchased Wolt for $8.1 billion, gaining a strong foothold in Europe.",
-          "I launched DashPass in 2018, growing subscribers to millions with unlimited free deliveries.",
-          "During 2020 pandemic, orders tripled as restaurants pivoted to delivery-only models.",
-          "I partnered with Target in 2022 for same-day fulfillment from stores nationwide."
-        ],
-        "level_5": [
-          "My market capitalization exceeds $40 billion, dominating U.S. on-demand delivery market share.",
-          "Tony Xu remains CEO and co-founder, steering hypergrowth and international expansions aggressively.",
-          "I deliver to 80% of U.S. households, processing over 1 million orders every single day.",
-          "My stylized dash logo symbolizes speed and connection in the on-demand economy.",
-          "DoorDash facilitates billions in annual merchant sales, empowering small businesses digitally."
-        ]
-      }
-    },
-    {
-      "ticker": "RL",
-      "company": "Ralph Lauren Corporation",
-      "sector": "Consumer Discretionary",
-      "difficulty": "medium",
-      "questions": {
-        "level_1": [
-          "I'm an American luxury lifestyle brand crafting timeless apparel, accessories, and home collections inspired by elegance.",
-          "My designs evoke classic American style with polo shirts, tailored suits, and equestrian influences for modern wardrobes.",
-          "I offer menswear, womenswear, and childrenswear, blending heritage craftsmanship with contemporary silhouettes.",
-          "My fragrances, watches, and bedding extend the lifestyle vision to everyday indulgences and comforts.",
-          "I'm committed to sustainability, using organic cottons and recycled materials in select collections."
-        ],
-        "level_2": [
-          "Polo Ralph Lauren features the iconic pony logo on shirts, sweaters, and casual chinos for versatile looks.",
-          "Purple Label delivers bespoke suiting and silk ties for the discerning gentleman's formal wardrobe.",
-          "Women's collections include cable-knit sweaters, denim jeans, and evening gowns in signature palettes.",
-          "My RLX line incorporates technical fabrics for golf and active pursuits with performance features.",
-          "Home offerings span table linens, leather-bound books, and crystal glassware for refined settings."
-        ],
-        "level_3": [
-          "I was established in 1967 by designer Ralph Lauren in a New York City tie emporium drawer.",
-          "My debut product line consisted of wide, handmade ties inspired by European luxury menswear traditions.",
-          "In 1972, I introduced the Polo line, revolutionizing casual American sportswear with the pony emblem.",
-          "My company went public in 1997 on NYSE, funding global expansion and licensing agreements.",
-          "By the 1980s, I ventured into womenswear and home, diversifying beyond menswear foundations."
-        ],
-        "level_4": [
-          "I licensed my designs for The Great Gatsby film wardrobe in 2013, capturing 1920s opulence.",
-          "In 2015, I opened The Polo Bar restaurant, embodying my vision of American luxury dining.",
-          "I launched Polo Earth Polo in 2020, using recycled materials for sustainable polo shirts.",
-          "During the 2008 financial crisis, I pivoted to Asia, where sales growth offset domestic slowdowns.",
-          "My partnership with the U.S. Open Tennis Championship since 1980s features branded courtside fashion."
-        ],
-        "level_5": [
-          "My market capitalization hovers around $10 billion, with strong licensing revenue from global partners.",
-          "Patrice Louvet, CEO since 2017, focuses on digital sales and direct-to-consumer channel growth.",
-          "I maintain over 500 freestanding stores, plus thousands of wholesale doors worldwide.",
-          "The pony logo, designed in 1974, represents equestrian heritage and enduring American spirit.",
-          "I've outfitted every U.S. president from Reagan onward, blending politics with classic style."
-        ]
-      }
-    },
+   {
+  "ticker": "HLT",
+  "company": "Hilton Worldwide Holdings Inc.",
+  "sector": "Consumer Discretionary",
+  "difficulty": "medium",
+  "questions": {
+    "level_1": [
+      "I am a global hospitality powerhouse managing iconic hotel brands for luxury escapes and reliable stays in prime locations.",
+      "My portfolio delivers personalized service, from spas to conferences, across upscale and economy segments worldwide.",
+      "I prioritize guest loyalty through rewards programs and innovative amenities for seamless travel experiences.",
+      "My properties blend local flavor with consistent standards, supporting business trips and family vacations alike.",
+      "I advance sustainability with green initiatives and technology like contactless check-in for modern guests."
+    ],
+    "level_2": [
+      "My full-service hotels offer pools, gyms, and event spaces for groups and conferences.",
+      "My midscale accommodations provide free breakfast, Wi-Fi, and comfortable rooms for travelers.",
+      "I welcome guests with signature touches, including fresh-baked cookies and suites for relaxation.",
+      "My Curio Collection showcases independent hotels with unique stories and distinctive design.",
+      "My loyalty app manages bookings, points, and digital keys for effortless stays."
+    ],
+    "level_3": [
+      "I began in 1919 when my founder purchased the Mobley Hotel in Cisco, Texas, during an oil boom.",
+      "My first major hotel opened in Dallas in 1925, setting standards for luxury service.",
+      "My name honors the visionary founder who transformed American hospitality.",
+      "I returned to public markets in 2013 after private equity ownership, re-energizing growth.",
+      "By the 1960s, I pioneered international expansion with the Caribe flagship hotel in Puerto Rico."
+    ],
+    "level_4": [
+      "I acquired Promus in 1999, adding brands like Hampton, Embassy Suites, and DoubleTree to my portfolio.",
+      "In 2018, I bought Bluegreen Vacations for $600 million, enhancing my timeshare offerings.",
+      "I debuted the Signia brand in 2020 for meetings and events with advanced technology.",
+      "During 2020, I rolled out CleanStay protocols with Lysol for enhanced health safety.",
+      "I partnered with Small Luxury Hotels in 2010, curating boutique properties around the world."
+    ],
+    "level_5": [
+      "My market capitalization exceeds $50 billion, leading in rooms under management worldwide.",
+      "Christopher J. Nassetta, CEO since 2007, has overseen brand expansions and digital innovation.",
+      "I manage over 7,000 properties in 125 countries, serving 190 million loyalty program members.",
+      "My 'H' monogram logo evokes heritage and excellence in hospitality since the 1960s.",
+      "My loyalty program, launched in 1987, remains the largest in the hotel industry."
+    ]
+  }
+},
+   {
+    "ticker": "WSM",
+    "company": "Williams-Sonoma, Inc.",
+    "sector": "Consumer Discretionary",
+    "difficulty": "hard",
+    "questions": {
+      "level_1": [
+        "I am a premium specialty retailer of kitchenware, home furnishings, and gourmet foods for cooking and entertaining enthusiasts.",
+        "My brands inspire culinary creativity with high-quality tools, appliances, and stylish tableware for home chefs.",
+        "I offer everything from cookbooks to sofas, focusing on design-led products that elevate daily living.",
+        "My catalog and stores provide expert advice, registries, and inspiration for seasonal home updates.",
+        "I am committed to sustainability, sourcing responsibly and supporting artisan makers worldwide."
+      ],
+      "level_2": [
+        "My flagship stores sell Le Creuset cookware, All-Clad pots, and KitchenAid stand mixers.",
+        "Pottery Barn curates coastal-inspired furniture, bedding, and lighting for cozy living rooms.",
+        "West Elm features mid-century modern sofas, rugs, and sustainable wood accents for urban homes.",
+        "My gourmet foods include premium vanilla extract and seasonal spice blends for baking.",
+        "My registry services span wedding gifts to baby registries, with design consultations available."
+      ],
+      "level_3": [
+        "I launched in 1956 as a mail-order wine club and kitchenware catalog by founder Chuck Williams.",
+        "My first retail store opened in 1971 in the Wine Country town of Sonoma, California.",
+        "My name honors the founder, a World War II veteran passionate about French cookware.",
+        "I went public in 1983 on NYSE, using funds to acquire Pottery Barn in 1986.",
+        "By the 1990s, I diversified with a home furnishings division for accessories and décor."
+      ],
+      "level_4": [
+        "I acquired Rejuvenation in 2011 for vintage-inspired lighting and hardware to complement homes.",
+        "In 2018, I launched West Elm Hotel, bringing retail designs into experiential hospitality.",
+        "My e-commerce platform, started in 1997, now drives over 60% of total company sales.",
+        "During 2020, online orders for home office and kitchen essentials surged dramatically.",
+        "I expanded internationally with stores in Canada, Mexico, and the Middle East by the 2010s."
+      ],
+      "level_5": [
+        "My market capitalization approaches $20 billion, with strong growth in direct-to-consumer channels.",
+        "Laura Alber, CEO since 2010, has transformed me into a lifestyle brand beyond the kitchen.",
+        "I operate over 600 stores, blending physical and digital for immersive shopping experiences.",
+        "My iconic catalog, mailed since 1956, remains a cornerstone of inspiration and sales.",
+        "I am renowned for exclusive collaborations with chefs and designers each year."
+      ]
+    }
+  },
+     {
+    "ticker": "DASH",
+    "company": "DoorDash, Inc.",
+    "sector": "Consumer Discretionary",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I am the largest food delivery platform in North America, connecting users to restaurants, groceries, and convenience stores via app.",
+        "My Dashers deliver meals hot and fast, with real-time tracking and contactless options for ultimate convenience.",
+        "I partner with local eateries to expand reach, offering diverse cuisines from tacos to sushi deliveries.",
+        "My subscription service unlocks free deliveries and exclusive deals for frequent food lovers.",
+        "I am expanding into groceries and alcohol, making everyday errands as easy as ordering takeout."
+      ],
+      "level_2": [
+        "My core service delivers restaurant meals, from fast-casual burgers to fine-dining entrees on demand.",
+        "I provide quick access to household staples, snacks, and over-the-counter essentials nearby.",
+        "I offer grocery delivery from major chains, with same-hour fulfillment for fresh produce.",
+        "My Dashers use insulated bags for temperature control, ensuring food arrives fresh and enjoyable.",
+        "My app features ratings, photos, and menus, helping users discover new favorites effortlessly."
+      ],
+      "level_3": [
+        "I was co-founded in 2013 by three Stanford students aiming to simplify local food delivery.",
+        "My beta launch in Palo Alto started with simple food runs using bikes and basic apps.",
+        "I raised $17.3 million in Series A funding in 2014, scaling operations to San Francisco.",
+        "I went public in December 2020, debuting with a valuation of $75 billion.",
+        "By 2015, I expanded to New York City, adapting to dense urban delivery challenges."
+      ],
+      "level_4": [
+        "I acquired a premium delivery platform in 2019 for $410 million, enhancing high-end restaurant offerings.",
+        "In 2022, I purchased a major European delivery company for $8.1 billion, expanding my international footprint.",
+        "I launched my subscription service in 2018, growing subscribers to millions with unlimited free deliveries.",
+        "During the 2020 pandemic, orders tripled as restaurants pivoted to delivery-only models.",
+        "I partnered with a major retailer in 2022 for same-day fulfillment from stores nationwide."
+      ],
+      "level_5": [
+        "My market capitalization exceeds $40 billion, dominating the U.S. on-demand delivery market.",
+        "My CEO and co-founder continues to steer hypergrowth and international expansions aggressively.",
+        "I deliver to 80% of U.S. households, processing over 1 million orders every single day.",
+        "My stylized dash logo symbolizes speed and connection in the on-demand economy.",
+        "I facilitate billions in annual merchant sales, empowering small businesses digitally."
+      ]
+    }
+  },
+  {
+    "ticker": "RL",
+    "company": "Ralph Lauren Corporation",
+    "sector": "Consumer Discretionary",
+    "difficulty": "easy",
+    "questions": {
+      "level_1": [
+        "I am an American luxury lifestyle brand crafting timeless apparel, accessories, and home collections inspired by elegance.",
+        "My designs evoke classic American style with polo shirts, tailored suits, and equestrian influences for modern wardrobes.",
+        "I offer menswear, womenswear, and childrenswear, blending heritage craftsmanship with contemporary silhouettes.",
+        "My fragrances, watches, and bedding extend the lifestyle vision to everyday indulgences and comforts.",
+        "I am committed to sustainability, using organic cottons and recycled materials in select collections."
+      ],
+      "level_2": [
+        "My Polo line features the iconic pony logo on shirts, sweaters, and casual chinos for versatile looks.",
+        "My Purple Label delivers bespoke suiting and silk ties for the discerning gentleman's formal wardrobe.",
+        "My women's collections include cable-knit sweaters, denim jeans, and evening gowns in signature palettes.",
+        "My RLX line incorporates technical fabrics for golf and active pursuits with performance features.",
+        "My home offerings span table linens, leather-bound books, and crystal glassware for refined settings."
+      ],
+      "level_3": [
+        "I was established in 1967 by a designer in a New York City tie emporium drawer.",
+        "My debut product line consisted of wide, handmade ties inspired by European luxury menswear traditions.",
+        "In 1972, I introduced a casual sportswear line that revolutionized American fashion with the pony emblem.",
+        "I went public in 1997 on NYSE, funding global expansion and licensing agreements.",
+        "By the 1980s, I ventured into womenswear and home, diversifying beyond menswear foundations."
+      ],
+      "level_4": [
+        "I licensed my designs for a major film in 2013, capturing 1920s opulence on screen.",
+        "In 2015, I opened a signature restaurant embodying my vision of American luxury dining.",
+        "I launched a sustainable polo collection in 2020, using recycled materials for eco-friendly fashion.",
+        "During the 2008 financial crisis, I pivoted to Asia, where sales growth offset domestic slowdowns.",
+        "My partnership with the U.S. Open Tennis Championship since the 1980s features branded courtside fashion."
+      ],
+      "level_5": [
+        "My market capitalization hovers around $10 billion, with strong licensing revenue from global partners.",
+        "My CEO since 2017 focuses on digital sales and direct-to-consumer channel growth.",
+        "I maintain over 500 freestanding stores, plus thousands of wholesale doors worldwide.",
+        "The pony logo, designed in 1974, represents equestrian heritage and enduring American spirit.",
+        "I have outfitted every U.S. president from Reagan onward, blending politics with classic style."
+      ]
+    }
+  },
     {
       "ticker": "TPR",
       "company": "Tapestry, Inc.",
