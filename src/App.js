@@ -116,7 +116,7 @@ function App() {
   const [puzzleSeed, setPuzzleSeed] = useState(0);
   const inputRef = useRef(null);
   // ────────────────────────────────
-//  LOAD STATS + DARK MODE ONCE
+// LOAD STATS + DARK MODE ONCE
 // ────────────────────────────────
 useEffect(() => {
   // Load saved stats
@@ -130,7 +130,6 @@ useEffect(() => {
     console.error('Failed to load stats:', e);
     localStorage.removeItem('tickrDailyStats'); // Corrupted → reset
   }
-
   // Load dark mode
   try {
     const savedDark = localStorage.getItem('tickrDailyDarkMode');
@@ -138,7 +137,6 @@ useEffect(() => {
       setDarkMode(JSON.parse(savedDark));
     }
   } catch (e) {}
-
   // First-time visitor
   if (!localStorage.getItem('tickrDailyVisited')) {
     setShowHowToPlay(true);
@@ -182,7 +180,6 @@ useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [input, gameOver, gameMode]);
-
   // Load local JSON data
   useEffect(() => {
     Promise.all([
@@ -519,34 +516,27 @@ useEffect(() => {
 // Update stats in one place
 const updateStats = (won, cluesUsed, timeElapsed = null) => {
   if (testMode) return;
-
   // Prevent double-counting today's daily puzzle
   if (gameMode === 'daily') {
     const saved = localStorage.getItem('dailyProgress');
     if (saved && JSON.parse(saved).gameOver) return;
   }
-
   const time = timeElapsed ?? (startTime ? Math.floor((Date.now() - startTime) / 1000) : 0);
   const today = new Date().toISOString().split('T')[0];
-
   setStats(prev => {
     // Copy distributions
     const dailyDist = { ...prev.dailyGuessDistribution };
     const unlimitedDist = { ...prev.unlimitedGuessDistribution };
-
     // Update correct distribution
     if (gameMode === 'daily') {
       won ? dailyDist[cluesUsed]++ : dailyDist.fail++;
     } else {
       won ? unlimitedDist[cluesUsed]++ : unlimitedDist.fail++;
     }
-
     // New streak (only daily mode cares)
     const newStreak = gameMode === 'daily' ? (won ? prev.dailyCurrentStreak + 1 : 0) : prev.dailyCurrentStreak;
-
     return {
       ...prev,
-
       // Daily
       dailyGamesPlayed: gameMode === 'daily' ? prev.dailyGamesPlayed + 1 : prev.dailyGamesPlayed,
       dailyGamesWon: gameMode === 'daily' && won ? prev.dailyGamesWon + 1 : prev.dailyGamesWon,
@@ -555,18 +545,15 @@ const updateStats = (won, cluesUsed, timeElapsed = null) => {
       dailyGuessDistribution: gameMode === 'daily' ? dailyDist : prev.dailyGuessDistribution,
       dailyPlayHistory: gameMode === 'daily' ? { ...prev.dailyPlayHistory, [today]: { won, clues: cluesUsed, time } } : prev.dailyPlayHistory,
       dailyTotalTime: gameMode === 'daily' ? prev.dailyTotalTime + time : prev.dailyTotalTime,
-
       // Unlimited
       unlimitedCompletions: gameMode === 'unlimited' ? prev.unlimitedCompletions + 1 : prev.unlimitedCompletions,
       unlimitedGuessDistribution: gameMode === 'unlimited' ? unlimitedDist : prev.unlimitedGuessDistribution,
       unlimitedTotalTime: gameMode === 'unlimited' ? prev.unlimitedTotalTime + time : prev.unlimitedTotalTime,
-
       // Shared
       overallTotalTime: prev.overallTotalTime + time,
       overallFastestTime: won && (!prev.overallFastestTime || time < prev.overallFastestTime) ? time : prev.overallFastestTime,
     };
   });
-
   // Optional: Firebase update (only daily)
   if (gameMode === 'daily') {
     updateDailyStats({ won }).catch(() => {});
@@ -577,14 +564,19 @@ const shareResults = () => {
   const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
   const won = submittedAnswers.some(a => a.isCorrect);
   const cluesUsed = won ? submittedAnswers.length : questions.length;
-  const text = `TickrDaily ${new Date().toLocaleDateString()}\n${emoji} (${cluesUsed}/${questions.length})\n\nPlay: ${window.location.href}`;
+  const shareText = `TickrDaily ${new Date().toLocaleDateString()}\n${emoji} (${cluesUsed}/${questions.length})`;
+  const fullText = `${shareText}\n\nPlay: ${window.location.href}`;
   if (navigator.share) {
-    navigator.share({ text }).catch(() => {
-      navigator.clipboard.writeText(text);
+    navigator.share({ 
+      title: 'TickrDaily Results', 
+      text: shareText, 
+      url: window.location.href 
+    }).catch(() => {
+      navigator.clipboard.writeText(fullText);
       alert('Results copied to clipboard!');
     });
   } else {
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(fullText);
     alert('Results copied to clipboard!');
   }
 };
@@ -855,6 +847,9 @@ const shareToTwitter = () => {
     animation: scroll 80s linear infinite !important;
     line-height: 38px !important;
   }
+  .logo {
+    padding-right: 3rem;
+  }
 }
         @keyframes scroll-vertical {
           0% { transform: translateY(100%); }
@@ -866,6 +861,7 @@ const shareToTwitter = () => {
         <div style={{ textAlign:'center', marginBottom:'1rem', position:'relative', width:'100%' }}>
           <button
             onClick={toggleDarkMode}
+            className="dark-toggle"
             style={{
               position:'absolute',
               right:0,
@@ -902,7 +898,7 @@ const shareToTwitter = () => {
               🧪 TEST MODE
             </div>
           )}
-          <h1 style={{ fontSize:'4rem', fontWeight:'800', background:'linear-gradient(135deg,#22c55e 0%,#3b82f6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', marginBottom:'0.5rem', letterSpacing:'-0.02em' }}>TickrDaily</h1>
+          <h1 className="logo" style={{ fontSize:'4rem', fontWeight:'800', background:'linear-gradient(135deg,#22c55e 0%,#3b82f6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', marginBottom:'0.5rem', letterSpacing:'-0.02em' }}>TickrDaily</h1>
           <p style={{ color:mutedColor, fontSize:'1rem', fontWeight:'500', letterSpacing:'0.05em' }}>{todayDate}</p>
           <p style={{ color:mutedColor, fontSize:'0.875rem', marginTop:'0.5rem' }}>
             {gameMode === 'daily' ? 'Guess the stock from 5 clues' : `Guess the stock from ${difficulty === 'easy' ? 6 : difficulty === 'hard' ? 3 : 5} clues (${difficulty})`}
@@ -1027,12 +1023,11 @@ const shareToTwitter = () => {
       >
         ×
       </button>
-
-      <h2 style={{ 
-        fontSize:'2rem', 
-        fontWeight:'800', 
-        color:'#e2e8f0', 
-        marginBottom:'2rem', 
+      <h2 style={{
+        fontSize:'2rem',
+        fontWeight:'800',
+        color:'#e2e8f0',
+        marginBottom:'2rem',
         textAlign:'center',
         paddingRight: '3rem' // make space for the X button
       }}>
@@ -1290,7 +1285,6 @@ const shareToTwitter = () => {
       >
         ×
       </button>
-
       <h2
         id="how-to-play-title"
         style={{
