@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // User-specific data: Only the owner can read/write
+    match /users/{uid}/stats/{statId} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /users/{uid}/dailyProgress/{dayId} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    // Global analytics: Allow authenticated reads, admin writes (adjust if needed)
+    match /analytics/{doc} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null; // Or restrict to your admin UID
+    }
+    
+    // ADD THIS BLOCK: Global stocks data - Authenticated users can read (for your React app)
+    // Cloud Functions can write (via service account, bypassing rules)
+    // If you want open reads (no auth), change to 'allow read: if true;'
+    match /stocks/{stock} {
+      allow read: if request.auth != null;
+      allow write: if false; // Blocks client writes; only your Cloud Function can update
+    }
+  }
+}
