@@ -1215,7 +1215,7 @@ function App() {
             </div>
           </div>
         )}
-      {/* How to Play Modal – iPhone-optimized, dark-only, close button inside top-right */}
+        {/* How to Play Modal – iPhone-optimized, dark-only, close button inside top-right */}
         {showHowToPlay && (
           <div
             style={{
@@ -1283,37 +1283,8 @@ function App() {
                   marginBottom: '1.5rem',
                   paddingRight: '0', // makes room for the × button
                 }}
-      >
-    {/* Close button – now sibling to content, positioned relative to outer fixed div (screen top-right) */}
-    <button
-      onClick={(e) => {
-        e.stopPropagation(); // Prevent triggering outer div's onClick
-        setShowHowToPlay(false);
-      }}
-      style={{
-        position: 'absolute',
-        top: '1rem', // Matches outer padding for consistent edge spacing
-        right: '1rem',
-        background: 'transparent',
-        border: 'none',
-        color: '#94a3b8',
-        fontSize: '1.5rem',
-        fontWeight: '300',
-        cursor: 'pointer',
-        width: '36px',
-        height: '36px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: '50%',
-        zIndex: 10,
-      }}
-      aria-label="Close How to Play"
-    >
-      ×
-    </button>
-  </div>
-)}
+
+
               >
                 How to Play
               </h2>
