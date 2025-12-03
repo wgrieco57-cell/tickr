@@ -1257,8 +1257,7 @@ function App() {
                   right: '.5rem',
                   background: 'transparent',
                   border: 'none',
-                  color: '
-#94a3b8',
+                  color: '#94a3b8',
                   fontSize: '1.5rem',
                   fontWeight: '300',
                   cursor: 'pointer',
