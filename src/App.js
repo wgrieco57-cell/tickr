@@ -376,8 +376,8 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [shake]);
-  
-useEffect(() => {
+
+  useEffect(() => {
   const loadQuotes = async () => {
     try {
       // Try Firestore first
@@ -385,12 +385,19 @@ useEffect(() => {
       
       if (Object.keys(stockData).length > 0) {
         console.log("✅ Loading quotes from Firestore");
-        const formattedQuotes = Object.entries(stockData).map(([symbol, data]) => ({
+        let formattedQuotes = Object.entries(stockData).map(([symbol, data]) => ({
           symbol,
           current: data.currentPrice?.toFixed(2) || '0.00',
           change: data.change?.toFixed(2) || '0.00'
         }));
+        
+        // On mobile, show fewer stocks for faster rendering
+        if (window.innerWidth <= 768) {
+          formattedQuotes = formattedQuotes.slice(0, 10);
+        }
+        
         setQuotes(formattedQuotes);
+
       } else {
         // Firestore empty, fetch directly from API
         console.log("⚠️ Firestore empty, fetching from Finnhub API...");
@@ -777,53 +784,84 @@ useEffect(() => {
   return (
     <div style={{ minHeight:'100vh', background: bgColor, display:'flex', flexDirection:'column', alignItems:'center', padding:'2rem 1rem' }}>
       {/* Quotron */}
-      <div className="quotron" style={{ width:'100%', overflow:'hidden', whiteSpace:'nowrap', marginBottom:'2rem', border:`1px solid ${borderColor}`, padding:'0.5rem 0', borderRadius:'1rem', background:darkMode ? 'rgba(15,23,42,0.8)' : 'rgba(255,255,255,0.8)', display: 'flex', flexDirection: 'row' }}>
-        <div style={{ display:'inline-block', animation:'scroll 120s linear infinite' }}>
-          {[...quotes, ...quotes].map((q,i)=>(
-            <span key={i} style={{ display:'inline-block', marginRight:'3rem', color: q.change>=0 ? '#22c55e' : '#ef4444', fontWeight:'700', fontFamily:'monospace' }}>
-              {q.symbol} {q.current} {q.change>=0?`+${q.change}`:q.change}
-            </span>
-          ))}
-        </div>
-      </div>
-      <style>{`
-        @keyframes scroll {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-          20%, 40%, 60%, 80% { transform: translateX(5px); }
-        }
-        @media (max-width: 768px) {
-          .quotron {
-            height: 38px !important;
-            flex-direction: row !important;
-            overflow: hidden !important;
-            white-space: nowrap !important;
-            padding: 0 !important;
-          }
-          .quotron div {
-            animation: scroll 80s linear infinite !important;
-            line-height: 38px !important;
-          }
-        }
-        @keyframes scroll-vertical {
-          0% { transform: translateY(100%); }
-          100% { transform: translateY(-100%); }
-        }
-      `}</style>
+<div className="quotron" style={{ 
+  width:'100%', 
+  overflow:'hidden', 
+  whiteSpace:'nowrap', 
+  marginBottom:'2rem', 
+  border:`1px solid ${borderColor}`, 
+  padding:'0.5rem 0', 
+  borderRadius:'1rem', 
+  background:darkMode ? 'rgba(15,23,42,0.8)' : 'rgba(255,255,255,0.8)', 
+  display: 'flex', 
+  flexDirection: 'row',
+  minHeight: '38px'
+}}>
+  {quotes.length > 0 ? (
+    <div style={{ display:'inline-block', animation:'scroll 120s linear infinite' }}>
+      {[...quotes, ...quotes].map((q,i)=>(
+        <span key={i} style={{ 
+          display:'inline-block', 
+          marginRight:'3rem', 
+          color: q.change>=0 ? '#22c55e' : '#ef4444', 
+          fontWeight:'700', 
+          fontFamily:'monospace' 
+        }}>
+          {q.symbol} {q.current} {q.change>=0?`+${q.change}`:q.change}
+        </span>
+      ))}
+    </div>
+  ) : (
+    <div style={{ 
+      display:'flex', 
+      alignItems:'center', 
+      justifyContent:'center', 
+      width:'100%', 
+      color:mutedColor,
+      fontSize:'0.875rem'
+    }}>
+      Loading market data...
+    </div>
+  )}
+</div>
+<style>{`
+  @keyframes scroll {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+  }
+  @media (max-width: 768px) {
+    .quotron {
+      height: 38px !important;
+      flex-direction: row !important;
+      overflow: hidden !important;
+      white-space: nowrap !important;
+      padding: 0 !important;
+    }
+    .quotron div {
+      animation: scroll 80s linear infinite !important;
+      line-height: 38px !important;
+    }
+  }
+  @keyframes scroll-vertical {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(-100%); }
+  }
+`}</style>
       <div style={{ width:'100%', maxWidth:'900px', display:'flex', flexDirection:'column', alignItems:'center' }}>
         {/* Header with Dark Mode Toggle */}
         <div style={{ textAlign:'center', marginBottom:'1rem', position:'relative', width:'100%' }}>
