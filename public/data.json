@@ -5541,7 +5541,651 @@
       "I ferment miracles in labs from Melville to Liebefeld, perfecting skincare innovations."
     ]
   }
-}
-
+},
+    {
+      "ticker": "CL",
+      "company": "Colgate-Palmolive Company",
+      "sector": "Consumer Staples",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I create everyday personal care items used by families during their morning routines.",
+          "People around the world trust my gentle products for maintaining daily hygiene habits.",
+          "My essentials are commonly found in nearly every household bathroom cabinet.",
+          "I focus on simple, reliable items that help people feel clean and refreshed.",
+          "My brand identity revolves strongly around cleanliness and consistent personal care."
+        ],
+        "level_2": [
+          "I produce widely recognized oral care products used multiple times each day.",
+          "My items are often displayed prominently in drugstores and major grocery aisles.",
+          "I also manufacture well-known soaps designed for both kitchens and bathrooms.",
+          "Parents frequently buy my gentle cleaning products for everyday family use.",
+          "I emphasize reliability across a range of household and hygiene product categories."
+        ],
+        "level_3": [
+          "My long history dates back to the early nineteenth century in America.",
+          "I distribute products in more than two hundred countries around the world.",
+          "My earliest versions of a signature product were once sold inside small jars.",
+          "Generations of families have used my items without thinking twice about them.",
+          "I am considered one of the most established global brands in personal care."
+        ],
+        "level_4": [
+          "One of my divisions focuses heavily on scientifically developed pet nutrition products.",
+          "A long-standing brand of mine is highly recognized for dish soap and body cleansers.",
+          "A large share of my revenue comes from oral care solutions and related items.",
+          "I have maintained headquarters in a major American city for many decades.",
+          "My operations span personal care, home care, and companion animal wellness solutions."
+        ],
+        "level_5": [
+          "I am the global leader in toothpaste and manual toothbrush market share worldwide.",
+          "My pet-oriented business is respected for its science-backed formulas and research approach.",
+          "I helped popularize collapsible toothpaste tubes near the end of the nineteenth century.",
+          "My global presence reinforces an identity centered around clean teeth, homes, and pets.",
+          "I am widely recognized as one of the oldest continuously expanding hygiene brands."
+        ]
+      }
+    },
+    {
+      "ticker": "KMB",
+      "company": "Kimberly-Clark Corporation",
+      "sector": "Consumer Staples",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I produce essential paper products used in bathrooms around the entire world.",
+          "Families rely on my items for comfort, convenience, and everyday household needs.",
+          "My products are used by both parents and children during daily personal routines.",
+          "I create soft disposable goods that people purchase regularly without much thought.",
+          "My focus is providing comfort-oriented items that support simple daily living."
+        ],
+        "level_2": [
+          "I manufacture tissues, diapers, and several popular hygiene-related paper goods.",
+          "My items are frequently purchased in bulk because families need them constantly.",
+          "Public restrooms often use my durable, high-volume paper and sanitary products.",
+          "Many parents strongly prefer my baby-care items for everyday infant needs.",
+          "My brands emphasize softness, durability, and comfort across numerous categories."
+        ],
+        "level_3": [
+          "I began during the nineteenth century and grew through American industrial expansion.",
+          "Hospitals and office buildings rely heavily on my professional hygiene solutions.",
+          "One of my major brands is synonymous with everyday facial tissue usage.",
+          "I serve both individual consumers and large institutional facilities worldwide.",
+          "My disposable goods are widely known for convenience and time-saving benefits."
+        ],
+        "level_4": [
+          "I helped introduce disposable diaper technology that reshaped the parenting landscape.",
+          "A significant portion of my materials originates from processed wood pulp fibers.",
+          "My products are considered staples in both commercial and residential environments.",
+          "I maintain a broad portfolio serving family care, personal care, and professional sectors.",
+          "One of my brands revolutionized the facial tissue category with recognizable packaging."
+        ],
+        "level_5": [
+          "I pioneered innovations that deeply influenced modern disposable hygiene industries globally.",
+          "My advanced diaper designs became essential tools for millions of new parents worldwide.",
+          "Large organizations rely on my commercial paper systems for efficient restroom management.",
+          "My product families consistently hold leading shares across multiple household categories.",
+          "I remain one of the most dependable providers of high-volume hygiene essentials worldwide."
+        ]
+      }
+    },
+    {
+      "ticker": "GIS",
+      "company": "General Mills Inc.",
+      "sector": "Consumer Staples",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I produce popular food items commonly enjoyed by families during morning meals.",
+          "My products sit in pantries across countless households within the United States.",
+          "I create convenient foods that require little preparation and are easily recognized.",
+          "Children and adults rely on my items for simple and familiar meal options.",
+          "My products appeal to people who enjoy quick, affordable, and consistent foods."
+        ],
+        "level_2": [
+          "I make well-known breakfast items often seen at the center of grocery aisles.",
+          "Several of my brands feature colorful packaging designed to attract younger consumers.",
+          "I also create snacks that families enjoy during school, work, and weekend activities.",
+          "My products are designed for convenience and long shelf stability in every home.",
+          "I maintain a strong presence in both cereal and packaged food categories."
+        ],
+        "level_3": [
+          "I expanded significantly during the twentieth century through popular household brands.",
+          "Many of my products have become nostalgic favorites for multiple generations.",
+          "I supply items that pair well with milk, fruit, or other simple breakfast foods.",
+          "I also produce baking mixes and meal helpers used in countless home kitchens.",
+          "My long-standing presence has made me a leader in the packaged food industry."
+        ],
+        "level_4": [
+          "I own several iconic cereal characters recognizable throughout American culture.",
+          "Some of my brands are endorsed by athletes and marketed toward active lifestyles.",
+          "I also operate major snack and yogurt brands sold internationally at large scale.",
+          "My various acquisitions expanded my reach beyond cereal into many food categories.",
+          "My business focuses on breakfast, snacks, baking, and convenient prepared foods."
+        ],
+        "level_5": [
+          "I am behind some of the highest-selling boxed cereals ever produced globally.",
+          "My mascot-driven brands have become permanent fixtures in advertising history.",
+          "I expanded into natural and organic foods through strategic twenty-first-century acquisitions.",
+          "My products consistently dominate their segments in the packaged food market.",
+          "I remain one of the world’s most trusted producers of family-oriented food items."
+        ]
+      }
+    },
+    {
+      "ticker": "MDLZ",
+      "company": "Mondelez International, Inc.",
+      "sector": "Consumer Staples",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I produce snacks enjoyed by people looking for convenient sweet or savory treats.",
+          "My items are often enjoyed during school breaks, workdays, and weekend gatherings.",
+          "Families purchase my snacks frequently because they are easy to store and share.",
+          "Shoppers recognize many of my products instantly when browsing snack aisles.",
+          "I focus on treats that bring moments of enjoyment throughout everyday life."
+        ],
+        "level_2": [
+          "I produce cookies, crackers, chocolates, and other highly recognizable snack items.",
+          "My brands are sold worldwide and appeal strongly to both children and adults.",
+          "I place strong emphasis on global distribution and international marketplace growth.",
+          "My sweet products appear in convenience stores, supermarkets, and vending machines.",
+          "I specialize in creating snacks that balance tradition, taste, and wide accessibility."
+        ],
+        "level_3": [
+          "I was formed through a major corporate separation during the early 2010s.",
+          "Many of my products are tied closely to long-standing cultural traditions worldwide.",
+          "My international presence allows me to tailor flavors for different regional preferences.",
+          "I operate numerous factories producing snacks consumed in more than one hundred countries.",
+          "My portfolio contains some of the most frequently purchased treats in the world."
+        ],
+        "level_4": [
+          "I oversee beloved chocolate brands that hold strong global market positions.",
+          "I acquired several international snack makers to strengthen my geographic reach.",
+          "My company focuses heavily on the indulgence and convenience categories combined.",
+          "I operate one of the largest biscuit businesses anywhere across the global market.",
+          "I continue expanding into emerging markets where snacking demand is rapidly rising."
+        ],
+        "level_5": [
+          "I control some of the world’s best-selling chocolate and cookie brands globally.",
+          "My international biscuit business is among the largest and most influential worldwide.",
+          "I have deeply integrated production networks serving dozens of global regions.",
+          "My products dominate snack aisles in both developed and rapidly growing markets.",
+          "I remain one of the most powerful leaders in worldwide snack manufacturing."
+        ]
+      }
+    },
+    {
+      "ticker": "KR",
+      "company": "The Kroger Co.",
+      "sector": "Consumer Staples",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I operate supermarkets that many families visit regularly for weekly groceries.",
+          "Customers rely on me for fresh food, household items, and essential daily products.",
+          "I emphasize convenience, value, and variety across my stores nationwide.",
+          "People visit my locations for everyday shopping and frequent household restocking.",
+          "I focus on serving communities through accessible, neighborhood-oriented grocery stores."
+        ],
+        "level_2": [
+          "I offer my own private-label brands that provide affordable alternatives to name brands.",
+          "My stores often include bakery, deli, and produce sections with many options available.",
+          "I operate multiple banners, each tailored to different regional shopping preferences.",
+          "Customers appreciate my loyalty programs and digital coupon offerings.",
+          "I sell items ranging from fresh vegetables to packaged meals and household necessities."
+        ],
+        "level_3": [
+          "I was founded in the nineteenth century and grew steadily through store expansions.",
+          "I maintain one of the largest store footprints among American grocery chains today.",
+          "My operations include supermarkets, hypermarkets, and specialty-format stores.",
+          "I manage large logistics networks designed to keep fresh food circulating efficiently.",
+          "My longstanding presence makes me a familiar name across many American regions."
+        ],
+        "level_4": [
+          "I partner with various suppliers to develop high-quality private-label food lines.",
+          "I also operate manufacturing facilities that produce many of my store-brand items.",
+          "Digital ordering and home delivery have become significant parts of my business.",
+          "I acquired multiple regional chains over the years to expand my geographic coverage.",
+          "I emphasize food safety, freshness, and consistent value throughout my product offerings."
+        ],
+        "level_5": [
+          "I am one of the largest grocery retailers in the entire United States marketplace.",
+          "My private-label programs produce billions in revenue across numerous food categories.",
+          "I maintain one of the most advanced fulfillment networks among U.S. grocers today.",
+          "My presence significantly shapes regional food distribution across the country.",
+          "I stand as a dominant force in the American supermarket industry overall."
+        ]
+      }
+    },
+    {
+      "ticker": "ADI",
+      "company": "Analog Devices, Inc.",
+      "sector": "Information Technology",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I create electronic components used inside many devices people rely on daily.",
+          "Engineers choose my products when they need accurate, reliable electronic performance.",
+          "My technology helps convert physical information into useful digital signals.",
+          "I support products in industries like audio equipment, cars, and communication tools.",
+          "My components often sit beneath the surface where most users never see them."
+        ],
+        "level_2": [
+          "I specialize in semiconductors that sense, process, and interpret real-world signals.",
+          "My chips are important in systems requiring precise measurement capabilities.",
+          "I help enable better sound quality, stable power usage, and smooth automation.",
+          "My technology supports equipment used by consumers, professionals, and major industries.",
+          "I focus heavily on innovation within high-performance analog and mixed-signal markets."
+        ],
+        "level_3": [
+          "I supply components used in medical devices, industrial machinery, and vehicle electronics.",
+          "My products help convert motion, temperature, and sound into measurable digital data.",
+          "I support advanced communication infrastructure through specialized semiconductor systems.",
+          "Many long-standing engineering companies have relied on my expertise for decades.",
+          "I emphasize precision engineering and world-class semiconductor development capabilities."
+        ],
+        "level_4": [
+          "I strengthened my market influence by acquiring another major analog semiconductor firm.",
+          "My innovations help enable factory automation and industrial transformation worldwide.",
+          "I create essential technologies for sensors, integrated circuits, and signal processing.",
+          "My solutions help power everything from wireless networks to high-end audio devices.",
+          "I maintain significant research operations focused on next-generation semiconductor advancements."
+        ],
+        "level_5": [
+          "I hold leading global market positions within high-performance analog semiconductor fields.",
+          "My precision technologies play key roles across medical, industrial, and automotive sectors.",
+          "I remain essential to converting physical world data into useful digital information.",
+          "My acquisition strategy solidified my role among top analog semiconductor leaders globally.",
+          "I continue shaping the future of signal processing and advanced analogue electronics worldwide."
+        ]
+      }
+    },
+    {
+      "ticker": "MRVL",
+      "company": "Marvell Technology, Inc.",
+      "sector": "Information Technology",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I create semiconductor technology used inside many digital and cloud-based systems.",
+          "My products help move and store massive amounts of data quickly and efficiently.",
+          "Companies rely on me for components powering modern digital infrastructure worldwide.",
+          "I support technologies used in smartphones, servers, and industrial equipment.",
+          "My solutions help enable smooth data handling across various high-tech environments."
+        ],
+        "level_2": [
+          "I design chips that help manage memory, networking, and advanced communication processes.",
+          "My components are critical to systems that require high-speed data transfer capabilities.",
+          "Cloud companies depend on my technology for performance improvements and scalability.",
+          "I have strengthened my reputation through innovative data-centric semiconductor designs.",
+          "My operations revolve around supporting a connected, data-intensive global ecosystem."
+        ],
+        "level_3": [
+          "I supply technology widely used in data centers, wireless networks, and storage systems.",
+          "My engineering teams focus heavily on industry-leading networking semiconductor innovation.",
+          "I play a major role in supporting next-generation communication and cloud infrastructure.",
+          "I help ensure stable data processing for global-scale computing environments.",
+          "My chips power crucial systems for enterprise storage and advanced networking solutions."
+        ],
+        "level_4": [
+          "My acquisitions expanded my influence in cloud, 5G, and storage technology markets.",
+          "I collaborate with major companies building large-scale computing infrastructure solutions.",
+          "I contribute heavily to high-speed connectivity critical for modern global operations.",
+          "My semiconductor expertise shapes future trends in cloud-native and AI-driven computing.",
+          "I support ultra-fast data communication through specialized networking semiconductor hardware."
+        ],
+        "level_5": [
+          "I am recognized as a global leader in data infrastructure semiconductor design expertise.",
+          "My technologies play essential roles within hyperscale cloud computing architectures.",
+          "I continue driving innovation that supports breakthroughs in wireless and wired communication.",
+          "My influence extends across data centers, telecom systems, and cutting-edge storage platforms.",
+          "I remain a foundational contributor to tomorrow’s high-performance digital infrastructure."
+        ]
+      }
+    },
+    {
+      "ticker": "HPQ",
+      "company": "HP Inc.",
+      "sector": "Information Technology",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I create personal computers used by students, workers, and households everywhere.",
+          "My products include printers frequently used in offices and home workspaces.",
+          "People rely on my devices for tasks like writing, gaming, and everyday computing.",
+          "I offer technology aimed at both casual users and professional working environments.",
+          "My machines are recognizable in classrooms, businesses, and countless home offices."
+        ],
+        "level_2": [
+          "I manufacture laptops, desktops, printers, and computer accessories sold worldwide.",
+          "My products often appear in major electronics retailers and online tech stores.",
+          "I create equipment designed for reliability and long-term everyday performance.",
+          "My legacy stretches back to early innovations within the personal computing industry.",
+          "I continue to supply essential devices to students and businesses globally."
+        ],
+        "level_3": [
+          "I separated into two major companies to better focus on core business operations.",
+          "My brand remains one of the most recognizable names in personal computing today.",
+          "I expanded product lines to include premium laptops and high-performance workstations.",
+          "My printers are widely used for offices, schools, and home-based business tasks.",
+          "I focus heavily on quality, durability, and straightforward technology solutions."
+        ],
+        "level_4": [
+          "I design computing devices for creative professionals requiring enhanced hardware performance.",
+          "I maintain strong relationships with international distributors and large enterprise clients.",
+          "My history includes contributions that helped shape Silicon Valley’s early development.",
+          "I continue modernizing product lines for growing hybrid and remote work environments.",
+          "My printing division remains highly relevant thanks to business and educational demand."
+        ],
+        "level_5": [
+          "I stand among the world’s largest computer manufacturers by global unit shipments.",
+          "My long legacy helped define advancements within the technology hardware industry.",
+          "I remain an essential supplier of affordable, powerful computing solutions worldwide.",
+          "My devices play significant roles within homes, enterprises, and government institutions.",
+          "I continue developing hardware that influences computing technology across the world."
+        ]
+      }
+    },
+    {
+      "ticker": "DELL",
+      "company": "Dell Technologies Inc.",
+      "sector": "Information Technology",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I build personal computers widely used in offices, schools, and home environments.",
+          "My technology supports everyday tasks like browsing, writing, and productive work.",
+          "Customers appreciate my simple designs and reliable long-term performance.",
+          "My desktop and laptop systems serve both casual users and large businesses.",
+          "I am known for offering customizable computing solutions through convenient ordering."
+        ],
+        "level_2": [
+          "I provide technology supporting enterprise operations, data storage, and IT management.",
+          "I serve companies that require secure, dependable systems for large-scale workflows.",
+          "My business includes multiple product lines designed for advanced computing challenges.",
+          "My equipment appears in universities, hospitals, and countless corporate workplaces.",
+          "I emphasize both personal computing and large enterprise infrastructure needs."
+        ],
+        "level_3": [
+          "I expanded significantly by merging with a major global data storage leader.",
+          "My enterprise hardware powers servers, cloud platforms, and virtualized environments.",
+          "I offer high-performance computers for professionals needing intensive processing capability.",
+          "My company plays a major role in business-focused information technology development.",
+          "I support robust security and management features for large enterprise clients."
+        ],
+        "level_4": [
+          "I operate in areas including edge computing, cybersecurity, and hybrid cloud solutions.",
+          "My enterprise division is among the largest providers of IT infrastructure globally.",
+          "I partner with organizations transitioning toward modern digital transformation strategies.",
+          "I provide systems supporting artificial intelligence, virtualization, and scalable workloads.",
+          "My business integrates both hardware and end-to-end enterprise software capabilities."
+        ],
+        "level_5": [
+          "I am considered a global leader in enterprise technology infrastructure and solutions.",
+          "My contributions to cloud and data management shape multiple industries worldwide.",
+          "I influence how corporations store, protect, and process large amounts of information.",
+          "My extensive portfolio makes me a dominant presence in technology hardware markets.",
+          "I continue developing essential infrastructure supporting modern computing innovation."
+        ]
+      }
+    },
+    {
+      "ticker": "AKAM",
+      "company": "Akamai Technologies, Inc.",
+      "sector": "Information Technology",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I help ensure that websites and online services load smoothly for global users.",
+          "My technology assists companies in delivering fast and stable digital experiences worldwide.",
+          "People unknowingly benefit from my services whenever they stream or browse online content.",
+          "I specialize in helping businesses improve internet performance for their customers.",
+          "My work helps keep online experiences responsive even during heavy digital traffic."
+        ],
+        "level_2": [
+          "I operate extensive networks designed to speed up internet content delivery.",
+          "My systems help distribute videos, apps, and data across geographically distant regions.",
+          "I provide companies with tools that optimize web reliability and reduce delays.",
+          "I also support businesses by strengthening the security of their online platforms.",
+          "My operations revolve around improving performance across the global internet."
+        ],
+        "level_3": [
+          "I am a major pioneer in content delivery network technologies worldwide.",
+          "My servers are located across thousands of strategic locations around the globe.",
+          "I provide cybersecurity services that protect businesses from digital threats.",
+          "My infrastructure handles huge volumes of internet traffic every single day.",
+          "I support companies during large online events requiring stable digital performance."
+        ],
+        "level_4": [
+          "I help secure sensitive data using advanced cloud-based protection solutions.",
+          "My technology reduces latency and improves user experiences for digital platforms.",
+          "I remain a key player in supporting large streaming services behind the scenes.",
+          "I provide essential tools for organizations requiring both speed and cyber resilience.",
+          "My systems help balance workloads across distributed networks for maximum efficiency."
+        ],
+        "level_5": [
+          "I hold a leading global position in content delivery and cloud security services.",
+          "My platform ensures reliable internet performance for many of the world’s biggest companies.",
+          "I remain essential to keeping digital experiences fast during peak global traffic events.",
+          "My solutions protect countless organizations from sophisticated cyberattacks daily.",
+          "I continue shaping how digital content is delivered securely across the expanding internet."
+        ]
+      }
+    },
+    {
+      "ticker": "HD",
+      "company": "The Home Depot, Inc.",
+      "sector": "Consumer Discretionary",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I operate large retail stores that help people improve their homes every day.",
+          "Customers visit me when they need tools, materials, or simple household equipment.",
+          "I offer solutions for people completing repairs, renovations, or quick home projects.",
+          "My stores attract both professional contractors and everyday do-it-yourself shoppers.",
+          "I focus heavily on products that support building, fixing, and maintaining homes."
+        ],
+        "level_2": [
+          "I sell lumber, power tools, home décor, and a wide range of hardware essentials.",
+          "People walk through my orange aisles seeking help for their upcoming home tasks.",
+          "Garden supplies and outdoor equipment are major parts of my seasonal inventory.",
+          "I operate numerous large-format stores across the United States and beyond.",
+          "My employees assist customers with guidance on home improvement projects."
+        ],
+        "level_3": [
+          "I expanded rapidly during the late twentieth century as home renovation grew popular.",
+          "My stores follow a warehouse-style layout designed for convenience and efficiency.",
+          "Many homeowners depend on me for both minor repairs and major renovations.",
+          "I built my reputation around offering a massive selection of home-related goods.",
+          "I help support contractors by providing bulk materials and professional services."
+        ],
+        "level_4": [
+          "I invest heavily in technology to improve shopping experiences both in-store and online.",
+          "My supply chain operations are crucial to keeping large volumes of inventory available.",
+          "I have become a key destination for professional builders and commercial clients.",
+          "I support home improvement trends influenced by housing market activity nationwide.",
+          "I continue adapting store designs to meet changing customer needs and preferences."
+        ],
+        "level_5": [
+          "I am one of the world’s largest home improvement retailers by total revenue.",
+          "My influence shapes trends across construction, renovation, and household retail markets.",
+          "My stores generate billions annually from both professional and everyday customers.",
+          "I remain a dominant force in the do-it-yourself and contractor supply industries.",
+          "I continue setting standards for global home improvement retail performance."
+        ]
+      }
+    },
+    {
+      "ticker": "BBY",
+      "company": "Best Buy Co., Inc.",
+      "sector": "Consumer Discretionary",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I operate stores that sell electronics, appliances, and entertainment products.",
+          "People visit me when they need devices like televisions, laptops, or headphones.",
+          "I serve customers seeking personal electronics for home, school, and professional use.",
+          "My stores feature displays where shoppers can test popular devices before purchasing.",
+          "I focus heavily on helping customers choose reliable technology products."
+        ],
+        "level_2": [
+          "I offer large selections of computers, mobile devices, and gaming equipment.",
+          "My employees provide guidance to customers selecting gadgets for daily tasks.",
+          "I also sell household appliances ranging from refrigerators to washing machines.",
+          "My stores often include sections dedicated to smart home products and accessories.",
+          "I emphasize customer service and in-store technology assistance programs."
+        ],
+        "level_3": [
+          "I grew rapidly as consumer electronics became essential to modern lifestyles.",
+          "My brand became known for large physical stores with wide product displays.",
+          "I offer installation, repair, and protection services through specialized teams.",
+          "I carry merchandise from leading technology brands across many different categories.",
+          "I transitioned to a strong omnichannel strategy to compete with online retailers."
+        ],
+        "level_4": [
+          "I adjusted my business model to adapt to shifts in digital shopping behavior.",
+          "My service teams help customers with home setups and electronic troubleshooting.",
+          "I operate a membership program that offers special discounts and tech support.",
+          "My stores play important roles during major electronic-focused shopping seasons.",
+          "I maintain relationships with large manufacturers to ensure broad product availability."
+        ],
+        "level_5": [
+          "I remain a leading electronics retailer with strong online and physical presence.",
+          "My service offerings differentiate me within the competitive consumer electronics market.",
+          "I continue shaping trends in home technology and digital entertainment equipment.",
+          "My influence extends across electronics retail, repair services, and device installation.",
+          "I am widely recognized as a dominant name in the American electronics retail industry."
+        ]
+      }
+    },
+    {
+      "ticker": "PLNT",
+      "company": "Planet Fitness, Inc.",
+      "sector": "Consumer Discretionary",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I operate fitness centers designed to be welcoming to people of all experience levels.",
+          "My locations focus on offering an easy and affordable place to exercise regularly.",
+          "People visit me to use cardio machines, strength equipment, and gym amenities.",
+          "I emphasize creating an environment where newcomers feel comfortable and supported.",
+          "I offer a highly recognizable membership model centered around simplicity and value."
+        ],
+        "level_2": [
+          "My gyms avoid intimidating atmospheres and promote friendly workout experiences.",
+          "I provide a wide selection of fitness equipment without complicated class schedules.",
+          "My facilities feature a consistent layout across locations for easy user familiarity.",
+          "Members appreciate my flexible pricing and straightforward monthly membership options.",
+          "I am known for promoting a judgment-free philosophy within my workout spaces."
+        ],
+        "level_3": [
+          "I expanded rapidly throughout the United States through a strong franchise network.",
+          "My gyms attract beginners and casual exercisers seeking accessible workout environments.",
+          "I offer perks like massage chairs and tanning services at many of my locations.",
+          "I market heavily toward people who want a simple, comfortable place to stay active.",
+          "My bright color scheme and friendly branding make my locations easy to recognize."
+        ],
+        "level_4": [
+          "I have become one of the largest fitness chains through consistent national expansion.",
+          "My franchisees operate most of my locations under a unified brand and philosophy.",
+          "I aim to remove barriers like cost, intimidation, and complexity from fitness routines.",
+          "My growth continued as people sought affordable workout options across the country.",
+          "I focus on a membership base that values simplicity over premium or boutique features."
+        ],
+        "level_5": [
+          "I am a major force within the American fitness industry with widespread recognition.",
+          "My unique branding and welcoming environment set me apart from traditional gyms.",
+          "I maintain one of the largest membership bases among all fitness chains worldwide.",
+          "My business model focuses on accessibility, consistency, and broad nationwide appeal.",
+          "I continue expanding as an influential name in low-cost health and fitness services."
+        ]
+      }
+    },
+    {
+      "ticker": "MGM",
+      "company": "MGM Resorts International",
+      "sector": "Consumer Discretionary",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I operate large entertainment properties that attract visitors from around the world.",
+          "Guests visit me to enjoy shows, restaurants, and luxurious overnight stays.",
+          "I offer experiences designed for people seeking excitement and relaxation together.",
+          "My properties are known for vibrant atmospheres filled with entertainment options.",
+          "I cater to travelers wanting memorable leisure activities and premium hospitality."
+        ],
+        "level_2": [
+          "I manage destinations featuring gaming, nightlife, and high-end dining experiences.",
+          "My venues frequently host large events, concerts, and popular live performances.",
+          "I offer suites, spas, and entertainment spaces designed for a range of guests.",
+          "Visitors recognize my locations by their bright lights and iconic visual design.",
+          "My properties focus heavily on delivering diverse entertainment experiences."
+        ],
+        "level_3": [
+          "I own prominent resorts that anchor major entertainment districts in well-known cities.",
+          "My experiences combine hospitality, large-scale events, and luxury amenities.",
+          "I attract millions of visitors annually seeking entertainment-focused travel experiences.",
+          "Several of my properties feature unique themes appealing to international tourists.",
+          "I continuously update my venues to align with modern entertainment trends worldwide."
+        ],
+        "level_4": [
+          "I operate some of the most well-known resort destinations in the world.",
+          "My business includes hospitality, entertainment, gaming, and large event management.",
+          "I contribute heavily to tourism economies in major U.S. travel markets.",
+          "I invest in unique property experiences to strengthen my global entertainment presence.",
+          "My properties often serve as iconic landmarks within major destination cities."
+        ],
+        "level_5": [
+          "I stand among the most recognized names in international entertainment and hospitality.",
+          "My resorts influence global trends in luxury travel, nightlife, and live attractions.",
+          "My brand represents large-scale entertainment combined with world-class accommodations.",
+          "I remain a major player in worldwide resort operations and destination tourism.",
+          "I continue shaping the global entertainment landscape through innovative venue offerings."
+        ]
+      }
+    },
+    {
+      "ticker": "WYNN",
+      "company": "Wynn Resorts, Limited",
+      "sector": "Consumer Discretionary",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I operate luxury resorts that offer high-end experiences for travelers worldwide.",
+          "Guests visit me for elegant rooms, upscale dining, and relaxing leisure amenities.",
+          "I am known for premium service and sophisticated hospitality design elements.",
+          "People come to my venues seeking an elevated, unforgettable travel experience.",
+          "My locations highlight impressive architecture and luxurious interior environments."
+        ],
+        "level_2": [
+          "I focus heavily on fine dining, entertainment, and exclusive guest experiences.",
+          "My resorts feature refined aesthetics that appeal to luxury-oriented travelers.",
+          "Visitors enjoy beautifully designed pools, suites, and premium nightlife offerings.",
+          "My brand emphasizes elegance and exceptional customer service from arrival to departure.",
+          "I cater to guests seeking stylish lodging paired with world-class amenities."
+        ],
+        "level_3": [
+          "My properties have won numerous awards for design excellence and luxury hospitality.",
+          "I operate high-profile destinations in major international travel markets.",
+          "I am widely regarded as a symbol of upscale resort experiences and premium lodging.",
+          "My decor, landscaping, and architectural choices reinforce an atmosphere of luxury.",
+          "My properties attract travelers seeking refined entertainment and extraordinary comfort."
+        ],
+        "level_4": [
+          "I maintain some of the most luxurious resorts across globally recognized tourist regions.",
+          "My venues are known for combining elegance, comfort, and exceptional visual appeal.",
+          "My guests often include international travelers seeking world-class hospitality standards.",
+          "I play a significant role within luxury resort and entertainment markets worldwide.",
+          "My service model prioritizes exclusivity, beauty, and exceptional guest satisfaction."
+        ],
+        "level_5": [
+          "I am recognized internationally as a premier luxury resort operator and industry leader.",
+          "My consistently award-winning properties represent the highest standards in hospitality.",
+          "I influence global expectations for high-end resort design and exceptional guest treatment.",
+          "My offerings remain benchmarks in the world of luxury travel and entertainment.",
+          "I continue shaping the hospitality landscape through iconic premium destinations worldwide."
+        ]
+      }
+    }
 ]
 }
