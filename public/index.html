@@ -2,42 +2,124 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text x='50' y='68' font-family='system-ui' font-size='42' font-weight='900' fill='%2322c55e' text-anchor='middle'>TD</text></svg>"
+    >
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+   <meta name="theme-color" content="#0f172a">
+    <title>TickrDaily</title>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap"
+      rel="stylesheet"
+    >
+
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+      body, html, #root {
+        margin:0 !important;
+        padding:0 !important;
+        height:100dvh !important;
+        background:#0f172a !important;
+        font-family:'Inter',system-ui;
+        overflow-x:hidden;
+      }
+
+      /* Prevent inline margins React sometimes injects */
+      [style*="margin"] { margin-bottom: 0.4rem !important; }
+
+      /* Base Quotron Styling */
+      .quotron-container {
+        all: unset !important;
+        display:flex !important;
+        align-items:center !important;
+        height:44px !important;
+        padding:0 !important;
+        margin:6px 0 !important;
+        overflow:hidden !important;
+        background:rgba(15,23,42,0.95) !important;
+      }
+      .quotron-scroll {
+        animation:scroll 80s linear infinite !important;
+        white-space:nowrap !important;
+        padding-left:100% !important;
+        gap:2.8rem !important;
+        font-size:0.94rem !important;
+        font-weight:700 !important;
+        font-family:'Courier New',monospace !important;
+        color:#22c55e !important;
+        line-height:44px !important;
+      }
+      .quotron-scroll span.negative { color:#ef4444 !important; }
+
+      /* ——————————— MOBILE FIXES ——————————— */
+
+      /* Prevent mobile padding from affecting the Quotron */
+      @media (max-width: 768px) {
+        div:not(.quotron-container),
+        section {
+          margin:0 !important;
+          padding:0 12px !important;
+        }
+      }
+
+      /* Lock Quotron to exactly 1 line on mobile */
+      @media (max-width: 768px) {
+        .quotron-container {
+          height:38px !important;
+          padding:0 !important;
+        }
+        .quotron-scroll {
+          line-height:38px !important;
+          font-size:0.90rem !important;
+        }
+      }
+
+      /* Mobile typography + layout */
+      @media (max-width: 768px) {
+        h1 {
+          font-size:2.6rem !important;
+          margin:8px 0 4px !important;
+          background:linear-gradient(135deg,#22c55e,#16a34a);
+          -webkit-background-clip:text;
+          -webkit-text-fill-color:transparent;
+        }
+
+        .header-date, .live-stats {
+          font-size:0.82rem !important;
+          margin:4px 0 !important;
+        }
+
+        button, select, input {
+          width:calc(100% - 24px) !important;
+          margin:8px 12px !important;
+          padding:16px !important;
+          font-size:1.1rem !important;
+          border-radius:14px !important;
+        }
+
+        [class*="card"], [class*="question"] {
+          margin:8px 12px !important;
+          padding:14px !important;
+          border-radius:14px !important;
+        }
+      }
+
+      @keyframes scroll {
+        0% { transform:translateX(0); }
+        100% { transform:translateX(-50%); }
+      }
+    </style>
   </head>
+
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>You need JavaScript to play TickrDaily.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>
+

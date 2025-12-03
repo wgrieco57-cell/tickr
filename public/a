@@ -1,0 +1,21 @@
+import json
+
+# Load the JSON file
+with open('data.json', 'r') as file:
+    data = json.load(file)
+
+# Extract the list from the 'tickers' key (based on your structure)
+ticker_list = data.get('tickers', [])
+
+# Extract all tickers safely
+tickers = [item['ticker'] for item in ticker_list if isinstance(item, dict) and 'ticker' in item]
+
+# Print the list
+print("All tickers:")
+for ticker in tickers:
+    print(ticker)
+
+# Optionally, print as a comma-separated list
+print("\nComma-separated:")
+print(', '.join(tickers))
+print(f"\nFound {len(tickers)} tickers total.")

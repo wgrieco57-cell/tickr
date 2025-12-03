@@ -1,17 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
 import confetti from 'canvas-confetti'; // npm install canvas-confetti required
+<<<<<<< HEAD
 import { doc, increment, getDoc, setDoc, updateDoc, collection, onSnapshot } from "firebase/firestore";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { logEvent } from "firebase/analytics";
 import { db, analytics } from "./index";  // Import from index.js (Firebase initialized there)
 
+=======
+import { initializeApp } from "firebase/app";
+import { getFirestore, doc, increment, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { getAuth, signInAnonymously } from "firebase/auth";
+import { getAnalytics, logEvent } from "firebase/analytics";
+const FINNHUB_API_KEY = "d4g9o8pr01qm5b34j8l0d4g9o8pr01qm5b34j8lg"; // Hardcoded as requested (note: for local/dev only—expose risk in prod)
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
 const QUOTRON_TICKERS = [
   '^GSPC','^DJI','^IXIC', // Major indexes
   'AAPL','MSFT','GOOGL','AMZN','META','TSLA','NVDA', // MAG7
   'BRK.B','JPM','JNJ','V','PG','DIS','MA','HD','UNH','BAC' // 10 more
 ];
+<<<<<<< HEAD
 
 // Fallback quotes for initial load or errors
+=======
+// Fallback quotes for API errors or non-market hours
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
 const FALLBACK_QUOTES = [
   { symbol: 'AAPL', current: '150.00', change: '1.50' },
   { symbol: 'TSLA', current: '250.00', change: '-2.00' },
@@ -22,10 +34,27 @@ const FALLBACK_QUOTES = [
   { symbol: 'AMZN', current: '100.00', change: '0.50' },
   { symbol: 'META', current: '300.00', change: '2.00' },
   { symbol: '^DJI', current: '35000.00', change: '100.00' },
+<<<<<<< HEAD
   { symbol: '^IXIC', current: '15000.00', change: '50.00' },
   // Add fallbacks for remaining tickers if needed (e.g., BRK.B: { symbol: 'BRK.B', current: '400.00', change: '2.00' }, etc.)
 ];
 
+=======
+  { symbol: '^IXIC', current: '15000.00', change: '50.00' }
+];
+const firebaseConfig = {
+  apiKey: "AIzaSyAdgvuwk-0gU7Tucj87ny2dmFn8qIJ0xsE",
+  authDomain: "tickr-2b042.firebaseapp.com",
+  projectId: "tickr-2b042",
+  storageBucket: "tickr-2b042.firebasestorage.app",
+  messagingSenderId: "866254338816",
+  appId: "1:866254338816:web:85b7cf91fee6225ebe91e5",
+  measurementId: "G-WF8Q9HBVJN"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore();
+const analytics = getAnalytics(app);
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
 async function updateDailyStats({ won = false }) {
   const today = new Date().toISOString().split("T")[0];
   // Always produce a valid 2-segment path: analytics / daily_2025-11-24
@@ -48,7 +77,10 @@ async function updateDailyStats({ won = false }) {
     console.error("Error updating daily stats:", err);
   }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
 // Helper functions for deterministic daily selection
 function hashCode(str) {
   let hash = 0;
@@ -65,7 +97,31 @@ function createSeededRandom(initialSeed) {
     return seed / 2147483647;
   };
 }
+<<<<<<< HEAD
 
+=======
+// Helper to check if current time is market hours (Mon-Fri, 9:30-16:00 ET)
+function isMarketHours() {
+  const now = new Date();
+  const day = now.getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
+  if (day === 0 || day === 6) return false; // Weekend
+  // Get ET time
+  const etTime = now.toLocaleString("en-US", { timeZone: "America/New_York" });
+  const [, timeStr] = etTime.split(', ');
+  const [time] = timeStr.split(' ');
+  const [hourStr, minStr] = time.split(':');
+  const hour = parseInt(hourStr, 10);
+  const min = parseInt(minStr, 10);
+  const openHour = 9;
+  const openMin = 30;
+  const closeHour = 16;
+  const closeMin = 0;
+  const currentMins = hour * 60 + min;
+  const openMins = openHour * 60 + openMin;
+  const closeMins = closeHour * 60 + closeMin;
+  return currentMins >= openMins && currentMins < closeMins;
+}
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
 function App() {
   const [data, setData] = useState([]);
   const [allTickers, setAllTickers] = useState([]);
@@ -77,8 +133,12 @@ function App() {
   const [availableOptions, setAvailableOptions] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [loading, setLoading] = useState(true);
+<<<<<<< HEAD
   const [stocks, setStocks] = useState({}); // NEW: For Firestore stock data
   const [quotes, setQuotes] = useState(FALLBACK_QUOTES); // Derive from stocks
+=======
+  const [quotes, setQuotes] = useState(FALLBACK_QUOTES); // Default to fallback
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   const [showStats, setShowStats] = useState(false);
   const [showHowToPlay, setShowHowToPlay] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
@@ -109,7 +169,11 @@ function App() {
   const [difficulty, setDifficulty] = useState('medium'); // 'easy' | 'medium' | 'hard'
   const [puzzleSeed, setPuzzleSeed] = useState(0);
   const inputRef = useRef(null);
+<<<<<<< HEAD
 
+=======
+  let quoteIntervalRef = useRef(null);
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   // ────────────────────────────────
   // LOAD STATS + DARK MODE ONCE
   // ────────────────────────────────
@@ -138,7 +202,10 @@ function App() {
       localStorage.setItem('tickrDailyVisited', 'true');
     }
   }, []); // ← Runs only once on mount
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   // Mobile detection
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -146,7 +213,10 @@ function App() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   // Auto-save stats to localStorage whenever they change
   useEffect(() => {
     try {
@@ -155,7 +225,10 @@ function App() {
       console.error('Failed to save stats:', e);
     }
   }, [stats]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   // New: Keyboard shortcuts for submit/next
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -165,6 +238,7 @@ function App() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [input, gameOver, gameMode]);
+<<<<<<< HEAD
 
   // NEW: Firestore listener for real-time stock prices (replaces Finnhub polling)
   useEffect(() => {
@@ -208,6 +282,8 @@ function App() {
     return () => unsubscribe();
   }, []); // Runs once on mount
 
+=======
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   // Load local JSON data
   useEffect(() => {
     Promise.all([
@@ -230,7 +306,10 @@ function App() {
       setLoading(false);
     });
   }, []);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   const auth = getAuth();
   useEffect(() => {
     signInAnonymously(auth)
@@ -241,7 +320,10 @@ function App() {
         console.error("Anonymous sign-in error:", error);
       });
   }, []);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   // Select daily ticker and pick questions (deterministic for non-test mode)
   useEffect(() => {
     if (!data || data.length === 0) return;
@@ -338,7 +420,10 @@ function App() {
     }
     setStartTime(Date.now()); // Only if new game
   }, [data, gameMode, difficulty, puzzleSeed]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   // Update available options for autocomplete
   useEffect(() => {
     if (!input) {
@@ -385,7 +470,10 @@ function App() {
       localStorage.setItem('dailyProgress', JSON.stringify(progressToSave));
     }
   }, [currentLevel, submittedAnswers, gameOver, startTime, dailyTicker, gameMode]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   // Shake animation clear
   useEffect(() => {
     if (shake) {
@@ -393,7 +481,57 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [shake]);
+<<<<<<< HEAD
 
+=======
+  // Fetch Quotron quotes (always fetch on load; update only during market hours)
+  useEffect(() => {
+    const fetchQuotes = async () => {
+      try {
+        const fetchedQuotes = await Promise.all(QUOTRON_TICKERS.map(async symbol => {
+          const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`);
+          const json = await res.json();
+          if (!json.c) return null; // No data? Skip this ticker
+          return {
+            symbol,
+            current: json.c.toFixed(2),
+            change: (json.c - json.pc).toFixed(2)
+          };
+        }));
+        const validQuotes = fetchedQuotes.filter(q => q);
+        if (validQuotes.length > 0) {
+          setQuotes(validQuotes);
+        } else {
+          setQuotes(FALLBACK_QUOTES); // Only fallback if *no* valid data from API
+        }
+      } catch (e) {
+        console.error("Error fetching quotes:", e);
+        setQuotes(FALLBACK_QUOTES);
+      }
+    };
+
+    // Always fetch initial quotes (gets live or close, depending on time)
+    fetchQuotes();
+
+    // Set up interval *only* if currently in market hours
+    if (isMarketHours()) {
+      quoteIntervalRef.current = setInterval(() => {
+        fetchQuotes(); // Always fetch latest
+        if (!isMarketHours()) {
+          // After hours? Stop updating (we'll have the close price)
+          clearInterval(quoteIntervalRef.current);
+        }
+      }, 300000); // 5 min
+    }
+
+    // Cleanup interval on unmount
+    return () => {
+      if (quoteIntervalRef.current) {
+        clearInterval(quoteIntervalRef.current);
+      }
+    };
+  }, []);
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   // Focus input after submit
   useEffect(() => {
     if (!gameOver && inputRef.current) {
@@ -484,7 +622,10 @@ function App() {
     }
     setCurrentLevel(currentLevel + 1);
   }; // <-- Single closing brace for entire handleSubmit
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   useEffect(() => {
     const track = async () => {
       try {
@@ -514,7 +655,10 @@ function App() {
     };
     track();
   }, [gameMode]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   // Update stats in one place
   const updateStats = (won, cluesUsed, timeElapsed = null) => {
     // Prevent double-counting today's daily puzzle
@@ -629,7 +773,10 @@ function App() {
     localStorage.removeItem('dailyProgress');
     window.location.reload();
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   // Next puzzle for unlimited
   const nextPuzzle = () => {
     setGameOver(false);
@@ -640,7 +787,10 @@ function App() {
     // Trigger re-selection via dep
     setPuzzleSeed(prev => prev + 1);
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   const GuessDistChart = ({ dist, maxClues }) => (
     <>
       {Array.from({ length: maxClues }, (_, i) => {
@@ -689,7 +839,10 @@ function App() {
       </div>
     </>
   );
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5
   // Mode Selector Component
   const ModeSelector = () => (
     <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -1470,5 +1623,9 @@ function App() {
     </div>
   );
 }
+<<<<<<< HEAD
 
 export default App;
+=======
+export default App;
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5

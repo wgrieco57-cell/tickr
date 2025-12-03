@@ -5542,7 +5542,7 @@
     ]
   }
 },
-{
+    {
       "ticker": "CL",
       "company": "Colgate-Palmolive Company",
       "sector": "Consumer Staples",
@@ -5554,13 +5554,9 @@
           "My essentials are commonly found in nearly every household bathroom cabinet.",
           "I focus on simple, reliable items that help people feel clean and refreshed.",
           "My brand identity revolves strongly around cleanliness and consistent personal care."
-        ],
-        "level_2": [
-          "I produce widely recognized oral care products used multiple times each day.",
-          "My items are often displayed prominently in drugstores and major grocery aisles.",
-          "I also manufacture well-known soaps designed for both kitchens and bathrooms.",
-          "Parents frequently buy my gentle cleaning products for everyday family use.",
-          "I emphasize reliability across a range of household and hygiene product categories."
+        }
+      ] 
+      }
         ],
         "level_3": [
           "My long history dates back to the early nineteenth century in America.",
@@ -6790,4 +6786,8 @@
     }
   }
 ]
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 78b4ce310d7b696d86e476853485e80fe939e6c5

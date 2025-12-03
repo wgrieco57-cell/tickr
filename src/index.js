@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from 'web-vitals';  // Import for performance logging
 
 // Firebase initialization (moved here for root-level setup; App.js can import db/analytics)
 import { initializeApp } from 'firebase/app';
@@ -25,9 +25,13 @@ export const analytics = getAnalytics(app);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  process.env.NODE_ENV === 'development' ? (
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  ) : (
     <App />
-  </React.StrictMode>
+  )
 );
 
 // If you want to start measuring performance in your app, pass a function
