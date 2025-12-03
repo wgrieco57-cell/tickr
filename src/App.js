@@ -1259,11 +1259,6 @@ function App() {
           paddingRight: '2.5rem', // Restore padding to avoid overlap with content; button is now outside
         }}
       >
-        How to Play {/* Add your title content here */}
-      </h2>
-      {/* Add your modal body content here, e.g., <p>...</p> */}
-    </div>
-
     {/* Close button – now sibling to content, positioned relative to outer fixed div (screen top-right) */}
     <button
       onClick={(e) => {
