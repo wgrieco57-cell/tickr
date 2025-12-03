@@ -1248,43 +1248,43 @@ function App() {
               }}
               onClick={(e) => e.stopPropagation()}
             >
-             {/* Close button – now INSIDE the modal, top-right */}
-<button
-  onClick={() => setShowHowToPlay(false)}
-  style={{
-    position: 'absolute',
-    top: '1rem',
-    right: '1rem',
-    background: 'rgba(51, 65, 85, 0.8)',
-    border: '1px solid rgba(255,255,255,0.2)',
-    color: '#e2e8f0',
-    fontSize: '1.25rem',
-    fontWeight: '700',
-    cursor: 'pointer',
-    width: '32px',
-    height: '32px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: '8px',
-    zIndex: 999,
-    padding: 0,
-    lineHeight: 1,
-  }}
-  aria-label="Close How to Play"
->
-  ✕
-</button>
-<h2
-  id="how-to-play-title"
-  style={{
-    fontSize: '1.75rem',
-    fontWeight: '800',
-    color: '#e2e8f0',
-    textAlign: 'center',
-    marginBottom: '1.5rem',
-    paddingRight: '0',
-  }}
+            {/* Close button – now INSIDE the modal, top-right */}
+              <button
+                onClick={() => setShowHowToPlay(false)}
+                style={{
+                  position: 'absolute',
+                  top: '.5rem',
+                  right: '.5rem',
+                  background: 'transparent',
+                  border: 'none',
+                  color: '#94a3b8',
+                  fontSize: '1.5rem',
+                  fontWeight: '300',
+                  cursor: 'pointer',
+                  width: '36px',
+                  height: '36px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '50%',
+                  zIndex: 10,
+                }}
+                aria-label="Close How to Play"
+              >
+                ×
+              </button>
+              <h2
+                id="how-to-play-title"
+                style={{
+                  fontSize: '2rem',
+                  fontWeight: '800',
+                  color: '#e2e8f0',
+                  textAlign: 'center',
+                  marginBottom: '1.5rem',
+                  paddingRight: '0', // makes room for the × button
+                }}
+
+
               >
                 How to Play
               </h2>
