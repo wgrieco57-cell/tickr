@@ -1215,76 +1215,85 @@ function App() {
             </div>
           </div>
         )}
-        {/* How to Play Modal – iPhone-optimized, dark-only, close button inside top-right */}
-        {showHowToPlay && (
-          <div
-            style={{
-              position: 'fixed',
-              inset: 0,
-              background: 'rgba(0,0,0,0.9)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 100,
-              padding: '1rem',
-            }}
-            onClick={() => setShowHowToPlay(false)}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="how-to-play-title"
-          >
-            <div
-              style={{
-                background: 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))',
-                backdropFilter: 'blur(20px)',
-                borderRadius: '2rem',
-                padding: '2.5rem',
-                maxWidth: '600px',
-                width: '100%',
-                position: 'relative',
-                border: '1px solid rgba(255,255,255,0.1)',
-                maxHeight: '90vh',
-                overflowY: 'auto',
-              }}
-              onClick={(e) => e.stopPropagation()}
-            >
-            {/* Close button – now INSIDE the modal, top-right */}
-              <button
-                onClick={() => setShowHowToPlay(false)}
-                style={{
-                  position: 'absolute',
-                  top: '.5rem',
-                  right: '.5rem',
-                  background: 'transparent',
-                  border: 'none',
-                  color: '#94a3b8',
-                  fontSize: '1.5rem',
-                  fontWeight: '300',
-                  cursor: 'pointer',
-                  width: '36px',
-                  height: '36px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: '50%',
-                  zIndex: 10,
-                }}
-                aria-label="Close How to Play"
-              >
-                ×
-              </button>
-              <h2
-                id="how-to-play-title"
-                style={{
-                  fontSize: '2rem',
-                  fontWeight: '800',
-                  color: '#e2e8f0',
-                  textAlign: 'center',
-                  marginBottom: '1.5rem',
-                  paddingRight: '0', // makes room for the × button
-                }}
+       {/* How to Play Modal – iPhone-optimized, dark-only, close button inside top-right */}
+{showHowToPlay && (
+  <div
+    style={{
+      position: 'fixed',
+      inset: 0,
+      background: 'rgba(0,0,0,0.9)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 100,
+      padding: '1rem',
+    }}
+    onClick={() => setShowHowToPlay(false)}
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="how-to-play-title"
+  >
+    <div
+      style={{
+        background: 'linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.95))',
+        backdropFilter: 'blur(20px)',
+        borderRadius: '2rem',
+        padding: '2.5rem',
+        maxWidth: '600px',
+        width: '100%',
+        position: 'relative',
+        border: '1px solid rgba(255,255,255,0.1)',
+        maxHeight: '90vh',
+        overflowY: 'auto',
+      }}
+      onClick={(e) => e.stopPropagation()}
+    >
+      <h2
+        id="how-to-play-title"
+        style={{
+          fontSize: '2rem',
+          fontWeight: '800',
+          color: '#e2e8f0',
+          textAlign: 'center',
+          marginBottom: '1.5rem',
+          paddingRight: '2.5rem', // Restore padding to avoid overlap with content; button is now outside
+        }}
+      >
+        How to Play {/* Add your title content here */}
+      </h2>
+      {/* Add your modal body content here, e.g., <p>...</p> */}
+    </div>
 
-
+    {/* Close button – now sibling to content, positioned relative to outer fixed div (screen top-right) */}
+    <button
+      onClick={(e) => {
+        e.stopPropagation(); // Prevent triggering outer div's onClick
+        setShowHowToPlay(false);
+      }}
+      style={{
+        position: 'absolute',
+        top: '1rem', // Matches outer padding for consistent edge spacing
+        right: '1rem',
+        background: 'transparent',
+        border: 'none',
+        color: '#94a3b8',
+        fontSize: '1.5rem',
+        fontWeight: '300',
+        cursor: 'pointer',
+        width: '36px',
+        height: '36px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: '50%',
+        zIndex: 10,
+      }}
+      aria-label="Close How to Play"
+    >
+      ×
+    </button>
+  </div>
+)}
               >
                 How to Play
               </h2>
