@@ -6186,6 +6186,608 @@
           "I continue shaping the hospitality landscape through iconic premium destinations worldwide."
         ]
       }
+    },
+    {
+    "ticker": "TAP",
+    "company": "Molson Coors Beverage Company",
+    "sector": "Consumer Staples",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I make beverages that people enjoy at social events, celebrations, and casual gatherings with friends and family.",
+        "My products are available in grocery stores, bars, and restaurants around the world.",
+        "People often consume my drinks chilled, especially during warm weather or sporting events.",
+        "Fans of sports may recognize my name from advertisements displayed at stadiums and arenas.",
+        "I have been part of the beverage industry for over a century and have a long-standing global presence."
+      ],
+      "level_2": [
+        "I produce both alcoholic beverages, such as beer, and some non-alcoholic drink options.",
+        "Several of my brands have become iconic and are recognized across multiple generations.",
+        "I have a long history of sponsoring major sports events, concerts, and large social gatherings.",
+        "Some people use my beverages in cocktails or mix them with other drinks at bars.",
+        "I merged with another major company to significantly expand my international market reach."
+      ],
+      "level_3": [
+        "My headquarters are in North America, but my products are sold in almost every region of the world.",
+        "I own multiple well-known brands, including craft and specialty beers in addition to mainstream products.",
+        "My flagship beverages are instantly recognizable by their unique packaging and branding.",
+        "I am considered one of the leading companies in the global beer and beverage industry.",
+        "I focus on both producing high-volume popular products and developing premium, specialty brands."
+      ],
+      "level_4": [
+        "I am publicly traded on a major stock exchange and included in the S&P 500 index.",
+        "Investors closely track my earnings, especially during the summer when beverage consumption peaks.",
+        "My distribution network spans millions of retail stores, restaurants, and hospitality locations worldwide.",
+        "I compete directly with other large domestic and international beer and beverage companies.",
+        "Marketing campaigns, sponsorships, and strong brand recognition are key strategies I use to maintain growth."
+      ],
+      "level_5": [
+        "I have a long global history dating back over a century and have grown through strategic mergers and acquisitions.",
+        "People enjoy my beverages at celebrations, sports events, and social gatherings around the world.",
+        "My portfolio includes both mainstream high-volume products and smaller premium specialty brands.",
+        "I am one of the largest beverage producers globally with extensive distribution across multiple countries.",
+        "My name and logo are instantly recognizable on bottles and cans sold in stores worldwide."
+      ]
     }
+  },
+  {
+    "ticker": "K",
+    "company": "Kellogg Company",
+    "sector": "Consumer Staples",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I produce foods that many people enjoy as part of their breakfast routine.",
+        "My products are commonly found on grocery store shelves around the world.",
+        "Families often recognize my brand for both cereals and convenient snack items.",
+        "People associate my company with morning meals and quick, easy food options.",
+        "I have been operating for over a century and have become a household name."
+      ],
+      "level_2": [
+        "I am best known for producing a variety of breakfast cereals enjoyed globally.",
+        "In addition to cereals, I also produce snack bars, crackers, and other convenient food items.",
+        "My products are marketed to both children and adults through mascots, packaging, and advertising.",
+        "I am headquartered in the United States but sell my products in multiple countries.",
+        "My company frequently invests in marketing campaigns to maintain brand recognition across generations."
+      ],
+      "level_3": [
+        "I focus on grain-based foods and snack products that are often part of daily routines.",
+        "Over the years, I have acquired other well-known food brands to expand my product portfolio.",
+        "People recognize my cereals by their distinctive names, mascots, and colorful packaging.",
+        "I aim to provide both indulgent treats and healthier options to meet consumer demand.",
+        "My products are commonly served at home, in schools, and sometimes in quick-service restaurants."
+      ],
+      "level_4": [
+        "I am publicly traded on a major stock exchange and closely watched by investors.",
+        "Quarterly earnings and new product launches often impact my stock performance.",
+        "My brands compete with other global food companies for market share in cereals and snacks.",
+        "I maintain a complex supply chain to ensure my products reach stores worldwide.",
+        "Marketing and advertising play a significant role in my continued brand loyalty and recognition."
+      ],
+      "level_5": [
+        "I am one of the largest global cereal and snack food companies with a century-long history.",
+        "Consumers worldwide recognize my products, mascots, and packaging instantly.",
+        "I balance classic products with innovative offerings to stay relevant in changing markets.",
+        "My acquisitions have expanded my reach in both domestic and international markets.",
+        "I have successfully maintained brand loyalty across multiple generations of consumers."
+      ]
+    }
+  },
+  {
+    "ticker": "ADSK",
+    "company": "Autodesk, Inc.",
+    "sector": "Information Technology",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I create software used by professionals to design and visualize projects digitally.",
+        "People in engineering, architecture, and creative industries often use my products.",
+        "My tools help turn ideas into detailed plans, models, or simulations.",
+        "I am recognized as a leading provider of professional design software worldwide.",
+        "My software allows users to work on both small projects and large-scale developments."
+      ],
+      "level_2": [
+        "I am best known for CAD software used by engineers, architects, and industrial designers.",
+        "My products help professionals create 3D models, simulations, and technical drawings.",
+        "I serve both individual users and large enterprises across multiple industries.",
+        "My tools are used in construction, manufacturing, media, and entertainment projects.",
+        "I frequently update my software to include cloud services and collaboration features."
+      ],
+      "level_3": [
+        "My headquarters are in the United States, but my software is used worldwide.",
+        "Companies rely on my solutions to speed up design workflows and improve accuracy.",
+        "I focus on software that combines technical precision with creative flexibility.",
+        "My products integrate with other industry-standard tools for seamless project management.",
+        "Professionals often recognize my name as a benchmark for design and modeling software."
+      ],
+      "level_4": [
+        "I am publicly traded and tracked by investors interested in high-growth software companies.",
+        "My revenue comes from subscriptions, enterprise solutions, and cloud services.",
+        "I maintain a global customer base spanning multiple industries including architecture, manufacturing, and media.",
+        "I invest heavily in research and development to maintain leadership in design technology.",
+        "My software has become a standard in professional digital design and engineering workflows."
+      ],
+      "level_5": [
+        "I have transformed how design, engineering, and manufacturing are done through digital tools.",
+        "My solutions are used by millions of professionals and large organizations globally.",
+        "I continue to expand into cloud-based collaborative platforms to meet industry needs.",
+        "I balance cutting-edge innovation with reliability to serve both small businesses and large enterprises.",
+        "My products are considered essential in many professional design and engineering environments."
+      ]
+    }
+  },
+  {
+    "ticker": "SNOW",
+    "company": "Snowflake Inc.",
+    "sector": "Information Technology",
+    "difficulty": "hard",
+    "questions": {
+      "level_1": [
+        "I provide cloud-based platforms for storing, managing, and analyzing large amounts of data.",
+        "Companies rely on my services to access data quickly and securely from anywhere in the world.",
+        "My solutions are designed to help businesses make better data-driven decisions.",
+        "I operate in the technology sector and focus on cloud computing solutions.",
+        "Many organizations use my platform to centralize and organize their information."
+      ],
+      "level_2": [
+        "I am known for separating storage and computing to provide scalable solutions.",
+        "My platform enables data sharing and collaboration between organizations.",
+        "I support a variety of data analytics, machine learning, and business intelligence applications.",
+        "I am popular among companies that need high-performance, flexible data management.",
+        "Investors have recognized me as a rapidly growing cloud technology company."
+      ],
+      "level_3": [
+        "I operate exclusively in the cloud and do not rely on on-premises servers.",
+        "My software allows users to integrate multiple sources of structured and semi-structured data.",
+        "I am headquartered in the United States but serve clients globally across industries.",
+        "My architecture separates compute and storage for cost efficiency and performance.",
+        "Businesses use my tools to gain insights from large, complex datasets."
+      ],
+      "level_4": [
+        "I am publicly traded and known for my high-growth trajectory in the tech market.",
+        "My revenue model is subscription-based, scaling with the amount of data processed.",
+        "I compete with other cloud data platforms and enterprise software providers.",
+        "I am widely recognized in the data analytics and cloud computing sectors.",
+        "I focus on reliability, security, and seamless integration with existing business systems."
+      ],
+      "level_5": [
+        "I am one of the fastest-growing cloud data platform companies in the world.",
+        "My platform supports enterprise-level analytics, data sharing, and advanced AI applications.",
+        "Many Fortune 500 companies rely on my technology for critical business operations.",
+        "I have transformed how organizations manage, analyze, and collaborate on large datasets.",
+        "My architecture and technology design allow for virtually unlimited scaling and flexibility."
+      ]
+    }
+  },
+  {
+    "ticker": "FTNT",
+    "company": "Fortinet, Inc.",
+    "sector": "Information Technology",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I provide security solutions that protect networks, data, and devices for businesses.",
+        "Companies use my products to defend against cyber threats and online attacks.",
+        "I am a major player in the cybersecurity industry.",
+        "Organizations rely on my tools to maintain secure operations and compliance.",
+        "My services are used across industries including finance, healthcare, and government."
+      ],
+      "level_2": [
+        "I offer firewalls, VPNs, antivirus software, and advanced threat detection tools.",
+        "My solutions help protect enterprises from both external and internal cyber threats.",
+        "I am recognized for providing scalable security solutions for companies of all sizes.",
+        "I focus on protecting cloud, network, and endpoint environments.",
+        "Investors follow my growth as demand for cybersecurity increases globally."
+      ],
+      "level_3": [
+        "My headquarters are in the United States, but I serve clients internationally.",
+        "I integrate threat intelligence with automated response systems for rapid protection.",
+        "My products are used in enterprise networks, data centers, and cloud environments.",
+        "I focus on both hardware appliances and software-based security solutions.",
+        "Companies rely on my technology to maintain uninterrupted, secure digital operations."
+      ],
+      "level_4": [
+        "I am publicly traded and part of the cybersecurity sector closely watched by investors.",
+        "My revenue model includes subscriptions, licenses, and professional services.",
+        "I compete with other top cybersecurity providers in both enterprise and SMB markets.",
+        "I emphasize innovation and rapid response to emerging cyber threats.",
+        "My security solutions are widely recognized for reliability and effectiveness."
+      ],
+      "level_5": [
+        "I am one of the leading cybersecurity companies, protecting global organizations from sophisticated threats.",
+        "My tools allow companies to detect, prevent, and respond to cyber incidents quickly.",
+        "I have a broad product portfolio covering firewalls, endpoint protection, and cloud security.",
+        "My technology helps secure critical infrastructure, sensitive data, and intellectual property worldwide.",
+        "Investors view me as a major player in the expanding cybersecurity industry with long-term growth potential."
+      ]
+    }
+  },
+     {
+    "ticker": "NET",
+    "company": "Cloudflare, Inc.",
+    "sector": "Information Technology",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I help make the internet faster and more secure for websites and applications around the world.",
+        "Companies rely on my services to protect their online presence from attacks and downtime.",
+        "I operate in the technology sector with a focus on network performance and security.",
+        "People often interact with my technology without even realizing it when visiting websites.",
+        "I am a well-known name in the cloud and web infrastructure industry."
+      ],
+      "level_2": [
+        "I provide content delivery, DNS, DDoS protection, and web optimization services.",
+        "Many businesses trust me to keep their websites available and running smoothly at all times.",
+        "I focus on improving both security and performance for millions of internet properties worldwide.",
+        "My tools allow organizations to detect and mitigate cyber threats efficiently.",
+        "Investors recognize me as a high-growth technology company in the cloud infrastructure market."
+      ],
+      "level_3": [
+        "I operate a global network of servers that accelerate content delivery for my clients.",
+        "I integrate security features directly into my network services to protect users from attacks.",
+        "Companies of all sizes, from startups to enterprises, use my solutions to enhance their web services.",
+        "I provide both free and enterprise-level plans to reach a wide customer base.",
+        "My platform allows developers to deploy applications and websites with greater speed and reliability."
+      ],
+      "level_4": [
+        "I am publicly traded and closely followed in the technology sector for my innovative solutions.",
+        "My revenue comes from subscriptions and enterprise-level services.",
+        "I compete with other cloud and web infrastructure providers in security and performance markets.",
+        "I constantly expand my global network to improve latency and reliability for users worldwide.",
+        "My tools help organizations comply with data privacy regulations and maintain secure operations."
+      ],
+      "level_5": [
+        "I am one of the leading companies in internet performance and security, serving millions of customers globally.",
+        "My platform combines content delivery, cybersecurity, and edge computing for enterprises and developers.",
+        "I have transformed how companies protect and deliver web content efficiently at scale.",
+        "Investors view me as a growth company with a strong position in cloud and security technology.",
+        "My name is associated with both speed and safety for websites, apps, and internet services worldwide."
+      ]
+    }
+  },
+  {
+    "ticker": "JNPR",
+    "company": "Juniper Networks, Inc.",
+    "sector": "Information Technology",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I provide networking solutions that help organizations connect computers and data centers securely.",
+        "Companies rely on my products to manage and maintain large-scale networks.",
+        "I operate in the technology sector and am known for my hardware and software solutions.",
+        "My tools ensure that data flows reliably between different parts of an organization.",
+        "I am a recognized name in enterprise networking worldwide."
+      ],
+      "level_2": [
+        "I design and sell routers, switches, and security appliances for businesses and service providers.",
+        "My solutions help organizations prevent network downtime and optimize performance.",
+        "I focus on secure and scalable network infrastructure for companies of all sizes.",
+        "Investors track my growth as cloud computing and data demands increase globally.",
+        "I have a strong presence in both enterprise and telecommunications markets."
+      ],
+      "level_3": [
+        "My headquarters are in the United States, but I serve clients across multiple continents.",
+        "I integrate software-defined networking and network automation tools into my offerings.",
+        "Companies rely on my hardware and software to handle high-volume, mission-critical network traffic.",
+        "I compete with other major networking providers like Cisco and Arista.",
+        "My products help organizations maintain fast, secure, and reliable communication networks."
+      ],
+      "level_4": [
+        "I am publicly traded and part of the technology hardware and networking sector.",
+        "My revenue comes from product sales, software subscriptions, and professional services.",
+        "I continue to innovate in network security, SD-WAN, and cloud integration solutions.",
+        "My clients include large enterprises, service providers, and government organizations.",
+        "My solutions are known for reliability, security, and high performance under demanding conditions."
+      ],
+      "level_5": [
+        "I am a leading provider of high-performance network solutions for enterprise and service provider customers worldwide.",
+        "My technology enables secure and reliable connectivity for large-scale data and communication networks.",
+        "I have a reputation for combining advanced hardware with intelligent software to optimize network operations.",
+        "Investors consider me a key player in the growing global networking and cybersecurity markets.",
+        "My name is recognized among companies looking to scale, secure, and optimize their digital infrastructure."
+      ]
+    }
+  },
+  {
+    "ticker": "ADP",
+    "company": "Automatic Data Processing, Inc.",
+    "sector": "Information Technology",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I provide services that help companies manage their payroll and human resources efficiently.",
+        "Organizations rely on my technology to automate HR, benefits, and payroll tasks.",
+        "I am a leader in the business services and software industry.",
+        "My tools allow employers to focus on strategic management instead of administrative tasks.",
+        "I am widely recognized for helping companies handle HR processes digitally."
+      ],
+      "level_2": [
+        "I offer payroll processing, HR management, and compliance solutions for businesses of all sizes.",
+        "Companies use my software to manage employee data, benefits, and time tracking.",
+        "My services are trusted by thousands of businesses globally.",
+        "I have been operating for decades and have a long-standing reputation in payroll and HR services.",
+        "Investors recognize me as a stable, high-reliability technology and services company."
+      ],
+      "level_3": [
+        "I am headquartered in the United States but have clients and operations worldwide.",
+        "My technology includes cloud-based solutions for workforce management and analytics.",
+        "Companies rely on me to stay compliant with complex payroll and labor regulations.",
+        "I integrate HR services, payroll processing, and employee benefits management into one platform.",
+        "I help businesses improve efficiency and reduce errors in human resources tasks."
+      ],
+      "level_4": [
+        "I am publicly traded and often cited as a leader in HR outsourcing and software solutions.",
+        "My revenue comes from subscription services and enterprise solutions for workforce management.",
+        "I compete with other global HR and payroll providers in technology-driven services.",
+        "I constantly innovate to improve user experience, reporting, and regulatory compliance.",
+        "My clients range from small businesses to large multinational corporations across various industries."
+      ],
+      "level_5": [
+        "I am considered one of the top companies in the global payroll and HR technology market.",
+        "My platform helps organizations automate, analyze, and manage their workforce efficiently.",
+        "I combine human resources, benefits, and payroll services into a single, comprehensive solution.",
+        "Investors view me as a reliable, long-term growth company in the enterprise technology space.",
+        "My name is synonymous with efficient, accurate, and scalable workforce management solutions."
+      ]
+    }
+  },
+  {
+    "ticker": "HPQ",
+    "company": "HP Inc.",
+    "sector": "Information Technology",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I produce computers, printers, and related accessories that people use daily at home and work.",
+        "My products are widely sold in retail stores and online around the world.",
+        "I am recognized for both personal computing and office technology.",
+        "Consumers and businesses rely on my hardware for work, study, and entertainment purposes.",
+        "I am a major name in the technology sector."
+      ],
+      "level_2": [
+        "I offer laptops, desktops, and printers for personal and professional use.",
+        "Many of my products are designed to balance performance, reliability, and affordability.",
+        "I have a global presence and a long history in the computing industry.",
+        "I also provide software and services that complement my hardware solutions.",
+        "Investors track my sales in personal computers and printing solutions closely."
+      ],
+      "level_3": [
+        "My headquarters are in the United States, but I sell my products worldwide.",
+        "I focus on innovation in printing technology, imaging, and personal computing devices.",
+        "Businesses rely on my hardware for office productivity and enterprise solutions.",
+        "I compete with other major tech hardware companies like Dell and Lenovo.",
+        "My products are often featured in retail stores, online marketplaces, and business supply channels."
+      ],
+      "level_4": [
+        "I am publicly traded and part of the technology hardware and equipment sector.",
+        "My revenue comes from personal computing devices, printers, and related supplies and services.",
+        "I maintain a strong brand reputation for quality and reliability in consumer and business markets.",
+        "I frequently update my product lines to stay competitive with evolving technology.",
+        "My company also invests in sustainability and environmentally friendly manufacturing practices."
+      ],
+      "level_5": [
+        "I am one of the world’s largest technology hardware companies, known for personal computing and printing solutions.",
+        "My products are used by millions of consumers and businesses around the globe every day.",
+        "I have a history of innovation that spans decades in both printing and computing technologies.",
+        "Investors recognize me as a reliable and influential player in the global technology sector.",
+        "My name is associated with performance, reliability, and widespread adoption in homes and offices."
+      ]
+    }
+  },
+    {
+    "ticker": "DE",
+    "company": "Deere & Company",
+    "sector": "Industrials",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I manufacture equipment that helps people in agriculture, construction, and landscaping.",
+        "My products are found on farms, building sites, and large outdoor projects worldwide.",
+        "I am widely recognized for my green and yellow machinery.",
+        "Farmers and construction companies rely on my machines to get heavy work done efficiently.",
+        "I have a long history of producing durable and reliable industrial equipment."
+      ],
+      "level_2": [
+        "I produce tractors, harvesters, and other machinery essential for modern farming.",
+        "My construction equipment includes loaders, excavators, and backhoes.",
+        "I operate globally, supplying equipment to a wide variety of industries.",
+        "My brand is known for durability, reliability, and high performance in tough conditions.",
+        "Investors watch my sales closely as they often reflect economic activity in agriculture and construction."
+      ],
+      "level_3": [
+        "I integrate technology into my machines, including GPS and precision agriculture tools.",
+        "My equipment is used by both small family farms and large industrial operations.",
+        "I also provide financial services and support to help customers purchase and maintain equipment.",
+        "My products are recognized by their distinctive green paint with yellow accents.",
+        "I compete with other major manufacturers in agriculture and construction equipment markets."
+      ],
+      "level_4": [
+        "I am publicly traded and part of the industrials sector closely followed by investors.",
+        "My revenue comes from machinery sales, parts, and financing services for customers worldwide.",
+        "I continually innovate to improve efficiency, safety, and productivity of my machines.",
+        "I have a strong presence in North America but also operate extensively in Europe, Asia, and Latin America.",
+        "My brand is synonymous with heavy-duty, reliable equipment for agriculture and construction."
+      ],
+      "level_5": [
+        "I am a leading global manufacturer of agricultural and construction machinery with over a century of history.",
+        "My advanced technology integrates data and automation to improve productivity on farms and worksites.",
+        "My products are essential for large-scale food production and infrastructure projects worldwide.",
+        "Investors recognize me as a stable, long-term growth company in the industrials sector.",
+        "My green and yellow equipment is instantly recognizable in fields, construction sites, and industrial projects globally."
+      ]
+    }
+  },
+  {
+    "ticker": "FIS",
+    "company": "Fidelity National Information Services, Inc.",
+    "sector": "Information Technology",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I provide financial technology services to businesses and banks around the world.",
+        "My solutions help organizations manage payments, transactions, and banking systems efficiently.",
+        "I am widely recognized in the fintech and banking technology industry.",
+        "Companies rely on my services to handle large volumes of financial transactions securely.",
+        "I operate primarily in the technology sector with a focus on financial services."
+      ],
+      "level_2": [
+        "I offer software and services for payment processing, core banking, and digital banking solutions.",
+        "Financial institutions use my technology to manage transactions, fraud detection, and compliance.",
+        "My products help companies streamline financial operations and improve customer experiences.",
+        "I have a strong presence in both domestic and international markets.",
+        "Investors follow my growth in the financial technology sector closely."
+      ],
+      "level_3": [
+        "I integrate advanced technology, cloud computing, and analytics into my financial solutions.",
+        "Banks, credit unions, and other financial organizations rely on me for core processing systems.",
+        "My platform supports both traditional and digital financial services.",
+        "I compete with other fintech companies for clients needing scalable and secure solutions.",
+        "My technology helps companies comply with complex regulatory requirements efficiently."
+      ],
+      "level_4": [
+        "I am publicly traded and part of the financial technology sector closely watched by investors.",
+        "My revenue comes from service fees, software licensing, and technology platforms for financial institutions.",
+        "I continually innovate to provide secure, reliable, and scalable financial solutions.",
+        "I have a global customer base that spans multiple continents and industries.",
+        "My reputation is built on trust, technology, and delivering solutions that handle massive transaction volumes."
+      ],
+      "level_5": [
+        "I am one of the leading global providers of technology and services for financial institutions.",
+        "My solutions power millions of transactions daily for banks, credit unions, and other organizations.",
+        "I combine cutting-edge technology, analytics, and security to optimize financial operations.",
+        "Investors consider me a key player in the fintech industry with a strong growth trajectory.",
+        "My name is synonymous with reliable, innovative, and scalable financial technology solutions worldwide."
+      ]
+    }
+  },
+  {
+    "ticker": "EA",
+    "company": "Electronic Arts Inc.",
+    "sector": "Consumer Discretionary",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I create entertainment that people enjoy on consoles, PCs, and mobile devices.",
+        "Gamers around the world play the experiences I develop.",
+        "I am widely known in the video game industry.",
+        "My products include interactive digital experiences for casual and competitive players.",
+        "People associate my brand with fun, creativity, and gaming culture."
+      ],
+      "level_2": [
+        "I develop, publish, and distribute popular video games across multiple platforms.",
+        "Many of my games are part of long-running franchises recognized globally.",
+        "I focus on creating immersive experiences, including sports, action, and simulation games.",
+        "I work with both in-house studios and external developers to produce my titles.",
+        "Investors track my releases and revenue from digital and physical game sales."
+      ],
+      "level_3": [
+        "My headquarters are in the United States, but my games are played worldwide.",
+        "I have a portfolio that includes both single-player and online multiplayer experiences.",
+        "I integrate microtransactions, downloadable content, and online features into many of my games.",
+        "I compete with other major video game publishers in console, PC, and mobile markets.",
+        "Gamers often recognize my brand for quality, innovation, and iconic franchises."
+      ],
+      "level_4": [
+        "I am publicly traded and part of the consumer discretionary sector focused on digital entertainment.",
+        "My revenue comes from game sales, subscriptions, and online content.",
+        "I continuously innovate with new technologies like cloud gaming and cross-platform play.",
+        "I maintain strong relationships with console manufacturers and digital storefronts.",
+        "My franchises often include esports, competitive leagues, and community events."
+      ],
+      "level_5": [
+        "I am one of the largest video game publishers globally with a diverse portfolio of popular titles.",
+        "My games reach millions of players on consoles, PCs, and mobile devices every day.",
+        "I balance long-running franchises with new intellectual properties to maintain relevance.",
+        "Investors consider me a key player in digital entertainment with steady revenue from recurring content.",
+        "My name is instantly recognizable among gaming enthusiasts and the wider entertainment industry."
+      ]
+    }
+  },
+  {
+    "ticker": "ZM",
+    "company": "Zoom Video Communications, Inc.",
+    "sector": "Information Technology",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I provide a platform that allows people to meet virtually from anywhere in the world.",
+        "My technology helps connect businesses, schools, and individuals remotely.",
+        "People use my platform for video, audio, and messaging communications.",
+        "I became especially popular during times when remote work and learning increased globally.",
+        "I operate in the technology sector and focus on communication solutions."
+      ],
+      "level_2": [
+        "My software allows video conferencing, webinars, and collaborative meetings online.",
+        "Companies use me to host internal meetings, training sessions, and client communications.",
+        "I am recognized for my ease of use, reliability, and ability to connect large groups remotely.",
+        "My platform supports both desktop and mobile devices across multiple operating systems.",
+        "Investors track my growth as organizations increasingly adopt remote communication tools."
+      ],
+      "level_3": [
+        "I am headquartered in the United States but have a global user base across multiple industries.",
+        "My platform integrates with calendars, productivity apps, and cloud storage services.",
+        "Companies rely on my technology to maintain productivity and collaboration when teams are dispersed.",
+        "I compete with other video conferencing and collaboration platforms in both enterprise and consumer markets.",
+        "I continuously update my features to improve security, performance, and user experience."
+      ],
+      "level_4": [
+        "I am publicly traded and considered a major player in the video communication and collaboration space.",
+        "My revenue comes from subscriptions and premium service tiers for businesses and organizations.",
+        "I focus on scalability, security, and integration with enterprise software ecosystems.",
+        "My technology is critical for businesses, schools, and events that rely on virtual communication.",
+        "I have become a household name for remote meetings and online collaboration solutions."
+      ],
+      "level_5": [
+        "I am a leading global provider of video conferencing and collaboration technology used by millions daily.",
+        "My platform supports high-quality video, audio, and real-time messaging across devices and locations.",
+        "Organizations rely on my services to conduct remote work, learning, and events efficiently and securely.",
+        "Investors recognize me as a high-profile technology company with rapid adoption and growth potential.",
+        "My name is synonymous with virtual meetings and seamless remote communication for businesses and individuals worldwide."
+      ]
+    }
+  },
+  {
+    "ticker": "ROKU",
+    "company": "Roku, Inc.",
+    "sector": "Consumer Discretionary",
+    "difficulty": "medium",
+    "questions": {
+      "level_1": [
+        "I provide technology that allows people to stream video content directly to their televisions.",
+        "Consumers use my devices and platform to watch shows, movies, and other entertainment online.",
+        "I operate in the entertainment and consumer technology space.",
+        "People recognize my products for making traditional TV smarter and more connected.",
+        "I have become a popular choice for cord-cutters and streaming enthusiasts."
+      ],
+      "level_2": [
+        "I offer a platform that includes both hardware devices and a content streaming service.",
+        "My services allow users to access hundreds of channels and streaming applications.",
+        "I am known for making television viewing more flexible and personalized.",
+        "Consumers often rely on my platform to discover new shows and movies across multiple providers.",
+        "Investors track my growth in both device sales and advertising revenue on my platform."
+      ],
+      "level_3": [
+        "My devices integrate with smart TVs as well as standalone streaming players.",
+        "I provide advertising and analytics services for content providers on my platform.",
+        "I compete with other streaming device manufacturers and smart TV platforms.",
+        "My software platform enables recommendations and content aggregation across multiple sources.",
+        "My user interface is designed to be intuitive and user-friendly for viewers of all ages."
+      ],
+      "level_4": [
+        "I am publicly traded and considered a major player in the streaming and connected TV industry.",
+        "My revenue comes from device sales, platform services, and advertising partnerships.",
+        "I continuously expand my content offerings to include both free and subscription-based channels.",
+        "My platform provides data insights to content providers to help them optimize engagement.",
+        "I focus on creating an ecosystem that connects users, advertisers, and content providers efficiently."
+      ],
+      "level_5": [
+        "I am one of the leading companies in streaming technology, making television content more accessible and personalized.",
+        "My platform reaches millions of households worldwide and supports both live and on-demand entertainment.",
+        "I integrate hardware, software, and advertising to create a complete streaming ecosystem.",
+        "Investors see me as a growth company in the consumer technology and media sectors.",
+        "My name is synonymous with cord-cutting, smart TVs, and the modern streaming experience for viewers globally."
+      ]
+    }
+  }
 ]
 }
