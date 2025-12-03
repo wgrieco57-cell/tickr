@@ -997,7 +997,7 @@ function App() {
                   background: 'transparent',
                   border: 'none',
                   color: '#94a3b8',
-                  fontSize: '2.5rem',
+                  fontSize: '2rem',
                   cursor: 'pointer',
                   width: '44px',
                   height: '44px',
@@ -1017,7 +1017,7 @@ function App() {
                 color:'#e2e8f0',
                 marginBottom:'2rem',
                 textAlign:'center',
-                paddingRight: '3rem' // make space for the X button
+                paddingRight: '0' // make space for the X button
               }}>
                 Your Statistics
               </h2>
@@ -1253,16 +1253,16 @@ function App() {
                 onClick={() => setShowHowToPlay(false)}
                 style={{
                   position: 'absolute',
-                  top: '1rem',
-                  right: '1rem',
+                  top: '.5rem',
+                  right: '.5rem',
                   background: 'transparent',
                   border: 'none',
                   color: '#94a3b8',
-                  fontSize: '2.5rem',
+                  fontSize: '1.5rem',
                   fontWeight: '300',
                   cursor: 'pointer',
-                  width: '44px',
-                  height: '44px',
+                  width: '36px',
+                  height: '36px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -1281,7 +1281,7 @@ function App() {
                   color: '#e2e8f0',
                   textAlign: 'center',
                   marginBottom: '1.5rem',
-                  paddingRight: '2.5rem', // makes room for the × button
+                  paddingRight: '0', // makes room for the × button
                 }}
               >
                 How to Play
