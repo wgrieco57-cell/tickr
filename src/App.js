@@ -112,7 +112,7 @@ function App() {
   const [availableOptions, setAvailableOptions] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [quotes, setQuotes] = useState(FALLBACK_QUOTES); // Default to fallback
+  const [quotes, setQuotes] = useState([]); // Start empty
   const [showStats, setShowStats] = useState(false);
   const [showHowToPlay, setShowHowToPlay] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
