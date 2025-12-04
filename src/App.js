@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import confetti from "canvas-confetti"; // npm install canvas-confetti
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, getDoc, setDoc, updateDoc, increment, getDocs } from "firebase/firestore";
@@ -376,13 +376,12 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [shake]);
-
   useEffect(() => {
   const loadQuotes = async () => {
     try {
       // Try Firestore first
       const stockData = await fetchStocksFromFirestore();
-      
+     
       if (Object.keys(stockData).length > 0) {
         console.log("✅ Loading quotes from Firestore");
         let formattedQuotes = Object.entries(stockData).map(([symbol, data]) => ({
@@ -390,14 +389,13 @@ function App() {
           current: data.currentPrice?.toFixed(2) || '0.00',
           change: data.change?.toFixed(2) || '0.00'
         }));
-        
+       
         // On mobile, show fewer stocks for faster rendering
         if (window.innerWidth <= 768) {
           formattedQuotes = formattedQuotes.slice(0, 10);
         }
-        
+       
         setQuotes(formattedQuotes);
-
       } else {
         // Firestore empty, fetch directly from API
         console.log("⚠️ Firestore empty, fetching from Finnhub API...");
@@ -423,7 +421,6 @@ function App() {
       setQuotes(FALLBACK_QUOTES);
     }
   };
-
   loadQuotes();
   const interval = setInterval(loadQuotes, 300000);
   return () => clearInterval(interval);
@@ -436,8 +433,8 @@ function App() {
       }, 100);
     }
   }, [currentLevel, gameOver]);
-  // Handle submit (with confetti on win)
-  const handleSubmit = (e) => {
+  // Memoized handlers with useCallback
+  const handleSubmit = useCallback((e) => {
     if (e) e.preventDefault();
     if (gameOver || !input.trim()) return;
     let tickerToCheck = input.trim().toLowerCase();
@@ -516,7 +513,56 @@ function App() {
       return;
     }
     setCurrentLevel(currentLevel + 1);
-  }; // <-- Single closing brace for entire handleSubmit
+  }, [gameOver, input, allTickers, questions, currentLevel, submittedAnswers, startTime]); // Dependencies for handleSubmit
+  const handleOptionClick = useCallback((option) => {
+    setInput(option.formatted);
+    setAvailableOptions([]);
+  }, []);
+  const toggleDarkMode = useCallback(() => {
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    localStorage.setItem('tickrDailyDarkMode', JSON.stringify(newMode));
+  }, [darkMode]);
+  const nextPuzzle = useCallback(() => {
+    setGameOver(false);
+    setCurrentLevel(0);
+    setSubmittedAnswers([]);
+    setInput("");
+    setAvailableOptions([]);
+    // Trigger re-selection via dep
+    setPuzzleSeed(prev => prev + 1);
+  }, []);
+  const resetGame = useCallback(() => {
+    localStorage.removeItem('dailyProgress');
+    window.location.reload();
+  }, []);
+  const shareResults = useCallback(() => {
+    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
+    const won = submittedAnswers.some(a => a.isCorrect);
+    const cluesUsed = won ? submittedAnswers.length : questions.length;
+    const now = new Date();
+    const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
+    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${window.location.href}`;
+    if (navigator.share) {
+      navigator.share({ text }).catch(() => {
+        navigator.clipboard.writeText(text);
+        alert('Results copied to clipboard!');
+      });
+    } else {
+      navigator.clipboard.writeText(text);
+      alert('Results copied to clipboard!');
+    }
+  }, [submittedAnswers, questions]);
+  const shareToTwitter = useCallback(() => {
+    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
+    const won = submittedAnswers.some(a => a.isCorrect);
+    const cluesUsed = won ? submittedAnswers.length : questions.length;
+    const now = new Date();
+    const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
+    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${window.location.href}`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+    window.open(twitterUrl, '_blank');
+  }, [submittedAnswers, questions]);
   useEffect(() => {
     const track = async () => {
       try {
@@ -547,7 +593,7 @@ function App() {
     track();
   }, [gameMode]);
   // Update stats in one place
-  const updateStats = (won, cluesUsed, timeElapsed = null) => {
+  const updateStats = useCallback((won, cluesUsed, timeElapsed = null) => {
     // Prevent double-counting today's daily puzzle
     if (gameMode === 'daily') {
       const saved = localStorage.getItem('dailyProgress');
@@ -590,46 +636,13 @@ function App() {
     if (gameMode === 'daily') {
       updateDailyStats({ won }).catch(() => {});
     }
-  };
-  // Share results
-  const shareResults = () => {
-    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
-    const won = submittedAnswers.some(a => a.isCorrect);
-    const cluesUsed = won ? submittedAnswers.length : questions.length;
-    const now = new Date();
-    const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
-    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${window.location.href}`;
-    if (navigator.share) {
-      navigator.share({ text }).catch(() => {
-        navigator.clipboard.writeText(text);
-        alert('Results copied to clipboard!');
-      });
-    } else {
-      navigator.clipboard.writeText(text);
-      alert('Results copied to clipboard!');
-    }
-  };
-  const shareToTwitter = () => {
-    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
-    const won = submittedAnswers.some(a => a.isCorrect);
-    const cluesUsed = won ? submittedAnswers.length : questions.length;
-    const now = new Date();
-    const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
-    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${window.location.href}`;
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-    window.open(twitterUrl, '_blank');
-  };
-  const toggleDarkMode = () => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    localStorage.setItem('tickrDailyDarkMode', JSON.stringify(newMode));
-  };
-  const formatTime = (seconds) => {
+  }, [gameMode, startTime, stats.dailyCurrentStreak, stats.dailyMaxStreak, stats.dailyGuessDistribution, stats.unlimitedGuessDistribution, stats.dailyGamesPlayed, stats.dailyGamesWon, stats.dailyTotalTime, stats.unlimitedCompletions, stats.unlimitedTotalTime, stats.overallTotalTime, stats.overallFastestTime, stats.dailyPlayHistory]); // Dependencies for updateStats
+  const formatTime = useCallback((seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
-  };
-  const getAchievements = () => {
+  }, []);
+  const getAchievements = useCallback(() => {
     const achievements = [];
     const dailyDist = stats.dailyGuessDistribution;
     const unlimitedDist = stats.unlimitedGuessDistribution;
@@ -644,26 +657,8 @@ function App() {
     if (stats.dailyGamesWon + (stats.unlimitedCompletions - stats.unlimitedGuessDistribution.fail) >= 50) achievements.push({ icon: '👑', name: 'Master Guesser', desc: '50 total wins across modes' });
     if (stats.overallFastestTime && stats.overallFastestTime < 30) achievements.push({ icon: '⚡', name: 'Speed Demon', desc: 'Fastest win under 30s (any mode)' });
     return achievements;
-  };
-  const handleOptionClick = (option) => {
-    setInput(option.formatted);
-    setAvailableOptions([]);
-  };
-  const resetGame = () => {
-    localStorage.removeItem('dailyProgress');
-    window.location.reload();
-  };
-  // Next puzzle for unlimited
-  const nextPuzzle = () => {
-    setGameOver(false);
-    setCurrentLevel(0);
-    setSubmittedAnswers([]);
-    setInput("");
-    setAvailableOptions([]);
-    // Trigger re-selection via dep
-    setPuzzleSeed(prev => prev + 1);
-  };
-  const GuessDistChart = ({ dist, maxClues }) => (
+  }, [stats]);
+  const GuessDistChart = useCallback(({ dist, maxClues }) => (
     <>
       {Array.from({ length: maxClues }, (_, i) => {
         const clue = i + 1;
@@ -710,9 +705,9 @@ function App() {
         </div>
       </div>
     </>
-  );
+  ), [cardBg, borderColor, mutedColor]); // Dependencies passed as props
   // Mode Selector Component
-  const ModeSelector = () => (
+  const ModeSelector = useCallback(() => (
     <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
       <button
         onClick={() => setGameMode('daily')}
@@ -767,7 +762,7 @@ function App() {
         </select>
       )}
     </div>
-  );
+  ), [gameMode, difficulty, cardBg, textColor, borderColor]);
   if(loading || !dailyTicker || !questions.length){
     return <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background: 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' }}>
       <div style={{ textAlign:'center', color:'#94a3b8'}}>Loading Market Data...</div>
@@ -784,39 +779,39 @@ function App() {
   return (
     <div style={{ minHeight:'100vh', background: bgColor, display:'flex', flexDirection:'column', alignItems:'center', padding:'2rem 1rem' }}>
       {/* Quotron */}
-<div className="quotron" style={{ 
-  width:'100%', 
-  overflow:'hidden', 
-  whiteSpace:'nowrap', 
-  marginBottom:'2rem', 
-  border:`1px solid ${borderColor}`, 
-  padding:'0.5rem 0', 
-  borderRadius:'1rem', 
-  background:darkMode ? 'rgba(15,23,42,0.8)' : 'rgba(255,255,255,0.8)', 
-  display: 'flex', 
+<div className="quotron" style={{
+  width:'100%',
+  overflow:'hidden',
+  whiteSpace:'nowrap',
+  marginBottom:'2rem',
+  border:`1px solid ${borderColor}`,
+  padding:'0.5rem 0',
+  borderRadius:'1rem',
+  background:darkMode ? 'rgba(15,23,42,0.8)' : 'rgba(255,255,255,0.8)',
+  display: 'flex',
   flexDirection: 'row',
   minHeight: '38px'
 }}>
   {quotes.length > 0 ? (
     <div style={{ display:'inline-block', animation:'scroll 120s linear infinite' }}>
       {[...quotes, ...quotes].map((q,i)=>(
-        <span key={i} style={{ 
-          display:'inline-block', 
-          marginRight:'3rem', 
-          color: q.change>=0 ? '#22c55e' : '#ef4444', 
-          fontWeight:'700', 
-          fontFamily:'monospace' 
+        <span key={i} style={{
+          display:'inline-block',
+          marginRight:'3rem',
+          color: q.change>=0 ? '#22c55e' : '#ef4444',
+          fontWeight:'700',
+          fontFamily:'monospace'
         }}>
           {q.symbol} {q.current} {q.change>=0?`+${q.change}`:q.change}
         </span>
       ))}
     </div>
   ) : (
-    <div style={{ 
-      display:'flex', 
-      alignItems:'center', 
-      justifyContent:'center', 
-      width:'100%', 
+    <div style={{
+      display:'flex',
+      alignItems:'center',
+      justifyContent:'center',
+      width:'100%',
       color:mutedColor,
       fontSize:'0.875rem'
     }}>
@@ -1283,8 +1278,6 @@ function App() {
                   marginBottom: '1.5rem',
                   paddingRight: '0', // makes room for the × button
                 }}
-
-
               >
                 How to Play
               </h2>
