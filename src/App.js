@@ -247,18 +247,6 @@ function App() {
     }
   }, [stats]);
 
-  // ────────────────────────────────
-  // KEYBOARD SHORTCUTS
-  // ────────────────────────────────
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Enter' && !gameOver && input.trim()) handleSubmit();
-      if (e.key.toLowerCase() === 'n' && gameOver && gameMode === 'unlimited') nextPuzzle();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [input, gameOver, gameMode]);
-
   // Update stats in one place
   const updateStats = useCallback((won, cluesUsed, timeElapsed = null) => {
     // Prevent double-counting today's daily puzzle
