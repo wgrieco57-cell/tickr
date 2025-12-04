@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import confetti from "canvas-confetti"; // npm install canvas-confetti
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, getDoc, setDoc, updateDoc, increment, getDocs } from "firebase/firestore";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { getAnalytics, logEvent } from "firebase/analytics";
+
 const FINNHUB_API_KEY = "d4g9o8pr01qm5b34j8l0d4g9o8pr01qm5b34j8lg"; // Hardcoded as requested (note: for local/dev only—expose risk in prod)
 const QUOTRON_TICKERS = [
   '^GSPC','^DJI','^IXIC', // Major indexes
@@ -23,6 +24,7 @@ const FALLBACK_QUOTES = [
   { symbol: '^DJI', current: '35000.00', change: '100.00' },
   { symbol: '^IXIC', current: '15000.00', change: '50.00' }
 ];
+
 const firebaseConfig = {
   apiKey: "AIzaSyAdgvuwk-0gU7Tucj87ny2dmFn8qIJ0xsE",
   authDomain: "tickr-2b042.firebaseapp.com",
@@ -32,16 +34,20 @@ const firebaseConfig = {
   appId: "1:866254338816:web:85b7cf91fee6225ebe91e5",
   measurementId: "G-WF8Q9HBVJN"
 };
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const stocksCol = collection(db, "stocks");
+
 const fetchStocksFromFirestore = async () => {
   const snapshot = await getDocs(stocksCol);
   const stocks = {};
   snapshot.forEach(doc => stocks[doc.id] = doc.data());
   return stocks;
 };
+
 const analytics = getAnalytics(app);
+
 async function updateDailyStats({ won = false }) {
   const today = new Date().toISOString().split("T")[0];
   // Always produce a valid 2-segment path: analytics / daily_2025-11-24
@@ -64,6 +70,7 @@ async function updateDailyStats({ won = false }) {
     console.error("Error updating daily stats:", err);
   }
 }
+
 // Helper functions for deterministic daily selection
 function hashCode(str) {
   let hash = 0;
@@ -73,6 +80,7 @@ function hashCode(str) {
   }
   return Math.abs(hash);
 }
+
 function createSeededRandom(initialSeed) {
   let seed = hashCode(initialSeed.toString());
   return function() {
@@ -80,6 +88,7 @@ function createSeededRandom(initialSeed) {
     return seed / 2147483647;
   };
 }
+
 // Helper to check if current time is market hours (Mon-Fri, 9:30-16:00 ET)
 function isMarketHours() {
   const now = new Date();
@@ -101,6 +110,7 @@ function isMarketHours() {
   const closeMins = closeHour * 60 + closeMin;
   return currentMins >= openMins && currentMins < closeMins;
 }
+
 function App() {
   const [data, setData] = useState([]);
   const [allTickers, setAllTickers] = useState([]);
@@ -144,6 +154,17 @@ function App() {
   const [puzzleSeed, setPuzzleSeed] = useState(0);
   const inputRef = useRef(null);
   let quoteIntervalRef = useRef(null);
+
+  // Memoized colors to avoid TDZ and perf issues
+  const theme = useMemo(() => {
+    const bgColor = darkMode ? 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' : 'linear-gradient(135deg,#f8fafc 0%,#e2e8f0 50%,#cbd5e1 100%)';
+    const textColor = darkMode ? '#e2e8f0' : '#1e293b';
+    const mutedColor = darkMode ? '#94a3b8' : '#64748b';
+    const cardBg = darkMode ? 'rgba(15,23,42,0.7)' : 'rgba(255,255,255,0.8)';
+    const borderColor = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+    return { bgColor, textColor, mutedColor, cardBg, borderColor };
+  }, [darkMode]);
+
   // ────────────────────────────────
   // LOAD STATS + DARK MODE ONCE
   // ────────────────────────────────
@@ -172,6 +193,7 @@ function App() {
       localStorage.setItem('tickrDailyVisited', 'true');
     }
   }, []); // ← Runs only once on mount
+
   // Mobile detection
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -179,6 +201,7 @@ function App() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
   // Auto-save stats to localStorage whenever they change
   useEffect(() => {
     try {
@@ -187,6 +210,7 @@ function App() {
       console.error('Failed to save stats:', e);
     }
   }, [stats]);
+
   // New: Keyboard shortcuts for submit/next
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -196,6 +220,7 @@ function App() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [input, gameOver, gameMode]);
+
   // Load local JSON data
   useEffect(() => {
     Promise.all([
@@ -218,6 +243,7 @@ function App() {
       setLoading(false);
     });
   }, []);
+
   const auth = getAuth();
   useEffect(() => {
     signInAnonymously(auth)
@@ -228,6 +254,7 @@ function App() {
         console.error("Anonymous sign-in error:", error);
       });
   }, []);
+
   // Select daily ticker and pick questions (deterministic for non-test mode)
   useEffect(() => {
     if (!data || data.length === 0) return;
@@ -324,6 +351,7 @@ function App() {
     }
     setStartTime(Date.now()); // Only if new game
   }, [data, gameMode, difficulty, puzzleSeed]);
+
   // Update available options for autocomplete
   useEffect(() => {
     if (!input) {
@@ -354,6 +382,7 @@ function App() {
       .slice(0,8);
     setAvailableOptions(filtered);
   }, [input, allTickers, submittedAnswers]);
+
   // Auto-save progress after changes (only for daily)
   useEffect(() => {
     if (gameMode !== 'daily' || !dailyTicker || !startTime) return;
@@ -369,6 +398,7 @@ function App() {
       localStorage.setItem('dailyProgress', JSON.stringify(progressToSave));
     }
   }, [currentLevel, submittedAnswers, gameOver, startTime, dailyTicker, gameMode]);
+
   // Shake animation clear
   useEffect(() => {
     if (shake) {
@@ -376,55 +406,57 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [shake]);
+
   useEffect(() => {
-  const loadQuotes = async () => {
-    try {
-      // Try Firestore first
-      const stockData = await fetchStocksFromFirestore();
-     
-      if (Object.keys(stockData).length > 0) {
-        console.log("✅ Loading quotes from Firestore");
-        let formattedQuotes = Object.entries(stockData).map(([symbol, data]) => ({
-          symbol,
-          current: data.currentPrice?.toFixed(2) || '0.00',
-          change: data.change?.toFixed(2) || '0.00'
-        }));
-       
-        // On mobile, show fewer stocks for faster rendering
-        if (window.innerWidth <= 768) {
-          formattedQuotes = formattedQuotes.slice(0, 10);
-        }
-       
-        setQuotes(formattedQuotes);
-      } else {
-        // Firestore empty, fetch directly from API
-        console.log("⚠️ Firestore empty, fetching from Finnhub API...");
-        const fetchedQuotes = await Promise.all(QUOTRON_TICKERS.map(async symbol => {
-          const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`);
-          const json = await res.json();
-          if (!json.c) return null;
-          return {
+    const loadQuotes = async () => {
+      try {
+        // Try Firestore first
+        const stockData = await fetchStocksFromFirestore();
+      
+        if (Object.keys(stockData).length > 0) {
+          console.log("✅ Loading quotes from Firestore");
+          let formattedQuotes = Object.entries(stockData).map(([symbol, data]) => ({
             symbol,
-            current: json.c.toFixed(2),
-            change: (json.c - json.pc).toFixed(2)
-          };
-        }));
-        const validQuotes = fetchedQuotes.filter(q => q);
-        if (validQuotes.length > 0) {
-          setQuotes(validQuotes);
+            current: data.currentPrice?.toFixed(2) || '0.00',
+            change: data.change?.toFixed(2) || '0.00'
+          }));
+        
+          // On mobile, show fewer stocks for faster rendering
+          if (window.innerWidth <= 768) {
+            formattedQuotes = formattedQuotes.slice(0, 10);
+          }
+        
+          setQuotes(formattedQuotes);
         } else {
-          setQuotes(FALLBACK_QUOTES);
+          // Firestore empty, fetch directly from API
+          console.log("⚠️ Firestore empty, fetching from Finnhub API...");
+          const fetchedQuotes = await Promise.all(QUOTRON_TICKERS.map(async symbol => {
+            const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`);
+            const json = await res.json();
+            if (!json.c) return null;
+            return {
+              symbol,
+              current: json.c.toFixed(2),
+              change: (json.c - json.pc).toFixed(2)
+            };
+          }));
+          const validQuotes = fetchedQuotes.filter(q => q);
+          if (validQuotes.length > 0) {
+            setQuotes(validQuotes);
+          } else {
+            setQuotes(FALLBACK_QUOTES);
+          }
         }
+      } catch (e) {
+        console.error("❌ Error loading quotes:", e);
+        setQuotes(FALLBACK_QUOTES);
       }
-    } catch (e) {
-      console.error("❌ Error loading quotes:", e);
-      setQuotes(FALLBACK_QUOTES);
-    }
-  };
-  loadQuotes();
-  const interval = setInterval(loadQuotes, 300000);
-  return () => clearInterval(interval);
-}, []);
+    };
+    loadQuotes();
+    const interval = setInterval(loadQuotes, 300000);
+    return () => clearInterval(interval);
+  }, []);
+
   // Focus input after submit
   useEffect(() => {
     if (!gameOver && inputRef.current) {
@@ -433,6 +465,7 @@ function App() {
       }, 100);
     }
   }, [currentLevel, gameOver]);
+
   // Memoized handlers with useCallback
   const handleSubmit = useCallback((e) => {
     if (e) e.preventDefault();
@@ -514,15 +547,18 @@ function App() {
     }
     setCurrentLevel(currentLevel + 1);
   }, [gameOver, input, allTickers, questions, currentLevel, submittedAnswers, startTime]); // Dependencies for handleSubmit
+
   const handleOptionClick = useCallback((option) => {
     setInput(option.formatted);
     setAvailableOptions([]);
   }, []);
+
   const toggleDarkMode = useCallback(() => {
     const newMode = !darkMode;
     setDarkMode(newMode);
     localStorage.setItem('tickrDailyDarkMode', JSON.stringify(newMode));
   }, [darkMode]);
+
   const nextPuzzle = useCallback(() => {
     setGameOver(false);
     setCurrentLevel(0);
@@ -532,10 +568,12 @@ function App() {
     // Trigger re-selection via dep
     setPuzzleSeed(prev => prev + 1);
   }, []);
+
   const resetGame = useCallback(() => {
     localStorage.removeItem('dailyProgress');
     window.location.reload();
   }, []);
+
   const shareResults = useCallback(() => {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
     const won = submittedAnswers.some(a => a.isCorrect);
@@ -553,6 +591,7 @@ function App() {
       alert('Results copied to clipboard!');
     }
   }, [submittedAnswers, questions]);
+
   const shareToTwitter = useCallback(() => {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
     const won = submittedAnswers.some(a => a.isCorrect);
@@ -563,6 +602,7 @@ function App() {
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
     window.open(twitterUrl, '_blank');
   }, [submittedAnswers, questions]);
+
   useEffect(() => {
     const track = async () => {
       try {
@@ -592,6 +632,7 @@ function App() {
     };
     track();
   }, [gameMode]);
+
   // Update stats in one place
   const updateStats = useCallback((won, cluesUsed, timeElapsed = null) => {
     // Prevent double-counting today's daily puzzle
@@ -636,12 +677,14 @@ function App() {
     if (gameMode === 'daily') {
       updateDailyStats({ won }).catch(() => {});
     }
-  }, [gameMode, startTime, stats.dailyCurrentStreak, stats.dailyMaxStreak, stats.dailyGuessDistribution, stats.unlimitedGuessDistribution, stats.dailyGamesPlayed, stats.dailyGamesWon, stats.dailyTotalTime, stats.unlimitedCompletions, stats.unlimitedTotalTime, stats.overallTotalTime, stats.overallFastestTime, stats.dailyPlayHistory]); // Dependencies for updateStats
+  }, [gameMode, startTime]);
+
   const formatTime = useCallback((seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
   }, []);
+
   const getAchievements = useCallback(() => {
     const achievements = [];
     const dailyDist = stats.dailyGuessDistribution;
@@ -658,6 +701,8 @@ function App() {
     if (stats.overallFastestTime && stats.overallFastestTime < 30) achievements.push({ icon: '⚡', name: 'Speed Demon', desc: 'Fastest win under 30s (any mode)' });
     return achievements;
   }, [stats]);
+
+  // GuessDistChart – now after theme is defined
   const GuessDistChart = useCallback(({ dist, maxClues }) => (
     <>
       {Array.from({ length: maxClues }, (_, i) => {
@@ -667,10 +712,10 @@ function App() {
         const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
         return (
           <div key={clue} style={{ display:'flex', alignItems:'center', marginBottom:'0.5rem' }}>
-            <div style={{ width:'60px', color:mutedColor, fontSize:'0.875rem', fontWeight:'600' }}>
+            <div style={{ width:'60px', color:theme.mutedColor, fontSize:'0.875rem', fontWeight:'600' }}>
               {clue} clue{clue > 1 ? 's' : ''}
             </div>
-            <div style={{ flex:1, background:cardBg, height:'32px', borderRadius:'0.5rem', overflow:'hidden', position:'relative', border:`1px solid ${borderColor}` }}>
+            <div style={{ flex:1, background:theme.cardBg, height:'32px', borderRadius:'0.5rem', overflow:'hidden', position:'relative', border:`1px solid ${theme.borderColor}` }}>
               <div style={{
                 width:`${Math.max(percentage, 5)}%`,
                 height:'100%',
@@ -688,8 +733,8 @@ function App() {
         );
       })}
       <div style={{ display:'flex', alignItems:'center', marginBottom:'0.5rem' }}>
-        <div style={{ width:'60px', color:mutedColor, fontSize:'0.875rem', fontWeight:'600' }}>Failed</div>
-        <div style={{ flex:1, background:cardBg, height:'32px', borderRadius:'0.5rem', overflow:'hidden', position:'relative', border:`1px solid ${borderColor}` }}>
+        <div style={{ width:'60px', color:theme.mutedColor, fontSize:'0.875rem', fontWeight:'600' }}>Failed</div>
+        <div style={{ flex:1, background:theme.cardBg, height:'32px', borderRadius:'0.5rem', overflow:'hidden', position:'relative', border:`1px solid ${theme.borderColor}` }}>
           <div style={{
             width:`${Math.max((dist.fail / Math.max(...Object.values(dist))) * 100, 5)}%`,
             height:'100%',
@@ -705,17 +750,18 @@ function App() {
         </div>
       </div>
     </>
-  ), [cardBg, borderColor, mutedColor]); // Dependencies passed as props
-  // Mode Selector Component
+  ), [theme]); // Depend on theme object
+
+  // ModeSelector – now after theme is defined
   const ModeSelector = useCallback(() => (
     <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
       <button
         onClick={() => setGameMode('daily')}
         style={{
           padding: '0.75rem 1.5rem',
-          background: gameMode === 'daily' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : cardBg,
-          color: gameMode === 'daily' ? 'white' : textColor,
-          border: `1px solid ${borderColor}`,
+          background: gameMode === 'daily' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : theme.cardBg,
+          color: gameMode === 'daily' ? 'white' : theme.textColor,
+          border: `1px solid ${theme.borderColor}`,
           borderRadius: '1rem',
           fontWeight: '600',
           cursor: 'pointer',
@@ -729,9 +775,9 @@ function App() {
         onClick={() => setGameMode('unlimited')}
         style={{
           padding: '0.75rem 1.5rem',
-          background: gameMode === 'unlimited' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : cardBg,
-          color: gameMode === 'unlimited' ? 'white' : textColor,
-          border: `1px solid ${borderColor}`,
+          background: gameMode === 'unlimited' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : theme.cardBg,
+          color: gameMode === 'unlimited' ? 'white' : theme.textColor,
+          border: `1px solid ${theme.borderColor}`,
           borderRadius: '1rem',
           fontWeight: '600',
           cursor: 'pointer',
@@ -747,9 +793,9 @@ function App() {
           onChange={(e) => setDifficulty(e.target.value)}
           style={{
             padding: '0.75rem 1rem',
-            background: cardBg,
-            color: textColor,
-            border: `1px solid ${borderColor}`,
+            background: theme.cardBg,
+            color: theme.textColor,
+            border: `1px solid ${theme.borderColor}`,
             borderRadius: '1rem',
             fontWeight: '600',
             cursor: 'pointer'
@@ -762,101 +808,99 @@ function App() {
         </select>
       )}
     </div>
-  ), [gameMode, difficulty, cardBg, textColor, borderColor]);
+  ), [gameMode, difficulty, theme]);
+
   if(loading || !dailyTicker || !questions.length){
-    return <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background: 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' }}>
-      <div style={{ textAlign:'center', color:'#94a3b8'}}>Loading Market Data...</div>
+    return <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background: theme.bgColor }}>
+      <div style={{ textAlign:'center', color:theme.mutedColor}}>Loading Market Data...</div>
     </div>;
   }
+
   const todayDate = new Date().toLocaleDateString('en-US',{ weekday:'long', month:'long', day:'numeric', year:'numeric' });
   const isWinner = submittedAnswers.some(a=>a.isCorrect);
   const numClues = questions.length;
-  const bgColor = darkMode ? 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' : 'linear-gradient(135deg,#f8fafc 0%,#e2e8f0 50%,#cbd5e1 100%)';
-  const textColor = darkMode ? '#e2e8f0' : '#1e293b';
-  const mutedColor = darkMode ? '#94a3b8' : '#64748b';
-  const cardBg = darkMode ? 'rgba(15,23,42,0.7)' : 'rgba(255,255,255,0.8)';
-  const borderColor = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+
   return (
-    <div style={{ minHeight:'100vh', background: bgColor, display:'flex', flexDirection:'column', alignItems:'center', padding:'2rem 1rem' }}>
+    <div style={{ minHeight:'100vh', background: theme.bgColor, display:'flex', flexDirection:'column', alignItems:'center', padding:'2rem 1rem' }}>
       {/* Quotron */}
-<div className="quotron" style={{
-  width:'100%',
-  overflow:'hidden',
-  whiteSpace:'nowrap',
-  marginBottom:'2rem',
-  border:`1px solid ${borderColor}`,
-  padding:'0.5rem 0',
-  borderRadius:'1rem',
-  background:darkMode ? 'rgba(15,23,42,0.8)' : 'rgba(255,255,255,0.8)',
-  display: 'flex',
-  flexDirection: 'row',
-  minHeight: '38px'
-}}>
-  {quotes.length > 0 ? (
-    <div style={{ display:'inline-block', animation:'scroll 120s linear infinite' }}>
-      {[...quotes, ...quotes].map((q,i)=>(
-        <span key={i} style={{
-          display:'inline-block',
-          marginRight:'3rem',
-          color: q.change>=0 ? '#22c55e' : '#ef4444',
-          fontWeight:'700',
-          fontFamily:'monospace'
-        }}>
-          {q.symbol} {q.current} {q.change>=0?`+${q.change}`:q.change}
-        </span>
-      ))}
-    </div>
-  ) : (
-    <div style={{
-      display:'flex',
-      alignItems:'center',
-      justifyContent:'center',
-      width:'100%',
-      color:mutedColor,
-      fontSize:'0.875rem'
-    }}>
-      Loading market data...
-    </div>
-  )}
-</div>
-<style>{`
-  @keyframes scroll {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
-  }
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-    20%, 40%, 60%, 80% { transform: translateX(5px); }
-  }
-  @media (max-width: 768px) {
-    .quotron {
-      height: 38px !important;
-      flex-direction: row !important;
-      overflow: hidden !important;
-      white-space: nowrap !important;
-      padding: 0 !important;
-    }
-    .quotron div {
-      animation: scroll 80s linear infinite !important;
-      line-height: 38px !important;
-    }
-  }
-  @keyframes scroll-vertical {
-    0% { transform: translateY(100%); }
-    100% { transform: translateY(-100%); }
-  }
-`}</style>
+      <div className="quotron" style={{
+        width:'100%',
+        overflow:'hidden',
+        whiteSpace:'nowrap',
+        marginBottom:'2rem',
+        border:`1px solid ${theme.borderColor}`,
+        padding:'0.5rem 0',
+        borderRadius:'1rem',
+        background:darkMode ? 'rgba(15,23,42,0.8)' : 'rgba(255,255,255,0.8)',
+        display: 'flex',
+        flexDirection: 'row',
+        minHeight: '38px'
+      }}>
+        {quotes.length > 0 ? (
+          <div style={{ display:'inline-block', animation:'scroll 120s linear infinite' }}>
+            {[...quotes, ...quotes].map((q,i)=>(
+              <span key={i} style={{
+                display:'inline-block',
+                marginRight:'3rem',
+                color: q.change>=0 ? '#22c55e' : '#ef4444',
+                fontWeight:'700',
+                fontFamily:'monospace'
+              }}>
+                {q.symbol} {q.current} {q.change>=0?`+${q.change}`:q.change}
+              </span>
+            ))}
+          </div>
+        ) : (
+          <div style={{
+            display:'flex',
+            alignItems:'center',
+            justifyContent:'center',
+            width:'100%',
+            color:theme.mutedColor,
+            fontSize:'0.875rem'
+          }}>
+            Loading market data...
+          </div>
+        )}
+      </div>
+      <style>{`
+        @keyframes scroll {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+          20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        @media (max-width: 768px) {
+          .quotron {
+            height: 38px !important;
+            flex-direction: row !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+            padding: 0 !important;
+          }
+          .quotron div {
+            animation: scroll 80s linear infinite !important;
+            line-height: 38px !important;
+          }
+        }
+        @keyframes scroll-vertical {
+          0% { transform: translateY(100%); }
+          100% { transform: translateY(-100%); }
+        }
+      `}</style>
       <div style={{ width:'100%', maxWidth:'900px', display:'flex', flexDirection:'column', alignItems:'center' }}>
         {/* Header with Dark Mode Toggle */}
         <div style={{ textAlign:'center', marginBottom:'1rem', position:'relative', width:'100%' }}>
@@ -868,10 +912,10 @@ function App() {
                 right:0,
                 top:0,
                 padding:'0.75rem',
-                background:cardBg,
-                border:`1px solid ${borderColor}`,
+                background:theme.cardBg,
+                border:`1px solid ${theme.borderColor}`,
                 borderRadius:'0.75rem',
-                color:textColor,
+                color:theme.textColor,
                 cursor:'pointer',
                 transition:'all 0.3s ease'
               }}
@@ -882,8 +926,8 @@ function App() {
             </button>
           )}
           <h1 style={{ fontSize:'4rem', fontWeight:'800', background:'linear-gradient(135deg,#22c55e 0%,#3b82f6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', marginBottom:'0.5rem', letterSpacing:'-0.02em' }}>TickrDaily</h1>
-          <p style={{ color:mutedColor, fontSize:'1rem', fontWeight:'500', letterSpacing:'0.05em' }}>{todayDate}</p>
-          <p style={{ color:mutedColor, fontSize:'0.875rem', marginTop:'0.5rem' }}>
+          <p style={{ color:theme.mutedColor, fontSize:'1rem', fontWeight:'500', letterSpacing:'0.05em' }}>{todayDate}</p>
+          <p style={{ color:theme.mutedColor, fontSize:'0.875rem', marginTop:'0.5rem' }}>
             {gameMode === 'daily' ? 'Guess the stock from 5 clues' : `Guess the stock from 5 clues (${difficulty} stocks)`}
           </p>
           {gameOver && gameMode === 'daily' && (
@@ -892,7 +936,7 @@ function App() {
             </p>
           )}
           {/* New: Progress Bar */}
-          <div style={{ width: '100%', height: '4px', background: borderColor, borderRadius: '2px', margin: '1rem 0', overflow: 'hidden' }}>
+          <div style={{ width: '100%', height: '4px', background: theme.borderColor, borderRadius: '2px', margin: '1rem 0', overflow: 'hidden' }}>
             <div style={{
               width: `${((currentLevel + 1) / questions.length) * 100}%`,
               height: '100%',
@@ -909,10 +953,10 @@ function App() {
             onClick={() => setShowStats(!showStats)}
             style={{
               padding:'0.75rem 1.75rem',
-              background:cardBg,
-              border:`1px solid ${borderColor}`,
+              background:theme.cardBg,
+              border:`1px solid ${theme.borderColor}`,
               borderRadius:'1rem',
-              color:textColor,
+              color:theme.textColor,
               cursor:'pointer',
               fontWeight:'600',
               fontSize:'0.875rem',
@@ -934,10 +978,10 @@ function App() {
             onClick={() => setShowHowToPlay(true)}
             style={{
               padding:'0.75rem 1.75rem',
-              background:cardBg,
-              border:`1px solid ${borderColor}`,
+              background:theme.cardBg,
+              border:`1px solid ${theme.borderColor}`,
               borderRadius:'1rem',
-              color:textColor,
+              color:theme.textColor,
               cursor:'pointer',
               fontWeight:'600',
               fontSize:'0.875rem',
@@ -1009,7 +1053,7 @@ function App() {
               <h2 style={{
                 fontSize:'2rem',
                 fontWeight:'800',
-                color:'#e2e8f0',
+                color:theme.textColor,
                 marginBottom:'2rem',
                 textAlign:'center',
                 paddingRight: '0' // make space for the X button
@@ -1022,9 +1066,9 @@ function App() {
                   onClick={() => setActiveModeTab('daily')}
                   style={{
                     padding: '0.5rem 1rem',
-                    background: activeModeTab === 'daily' ? '#22c55e' : cardBg,
-                    color: activeModeTab === 'daily' ? 'white' : textColor,
-                    border: `1px solid ${borderColor}`,
+                    background: activeModeTab === 'daily' ? '#22c55e' : theme.cardBg,
+                    color: activeModeTab === 'daily' ? 'white' : theme.textColor,
+                    border: `1px solid ${theme.borderColor}`,
                     borderRadius: '0.5rem',
                     cursor: 'pointer',
                     fontWeight: '600'
@@ -1036,9 +1080,9 @@ function App() {
                   onClick={() => setActiveModeTab('unlimited')}
                   style={{
                     padding: '0.5rem 1rem',
-                    background: activeModeTab === 'unlimited' ? '#22c55e' : cardBg,
-                    color: activeModeTab === 'unlimited' ? 'white' : textColor,
-                    border: `1px solid ${borderColor}`,
+                    background: activeModeTab === 'unlimited' ? '#22c55e' : theme.cardBg,
+                    color: activeModeTab === 'unlimited' ? 'white' : theme.textColor,
+                    border: `1px solid ${theme.borderColor}`,
                     borderRadius: '0.5rem',
                     cursor: 'pointer',
                     fontWeight: '600'
@@ -1050,9 +1094,9 @@ function App() {
                   onClick={() => setActiveModeTab('overall')}
                   style={{
                     padding: '0.5rem 1rem',
-                    background: activeModeTab === 'overall' ? '#22c55e' : cardBg,
-                    color: activeModeTab === 'overall' ? 'white' : textColor,
-                    border: `1px solid ${borderColor}`,
+                    background: activeModeTab === 'overall' ? '#22c55e' : theme.cardBg,
+                    color: activeModeTab === 'overall' ? 'white' : theme.textColor,
+                    border: `1px solid ${theme.borderColor}`,
                     borderRadius: '0.5rem',
                     cursor: 'pointer',
                     fontWeight: '600'
@@ -1065,92 +1109,92 @@ function App() {
               <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
                 {activeModeTab === 'daily' && (
                   <>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ textAlign:'center', background:theme.cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }}>
                       <div style={{ fontSize:'2rem', fontWeight:'700', color:'#22c55e' }}>{stats.dailyGamesPlayed}</div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Played</div>
+                      <div style={{ fontSize:'0.75rem', color:theme.mutedColor, marginTop:'0.25rem' }}>Daily Played</div>
                     </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ textAlign:'center', background:theme.cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }}>
                       <div style={{ fontSize:'2rem', fontWeight:'700', color:'#3b82f6' }}>
                         {stats.dailyGamesPlayed > 0 ? Math.round((stats.dailyGamesWon / stats.dailyGamesPlayed) * 100) : 0}%
                       </div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Win Rate</div>
+                      <div style={{ fontSize:'0.75rem', color:theme.mutedColor, marginTop:'0.25rem' }}>Daily Win Rate</div>
                     </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ textAlign:'center', background:theme.cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }}>
                       <div style={{ fontSize:'2rem', fontWeight:'700', color:'#f59e0b' }}>{stats.dailyCurrentStreak}🔥</div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Streak</div>
+                      <div style={{ fontSize:'0.75rem', color:theme.mutedColor, marginTop:'0.25rem' }}>Daily Streak</div>
                     </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ textAlign:'center', background:theme.cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }}>
                       <div style={{ fontSize:'2rem', fontWeight:'700', color:'#a855f7' }}>{stats.dailyMaxStreak}</div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Max Streak</div>
+                      <div style={{ fontSize:'0.75rem', color:theme.mutedColor, marginTop:'0.25rem' }}>Daily Max Streak</div>
                     </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ textAlign:'center', background:theme.cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }}>
                       <div style={{ fontSize:'2rem', fontWeight:'700', color:'#ec4899' }}>
                         {stats.dailyGamesPlayed > 0 ? formatTime(Math.floor(stats.dailyTotalTime / stats.dailyGamesPlayed)) : '--'}
                       </div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Daily Avg Time</div>
+                      <div style={{ fontSize:'0.75rem', color:theme.mutedColor, marginTop:'0.25rem' }}>Daily Avg Time</div>
                     </div>
                   </>
                 )}
                 {activeModeTab === 'unlimited' && (
                   <>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ textAlign:'center', background:theme.cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }}>
                       <div style={{ fontSize:'2rem', fontWeight:'700', color:'#22c55e' }}>{stats.unlimitedCompletions}</div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Unlimited Completed</div>
+                      <div style={{ fontSize:'0.75rem', color:theme.mutedColor, marginTop:'0.25rem' }}>Unlimited Completed</div>
                     </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ textAlign:'center', background:theme.cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }}>
                       <div style={{ fontSize:'2rem', fontWeight:'700', color:'#3b82f6' }}>
                         {stats.unlimitedCompletions > 0 ? Math.round(((stats.unlimitedCompletions - stats.unlimitedGuessDistribution.fail) / stats.unlimitedCompletions) * 100) : 0}%
                       </div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Unlimited Win Rate</div>
+                      <div style={{ fontSize:'0.75rem', color:theme.mutedColor, marginTop:'0.25rem' }}>Unlimited Win Rate</div>
                     </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ textAlign:'center', background:theme.cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }}>
                       <div style={{ fontSize:'2rem', fontWeight:'700', color:'#ec4899' }}>
                         {stats.unlimitedCompletions > 0 ? formatTime(Math.floor(stats.unlimitedTotalTime / stats.unlimitedCompletions)) : '--'}
                       </div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Unlimited Avg Time</div>
+                      <div style={{ fontSize:'0.75rem', color:theme.mutedColor, marginTop:'0.25rem' }}>Unlimited Avg Time</div>
                     </div>
                     {/* Filler cards to balance grid */}
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
+                    <div style={{ textAlign:'center', background:theme.cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }} />
+                    <div style={{ textAlign:'center', background:theme.cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }} />
                   </>
                 )}
                 {activeModeTab === 'overall' && (
                   <>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ textAlign:'center', background:theme.cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }}>
                       <div style={{ fontSize:'2rem', fontWeight:'700', color:'#22c55e' }}>{stats.dailyGamesPlayed + stats.unlimitedCompletions}</div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Total Played</div>
+                      <div style={{ fontSize:'0.75rem', color:theme.mutedColor, marginTop:'0.25rem' }}>Total Played</div>
                     </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ textAlign:'center', background:theme.cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }}>
                       <div style={{ fontSize:'2rem', fontWeight:'700', color:'#3b82f6' }}>
                         {stats.overallFastestTime ? formatTime(stats.overallFastestTime) : '--'}
                       </div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Overall Fastest</div>
+                      <div style={{ fontSize:'0.75rem', color:theme.mutedColor, marginTop:'0.25rem' }}>Overall Fastest</div>
                     </div>
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                    <div style={{ textAlign:'center', background:theme.cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }}>
                       <div style={{ fontSize:'2rem', fontWeight:'700', color:'#f59e0b' }}>
                         {stats.dailyGamesPlayed + stats.unlimitedCompletions > 0 ? formatTime(Math.floor(stats.overallTotalTime / (stats.dailyGamesPlayed + stats.unlimitedCompletions))) : '--'}
                       </div>
-                      <div style={{ fontSize:'0.75rem', color:mutedColor, marginTop:'0.25rem' }}>Overall Avg Time</div>
+                      <div style={{ fontSize:'0.75rem', color:theme.mutedColor, marginTop:'0.25rem' }}>Overall Avg Time</div>
                     </div>
                     {/* Filler */}
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
-                    <div style={{ textAlign:'center', background:cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }} />
+                    <div style={{ textAlign:'center', background:theme.cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }} />
+                    <div style={{ textAlign:'center', background:theme.cardBg, padding:'1.5rem 1rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }} />
                   </>
                 )}
               </div>
               {/* Achievements (Shared) */}
               {getAchievements().length > 0 && (
                 <div style={{ marginBottom:'2rem' }}>
-                  <h3 style={{ fontSize:'1.25rem', fontWeight:'700', color:textColor, marginBottom:'1rem' }}>
+                  <h3 style={{ fontSize:'1.25rem', fontWeight:'700', color:theme.textColor, marginBottom:'1rem' }}>
                     🏆 Achievements (All Modes)
                   </h3>
                   <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'0.75rem' }}>
                     {getAchievements().map((ach, i) => (
-                      <div key={i} style={{ background:cardBg, padding:'1rem', borderRadius:'0.75rem', border:`1px solid ${borderColor}`, display:'flex', alignItems:'center', gap:'0.75rem' }}>
+                      <div key={i} style={{ background:theme.cardBg, padding:'1rem', borderRadius:'0.75rem', border:`1px solid ${theme.borderColor}`, display:'flex', alignItems:'center', gap:'0.75rem' }}>
                         <span style={{ fontSize:'1.5rem' }}>{ach.icon}</span>
                         <div>
-                          <div style={{ fontSize:'0.875rem', fontWeight:'600', color:textColor }}>{ach.name}</div>
-                          <div style={{ fontSize:'0.75rem', color:mutedColor }}>{ach.desc}</div>
+                          <div style={{ fontSize:'0.875rem', fontWeight:'600', color:theme.textColor }}>{ach.name}</div>
+                          <div style={{ fontSize:'0.75rem', color:theme.mutedColor }}>{ach.desc}</div>
                         </div>
                       </div>
                     ))}
@@ -1159,7 +1203,7 @@ function App() {
               )}
               {/* Guess Distribution (Mode-Specific) */}
               <div style={{ marginBottom:'1.5rem' }}>
-                <h3 style={{ fontSize:'1.25rem', fontWeight:'700', color:textColor, marginBottom:'1rem' }}>
+                <h3 style={{ fontSize:'1.25rem', fontWeight:'700', color:theme.textColor, marginBottom:'1rem' }}>
                   Guess Distribution ({activeModeTab === 'daily' ? 'Daily' : activeModeTab === 'unlimited' ? 'Unlimited' : 'Combined'})
                 </h3>
                 {activeModeTab === 'daily' ? (
@@ -1173,7 +1217,7 @@ function App() {
               {/* Play History (Daily Only) */}
               {activeModeTab === 'daily' && stats.dailyPlayHistory && Object.keys(stats.dailyPlayHistory).length > 0 && (
                 <div>
-                  <h3 style={{ fontSize:'1.25rem', fontWeight:'700', color:textColor, marginBottom:'1rem' }}>
+                  <h3 style={{ fontSize:'1.25rem', fontWeight:'700', color:theme.textColor, marginBottom:'1rem' }}>
                     📅 Daily History (Last 30 Days)
                   </h3>
                   <div style={{ display:'grid', gridTemplateColumns:'repeat(7, 1fr)', gap:'0.25rem' }}>
@@ -1193,15 +1237,15 @@ function App() {
                               ? dayData.won
                                 ? '#22c55e'
                                 : '#ef4444'
-                              : cardBg,
-                            border:`1px solid ${borderColor}`,
+                              : theme.cardBg,
+                            border:`1px solid ${theme.borderColor}`,
                             cursor:'pointer'
                           }}
                         />
                       );
                     })}
                   </div>
-                  <div style={{ display:'flex', justifyContent:'space-between', marginTop:'0.5rem', fontSize:'0.75rem', color:mutedColor }}>
+                  <div style={{ display:'flex', justifyContent:'space-between', marginTop:'0.5rem', fontSize:'0.75rem', color:theme.mutedColor }}>
                     <span>30 days ago</span>
                     <span>Today</span>
                   </div>
@@ -1273,7 +1317,7 @@ function App() {
                 style={{
                   fontSize: '2rem',
                   fontWeight: '800',
-                  color: '#e2e8f0',
+                  color: theme.textColor,
                   textAlign: 'center',
                   marginBottom: '1.5rem',
                   paddingRight: '0', // makes room for the × button
@@ -1281,11 +1325,11 @@ function App() {
               >
                 How to Play
               </h2>
-              <div style={{ color:textColor, lineHeight:'1.8', fontSize:'1rem' }}>
+              <div style={{ color:theme.textColor, lineHeight:'1.8', fontSize:'1rem' }}>
                 <p style={{ marginBottom:'1rem', fontWeight:'600', fontSize:'1.125rem' }}>
                   Guess the stock ticker in {numClues} clues or less!
                 </p>
-                <div style={{ background:cardBg, padding:'1.5rem', borderRadius:'1rem', marginBottom:'1rem', border:`1px solid ${borderColor}` }}>
+                <div style={{ background:theme.cardBg, padding:'1.5rem', borderRadius:'1rem', marginBottom:'1rem', border:`1px solid ${theme.borderColor}` }}>
                   <p style={{ marginBottom:'0.75rem' }}>
                     <strong style={{ color:'#22c55e' }}>🎯 Objective:</strong> Identify the mystery stock from progressively specific clues.
                   </p>
@@ -1296,9 +1340,9 @@ function App() {
                     <strong style={{ color:'#f59e0b' }}>⏱️ Strategy:</strong> The fewer clues you need, the better your score!
                   </p>
                 </div>
-                <div style={{ background:cardBg, padding:'1.5rem', borderRadius:'1rem', border:`1px solid ${borderColor}` }}>
+                <div style={{ background:theme.cardBg, padding:'1.5rem', borderRadius:'1rem', border:`1px solid ${theme.borderColor}` }}>
                   <h3 style={{ fontSize:'1.125rem', fontWeight:'700', marginBottom:'0.75rem' }}>Example:</h3>
-                  <div style={{ fontSize:'0.875rem', color:mutedColor, lineHeight:'1.6' }}>
+                  <div style={{ fontSize:'0.875rem', color:theme.mutedColor, lineHeight:'1.6' }}>
                     <p>1️⃣ "I'm a technology company..."</p>
                     <p>2️⃣ "I make electric vehicles..."</p>
                     <p>3️⃣ "My CEO is very active on social media..."</p>
@@ -1307,7 +1351,7 @@ function App() {
                     <p style={{ marginTop:'0.75rem', color:'#22c55e', fontWeight:'600' }}>Answer: TSLA (Tesla)</p>
                   </div>
                 </div>
-                <p style={{ marginTop:'1.5rem', textAlign:'center', fontSize:'0.875rem', color:mutedColor }}>
+                <p style={{ marginTop:'1.5rem', textAlign:'center', fontSize:'0.875rem', color:theme.mutedColor }}>
                   {gameMode === 'daily' ? 'New puzzle daily at midnight EST!' : 'Endless challenges await!'} 🌅
                 </p>
               </div>
@@ -1421,8 +1465,8 @@ function App() {
             <div style={{ background:'rgba(255,255,255,0.05)', borderRadius:'1rem', padding:'2rem', marginBottom:'2rem' }}>
               <p style={{ color:'#94a3b8', fontSize:'0.875rem', marginBottom:'0.5rem', textTransform:'uppercase' }}>The Answer Was</p>
               <p style={{ fontSize:'2.5rem', fontWeight:'800', color:'#22c55e', fontFamily:'monospace', marginBottom:'0.5rem' }}>{dailyTicker.ticker}</p>
-              <p style={{ fontSize:'1.125rem', color:'#e2e8f0' }}>{dailyTicker.company}</p>
-              <p style={{ color: '#94a3b8', fontSize: '1.125rem', marginTop: '1rem', textAlign: 'center' }}>
+              <p style={{ fontSize:'1.125rem', color:theme.textColor }}>{dailyTicker.company}</p>
+              <p style={{ color: theme.mutedColor, fontSize: '1.125rem', marginTop: '1rem', textAlign: 'center' }}>
                 {gameMode === 'daily' ? 'Come back tomorrow for a new challenge!' : 'Keep going!'}
               </p>
             </div>
@@ -1514,4 +1558,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
