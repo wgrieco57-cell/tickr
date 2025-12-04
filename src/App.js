@@ -88,29 +88,6 @@ function createSeededRandom(initialSeed) {
     return seed / 2147483647;
   };
 }
-
-// Helper to check if current time is market hours (Mon-Fri, 9:30-16:00 ET)
-function isMarketHours() {
-  const now = new Date();
-  const day = now.getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
-  if (day === 0 || day === 6) return false; // Weekend
-  // Get ET time
-  const etTime = now.toLocaleString("en-US", { timeZone: "America/New_York" });
-  const [, timeStr] = etTime.split(', ');
-  const [time] = timeStr.split(' ');
-  const [hourStr, minStr] = time.split(':');
-  const hour = parseInt(hourStr, 10);
-  const min = parseInt(minStr, 10);
-  const openHour = 9;
-  const openMin = 30;
-  const closeHour = 16;
-  const closeMin = 0;
-  const currentMins = hour * 60 + min;
-  const openMins = openHour * 60 + openMin;
-  const closeMins = closeHour * 60 + closeMin;
-  return currentMins >= openMins && currentMins < closeMins;
-}
-
 function App() {
   const [data, setData] = useState([]);
   const [allTickers, setAllTickers] = useState([]);
@@ -406,6 +383,26 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [shake]);
+
+  // ✅ KEEP — NEW CORRECT VERSION
+function isMarketHours() {
+  const now = new Date();
+  const etDate = new Date(
+    now.toLocaleString("en-US", { timeZone: "America/New_York", hour12: false })
+  );
+
+  const day = etDate.getDay(); // 0=Sun, 6=Sat
+  if (day === 0 || day === 6) return false; // weekend
+
+  const hours = etDate.getHours();
+  const minutes = etDate.getMinutes();
+
+  const currentMins = hours * 60 + minutes;
+  const marketOpen = 9 * 60 + 30;
+  const marketClose = 16 * 60 + 0;
+
+  return currentMins >= marketOpen && currentMins < marketClose;
+}
 
 useEffect(() => {
   let interval = null;
