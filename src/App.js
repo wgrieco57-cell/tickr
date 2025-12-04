@@ -4,7 +4,6 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, getDoc, setDoc, updateDoc, increment, getDocs } from "firebase/firestore";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { getAnalytics, logEvent } from "firebase/analytics";
-
 const FINNHUB_API_KEY = "d4g9o8pr01qm5b34j8l0d4g9o8pr01qm5b34j8lg"; // Hardcoded as requested (note: for local/dev only—expose risk in prod)
 const QUOTRON_TICKERS = [
   '^GSPC','^DJI','^IXIC', // Major indexes
@@ -24,7 +23,6 @@ const FALLBACK_QUOTES = [
   { symbol: '^DJI', current: '35000.00', change: '100.00' },
   { symbol: '^IXIC', current: '15000.00', change: '50.00' }
 ];
-
 const firebaseConfig = {
   apiKey: "AIzaSyAdgvuwk-0gU7Tucj87ny2dmFn8qIJ0xsE",
   authDomain: "tickr-2b042.firebaseapp.com",
@@ -34,20 +32,16 @@ const firebaseConfig = {
   appId: "1:866254338816:web:85b7cf91fee6225ebe91e5",
   measurementId: "G-WF8Q9HBVJN"
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const stocksCol = collection(db, "stocks");
-
 const fetchStocksFromFirestore = async () => {
   const snapshot = await getDocs(stocksCol);
   const stocks = {};
   snapshot.forEach(doc => stocks[doc.id] = doc.data());
   return stocks;
 };
-
 const analytics = getAnalytics(app);
-
 async function updateDailyStats({ won = false }) {
   const today = new Date().toISOString().split("T")[0];
   // Always produce a valid 2-segment path: analytics / daily_2025-11-24
@@ -70,7 +64,6 @@ async function updateDailyStats({ won = false }) {
     console.error("Error updating daily stats:", err);
   }
 }
-
 // Helper functions for deterministic daily selection
 function hashCode(str) {
   let hash = 0;
@@ -80,7 +73,6 @@ function hashCode(str) {
   }
   return Math.abs(hash);
 }
-
 function createSeededRandom(initialSeed) {
   let seed = hashCode(initialSeed.toString());
   return function() {
@@ -131,7 +123,6 @@ function App() {
   const [puzzleSeed, setPuzzleSeed] = useState(0);
   const inputRef = useRef(null);
   let quoteIntervalRef = useRef(null);
-
   // Memoized colors to avoid TDZ and perf issues
   const theme = useMemo(() => {
     const bgColor = darkMode ? 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' : 'linear-gradient(135deg,#f8fafc 0%,#e2e8f0 50%,#cbd5e1 100%)';
@@ -141,7 +132,6 @@ function App() {
     const borderColor = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
     return { bgColor, textColor, mutedColor, cardBg, borderColor };
   }, [darkMode]);
-
   // ────────────────────────────────
   // LOAD STATS + DARK MODE ONCE
   // ────────────────────────────────
@@ -170,7 +160,6 @@ function App() {
       localStorage.setItem('tickrDailyVisited', 'true');
     }
   }, []); // ← Runs only once on mount
-
   // Mobile detection
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -178,7 +167,6 @@ function App() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
   // Auto-save stats to localStorage whenever they change
   useEffect(() => {
     try {
@@ -187,7 +175,6 @@ function App() {
       console.error('Failed to save stats:', e);
     }
   }, [stats]);
-
   // New: Keyboard shortcuts for submit/next
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -197,7 +184,6 @@ function App() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [input, gameOver, gameMode]);
-
   // Load local JSON data
   useEffect(() => {
     Promise.all([
@@ -220,7 +206,6 @@ function App() {
       setLoading(false);
     });
   }, []);
-
   const auth = getAuth();
   useEffect(() => {
     signInAnonymously(auth)
@@ -231,7 +216,6 @@ function App() {
         console.error("Anonymous sign-in error:", error);
       });
   }, []);
-
   // Select daily ticker and pick questions (deterministic for non-test mode)
   useEffect(() => {
     if (!data || data.length === 0) return;
@@ -328,7 +312,6 @@ function App() {
     }
     setStartTime(Date.now()); // Only if new game
   }, [data, gameMode, difficulty, puzzleSeed]);
-
   // Update available options for autocomplete
   useEffect(() => {
     if (!input) {
@@ -359,7 +342,6 @@ function App() {
       .slice(0,8);
     setAvailableOptions(filtered);
   }, [input, allTickers, submittedAnswers]);
-
   // Auto-save progress after changes (only for daily)
   useEffect(() => {
     if (gameMode !== 'daily' || !dailyTicker || !startTime) return;
@@ -375,7 +357,6 @@ function App() {
       localStorage.setItem('dailyProgress', JSON.stringify(progressToSave));
     }
   }, [currentLevel, submittedAnswers, gameOver, startTime, dailyTicker, gameMode]);
-
   // Shake animation clear
   useEffect(() => {
     if (shake) {
@@ -383,30 +364,23 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [shake]);
-
   // ✅ KEEP — NEW CORRECT VERSION
 function isMarketHours() {
   const now = new Date();
   const etDate = new Date(
     now.toLocaleString("en-US", { timeZone: "America/New_York", hour12: false })
   );
-
   const day = etDate.getDay(); // 0=Sun, 6=Sat
   if (day === 0 || day === 6) return false; // weekend
-
   const hours = etDate.getHours();
   const minutes = etDate.getMinutes();
-
   const currentMins = hours * 60 + minutes;
   const marketOpen = 9 * 60 + 30;
   const marketClose = 16 * 60 + 0;
-
   return currentMins >= marketOpen && currentMins < marketClose;
 }
-
 useEffect(() => {
   let interval = null;
-
   const loadQuotes = async () => {
     try {
       // Always try Firestore first (you might already cache closing prices there)
@@ -415,7 +389,6 @@ useEffect(() => {
         const updatedAt = new Date(stockData.lastUpdated);
         const now = new Date();
         const minutesSinceUpdate = (now - updatedAt) / 60000;
-
         // If Firestore data is fresh (< 30 min old) → use it
         if (minutesSinceUpdate < 30) {
           console.log("Using cached closing prices from Firestore");
@@ -433,12 +406,10 @@ useEffect(() => {
     } catch (e) {
       console.log("Firestore unavailable, fetching live...");
     }
-
     // Main logic: decide whether to show live or closing prices
     const now = new Date();
     const isWeekend = now.getDay() === 0 || now.getDay() === 6;
     const marketClosedToday = !isMarketHours();
-
     if (!isWeekend && !marketClosedToday) {
       // Market is OPEN → fetch live prices
       console.log("Market open → fetching live prices");
@@ -468,19 +439,18 @@ useEffect(() => {
           try {
             const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`);
             const json = await res.json();
-            if (!json.pc) return null;
-
+            if (!json.c && !json.pc) return null;
+            const currentPrice = json.c || json.pc;  // Prefer c (today's close) over pc (yesterday)
             return {
               symbol,
-              current: json.pc.toFixed(2),           // This is the official close
-              change: (json.pc - json.o).toFixed(2)   // Or use previous day close if you track it
+              current: currentPrice.toFixed(2),  // Today's close
+              change: (currentPrice - json.pc).toFixed(2)  // Change vs. previous close
             };
           } catch {
             return null;
           }
         })
       );
-
       const valid = closingQuotes.filter(Boolean);
       if (valid.length > 0) {
         setQuotes(valid);
@@ -489,20 +459,16 @@ useEffect(() => {
       }
     }
   };
-
   // Run immediately
   loadQuotes();
-
   // Only poll during/near market hours
   if (isMarketHours()) {
     interval = setInterval(loadQuotes, 300000); // every 5 min when open
   }
-
   return () => {
     if (interval) clearInterval(interval);
   };
 }, []);
-
   // Focus input after submit
   useEffect(() => {
     if (!gameOver && inputRef.current) {
@@ -511,7 +477,6 @@ useEffect(() => {
       }, 100);
     }
   }, [currentLevel, gameOver]);
-
   // Memoized handlers with useCallback
   const handleSubmit = useCallback((e) => {
     if (e) e.preventDefault();
@@ -593,18 +558,15 @@ useEffect(() => {
     }
     setCurrentLevel(currentLevel + 1);
   }, [gameOver, input, allTickers, questions, currentLevel, submittedAnswers, startTime]); // Dependencies for handleSubmit
-
   const handleOptionClick = useCallback((option) => {
     setInput(option.formatted);
     setAvailableOptions([]);
   }, []);
-
   const toggleDarkMode = useCallback(() => {
     const newMode = !darkMode;
     setDarkMode(newMode);
     localStorage.setItem('tickrDailyDarkMode', JSON.stringify(newMode));
   }, [darkMode]);
-
   const nextPuzzle = useCallback(() => {
     setGameOver(false);
     setCurrentLevel(0);
@@ -614,12 +576,10 @@ useEffect(() => {
     // Trigger re-selection via dep
     setPuzzleSeed(prev => prev + 1);
   }, []);
-
   const resetGame = useCallback(() => {
     localStorage.removeItem('dailyProgress');
     window.location.reload();
   }, []);
-
   const shareResults = useCallback(() => {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
     const won = submittedAnswers.some(a => a.isCorrect);
@@ -637,7 +597,6 @@ useEffect(() => {
       alert('Results copied to clipboard!');
     }
   }, [submittedAnswers, questions]);
-
   const shareToTwitter = useCallback(() => {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
     const won = submittedAnswers.some(a => a.isCorrect);
@@ -648,7 +607,6 @@ useEffect(() => {
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
     window.open(twitterUrl, '_blank');
   }, [submittedAnswers, questions]);
-
   useEffect(() => {
     const track = async () => {
       try {
@@ -678,7 +636,6 @@ useEffect(() => {
     };
     track();
   }, [gameMode]);
-
   // Update stats in one place
   const updateStats = useCallback((won, cluesUsed, timeElapsed = null) => {
     // Prevent double-counting today's daily puzzle
@@ -724,13 +681,11 @@ useEffect(() => {
       updateDailyStats({ won }).catch(() => {});
     }
   }, [gameMode, startTime]);
-
   const formatTime = useCallback((seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
   }, []);
-
   const getAchievements = useCallback(() => {
     const achievements = [];
     const dailyDist = stats.dailyGuessDistribution;
@@ -747,7 +702,6 @@ useEffect(() => {
     if (stats.overallFastestTime && stats.overallFastestTime < 30) achievements.push({ icon: '⚡', name: 'Speed Demon', desc: 'Fastest win under 30s (any mode)' });
     return achievements;
   }, [stats]);
-
   // GuessDistChart – now after theme is defined
   const GuessDistChart = useCallback(({ dist, maxClues }) => (
     <>
@@ -797,7 +751,6 @@ useEffect(() => {
       </div>
     </>
   ), [theme]); // Depend on theme object
-
   // ModeSelector – now after theme is defined
   const ModeSelector = useCallback(() => (
     <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -855,17 +808,14 @@ useEffect(() => {
       )}
     </div>
   ), [gameMode, difficulty, theme]);
-
   if(loading || !dailyTicker || !questions.length){
     return <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background: theme.bgColor }}>
       <div style={{ textAlign:'center', color:theme.mutedColor}}>Loading Market Data...</div>
     </div>;
   }
-
   const todayDate = new Date().toLocaleDateString('en-US',{ weekday:'long', month:'long', day:'numeric', year:'numeric' });
   const isWinner = submittedAnswers.some(a=>a.isCorrect);
   const numClues = questions.length;
-
   return (
     <div style={{ minHeight:'100vh', background: theme.bgColor, display:'flex', flexDirection:'column', alignItems:'center', padding:'2rem 1rem' }}>
       {/* Quotron */}
@@ -1604,5 +1554,4 @@ useEffect(() => {
     </div>
   );
 }
-
 export default App;
