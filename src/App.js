@@ -407,55 +407,104 @@ function App() {
     }
   }, [shake]);
 
-  useEffect(() => {
-    const loadQuotes = async () => {
-      try {
-        // Try Firestore first
-        const stockData = await fetchStocksFromFirestore();
-      
-        if (Object.keys(stockData).length > 0) {
-          console.log("✅ Loading quotes from Firestore");
-          let formattedQuotes = Object.entries(stockData).map(([symbol, data]) => ({
-            symbol,
-            current: data.currentPrice?.toFixed(2) || '0.00',
-            change: data.change?.toFixed(2) || '0.00'
-          }));
-        
-          // On mobile, show fewer stocks for faster rendering
-          if (window.innerWidth <= 768) {
-            formattedQuotes = formattedQuotes.slice(0, 10);
-          }
-        
-          setQuotes(formattedQuotes);
-        } else {
-          // Firestore empty, fetch directly from API
-          console.log("⚠️ Firestore empty, fetching from Finnhub API...");
-          const fetchedQuotes = await Promise.all(QUOTRON_TICKERS.map(async symbol => {
+useEffect(() => {
+  let interval = null;
+
+  const loadQuotes = async () => {
+    try {
+      // Always try Firestore first (you might already cache closing prices there)
+      const stockData = await fetchStocksFromFirestore();
+      if (Object.keys(stockData).length > 0 && stockData.lastUpdated) {
+        const updatedAt = new Date(stockData.lastUpdated);
+        const now = new Date();
+        const minutesSinceUpdate = (now - updatedAt) / 60000;
+
+        // If Firestore data is fresh (< 30 min old) → use it
+        if (minutesSinceUpdate < 30) {
+          console.log("Using cached closing prices from Firestore");
+          const formatted = Object.entries(stockData)
+            .filter(([k]) => k !== 'lastUpdated')
+            .map(([symbol, data]) => ({
+              symbol,
+              current: data.currentPrice?.toFixed(2) || data.close?.toFixed(2) || '0.00',
+              change: data.change?.toFixed(2) || '0.00'
+            }));
+          setQuotes(window.innerWidth <= 768 ? formatted.slice(0, 10) : formatted);
+          return;
+        }
+      }
+    } catch (e) {
+      console.log("Firestore unavailable, fetching live...");
+    }
+
+    // Main logic: decide whether to show live or closing prices
+    const now = new Date();
+    const isWeekend = now.getDay() === 0 || now.getDay() === 6;
+    const marketClosedToday = !isMarketHours();
+
+    if (!isWeekend && !marketClosedToday) {
+      // Market is OPEN → fetch live prices
+      console.log("Market open → fetching live prices");
+      const liveQuotes = await Promise.all(
+        QUOTRON_TICKERS.map(async (symbol) => {
+          try {
             const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`);
             const json = await res.json();
-            if (!json.c) return null;
+            if (!json.c && !json.pc) return null;
             return {
               symbol,
-              current: json.c.toFixed(2),
-              change: (json.c - json.pc).toFixed(2)
+              current: json.c?.toFixed(2) || json.pc?.toFixed(2),
+              change: json.c ? (json.c - json.pc).toFixed(2) : "0.00"
             };
-          }));
-          const validQuotes = fetchedQuotes.filter(q => q);
-          if (validQuotes.length > 0) {
-            setQuotes(validQuotes);
-          } else {
-            setQuotes(FALLBACK_QUOTES);
+          } catch {
+            return null;
           }
-        }
-      } catch (e) {
-        console.error("❌ Error loading quotes:", e);
-        setQuotes(FALLBACK_QUOTES);
+        })
+      );
+      const valid = liveQuotes.filter(Boolean);
+      setQuotes(valid.length > 0 ? valid : FALLBACK_QUOTES);
+    } else {
+      // Market CLOSED (after 4 PM, weekends, holidays) → show TODAY's closing prices
+      console.log("Market closed → showing official closing prices");
+      const closingQuotes = await Promise.all(
+        QUOTRON_TICKERS.map(async (symbol) => {
+          try {
+            const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`);
+            const json = await res.json();
+            if (!json.pc) return null;
+
+            return {
+              symbol,
+              current: json.pc.toFixed(2),           // This is the official close
+              change: (json.pc - json.o).toFixed(2)   // Or use previous day close if you track it
+            };
+          } catch {
+            return null;
+          }
+        })
+      );
+
+      const valid = closingQuotes.filter(Boolean);
+      if (valid.length > 0) {
+        setQuotes(valid);
+      } else {
+        setQuotes(FALLBACK_QUOTES); // ultimate fallback
       }
-    };
-    loadQuotes();
-    const interval = setInterval(loadQuotes, 300000);
-    return () => clearInterval(interval);
-  }, []);
+    }
+  };
+
+  // Run immediately
+  loadQuotes();
+
+  // Only poll during/near market hours
+  if (isMarketHours()) {
+    interval = setInterval(loadQuotes, 300000); // every 5 min when open
+  }
+
+  return () => {
+    if (interval) clearInterval(interval);
+  };
+}, []);
 
   // Focus input after submit
   useEffect(() => {
