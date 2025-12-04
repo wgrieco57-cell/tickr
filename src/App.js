@@ -142,64 +142,42 @@ function App() {
     return { bgColor, textColor, mutedColor, cardBg, borderColor };
   }, [darkMode]);
 
-  // ────────────────────────────────
-  // LOAD STATS + DARK MODE ONCE
+// ────────────────────────────────
+  // INITIALIZATION: One-time setup on mount
   // ────────────────────────────────
   useEffect(() => {
-    // Load saved stats
+    // 1. Load saved stats
     try {
       const saved = localStorage.getItem('tickrDailyStats');
       if (saved) {
         const parsed = JSON.parse(saved);
-        setStats(parsed); // ← This is the missing line!
+        setStats(parsed);
       }
     } catch (e) {
       console.error('Failed to load stats:', e);
-      localStorage.removeItem('tickrDailyStats'); // Corrupted → reset
+      localStorage.removeItem('tickrDailyStats');
     }
-    // Load dark mode
+
+    // 2. Load dark mode preference
     try {
       const savedDark = localStorage.getItem('tickrDailyDarkMode');
       if (savedDark !== null) {
         setDarkMode(JSON.parse(savedDark));
       }
     } catch (e) {}
-    // First-time visitor
+
+    // 3. First-time visitor check
     if (!localStorage.getItem('tickrDailyVisited')) {
       setShowHowToPlay(true);
       localStorage.setItem('tickrDailyVisited', 'true');
     }
-  }, []); // ← Runs only once on mount
 
-  // Mobile detection
-  useEffect(() => {
+    // 4. Mobile detection
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
-  // Auto-save stats to localStorage whenever they change
-  useEffect(() => {
-    try {
-      localStorage.setItem('tickrDailyStats', JSON.stringify(stats));
-    } catch (e) {
-      console.error('Failed to save stats:', e);
-    }
-  }, [stats]);
-
-  // New: Keyboard shortcuts for submit/next
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Enter' && !gameOver && input.trim()) handleSubmit();
-      if (e.key.toLowerCase() === 'n' && gameOver && gameMode === 'unlimited') nextPuzzle();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [input, gameOver, gameMode]);
-
-  // Load local JSON data
-  useEffect(() => {
+    // 5. Load game data
     Promise.all([
       fetch('/data.json').then(res => res.json()),
       fetch('/tickers.json').then(res => res.json())
@@ -219,465 +197,67 @@ function App() {
       console.error('Error loading data:', error);
       setLoading(false);
     });
-  }, []);
 
-  const auth = getAuth();
-  useEffect(() => {
+    // 6. Firebase anonymous auth
+    const auth = getAuth();
     signInAnonymously(auth)
-      .then(() => {
-        console.log("Signed in anonymously");
-      })
-      .catch((error) => {
-        console.error("Anonymous sign-in error:", error);
-      });
-  }, []);
+      .then(() => console.log("Signed in anonymously"))
+      .catch((error) => console.error("Anonymous sign-in error:", error));
 
-  // Select daily ticker and pick questions (deterministic for non-test mode)
-  useEffect(() => {
-    if (!data || data.length === 0) return;
-    // Reset game state for new puzzle/mode
-    setCurrentLevel(0);
-    setSubmittedAnswers([]);
-    setGameOver(false);
-    setInput("");
-    setAvailableOptions([]);
-    setStartTime(null);
-    const today = new Date().toDateString();
-    let selectedTicker;
-    let pickedQuestions = [];
-    // Sort data by ticker to ensure consistent order across loads/refreshes
-    const sortedData = [...data].sort((a, b) => a.ticker.localeCompare(b.ticker));
-    // Filter data based on mode (unlimited filters by difficulty tag)
-    let filteredData = sortedData;
-    if (gameMode === 'unlimited') {
-      filteredData = sortedData.filter(t => (t.difficulty || 'medium') === difficulty);
-    }
-    if (gameMode === 'daily') {
-      // Deterministic: same ticker and questions for everyone on the same day
-      const seed = hashCode(today);
-      const rnd = createSeededRandom(seed);
-      const randomIndex = Math.floor(rnd() * filteredData.length);
-      selectedTicker = filteredData[randomIndex];
-      for (let i = 1; i <= 5; i++) {
-        const levelQuestions = selectedTicker.questions[`level_${i}`];
-        if (levelQuestions) {
-          const qIndex = Math.floor(rnd() * levelQuestions.length);
-          const question = levelQuestions[qIndex];
-          pickedQuestions.push({
-            level: i,
-            question,
-            correct: selectedTicker.ticker,
-            answers: []
-          });
-        }
-      }
-      // Set the date flag to enable progress saving for today
-      localStorage.setItem('dailyDate', today);
-    } else {
-      // Unlimited: Random pick from filtered data
-      const randomIndex = Math.floor(Math.random() * filteredData.length);
-      selectedTicker = filteredData[randomIndex];
-      for (let i = 1; i <= 5; i++) {
-        const levelQuestions = selectedTicker.questions[`level_${i}`];
-        if (levelQuestions) {
-          const qIndex = Math.floor(Math.random() * levelQuestions.length);
-          const question = levelQuestions[qIndex];
-          pickedQuestions.push({
-            level: i,
-            question,
-            correct: selectedTicker.ticker,
-            answers: []
-          });
-        }
-      }
-    }
-    setDailyTicker(selectedTicker);
-    setQuestions(pickedQuestions);
-    // Load progress if same day (only for daily)
-    if (gameMode === 'daily') {
-      try {
-        const progressStr = localStorage.getItem('dailyProgress');
-        if (progressStr) {
-          const progress = JSON.parse(progressStr);
-          // Only load if matches today (via startTime date check)
-          if (progress.startTime) {
-            const progressDate = new Date(progress.startTime).toDateString();
-            if (progressDate === today) {
-              setCurrentLevel(progress.currentLevel);
-              setSubmittedAnswers(progress.submittedAnswers);
-              setGameOver(progress.gameOver);
-              // Update questions with loaded answers
-              const updatedQuestions = [...pickedQuestions];
-              progress.submittedAnswers.forEach(answer => {
-                const level = answer.level;
-                if (updatedQuestions[level - 1]) {
-                  updatedQuestions[level - 1].answers.push({ guess: answer.guess, isCorrect: answer.isCorrect });
-                }
-              });
-              setQuestions(updatedQuestions);
-              // Restore startTime
-              setStartTime(progress.startTime);
-              return; // Skip setting startTime
-            }
-          }
-        }
-      } catch (e) {
-        console.error('Error loading progress:', e);
-        localStorage.removeItem('dailyProgress');
-      }
-    }
-    setStartTime(Date.now()); // Only if new game
-  }, [data, gameMode, difficulty, puzzleSeed]);
-
-  // Update available options for autocomplete
-  useEffect(() => {
-    if (!input) {
-      setAvailableOptions([]);
-      return;
-    }
-    const alreadyGuessed = submittedAnswers.map(a => {
-      const parenIndex = a.guess.indexOf('(');
-      if (parenIndex > 0) {
-        return a.guess.substring(0, parenIndex).trim().toLowerCase();
-      }
-      return a.guess.toLowerCase();
-    });
-    const filtered = allTickers
-      .filter(t => {
-        const matchesSearch = t.symbol.toLowerCase().includes(input.toLowerCase()) ||
-                             t.company.toLowerCase().includes(input.toLowerCase());
-        const notGuessed = !alreadyGuessed.includes(t.symbol.toLowerCase());
-        return matchesSearch && notGuessed;
-      })
-      .sort((a,b) => {
-        if (a.symbol.toLowerCase() === input.toLowerCase()) return -1;
-        if (b.symbol.toLowerCase() === input.toLowerCase()) return 1;
-        if (a.symbol.toLowerCase().startsWith(input.toLowerCase())) return -1;
-        if (b.symbol.toLowerCase().startsWith(input.toLowerCase())) return 1;
-        return 0;
-      })
-      .slice(0,8);
-    setAvailableOptions(filtered);
-  }, [input, allTickers, submittedAnswers]);
-
-  // Auto-save progress after changes (only for daily)
-  useEffect(() => {
-    if (gameMode !== 'daily' || !dailyTicker || !startTime) return;
-    const today = new Date(startTime).toDateString();
-    const storedDate = localStorage.getItem('dailyDate');
-    if (storedDate === today) {
-      const progressToSave = {
-        currentLevel,
-        submittedAnswers,
-        gameOver,
-        startTime
-      };
-      localStorage.setItem('dailyProgress', JSON.stringify(progressToSave));
-    }
-  }, [currentLevel, submittedAnswers, gameOver, startTime, dailyTicker, gameMode]);
-
-  // Shake animation clear
-  useEffect(() => {
-    if (shake) {
-      const timer = setTimeout(() => setShake(false), 500);
-      return () => clearTimeout(timer);
-    }
-  }, [shake]);
-
-  // ✅ KEEP — NEW CORRECT VERSION
-function isMarketHours() {
-  const now = new Date();
-  const etDate = new Date(
-    now.toLocaleString("en-US", { timeZone: "America/New_York", hour12: false })
-  );
-
-  const day = etDate.getDay(); // 0=Sun, 6=Sat
-  if (day === 0 || day === 6) return false; // weekend
-
-  const hours = etDate.getHours();
-  const minutes = etDate.getMinutes();
-
-  const currentMins = hours * 60 + minutes;
-  const marketOpen = 9 * 60 + 30;
-  const marketClose = 16 * 60 + 0;
-
-  return currentMins >= marketOpen && currentMins < marketClose;
-}
-
-useEffect(() => {
-  let interval = null;
-
-  const loadQuotes = async () => {
-    try {
-      // Always try Firestore first (you might already cache closing prices there)
-      const stockData = await fetchStocksFromFirestore();
-      if (Object.keys(stockData).length > 0 && stockData.lastUpdated) {
-        const updatedAt = new Date(stockData.lastUpdated);
-        const now = new Date();
-        const minutesSinceUpdate = (now - updatedAt) / 60000;
-
-        // If Firestore data is fresh (< 30 min old) → use it
-        if (minutesSinceUpdate < 30) {
-          console.log("Using cached closing prices from Firestore");
-          const formatted = Object.entries(stockData)
-            .filter(([k]) => k !== 'lastUpdated')
-            .map(([symbol, data]) => ({
-              symbol,
-              current: data.currentPrice?.toFixed(2) || data.close?.toFixed(2) || '0.00',
-              change: data.change?.toFixed(2) || '0.00'
-            }));
-          setQuotes(window.innerWidth <= 768 ? formatted.slice(0, 10) : formatted);
-          return;
-        }
-      }
-    } catch (e) {
-      console.log("Firestore unavailable, fetching live...");
-    }
-
-    // Main logic: decide whether to show live or closing prices
-    const now = new Date();
-    const isWeekend = now.getDay() === 0 || now.getDay() === 6;
-    const marketClosedToday = !isMarketHours();
-
-    if (!isWeekend && !marketClosedToday) {
-      // Market is OPEN → fetch live prices
-      console.log("Market open → fetching live prices");
-      const liveQuotes = await Promise.all(
-        QUOTRON_TICKERS.map(async (symbol) => {
-          try {
-            const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`);
-            const json = await res.json();
-            if (!json.c && !json.pc) return null;
-            return {
-              symbol,
-              current: json.c?.toFixed(2) || json.pc?.toFixed(2),
-              change: json.c ? (json.c - json.pc).toFixed(2) : "0.00"
-            };
-          } catch {
-            return null;
-          }
-        })
-      );
-      const valid = liveQuotes.filter(Boolean);
-      setQuotes(valid.length > 0 ? valid : FALLBACK_QUOTES);
-    } else {
-      // Market CLOSED (after 4 PM, weekends, holidays) → show TODAY's closing prices
-      console.log("Market closed → showing official closing prices");
-      const closingQuotes = await Promise.all(
-        QUOTRON_TICKERS.map(async (symbol) => {
-          try {
-            const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`);
-            const json = await res.json();
-            if (!json.pc) return null;
-
-            return {
-              symbol,
-              current: json.pc.toFixed(2),           // This is the official close
-              change: (json.pc - json.o).toFixed(2)   // Or use previous day close if you track it
-            };
-          } catch {
-            return null;
-          }
-        })
-      );
-
-      const valid = closingQuotes.filter(Boolean);
-      if (valid.length > 0) {
-        setQuotes(valid);
-      } else {
-        setQuotes(FALLBACK_QUOTES); // ultimate fallback
-      }
-    }
-  };
-
-  // Run immediately
-  loadQuotes();
-
-  // Only poll during/near market hours
-  if (isMarketHours()) {
-    interval = setInterval(loadQuotes, 300000); // every 5 min when open
-  }
-
-  return () => {
-    if (interval) clearInterval(interval);
-  };
-}, []);
-
-  // Focus input after submit
-  useEffect(() => {
-    if (!gameOver && inputRef.current) {
-      setTimeout(() => {
-        inputRef.current.focus();
-      }, 100);
-    }
-  }, [currentLevel, gameOver]);
-
-  // Memoized handlers with useCallback
-  const handleSubmit = useCallback((e) => {
-    if (e) e.preventDefault();
-    if (gameOver || !input.trim()) return;
-    let tickerToCheck = input.trim().toLowerCase();
-    // Auto-complete if exact symbol match
-    const matchedTicker = allTickers.find(t => t.symbol.toLowerCase() === tickerToCheck);
-    if (matchedTicker) {
-      setInput(matchedTicker.formatted);
-      // Submit the formatted version
-      const formattedGuess = matchedTicker.formatted;
-      const lowerCheck = matchedTicker.symbol.toLowerCase();
-      // Check for duplicate
-      const alreadyGuessedSymbols = submittedAnswers.map(a => {
-        const paren = a.guess.indexOf('(');
-        return paren > 0 ? a.guess.substring(0, paren).trim().toLowerCase() : a.guess.toLowerCase();
-      });
-      if (alreadyGuessedSymbols.includes(lowerCheck)) {
-        setShake(true);
-        setInput("");
-        setAvailableOptions([]);
-        return;
-      }
-      const correctTicker = questions[currentLevel].correct;
-      const isCorrect = matchedTicker.symbol.toUpperCase() === correctTicker.toUpperCase();
-      const updatedQuestions = [...questions];
-      updatedQuestions[currentLevel].answers.push({ guess: formattedGuess, isCorrect });
-      setQuestions(updatedQuestions);
-      setSubmittedAnswers(prev => [...prev, { level: currentLevel + 1, guess: formattedGuess, isCorrect }]);
-      setInput("");
-      setAvailableOptions([]);
-      if (isCorrect || currentLevel === questions.length -1) {
-        setGameOver(true);
-        const timeElapsed = startTime ? Math.floor((Date.now() - startTime)/1000) : 0;
-        if (isCorrect) confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-        updateStats(isCorrect, currentLevel + 1);
-        return;
-      }
-      // Advance if not correct (inside matchedTicker if)
-      setCurrentLevel(currentLevel + 1);
-      return;
-    }
-    // If no exact match, check if it's a partial or company name, but for now, treat as is
-    const parenIndex = input.indexOf('(');
-    if (parenIndex > 0) {
-      tickerToCheck = input.substring(0, parenIndex).trim().toLowerCase();
-    } else {
-      tickerToCheck = input.trim().toLowerCase();
-    }
-    const lowerCheck = tickerToCheck;
-    // Check for duplicate guess
-    const alreadyGuessedSymbols = submittedAnswers.map(a => {
-      const paren = a.guess.indexOf('(');
-      return paren > 0 ? a.guess.substring(0, paren).trim().toLowerCase() : a.guess.toLowerCase();
-    });
-    if (alreadyGuessedSymbols.includes(lowerCheck)) {
-      setShake(true);
-      setInput("");
-      setAvailableOptions([]);
-      return;
-    }
-    const correctTicker = questions[currentLevel].correct;
-    const isCorrect = tickerToCheck.toUpperCase() === correctTicker.toUpperCase();
-    const updatedQuestions = [...questions];
-    updatedQuestions[currentLevel].answers.push({ guess: input.trim(), isCorrect });
-    setQuestions(updatedQuestions);
-    setSubmittedAnswers(prev => [...prev, { level: currentLevel + 1, guess: input.trim(), isCorrect }]);
-    setInput("");
-    setAvailableOptions([]);
-    if (isCorrect || currentLevel === questions.length -1) {
-      setGameOver(true);
-      // Confetti on win
-      if (isCorrect) {
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-      }
-      // Defer stats update to avoid double-save (only for daily)
-      updateStats(isCorrect, currentLevel + 1);
-      return;
-    }
-    setCurrentLevel(currentLevel + 1);
-  }, [gameOver, input, allTickers, questions, currentLevel, submittedAnswers, startTime]); // Dependencies for handleSubmit
-
-  const handleOptionClick = useCallback((option) => {
-    setInput(option.formatted);
-    setAvailableOptions([]);
-  }, []);
-
-  const toggleDarkMode = useCallback(() => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    localStorage.setItem('tickrDailyDarkMode', JSON.stringify(newMode));
-  }, [darkMode]);
-
-  const nextPuzzle = useCallback(() => {
-    setGameOver(false);
-    setCurrentLevel(0);
-    setSubmittedAnswers([]);
-    setInput("");
-    setAvailableOptions([]);
-    // Trigger re-selection via dep
-    setPuzzleSeed(prev => prev + 1);
-  }, []);
-
-  const resetGame = useCallback(() => {
-    localStorage.removeItem('dailyProgress');
-    window.location.reload();
-  }, []);
-
-  const shareResults = useCallback(() => {
-    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
-    const won = submittedAnswers.some(a => a.isCorrect);
-    const cluesUsed = won ? submittedAnswers.length : questions.length;
-    const now = new Date();
-    const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
-    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${window.location.href}`;
-    if (navigator.share) {
-      navigator.share({ text }).catch(() => {
-        navigator.clipboard.writeText(text);
-        alert('Results copied to clipboard!');
-      });
-    } else {
-      navigator.clipboard.writeText(text);
-      alert('Results copied to clipboard!');
-    }
-  }, [submittedAnswers, questions]);
-
-  const shareToTwitter = useCallback(() => {
-    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
-    const won = submittedAnswers.some(a => a.isCorrect);
-    const cluesUsed = won ? submittedAnswers.length : questions.length;
-    const now = new Date();
-    const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
-    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${window.location.href}`;
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-    window.open(twitterUrl, '_blank');
-  }, [submittedAnswers, questions]);
-
-  useEffect(() => {
-    const track = async () => {
+    // 7. Analytics tracking
+    const trackVisit = async () => {
       try {
         const today = new Date().toISOString().split('T')[0];
-        // Firestore references
         const dailyRef = doc(db, 'analytics', `daily_${today}`);
         const globalRef = doc(db, 'analytics', 'global');
-        // Increment today's stats
+        
         await setDoc(dailyRef, { plays: increment(1) }, { merge: true });
-        // Ensure global doc exists
+        
         try {
           await updateDoc(globalRef, { totalPlays: increment(1) });
         } catch {
           await setDoc(globalRef, { totalPlays: 1, uniqueUsers: 0 });
         }
-        // Track unique users per browser
+        
         if (!localStorage.getItem('td_visited')) {
           localStorage.setItem('td_visited', 'true');
           await updateDoc(globalRef, { uniqueUsers: increment(1) });
         }
-        // Firebase Analytics events
+        
         logEvent(analytics, 'page_view', { page_path: window.location.pathname });
         logEvent(analytics, 'visit_tickr', { mode: gameMode });
       } catch (e) {
         console.log("Analytics offline (normal in dev)", e);
       }
     };
-    track();
-  }, [gameMode]);
+    trackVisit();
+
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []); // Only runs once on mount
+
+  // ────────────────────────────────
+  // AUTO-SAVE: Stats persistence
+  // ────────────────────────────────
+  useEffect(() => {
+    try {
+      localStorage.setItem('tickrDailyStats', JSON.stringify(stats));
+    } catch (e) {
+      console.error('Failed to save stats:', e);
+    }
+  }, [stats]);
+
+  // ────────────────────────────────
+  // KEYBOARD SHORTCUTS
+  // ────────────────────────────────
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Enter' && !gameOver && input.trim()) handleSubmit();
+      if (e.key.toLowerCase() === 'n' && gameOver && gameMode === 'unlimited') nextPuzzle();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [input, gameOver, gameMode]);
 
   // Update stats in one place
   const updateStats = useCallback((won, cluesUsed, timeElapsed = null) => {
