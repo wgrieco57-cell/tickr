@@ -7690,6 +7690,866 @@
           "I operate White Barn stores as an upscale home fragrance concept separate from my core brand positioning strategy."
         ]
       }
+    },
+    {
+      "ticker": "PLTR",
+      "company": "Palantir Technologies Inc.",
+      "sector": "Technology",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm a software company specializing in big data analytics and helping organizations make sense of complex information.",
+          "I build data integration and analysis platforms for government agencies and large enterprises to solve difficult problems.",
+          "I create software that helps organizations analyze massive amounts of data to find patterns and make critical decisions.",
+          "I'm a technology company providing data analytics platforms to government intelligence agencies and commercial enterprises worldwide.",
+          "I develop platforms that aggregate disparate data sources to help organizations discover insights and combat national security threats."
+        ],
+        "level_2": [
+          "My two main platforms are Gotham for government and defense clients and Foundry for commercial enterprise customers.",
+          "I generate revenue through software subscriptions and services helping clients integrate data from multiple sources for analysis.",
+          "My software has been used in counterterrorism operations, disaster relief coordination, and fraud detection across various industries.",
+          "I work closely with intelligence agencies, defense departments, and law enforcement to analyze data and identify threats.",
+          "My commercial clients include major corporations in healthcare, finance, and manufacturing seeking to optimize operations with data."
+        ],
+        "level_3": [
+          "I was founded in 2003 by Peter Thiel, Alex Karp, Joe Lonsdale, Stephen Cohen, and Nathan Gettings.",
+          "My name comes from the seeing stones in fantasy literature that allow users to see events in distant places.",
+          "I'm headquartered in Denver, Colorado, after relocating from Palo Alto, California, where I was originally founded.",
+          "I operated in secrecy for years, funded primarily by venture capital and CIA's investment arm In-Q-Tel.",
+          "My co-founder Peter Thiel also co-founded a major online payment company and was an early investor in social media."
+        ],
+        "level_4": [
+          "I went public through a direct listing in September 2020, avoiding a traditional IPO process for my debut.",
+          "I've been controversial due to my work with Immigration and Customs Enforcement and military applications of my technology.",
+          "I helped locate Osama bin Laden and have been credited with preventing terrorist attacks through data analysis capabilities.",
+          "I've faced criticism from employees and activists over contracts with government agencies and defense intelligence work worldwide.",
+          "My CEO Alex Karp has a PhD in philosophy and is known for unconventional leadership style and outspoken commentary."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my company name and trades on the New York Stock Exchange.",
+          "I'm named after the 'seeing stones' from a famous fantasy book series about Middle Earth and hobbits.",
+          "My software was reportedly used in the operation that led to finding a notorious terrorist leader in 2011.",
+          "I became profitable for the first time in 2023 and joined the S&P 500 index in September 2024.",
+          "My logo features a stylized geometric design resembling interconnected data nodes in black and white coloring scheme."
+        ]
+      }
+    },
+    {
+      "ticker": "MRNA",
+      "company": "Moderna, Inc.",
+      "sector": "Healthcare",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm a biotechnology company pioneering messenger RNA technology to create vaccines and therapeutic treatments for diseases.",
+          "I develop medicines and vaccines using genetic instructions that tell cells to produce proteins to fight diseases.",
+          "I'm a pharmaceutical company using innovative mRNA technology to develop vaccines and treatments for various medical conditions.",
+          "I create vaccines and therapies by delivering genetic code to cells, instructing them to produce disease-fighting proteins.",
+          "I'm a biotech firm that became a household name during a global pandemic for my vaccine development."
+        ],
+        "level_2": [
+          "My COVID-19 vaccine was one of the first authorized for emergency use and generated billions in revenue.",
+          "I generate revenue primarily from vaccine sales while investing heavily in research and development of new mRNA therapies.",
+          "My technology platform can potentially create vaccines and treatments for cancer, infectious diseases, and rare genetic disorders.",
+          "I'm developing mRNA-based treatments for influenza, HIV, cancer, and cardiovascular diseases using the same platform technology.",
+          "My vaccine requires ultra-cold storage temperatures initially, though I've since developed more stable formulations for distribution."
+        ],
+        "level_3": [
+          "I was founded in 2010 by Derrick Rossi, Robert Langer, Kenneth Chien, and venture capitalist Noubar Afeyan.",
+          "My company name combines 'modified' and 'RNA' to describe my core technology platform for medicine development.",
+          "I'm headquartered in Cambridge, Massachusetts, in the heart of the biotech innovation hub near Harvard and MIT.",
+          "I spent years developing mRNA technology in relative obscurity before the pandemic thrust me into the global spotlight.",
+          "I received early funding from the U.S. government's DARPA and BARDA programs to develop pandemic response capabilities."
+        ],
+        "level_4": [
+          "I went public in December 2018 at $23 per share, years before my COVID-19 vaccine brought worldwide recognition.",
+          "My market cap exceeded $150 billion at peak pandemic vaccine demand in 2021 before declining significantly as demand normalized.",
+          "I partnered with the National Institutes of Health to develop my COVID vaccine in record time using existing technology.",
+          "I delivered over 800 million COVID vaccine doses worldwide generating approximately $18 billion in revenue in 2021.",
+          "My CEO Stéphane Bancel previously led French diagnostics company bioMérieux before joining me as founding CEO in 2011."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation referencing messenger RNA technology and trades on the NASDAQ exchange.",
+          "My COVID-19 vaccine was authorized in the U.S. in December 2020, one week after a competitor's vaccine.",
+          "I'm developing a personalized cancer vaccine that showed promising results in melanoma trials when combined with immunotherapy.",
+          "My headquarters building features laboratories named after pioneering scientists in genetics and molecular biology research throughout history.",
+          "I've never brought a product to market before my COVID vaccine, making my pandemic success unprecedented in biotech."
+        ]
+      }
+    },
+    {
+      "ticker": "CHWY",
+      "company": "Chewy, Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm an online retailer specializing in pet products including food, toys, medications, and supplies delivered to homes.",
+          "I operate an e-commerce platform exclusively focused on pet products and services for dogs, cats, and other animals.",
+          "I'm a pet supplies company selling everything pet owners need through my website with fast home delivery.",
+          "I provide online shopping for pet food, treats, toys, and healthcare products with convenient subscription delivery options.",
+          "I'm the largest online retailer dedicated entirely to pet products, competing with traditional pet stores and general retailers."
+        ],
+        "level_2": [
+          "My platform offers over 100,000 pet products from 3,000+ brands including prescription medications through my online pharmacy.",
+          "I generate revenue from product sales with Autoship subscription programs providing recurring revenue and customer retention benefits.",
+          "My business model emphasizes customer service with 24/7 support, easy returns, and personalized recommendations for pet owners.",
+          "I offer automatic delivery subscriptions where customers receive pet food and supplies regularly at discounted prices for convenience.",
+          "My services include telehealth consultations with veterinarians, pet insurance, and personalized shopping assistance for pet parents nationwide."
+        ],
+        "level_3": [
+          "I was founded in 2011 by Ryan Cohen and Michael Day who wanted to make pet shopping more convenient.",
+          "My name evokes the idea of chewing, something pets do, creating a playful brand identity for my company.",
+          "I'm headquartered in Dania Beach, Florida, operating massive fulfillment centers across the United States for fast delivery.",
+          "I grew rapidly by focusing exclusively on pets when other retailers treated pet supplies as just another category.",
+          "I was acquired by a major retail chain in 2017 for $3.35 billion in the largest e-commerce acquisition ever."
+        ],
+        "level_4": [
+          "I went public in June 2019 after being spun off from my parent company, trading independently on my own.",
+          "I was acquired by PetSmart for $3.35 billion in 2017 before being spun back out as a separate public company.",
+          "I'm known for exceptional customer service including hand-written holiday cards and sympathy flowers when pets pass away.",
+          "I compete directly with Amazon, Walmart, and traditional pet stores while maintaining focus on superior customer experience.",
+          "My revenue exceeded $10 billion annually by 2023, demonstrating massive growth in the pet e-commerce market nationwide."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my brand name and trades on the New York Stock Exchange.",
+          "My logo features a smiling cardboard box with my brand name, representing the joy of receiving pet supplies.",
+          "I send personalized pet portraits and birthday cards to customers, creating emotional connections with pet owners nationwide.",
+          "My founder Ryan Cohen later sold his stake and became chairman of a video game retailer involved in meme stock events.",
+          "I built a cult-like following among pet owners who appreciate my customer service approach and dedication to animals."
+        ]
+      }
+    },
+    {
+      "ticker": "W",
+      "company": "Wayfair Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm an online retailer specializing in home furnishings including furniture, décor, and household goods for every room.",
+          "I operate an e-commerce platform selling furniture, home décor, lighting, kitchenware, and outdoor living products exclusively online.",
+          "I'm one of the largest online-only furniture and home goods retailers in North America and Europe.",
+          "I provide a massive selection of furniture and home products from thousands of suppliers delivered directly to customers.",
+          "I'm an e-commerce company focused entirely on home furnishings, competing with traditional furniture stores and department stores."
+        ],
+        "level_2": [
+          "My platform offers over 30 million products across home furnishings, décor, housewares, and home improvement categories online.",
+          "I generate revenue by taking a cut of sales made through my marketplace connecting suppliers with consumers nationwide.",
+          "My business model operates without physical stores or inventory, connecting manufacturers directly with customers through my platform.",
+          "I offer multiple branded shopping experiences including my main site plus specialized brands for different customer preferences.",
+          "My services include 3D room planning tools, augmented reality features, and design services helping customers visualize furniture placement."
+        ],
+        "level_3": [
+          "I was founded in 2002 by Niraj Shah and Steve Conine as a small online furniture retailer initially.",
+          "My name suggests finding your way through home furnishing options, helping customers navigate the shopping journey easily.",
+          "I'm headquartered in Boston, Massachusetts, operating as a technology-driven e-commerce platform for home goods nationwide.",
+          "I started by operating hundreds of niche websites before consolidating under my main brand name in 2011.",
+          "I grew rapidly by offering extensive selection, competitive pricing, and user-friendly shopping experiences entirely online without stores."
+        ],
+        "level_4": [
+          "I went public in October 2014 with an IPO price of $29 per share on the New York Stock Exchange.",
+          "I've struggled with profitability despite massive revenue growth, investing heavily in marketing and logistics infrastructure to scale.",
+          "I faced criticism in 2019 when employees protested my sale of furniture to detention facilities at the border.",
+          "I acquired European home furnishings sites Joss & Main and AllModern while launching specialty brands for different segments.",
+          "My business boomed during COVID-19 lockdowns as people invested in home improvements and furniture for remote work setups."
+        ],
+        "level_5": [
+          "My ticker symbol is a single letter 'W' and trades on the New York Stock Exchange, one of few single-letter tickers.",
+          "My memorable jingle 'Wayfair, you've got just what I need' became widely known through extensive television advertising campaigns.",
+          "I operate brands including Joss & Main, AllModern, Birch Lane, and Perigold targeting different customer demographics and styles.",
+          "My co-founders Niraj Shah and Steve Conine remain CEO and co-chairman, leading the company since founding in 2002.",
+          "I built one of the world's largest online selections of home furnishings without owning inventory through my supplier network."
+        ]
+      }
+    },
+    {
+      "ticker": "AFRM",
+      "company": "Affirm Holdings, Inc.",
+      "sector": "Financial Services",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm a financial technology company offering buy-now-pay-later services allowing consumers to split purchases into installment payments.",
+          "I provide point-of-sale lending letting shoppers pay for purchases over time with transparent terms and no hidden fees.",
+          "I'm a fintech company enabling consumers to finance purchases with fixed monthly payments instead of paying upfront costs.",
+          "I offer an alternative to credit cards by providing installment loans for online and in-store purchases at checkout.",
+          "I partner with retailers to offer financing options at checkout, making expensive purchases more affordable with payment plans."
+        ],
+        "level_2": [
+          "My platform offers payment plans ranging from interest-free pay-in-four options to longer-term loans with transparent interest rates.",
+          "I generate revenue from merchant fees paid by retailers and interest charged on longer-term loans to consumers nationwide.",
+          "My business model involves underwriting credit decisions in real-time at checkout, approving or declining financing instantly for shoppers.",
+          "I partner with major retailers including Amazon, Walmart, Target, and Shopify merchants to offer financing at checkout worldwide.",
+          "My technology performs instant credit checks and shows consumers exactly what they'll pay with no hidden fees or surprises."
+        ],
+        "level_3": [
+          "I was founded in 2012 by Max Levchin, a co-founder of an early online payment company that revolutionized e-commerce.",
+          "My name reflects my mission to provide honest, transparent financial services that customers can trust and rely upon.",
+          "I'm headquartered in San Francisco, California, operating as a technology-first approach to consumer lending and payments.",
+          "I launched publicly in 2013 after securing partnerships with major online retailers seeking alternative payment options for customers.",
+          "My founder wanted to create an honest alternative to credit cards that penalize customers with fees and complex terms."
+        ],
+        "level_4": [
+          "I went public in January 2021 with a direct listing, achieving a valuation exceeding $12 billion on day one.",
+          "I partnered with Amazon in 2021 to offer installment payment options to its massive customer base nationwide and internationally.",
+          "I acquired Returnly in 2020 to enable instant refunds for customers returning merchandise before physical items are received.",
+          "I've faced increasing competition from traditional payment companies and tech giants launching their own buy-now-pay-later services recently.",
+          "My stock price has been volatile, falling significantly from IPO highs amid concerns about credit losses and competition."
+        ],
+        "level_5": [
+          "My ticker symbol is a five-letter abbreviation of my brand name and trades on the NASDAQ exchange.",
+          "My founder Max Levchin was previously co-founder and CTO of an online payment pioneer that eBay acquired in 2002.",
+          "I use machine learning and alternative data to approve more customers than traditional credit checks while managing risk.",
+          "My logo features a simple wordmark in black, emphasizing transparency and straightforward communication with consumers about terms.",
+          "I differentiate from competitors by showing full payment schedules upfront and never charging late fees to customers who miss payments."
+        ]
+      }
+    },
+    {
+      "ticker": "MTCH",
+      "company": "Match Group, Inc.",
+      "sector": "Communication Services",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I operate the world's largest portfolio of online dating platforms helping millions of people find relationships and connections.",
+          "I own multiple dating apps and websites connecting people seeking romantic relationships, friendships, and casual encounters worldwide.",
+          "I'm the leading provider of dating products globally, operating apps and sites in over 40 languages and 190 countries.",
+          "I provide online dating services through multiple brand names catering to different demographics, preferences, and relationship goals internationally.",
+          "I'm a technology company building platforms where people meet, chat, and form relationships through mobile apps and websites."
+        ],
+        "level_2": [
+          "My portfolio includes popular apps known for swiping, detailed profiles, LGBTQ+ focus, and serious relationship matching services.",
+          "I generate revenue primarily through subscriptions and à la carte features like super likes, boosts, and premium profile visibility.",
+          "My business operates on a freemium model where basic features are free but enhanced experiences require paid subscriptions.",
+          "I own over 45 brands serving different markets from casual dating to serious relationships to specific religious or ethnic communities.",
+          "My platforms use algorithms, user preferences, and location data to suggest potential matches and facilitate connections between users."
+        ],
+        "level_3": [
+          "I was spun off as an independent company in 2020 from a media conglomerate that previously owned me.",
+          "My flagship brand was launched in 1995, becoming one of the first online dating websites in internet history.",
+          "I'm headquartered in Dallas, Texas, overseeing my global portfolio of dating brands and products from corporate offices.",
+          "I acquired numerous dating platforms over the years including a swipe-based app that revolutionized mobile dating culture.",
+          "My company grew through aggressive acquisitions, buying competitors and innovative startups to dominate the online dating market."
+        ],
+        "level_4": [
+          "I own a popular swipe-based dating app acquired in 2017 that became synonymous with modern mobile dating culture.",
+          "I separated from IAC in 2020, becoming a standalone publicly traded company focused entirely on dating products.",
+          "I've faced antitrust scrutiny over my market dominance, with critics arguing I own too many dating platforms reducing competition.",
+          "My largest app by revenue uses a swipe-right mechanism and was initially marketed toward college students exclusively.",
+          "I've invested in AI and video features to enhance user experiences and differentiate my apps from new competitors."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation referencing matching people together and trades on the NASDAQ exchange.",
+          "I own Tinder, Hinge, OkCupid, Plenty of Fish, and many other dating platforms serving hundreds of millions worldwide.",
+          "My CEO Bernard Kim took over in 2022 after previous leadership faced challenges with slowing growth and competition.",
+          "I generate over $3 billion in annual revenue primarily from Tinder subscriptions and à la carte feature purchases globally.",
+          "My apps collectively facilitate millions of matches daily, fundamentally changing how people meet romantic partners in modern society."
+        ]
+      }
+    },
+    {
+      "ticker": "BMBL",
+      "company": "Bumble Inc.",
+      "sector": "Communication Services",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm a dating app company where women must make the first move when matched with potential romantic partners.",
+          "I operate dating and social networking apps emphasizing women's empowerment and safety in online dating experiences worldwide.",
+          "I'm a technology company building apps for dating, friendships, and professional networking with a women-first approach to connections.",
+          "I provide dating platforms where women control the conversation, differentiating myself from traditional dating app experiences globally.",
+          "I'm a social networking company focused on empowering women to make meaningful connections in dating and friendship contexts."
+        ],
+        "level_2": [
+          "My main app requires women to send the first message within 24 hours of matching with men.",
+          "I generate revenue through subscriptions offering features like unlimited swipes, advanced filters, and seeing who liked your profile.",
+          "My business operates multiple apps including my flagship dating app, a friendship app, and a professional networking platform.",
+          "I offer premium features like SuperSwipe, Spotlight, and travel mode for users willing to pay for enhanced experiences.",
+          "My platform emphasizes safety, verification, and respectful behavior with photo verification and AI detecting inappropriate messages automatically."
+        ],
+        "level_3": [
+          "I was founded in 2014 by Whitney Wolfe Herd after she left another dating app following harassment and discrimination.",
+          "My name references the sound bees make and my logo features a bee, symbolizing community and collaboration in nature.",
+          "I'm headquartered in Austin, Texas, and became the first woman-led company to go public in 2021 at launch.",
+          "My founder previously worked at a major competitor before leaving and creating a women-centric alternative to existing dating apps.",
+          "I launched with a mission to end misogyny and create empowering connections for women in the dating world."
+        ],
+        "level_4": [
+          "I went public in February 2021 with a valuation exceeding $13 billion, making my founder a billionaire at age 31.",
+          "My IPO made Whitney Wolfe Herd the youngest woman to take a company public in the United States at the time.",
+          "I acquired French dating app Fruitz in 2022 and expanded internationally while facing competition from established dating platforms.",
+          "I launched Bumble BFF for finding friendships and Bumble Bizz for professional networking, expanding beyond romantic dating exclusively.",
+          "My stock price fell significantly after going public as growth slowed and competition from other apps intensified in recent years."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my brand name and trades on the NASDAQ exchange.",
+          "My signature yellow and black color scheme with a bee logo is instantly recognizable in dating app stores.",
+          "I have over 50 million registered users across 150 countries worldwide as of recent company reports.",
+          "My founder Whitney Wolfe Herd stepped down as CEO in 2024 after leading the company since its founding.",
+          "I differentiate by requiring women to message first in heterosexual matches, flipping traditional dating dynamics intentionally and purposefully."
+        ]
+      }
+    },
+    {
+      "ticker": "PINS",
+      "company": "Pinterest, Inc.",
+      "sector": "Communication Services",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm a visual discovery platform where users find and save ideas for recipes, home décor, fashion, and projects.",
+          "I operate a social media platform focused on inspiration, discovery, and planning rather than social networking and personal updates.",
+          "I'm a visual search engine where people discover ideas, create collections, and plan future projects through images.",
+          "I provide a platform for discovering ideas and inspiration through images organized into collections called boards by users.",
+          "I'm a technology company helping people find creative ideas and plan projects through visual discovery and bookmarking tools."
+        ],
+        "level_2": [
+          "My platform allows users to save or 'pin' images to themed boards for wedding planning, recipes, crafts, and more.",
+          "I generate revenue primarily through advertising where businesses promote their products as users browse inspirational content relevant to interests.",
+          "My business model focuses on shopping and discovery, with users having high purchase intent compared to other social platforms.",
+          "I offer shopping features allowing users to buy products directly from pins, turning inspiration into transactions seamlessly for merchants.",
+          "My algorithm recommends content based on user interests, past activity, and what they're planning or considering purchasing soon."
+        ],
+        "level_3": [
+          "I was founded in 2010 by Ben Silbermann, Evan Sharp, and Paul Sciarra in a small apartment in California.",
+          "My name combines 'pin' and 'interest' describing the core action of saving interesting content to virtual boards.",
+          "I'm headquartered in San Francisco, California, in the South of Market neighborhood with offices worldwide today.",
+          "I launched as an invite-only platform and grew slowly before exploding in popularity among women planning weddings and projects.",
+          "My founders initially struggled to gain traction, with growth accelerating after focusing on design, home décor, and lifestyle categories."
+        ],
+        "level_4": [
+          "I went public in April 2019 at $19 per share with a valuation around $12 billion on the NYSE.",
+          "I reached over 450 million monthly active users worldwide, with particularly strong engagement among millennial and Gen Z women.",
+          "I've expanded internationally while facing challenges monetizing users outside the United States where advertising markets are smaller.",
+          "I introduced features like Story Pins, video content, and Idea Pins to compete with other visual social platforms.",
+          "I've been a takeover target with rumors of acquisition discussions with multiple tech companies over the years regularly."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my platform name and trades on the New York Stock Exchange.",
+          "My distinctive red logo features a stylized letter 'P' that resembles a push pin used on bulletin boards.",
+          "I'm particularly popular for wedding planning with millions of users creating boards for their big day annually worldwide.",
+          "My user base is approximately 60% women, making me valuable to advertisers targeting female consumers and shoppers.",
+          "I introduced the Lens camera feature using visual search to identify objects in photos and suggest similar products."
+        ]
+      }
+    },
+    {
+      "ticker": "WDAY",
+      "company": "Workday, Inc.",
+      "sector": "Technology",
+      "difficulty": "hard",
+      "questions": {
+        "level_1": [
+          "I'm an enterprise cloud software company providing human resources and financial management applications to large organizations globally.",
+          "I build cloud-based software helping companies manage employees, payroll, recruiting, and financial planning through integrated platforms.",
+          "I provide HR management software, financial systems, and analytics tools delivered entirely through the cloud for enterprises.",
+          "I'm a technology company offering workforce management, talent acquisition, and financial planning solutions for large corporations worldwide.",
+          "I develop enterprise resource planning software focused on human capital management and finance delivered as cloud services."
+        ],
+        "level_2": [
+          "My platform includes human capital management, payroll, benefits administration, recruiting, and financial management modules for enterprises.",
+          "I generate revenue through subscription fees for my cloud-based software with multi-year contracts with large corporate clients.",
+          "My business serves over 10,000 organizations including Fortune 500 companies managing millions of employees through my systems.",
+          "I compete with traditional on-premise ERP vendors by offering modern cloud-native software with better user experiences and flexibility.",
+          "My software helps companies with workforce planning, compensation management, time tracking, and financial consolidation in one integrated platform."
+        ],
+        "level_3": [
+          "I was founded in 2005 by Dave Duffield and Aneel Bhusri, veterans from a previous enterprise software company.",
+          "My name reflects the concept that work happens every day and my software supports those daily business operations.",
+          "I'm headquartered in Pleasanton, California, in the San Francisco Bay Area technology hub near Silicon Valley.",
+          "My founders previously created an HR software company acquired for billions before starting me with similar vision.",
+          "I disrupted traditional enterprise software by building cloud-native applications when competitors relied on legacy on-premise systems exclusively."
+        ],
+        "level_4": [
+          "I went public in October 2012 with an IPO price of $28 per share on the NASDAQ exchange.",
+          "I acquired Adaptive Insights for $1.55 billion in 2018 to expand my financial planning and analytics capabilities significantly.",
+          "I've expanded beyond HR into enterprise resource planning, competing directly with German software giant for large enterprise customers.",
+          "I maintain a distinctive company culture with customer conference called Rising featuring concerts and entertainment for attendees annually.",
+          "My co-founder Aneel Bhusri serves as CEO while Dave Duffield chairs the board after previously founding PeopleSoft together."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my company name and trades on the NASDAQ exchange.",
+          "I'm known for my user-friendly interface compared to traditional enterprise software that's often clunky and difficult to navigate.",
+          "My annual customer conference Rising attracts thousands of attendees with musical performances from major artists like Metallica and U2.",
+          "I've never been profitable on a GAAP basis despite billions in revenue, reinvesting heavily in product development and sales.",
+          "My logo features an orange and white color scheme with a simple wordmark design emphasizing modern, clean branding."
+        ]
+      }
+    },
+    {
+      "ticker": "SKX",
+      "company": "Skechers U.S.A., Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm a global footwear company designing and marketing casual and athletic shoes for men, women, and children.",
+          "I manufacture and sell comfortable lifestyle sneakers, performance shoes, and casual footwear through retail stores and wholesale partners.",
+          "I'm an American footwear brand known for comfortable shoes, memory foam insoles, and athletic lifestyle products worldwide.",
+          "I design athletic and casual shoes emphasizing comfort and value, selling through my own stores and major retailers.",
+          "I'm a shoe company offering a wide range of footwear from performance running shoes to casual slip-ons at accessible prices."
+        ],
+        "level_2": [
+          "My product lines include athletic performance shoes, casual sneakers, sandals, boots, and dress shoes across multiple categories.",
+          "I generate revenue through wholesale distribution to retailers and direct-to-consumer sales through my own branded retail stores globally.",
+          "My business operates in over 180 countries with thousands of retail stores including concept stores, factory outlets, and partners.",
+          "I offer shoes featuring my signature memory foam cushioning technology providing comfort at lower price points than premium brands.",
+          "My footwear caters to various activities including walking, running, training, golf, and casual wear for all age groups."
+        ],
+        "level_3": [
+          "I was founded in 1992 by Robert Greenberg, who previously founded LA Gear athletic shoe company in the 1980s.",
+          "My name was inspired by someone who can't sit still, constantly moving and active, reflecting my target customer base.",
+          "I'm headquartered in Manhattan Beach, California, with design studios and offices overlooking the Southern California coastline.",
+          "I started making utility-style boots and Doc Martens alternatives before pivoting to athletic and comfort footwear successfully.",
+          "I experienced rapid growth in the 2000s by focusing on comfort technology and sponsoring celebrity athletes and entertainers."
+        ],
+        "level_4": [
+          "I went public in 1999 but went through significant restructuring after early struggles with brand positioning and competition.",
+          "I'm the third-largest athletic footwear brand in the United States by market share behind two dominant sportswear giants.",
+          "I've signed endorsement deals with athletes including Tony Romo, Sugar Ray Leonard, and Howie Long for advertising campaigns.",
+          "I expanded internationally aggressively with particularly strong growth in China, India, and emerging markets seeking affordable footwear.",
+          "I settled trademark infringement lawsuits with major competitors over design similarities while defending my own intellectual property rights."
+        ],
+        "level_5": [
+          "My ticker symbol is a three-letter abbreviation of my brand name and trades on the New York Stock Exchange.",
+          "My GOwalk and D'Lites shoe lines became bestsellers, emphasizing lightweight comfort and memory foam cushioning throughout.",
+          "I sponsor the Los Angeles Marathon and have partnered with dog rescue organizations supporting animal welfare causes nationwide.",
+          "My founder's children now hold executive positions including his son as president and COO managing operations daily.",
+          "I compete directly with major athletic brands while positioning myself as a value alternative with comparable comfort and style."
+        ]
+      }
+    },
+    {
+      "ticker": "WING",
+      "company": "Wingstop Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm a fast-casual restaurant chain specializing in chicken wings with multiple flavor options and sauces nationwide.",
+          "I operate restaurants serving cooked-to-order chicken wings tossed in signature sauces from mild to extremely spicy varieties.",
+          "I'm a wing-focused restaurant brand offering bone-in and boneless wings, tenders, and sides through dine-in, takeout, and delivery.",
+          "I'm a quick-service restaurant chain known exclusively for chicken wings with over a dozen flavors and heat levels.",
+          "I provide made-to-order chicken wings, fries, and sides through a simple menu focused on quality and flavor variety."
+        ],
+        "level_2": [
+          "My menu features 11 signature flavors ranging from Lemon Pepper and Hawaiian to Atomic, my hottest wing sauce option.",
+          "I generate revenue primarily through company-operated restaurants and franchise fees from over 1,900 locations worldwide currently operating.",
+          "My business model relies heavily on franchising with approximately 98% of locations owned and operated by franchisees independently.",
+          "I emphasize digital ordering and delivery partnerships, generating over 60% of sales through online channels and apps.",
+          "My restaurants operate with small footprints focusing on takeout and delivery rather than extensive dine-in seating capacity."
+        ],
+        "level_3": [
+          "I was founded in 1994 in Garland, Texas, by Antonio Swad and Bernadette Fiaschetti near Dallas initially.",
+          "My name directly describes what I serve: chicken wings in a casual, convenient restaurant format for wing lovers.",
+          "I'm headquartered in Dallas, Texas, where I've grown from a single location to an international franchise operation.",
+          "I was inspired by the chicken wing craze of the early 1990s, capitalizing on wings becoming mainstream American food.",
+          "I expanded through franchising early on, allowing rapid growth without significant capital investment in company-owned locations predominantly."
+        ],
+        "level_4": [
+          "I went public in 2015 with an IPO and experienced strong growth driven by digital ordering and delivery partnerships.",
+          "I've consistently reported same-store sales growth exceeding industry averages through economic cycles and changing consumer preferences recently.",
+          "I partnered with delivery platforms and invested heavily in my mobile app, driving digital sales to industry-leading levels.",
+          "I've navigated chicken wing price volatility by adjusting menu pricing and introducing boneless options during supply shortages successfully.",
+          "I expanded internationally into Mexico, Singapore, Indonesia, and the UK while growing domestic presence in underserved markets."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter word referencing chicken wings and trades on the NASDAQ exchange currently.",
+          "My most popular flavors include Lemon Pepper, Louisiana Rub, Garlic Parmesan, and the extremely spicy Atomic wings.",
+          "I was featured on the Undercover Boss television show in 2013 when my CEO went undercover in restaurants.",
+          "My CEO Michael Skipworth leads a company culture emphasizing operational excellence and franchisee support for sustainable growth.",
+          "I offer bone-in wings, boneless wings, chicken tenders, and limited sides keeping my menu simple and focused exclusively."
+        ]
+      }
+    },
+    {
+      "ticker": "CAVA",
+      "company": "CAVA Group, Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm a fast-casual restaurant chain serving Mediterranean cuisine including bowls, pitas, and salads with fresh ingredients.",
+          "I operate restaurants offering customizable Mediterranean-inspired meals with grains, greens, proteins, and signature dips and spreads.",
+          "I'm a quick-service restaurant concept focusing on healthy Mediterranean food with fresh vegetables, grilled meats, and flavorful sauces.",
+          "I provide build-your-own Mediterranean bowls and pitas with ingredients like hummus, falafel, grilled chicken, and seasonal vegetables.",
+          "I'm a modern Mediterranean restaurant brand emphasizing fresh, healthy, flavorful food inspired by Greek and Middle Eastern cuisine."
+        ],
+        "level_2": [
+          "My menu features bases like grains and greens topped with proteins, dips, vegetables, and signature sauces customers customize.",
+          "I generate revenue through company-operated restaurants with average unit volumes significantly higher than fast-casual industry averages consistently.",
+          "My business model emphasizes fresh ingredients prepared daily in-house with no freezers in restaurants to ensure quality.",
+          "I offer proteins including grilled chicken, spicy lamb meatballs, falafel, and seasonal vegetables with signature harissa and tzatziki sauces.",
+          "My restaurants feature an assembly line format where customers watch their meal being built with fresh ingredients before their eyes."
+        ],
+        "level_3": [
+          "I was founded in 2006 by three childhood friends Ike Grigoropoulos, Ted Xenohristos, and Dimitri Moshovitis in Rockville, Maryland.",
+          "My name comes from the Greek word for wine cave, though I don't serve alcohol in most locations currently.",
+          "I'm headquartered in Washington, D.C., where I've grown from a single location to hundreds of restaurants nationwide today.",
+          "I started as a full-service restaurant before pivoting to a fast-casual format that proved more scalable for expansion.",
+          "I acquired Zoës Kitchen in 2018 for $300 million, later converting those locations to my brand and concept entirely."
+        ],
+        "level_4": [
+          "I went public in June 2023 with an IPO price of $22 per share, soaring over 100% on the first day.",
+          "My stock was compared to another Mexican fast-casual chain's successful IPO a decade earlier given similar growth trajectories.",
+          "I operate over 300 restaurants across the United States with plans for aggressive expansion reaching thousands of locations.",
+          "I've achieved cult-like following similar to other successful fast-casual chains with loyal customers and strong social media presence.",
+          "I emphasize digital ordering, loyalty programs, and data-driven operations to enhance customer experience and drive repeat visits."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my brand name and trades on the New York Stock Exchange.",
+          "My signature harissa honey sauce and crazy feta dip have become fan favorites among customers visiting my restaurants.",
+          "I position myself as the Mediterranean equivalent to successful Mexican and Asian fast-casual chains in the industry landscape.",
+          "My CEO Brett Schulman previously worked at a leading Mexican fast-casual chain before joining me to lead expansion.",
+          "I feature a split-flap departure board menu display in restaurants, adding a unique design element to the customer experience."
+        ]
+      }
+    },
+    {
+      "ticker": "LLY",
+      "company": "Eli Lilly and Company",
+      "sector": "Healthcare",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm a pharmaceutical company discovering, developing, and selling medicines treating diabetes, cancer, and neurological disorders among others.",
+          "I manufacture and market prescription medications for major health conditions including diabetes, obesity, cancer, and autoimmune diseases worldwide.",
+          "I'm one of the world's largest pharmaceutical companies with blockbuster drugs treating diabetes, depression, and Alzheimer's disease.",
+          "I develop innovative medicines and therapies addressing significant unmet medical needs in diabetes, oncology, immunology, and neuroscience globally.",
+          "I'm a global healthcare leader producing prescription drugs, biologics, and animal health products serving millions of patients worldwide."
+        ],
+        "level_2": [
+          "My major products include diabetes treatments, weight loss medications, cancer therapies, and antidepressants prescribed by physicians globally.",
+          "I generate revenue through sales of prescription pharmaceuticals to wholesalers, pharmacies, and healthcare systems in over 120 countries.",
+          "My business focuses on innovative medicines with recent blockbusters in diabetes and obesity driving significant revenue growth currently.",
+          "I invest heavily in research and development spending billions annually discovering new treatments for chronic and life-threatening conditions.",
+          "My portfolio includes insulin products, biologics for autoimmune diseases, oncology therapies, and central nervous system medications broadly."
+        ],
+        "level_3": [
+          "I was founded in 1876 by Colonel Eli Lilly, a pharmaceutical chemist and Civil War veteran in Indianapolis.",
+          "My name honors my founder who started the company in Indianapolis, Indiana, where I'm still headquartered today.",
+          "I'm headquartered in Indianapolis, Indiana, where I've been a major employer and economic driver for nearly 150 years.",
+          "I became one of the first companies to mass-produce penicillin during World War II, saving countless lives globally.",
+          "I pioneered the development and commercialization of insulin in the 1920s, transforming diabetes treatment worldwide significantly."
+        ],
+        "level_4": [
+          "I developed Prozac in 1988, one of the first selective serotonin reuptake inhibitors revolutionizing depression treatment worldwide.",
+          "I'm experiencing massive growth from my diabetes and weight loss drugs approved recently, driving stock price to record highs.",
+          "I've been involved in lawsuits and controversy over insulin pricing, accused of raising prices dramatically over recent decades.",
+          "I acquired several biotechnology companies including Loxo Oncology for $8 billion to expand my cancer treatment pipeline significantly.",
+          "I'm investing billions in manufacturing capacity to meet surging demand for my obesity and diabetes medications globally currently."
+        ],
+        "level_5": [
+          "My ticker symbol is a three-letter abbreviation of my founder's last name and trades on the New York Stock Exchange.",
+          "My drugs Mounjaro and Zepbound for diabetes and weight loss became some of the fastest-growing pharmaceuticals in history.",
+          "I'm developing a potential breakthrough Alzheimer's treatment showing promise in clinical trials, raising hopes for patients worldwide.",
+          "My market capitalization exceeded $600 billion in 2024, making me one of the most valuable pharmaceutical companies globally.",
+          "I'm among the oldest and largest pharmaceutical companies in America, founded nearly 150 years ago in the 19th century."
+        ]
+      }
+    },
+    {
+      "ticker": "DKNG",
+      "company": "DraftKings Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm a digital sports entertainment and gaming company offering online sports betting and daily fantasy sports contests.",
+          "I operate mobile sportsbook and casino apps where customers can bet on sports games and play casino-style games.",
+          "I'm a sports betting platform allowing users to wager on professional and college sports through my mobile app.",
+          "I provide online sports betting, daily fantasy contests, and iGaming products to customers in states where gambling is legal.",
+          "I'm a technology company powering online sports betting experiences through innovative mobile applications and digital platforms nationwide."
+        ],
+        "level_2": [
+          "My products include sportsbook betting on games, daily fantasy sports contests, online casino games, and NFT marketplace offerings.",
+          "I generate revenue from sports betting hold rates, entry fees from fantasy contests, and house edge on casino games.",
+          "My business operates in over 20 U.S. states with sportsbook and casino offerings where online gambling is legally permitted.",
+          "I partner with professional sports leagues, teams, and media companies for marketing, data, and exclusive betting content access.",
+          "My platform offers live in-game betting, same-game parlays, and promotional offers attracting and retaining customers in competitive markets."
+        ],
+        "level_3": [
+          "I was founded in 2012 as a daily fantasy sports company before expanding into sports betting after legalization.",
+          "My name combines 'draft' from fantasy sports drafts with 'kings' suggesting dominance and winning in competitions.",
+          "I'm headquartered in Boston, Massachusetts, with technology and operations teams across the United States and globally.",
+          "I grew rapidly after the Supreme Court struck down the federal sports betting ban in 2018, opening state markets.",
+          "I merged with SBTech and went public via SPAC in April 2020, raising capital for expansion into sports betting."
+        ],
+        "level_4": [
+          "I went public through a SPAC merger in 2020, combining my daily fantasy business with sports betting technology company.",
+          "I compete intensely with another major sports betting operator and international companies for U.S. market share in betting.",
+          "I've spent billions on customer acquisition, promotions, and marketing to build brand awareness in newly legal betting markets.",
+          "I've faced challenges reaching profitability due to high marketing costs and promotional spending required to acquire customers in competitive markets.",
+          "I partnered with casinos and racetracks to obtain sports betting licenses required to operate in various state markets legally."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my brand name and trades on the NASDAQ exchange.",
+          "I'm an official sports betting partner of major leagues including the NFL, NBA, MLB, and NHL for marketing rights.",
+          "My CEO Jason Robins co-founded the company and has led its transformation from fantasy sports to sports betting.",
+          "I offer promotions like odds boosts, profit boosts, and no-sweat bets to attract customers in highly competitive markets.",
+          "My crown logo and green branding are prominently featured in sports broadcasts, stadiums, and advertising campaigns nationwide consistently."
+        ]
+      }
+    },
+    {
+      "ticker": "CVNA",
+      "company": "Carvana Co.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm an online used car retailer allowing customers to buy vehicles entirely online with home delivery or pickup.",
+          "I operate an e-commerce platform for buying and selling used cars without visiting traditional dealerships in person.",
+          "I'm disrupting the used car industry by providing fully online purchasing experiences with delivery straight to customers' homes.",
+          "I buy and sell pre-owned vehicles through digital channels, offering financing, trade-ins, and delivery services all online conveniently.",
+          "I'm a technology company transforming how people buy used cars through an end-to-end online purchasing process."
+        ],
+        "level_2": [
+          "My platform offers over 20,000 used vehicles with 360-degree photos, vehicle history reports, and virtual tours online.",
+          "I generate revenue from selling used cars with profit margins from vehicle reconditioning, financing, and ancillary products offered.",
+          "My business model includes buying cars from customers, reconditioning them, and reselling through my online marketplace nationwide.",
+          "I offer 7-day return policies, vehicle delivery or pickup from car vending machines, and financing through my captive finance company.",
+          "My technology platform handles everything from browsing inventory to financing approval to delivery scheduling without dealership visits required."
+        ],
+        "level_3": [
+          "I was founded in 2012 by Ernest Garcia II, Ryan Keeton, and Ben Huston, launching publicly in 2013.",
+          "My name plays on 'car' and 'nirvana' suggesting the ultimate blissful car-buying experience without dealership hassles.",
+          "I'm headquartered in Tempe, Arizona, where I pioneered my automated reconditioning and inspection facilities for vehicles.",
+          "I'm majority-owned by my founder's son Ernest Garcia III and father Ernest Garcia II who controls voting power.",
+          "I launched my first car vending machine in Nashville in 2015, creating a viral marketing spectacle for vehicle pickup."
+        ],
+        "level_4": [
+          "I went public in 2017 and my stock price soared during pandemic when people avoided dealerships before crashing dramatically.",
+          "I built massive multi-story car vending machines in cities as experiential marketing and vehicle pickup locations for customers.",
+          "I've faced bankruptcy concerns, debt restructuring, and questions about business model sustainability amid mounting losses and debt.",
+          "I acquired ADESA's auction business for $2.2 billion in 2022 to secure vehicle supply as inventory became scarce.",
+          "My stock price fell over 98% from pandemic peaks as used car prices normalized and I burned through cash."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my brand name and trades on the New York Stock Exchange.",
+          "My eight-story glass car vending machines can hold dozens of vehicles and have become landmark attractions in several cities.",
+          "I offer a virtual assistant named Ernie (named after my founder) to help customers through the online purchasing process.",
+          "My majority owner Ernest Garcia II made billions from real estate before founding DriveTime and later backing my creation.",
+          "I've been investigated by regulators in multiple states over licensing, title transfer delays, and business practice concerns."
+        ]
+      }
+    },
+    {
+      "ticker": "SHAK",
+      "company": "Shake Shack Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm a fast-casual restaurant chain serving premium burgers, hot dogs, shakes, and crinkle-cut fries in modern settings.",
+          "I operate upscale burger restaurants offering high-quality beef burgers, chicken sandwiches, frozen custard, and craft beverages nationwide.",
+          "I'm a better burger chain known for using premium ingredients, long lines, and modern design in my restaurant locations.",
+          "I provide fast-casual dining with a focus on quality burgers, hand-spun shakes, and a fun energetic dining atmosphere.",
+          "I'm a burger restaurant brand emphasizing hospitality, quality ingredients, and contemporary design with locations in urban markets globally."
+        ],
+        "level_2": [
+          "My menu features ShackBurgers, crinkle fries, chicken sandwiches, frozen custard concretes, and craft beer at higher price points.",
+          "I generate revenue through company-operated restaurants and licensing fees from domestic and international franchised locations globally today.",
+          "My business model focuses on high-quality ingredients including antibiotic-free beef and chicken at premium pricing versus fast food.",
+          "I operate standalone restaurants, kiosks, and international locations with approximately 500 locations worldwide across multiple formats currently.",
+          "My restaurants feature modern design, digital ordering kiosks, and hospitality-focused service differentiating from traditional burger chains completely."
+        ],
+        "level_3": [
+          "I started in 2001 as a hot dog cart in Madison Square Park in New York City operated by restaurateur Danny Meyer.",
+          "My name comes from the original park location where the cart provided a refreshing 'shack' for park visitors in Manhattan.",
+          "I'm headquartered in New York City, maintaining my urban roots while expanding to suburbs and international markets extensively now.",
+          "I evolved from a summer hot dog cart into a permanent kiosk and eventually a standalone restaurant in 2004.",
+          "My founder Danny Meyer built a hospitality empire including Union Square Cafe before creating me as a community gathering place."
+        ],
+        "level_4": [
+          "I went public in January 2015 with an IPO price of $21 that more than doubled on the first day.",
+          "I expanded rapidly after my IPO, opening locations domestically and internationally while maintaining quality standards and brand identity.",
+          "I've faced challenges with long wait times, inconsistent execution during rapid growth, and competition from other better burger chains.",
+          "I partner with local purveyors and change my menu seasonally with limited-time offerings keeping the experience fresh for customers.",
+          "I'm known for cult-like following with fans willing to wait in long lines for my burgers despite higher prices."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my restaurant name and trades on the New York Stock Exchange.",
+          "My signature green and white logo features my name in a simple, modern design reflecting my urban aesthetic.",
+          "I created special menu items like the SmokeShack burger with bacon and cherry peppers that became customer favorites nationwide.",
+          "My CEO Randy Garutti has led the company since before my IPO, overseeing expansion from dozens to hundreds of locations.",
+          "I opened my first overseas location in London in 2013, expanding internationally to the Middle East and Asia subsequently."
+        ]
+      }
+    },
+    {
+      "ticker": "RH",
+      "company": "RH (Restoration Hardware)",
+      "sector": "Consumer Cyclical",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm a luxury home furnishings retailer offering high-end furniture, lighting, textiles, and décor through galleries and catalogs.",
+          "I operate upscale furniture showrooms called galleries featuring curated collections of premium home furnishings and interior design services.",
+          "I'm a premium home goods brand selling luxury furniture, lighting, outdoor living products, and décor at high price points.",
+          "I provide high-end residential furnishings through large-format galleries, design services, and membership-based shopping experiences for wealthy customers.",
+          "I'm a luxury lifestyle brand creating modern heirlooms through furniture, lighting, and home accessories in timeless designs."
+        ],
+        "level_2": [
+          "My galleries feature room vignettes showcasing furniture, lighting, rugs, and accessories in aspirational lifestyle settings for customers.",
+          "I generate revenue through retail sales, interior design services, trade program for designers, and membership fees for discounts.",
+          "My business model emphasizes large gallery locations with restaurants, rooftop lounges, and hospitality experiences integrated within retail spaces.",
+          "I offer membership programs providing discounts on purchases in exchange for annual fees, creating recurring revenue and customer loyalty.",
+          "My products include furniture collections, outdoor living ranges, lighting, textiles, and accessories at luxury price points targeting affluent shoppers."
+        ],
+        "level_3": [
+          "I was founded in 1979 as a small store restoring antique lighting and hardware before evolving into luxury furnishings.",
+          "My original name referenced restoration of vintage hardware, though I later dropped the full name for just initials.",
+          "I'm headquartered in Corte Madera, California, in Marin County across the Golden Gate Bridge from San Francisco.",
+          "I went through bankruptcy in the 1990s before being acquired and transformed into a modern luxury home brand.",
+          "I reimagined my business under CEO Gary Friedman, moving from traditional retail to experiential galleries with hospitality elements."
+        ],
+        "level_4": [
+          "I went public in 2012 and my stock has been volatile, with dramatic rises during housing booms and falls during slowdowns.",
+          "I transformed from outlet-style stores to massive design galleries with restaurants, wine bars, and rooftop terraces integrated throughout.",
+          "I opened experiential flagships including a 70,000 square foot gallery in New York's Meatpacking District with restaurant and rooftop.",
+          "I've expanded internationally opening galleries in London, Paris, and other major cities targeting ultra-wealthy global customers exclusively.",
+          "I eliminated discounting and promotions, repositioning as a luxury brand with consistent premium pricing and membership model instead."
+        ],
+        "level_5": [
+          "My ticker symbol is simply two letters matching my brand initials and trades on the New York Stock Exchange.",
+          "My CEO Gary Friedman is known for his uncompromising vision, lengthy shareholder letters, and bold business transformation strategy.",
+          "I publish massive catalogs weighing over 10 pounds showcasing my collections as coffee table books rather than traditional mailers.",
+          "My galleries feature in-house restaurants and bars serving wine and food, creating destination shopping experiences for affluent customers.",
+          "I rebranded from 'Restoration Hardware' to just initials, signaling my evolution from hardware restoration to luxury lifestyle brand."
+        ]
+      }
+    },
+    {
+      "ticker": "LEVI",
+      "company": "Levi Strauss & Co.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm an iconic American clothing company famous for inventing blue jeans and denim apparel in the 19th century.",
+          "I manufacture and sell jeans, casual wear, and accessories with my most famous product being riveted denim pants.",
+          "I'm a legendary apparel brand known worldwide for durable denim jeans that became an American cultural symbol globally.",
+          "I produce denim clothing including jeans, jackets, and shirts sold through retail stores and wholesale partners across the world.",
+          "I'm a heritage clothing brand synonymous with blue jeans, creating the category over 150 years ago in California."
+        ],
+        "level_2": [
+          "My product lines include jeans, tops, jackets, shorts, and accessories under my flagship brand and other labels I own.",
+          "I generate revenue from wholesale distribution to retailers, my own branded stores, and e-commerce channels selling globally today.",
+          "My business operates in over 110 countries with direct-to-consumer stores, outlets, and partnerships with major department stores worldwide.",
+          "I offer multiple fits and styles from original straight-leg 501s to skinny jeans and modern cuts appealing to different customers.",
+          "My iconic products feature copper rivets, leather patches, and red tab branding that's instantly recognizable on back pockets."
+        ],
+        "level_3": [
+          "I was founded in 1853 by a Bavarian immigrant who arrived in San Francisco during the California Gold Rush.",
+          "My name comes from my founder who partnered with a tailor to create durable work pants for miners.",
+          "I'm headquartered in San Francisco, California, where I've been based since my founding over 170 years ago.",
+          "I patented the copper rivet reinforcement process in 1873, creating the first blue jeans as we know them today.",
+          "My founder invented jeans with a tailor named Jacob Davis who couldn't afford the patent fee alone."
+        ],
+        "level_4": [
+          "I went public in 1971 but was taken private in 1985 by the founding family before going public again in 2019.",
+          "I returned to public markets in March 2019, selling shares while the founding family retained majority voting control permanently.",
+          "I've faced challenges adapting to fast fashion, changing consumer preferences, and competition from designer and budget denim brands.",
+          "I've emphasized sustainability initiatives using less water in production and recycling programs for old jeans into new products.",
+          "I remain family-controlled with descendants of my founder serving on the board and in leadership positions today."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my founder's first name and trades on the New York Stock Exchange.",
+          "My 501 Original Fit jeans are the oldest continuously sold style, introduced in 1890 and still popular today.",
+          "I introduced Dockers khaki pants in 1986, creating the business casual category dominating office wear for decades subsequently.",
+          "My red tab on the back pocket was first used in 1936 to distinguish genuine products from competitors' imitations.",
+          "I'm one of the world's largest apparel companies with brands including my flagship name, Dockers, and Signature by me."
+        ]
+      }
+    },
+    {
+      "ticker": "UAA",
+      "company": "Under Armour, Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm an American athletic apparel company manufacturing performance sportswear, footwear, and accessories for athletes and active lifestyles.",
+          "I design and sell sports clothing, shoes, and equipment focusing on innovative moisture-wicking fabric technology for athletes.",
+          "I'm a major sportswear brand known for compression shirts, athletic shoes, and performance gear competing with larger rivals.",
+          "I produce athletic apparel and footwear emphasizing technical performance fabrics that keep athletes cool, dry, and comfortable during activity.",
+          "I'm an activewear company creating sports clothing and shoes for training, running, basketball, and other athletic pursuits globally."
+        ],
+        "level_2": [
+          "My product lines include HeatGear for warm weather, ColdGear for cold conditions, and AllSeasonGear for moderate temperatures.",
+          "I generate revenue from selling athletic apparel, footwear, and accessories through wholesale partners, my own stores, and online.",
+          "My business operates in North America, Europe, Asia Pacific, and Latin America through multiple distribution channels worldwide today.",
+          "I sponsor professional athletes and teams including Stephen Curry, Tom Brady, and partnerships with college athletic programs extensively.",
+          "My signature compression apparel uses moisture-wicking technology keeping athletes dry by pulling sweat away from skin during exercise."
+        ],
+        "level_3": [
+          "I was founded in 1996 by Kevin Plank, a former college football player who created moisture-wicking shirts.",
+          "My name suggests the protective equipment athletes wear underneath uniforms, which inspired my founder's original product concept.",
+          "I'm headquartered in Baltimore, Maryland, where my founder grew the company from his grandmother's basement into billions.",
+          "I started by selling compression shirts to college football teams from my founder's car trunk before expanding broadly.",
+          "My founder created the first prototype using moisture-wicking fabric after getting frustrated with cotton shirts soaking through sweat."
+        ],
+        "level_4": [
+          "I went public in November 2005 with an IPO and experienced rapid growth becoming the second-largest sportswear brand.",
+          "I peaked in the mid-2010s before struggling with operational issues, brand positioning challenges, and intense competition from rivals.",
+          "I've undergone multiple restructurings, leadership changes, and strategic shifts attempting to revitalize growth and profitability in recent years.",
+          "I acquired fitness apps MyFitnessPal and MapMyFitness before selling them at losses as digital strategy shifted priorities.",
+          "I signed Stephen Curry to a sneaker deal that became one of the most successful athlete partnerships in recent memory."
+        ],
+        "level_5": [
+          "My ticker symbol is a three-letter abbreviation of my brand name and trades on the New York Stock Exchange.",
+          "My logo features interlocking letters forming my initials in a distinctive design appearing on all my products.",
+          "I launched a premium Curry basketball shoe line with NBA superstar Stephen Curry after Nike declined to match my offer.",
+          "My founder Kevin Plank stepped down as CEO in 2020 but remains executive chairman with significant control over direction.",
+          "I manufacture two classes of stock with Class C shares having no voting rights compared to Class A and B shares."
+        ]
+      }
+    },
+    {
+      "ticker": "CELH",
+      "company": "Celsius Holdings, Inc.",
+      "sector": "Consumer Defensive",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm a fitness-focused energy drink company marketing beverages that claim to accelerate metabolism and burn body fat.",
+          "I produce functional energy drinks targeting health-conscious consumers and fitness enthusiasts seeking energy without excessive sugar or calories.",
+          "I'm a beverage brand offering thermogenic energy drinks marketed as healthier alternatives to traditional energy drink options.",
+          "I create energy drinks containing vitamins, minerals, and natural caffeine promoting fitness and active lifestyle benefits to consumers.",
+          "I'm a rapidly growing energy drink company positioning my products as functional fitness beverages rather than typical energy drinks."
+        ],
+        "level_2": [
+          "My drinks contain ingredients like green tea extract, guarana, ginger, and vitamins claimed to boost metabolism and energy.",
+          "I generate revenue by selling energy drinks through retail channels, gyms, fitness centers, and increasingly major convenience stores.",
+          "My business has exploded in recent years, partnering with a major beverage distributor giving me access to millions of retail locations.",
+          "I offer various flavors and formats including carbonated, powder, and on-the-go heat options appealing to fitness-focused consumers predominantly.",
+          "My products are sugar-free, using sucralose as sweetener, and contain 200mg of caffeine per standard can for energy."
+        ],
+        "level_3": [
+          "I was founded in 2004 by executives seeking to create a functional fitness beverage supporting active healthy lifestyles.",
+          "My name refers to the calorie-burning thermogenic effect my drinks are claimed to provide when consumed before exercise.",
+          "I'm headquartered in Boca Raton, Florida, where I've grown from a small startup to a billion-dollar beverage company.",
+          "I struggled for years before rebranding, reformulating, and repositioning as a fitness drink rather than weight-loss supplement successfully.",
+          "I hired a new CEO in 2018 who transformed my distribution strategy and formed a partnership changing my trajectory completely."
+        ],
+        "level_4": [
+          "I partnered with a major beverage distribution company in 2022, giving me access to their massive distribution network nationwide.",
+          "My stock price increased over 10,000% from 2018 to 2024 as revenue and market share grew exponentially in energy drinks.",
+          "I've become one of the fastest-growing energy drink brands, gaining significant market share from traditional energy drink leaders.",
+          "I sponsor athletes, influencers, and fitness events aligning my brand with active lifestyle and athletic performance positioning consistently.",
+          "I trade at a premium valuation compared to established beverage companies given my rapid growth and market share gains."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my brand name and trades on the NASDAQ exchange.",
+          "I'm the official energy drink of multiple sports leagues and have partnerships with UFC, WWE, and various athletes.",
+          "My orange and blue cans are increasingly visible in convenience stores, grocery stores, and gyms across America rapidly expanding.",
+          "I claim my drinks are clinically proven to accelerate metabolism and burn calories, though these claims face regulatory scrutiny.",
+          "I've grown from under $100 million in revenue to over $1 billion annually in just a few years during explosive growth."
+        ]
+      }
     }
 ]
 }
