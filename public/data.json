@@ -6781,7 +6781,437 @@
         "My name is synonymous with cord-cutting, smart TVs, and the modern streaming experience for viewers globally."
       ]
     }
-  }
+  },
+    {
+      "ticker": "ABNB",
+      "company": "Airbnb, Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I operate a global online marketplace connecting people who want to rent out their properties.",
+          "I revolutionized the hospitality industry by allowing homeowners to become hosts for short-term stays.",
+          "I'm a technology platform that enables people to list and book unique accommodations around the world.",
+          "I created an alternative to traditional hotels by connecting travelers with local hosts and unique stays.",
+          "I'm a two-sided marketplace where property owners can earn income by hosting guests from around the globe."
+        ],
+        "level_2": [
+          "My platform offers over seven million listings ranging from apartments to castles in more than 220 countries.",
+          "I charge hosts a service fee for each booking and guests pay a fee based on the reservation subtotal.",
+          "My business model disrupted the hotel industry by enabling peer-to-peer accommodation rentals through my mobile app and website.",
+          "I expanded beyond home rentals to offer experiences, adventures, and online activities hosted by local experts worldwide.",
+          "My revenue comes from taking a percentage of each transaction between hosts and guests on my platform."
+        ],
+        "level_3": [
+          "I was founded in 2008 when my co-founders rented out air mattresses in their San Francisco apartment.",
+          "My name literally comes from 'air mattress' and 'bed and breakfast' combined into a single brand identity.",
+          "I received early funding from Y Combinator and grew from a simple idea during a design conference weekend.",
+          "I'm headquartered in San Francisco, California, where my founders first started renting out their living space.",
+          "My iconic logo resembles a combination of a heart, location pin, and the letter 'A' for belonging."
+        ],
+        "level_4": [
+          "I went public in December 2020 with one of the largest IPOs of the year during the pandemic.",
+          "My valuation exceeded $100 billion shortly after my public debut despite travel restrictions affecting the hospitality industry.",
+          "I survived the 2020 pandemic by pivoting to focus on local travel and longer-term stays for remote workers.",
+          "My co-founders Brian Chesky, Joe Gebbia, and Nathan Blecharczyk sold cereal boxes to fund the early startup.",
+          "I've faced regulatory challenges in many cities worldwide over housing shortages and tax compliance issues with rentals."
+        ],
+        "level_5": [
+          "My stock trades on the NASDAQ exchange under a four-letter ticker symbol that matches my brand abbreviation.",
+          "My pink logo featuring a stylized 'A' is known as the Bélo and represents belonging anywhere in the world.",
+          "I announced a permanent remote work policy allowing employees to work from anywhere while maintaining their salary levels.",
+          "My platform processed over 300 million guest arrivals by 2022, transforming how people travel and experience destinations.",
+          "I pioneered the concept of the 'sharing economy' alongside companies like Uber in the early 2010s technology wave."
+        ]
+      }
+    },
+    {
+      "ticker": "COIN",
+      "company": "Coinbase Global, Inc.",
+      "sector": "Financial Services",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm the largest cryptocurrency exchange platform in the United States for buying and selling digital assets.",
+          "I provide a secure online platform where users can trade Bitcoin, Ethereum, and hundreds of other cryptocurrencies.",
+          "I operate a digital currency exchange that allows retail and institutional investors to trade crypto assets easily.",
+          "I'm a publicly traded company that serves as a gateway for millions to access the cryptocurrency market.",
+          "I built infrastructure making it simple for anyone to buy, sell, store, and use cryptocurrencies securely online."
+        ],
+        "level_2": [
+          "My platform supports over 245 cryptocurrencies and serves more than 108 million verified users across 100 countries worldwide.",
+          "I generate revenue through transaction fees charged when users buy, sell, or convert cryptocurrencies on my platform.",
+          "My services include a consumer app, institutional trading platform, custody solutions, and blockchain infrastructure for developers.",
+          "I offer both a simple interface for beginners and an advanced trading platform for professional cryptocurrency traders.",
+          "My business grows with crypto adoption and trading volume but suffers when market prices decline significantly."
+        ],
+        "level_3": [
+          "I was founded in 2012 by Brian Armstrong and Fred Ehrsam during the early days of Bitcoin adoption.",
+          "I'm headquartered in San Francisco, California, and became the first major cryptocurrency company to go public in America.",
+          "My mission statement is to increase economic freedom by creating an open financial system for the world.",
+          "I received early backing from major venture capital firms including Andreessen Horowitz and Union Square Ventures in 2013.",
+          "My platform initially only supported Bitcoin trading when I launched but gradually added support for other cryptocurrencies."
+        ],
+        "level_4": [
+          "I went public through a direct listing on the NASDAQ in April 2021 during the cryptocurrency market boom.",
+          "My valuation reached nearly $100 billion on my first day of trading, making it one of the largest tech debuts.",
+          "I've faced regulatory scrutiny from the SEC regarding whether certain cryptocurrencies on my platform are securities.",
+          "I acquired over ten companies including blockchain analytics firm Neutrino and earned $7.8 billion in revenue in 2021.",
+          "My stock price is highly correlated with Bitcoin and cryptocurrency market movements, making it extremely volatile compared to traditional stocks."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation that directly references the cryptocurrency industry I operate within.",
+          "I became the first cryptocurrency exchange to be valued over $100 billion and listed on a major stock exchange.",
+          "My Super Bowl 2022 commercial featured only a bouncing QR code and crashed my app due to overwhelming traffic.",
+          "I store 98% of customer cryptocurrency holdings in offline cold storage for enhanced security against potential hacking.",
+          "My CEO Brian Armstrong has become one of the most prominent voices advocating for cryptocurrency regulation in Washington."
+        ]
+      }
+    },
+    {
+      "ticker": "HOOD",
+      "company": "Robinhood Markets, Inc.",
+      "sector": "Financial Services",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm a financial services company offering commission-free trading of stocks, options, and cryptocurrencies through my mobile app.",
+          "I democratized investing by eliminating trading commissions and creating an easy-to-use smartphone app for beginners.",
+          "I'm a popular trading platform among younger investors who want to buy stocks without paying traditional brokerage fees.",
+          "I disrupted the brokerage industry by offering zero-commission trades and a simple, gamified user interface on mobile devices.",
+          "I provide commission-free investing and allow fractional share purchases so anyone can invest with small amounts of money."
+        ],
+        "level_2": [
+          "My revenue comes primarily from payment for order flow, where market makers pay me to execute my customers' trades.",
+          "I offer trading in stocks, ETFs, options, and cryptocurrencies plus a cash management account with debit card functionality.",
+          "My business model relies on selling customer order flow to high-frequency trading firms rather than charging trading commissions.",
+          "I introduced features like instant deposits, fractional shares, and recurring investments to make investing accessible to everyone worldwide.",
+          "My platform has over 23 million funded accounts with users attracted to my sleek design and no-fee trading model."
+        ],
+        "level_3": [
+          "I was founded in 2013 by Vladimir Tenev and Baiju Bhatt after they noticed high trading fees excluded many people.",
+          "My name was inspired by the legendary outlaw who took from the rich and gave to the poor.",
+          "I'm headquartered in Menlo Park, California, in the heart of Silicon Valley's technology startup ecosystem.",
+          "I launched publicly in 2015 and quickly gained millions of users frustrated with traditional brokerages charging high commissions.",
+          "My founders originally built high-frequency trading platforms for hedge funds before pivoting to serve retail investors instead."
+        ],
+        "level_4": [
+          "I became controversial during the GameStop short squeeze in January 2021 when I restricted trading on meme stocks.",
+          "I went public through an IPO in July 2021 at $38 per share during peak interest in retail trading.",
+          "My decision to halt GameStop trading led to Congressional hearings and a lawsuit alleging I favored hedge funds.",
+          "I've been fined over $70 million by FINRA for system outages, misleading customers, and approval process failures.",
+          "My growth exploded during the 2020 pandemic when millions of people stuck at home started day trading stocks."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my company name and trades on the NASDAQ exchange.",
+          "My signature green color scheme and confetti animations celebrate trades, which critics say gamifies investing dangerously.",
+          "I paid $65 million to settle SEC charges that I misled customers about my revenue sources from 2015-2018.",
+          "My app has been downloaded over 30 million times, making it one of the most popular investing platforms.",
+          "I became synonymous with the 2021 meme stock phenomenon when retail traders coordinated massive short squeeses through social media."
+        ]
+      }
+    },
+    {
+      "ticker": "RIVN",
+      "company": "Rivian Automotive, Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm an American electric vehicle manufacturer focused on producing adventure-ready trucks and SUVs for outdoor enthusiasts.",
+          "I design and build electric pickup trucks and SUVs targeting customers who want both sustainability and off-road capability.",
+          "I'm an automotive startup creating all-electric vehicles specifically engineered for outdoor adventure and rugged terrain exploration.",
+          "I manufacture premium electric vehicles with a focus on adventure, sustainability, and cutting-edge autonomous driving technology features.",
+          "I'm challenging traditional automakers by building electric trucks and SUVs from the ground up with innovative technology."
+        ],
+        "level_2": [
+          "My first two consumer vehicles are the R1T electric pickup truck and R1S electric SUV with over 300 miles range.",
+          "I'm producing electric delivery vans for a major e-commerce company that invested billions in my future growth.",
+          "My vehicles feature a unique skateboard platform with batteries under the floor and motors at each wheel for capability.",
+          "I offer innovative features like a front trunk, gear tunnel storage, removable flashlight, and fold-flat camp kitchen in trucks.",
+          "My business plan includes direct-to-consumer sales, service centers, and building out charging infrastructure across North America gradually."
+        ],
+        "level_3": [
+          "I was founded in 2009 by RJ Scaringe, who started the company initially focused on sports cars.",
+          "I'm headquartered in Irvine, California, and operate a manufacturing plant in Normal, Illinois for vehicle production.",
+          "My name was inspired by Indian Rivers in Florida where my founder spent time as a young person.",
+          "I spent over a decade in stealth mode developing technology before revealing my first concept vehicles in 2018.",
+          "I raised over $10 billion in funding from investors including Amazon and Ford before going public in 2021."
+        ],
+        "level_4": [
+          "I went public in November 2021 with the largest IPO of the year, raising nearly $12 billion dollars.",
+          "My market valuation briefly exceeded $100 billion, surpassing Ford and GM despite producing very few vehicles at the time.",
+          "I have an exclusive agreement to produce 100,000 electric delivery vans for Amazon by 2030 for their logistics network.",
+          "I've faced production challenges, supply chain issues, and losses exceeding $6 billion annually while scaling up manufacturing capacity.",
+          "My R1T electric pickup became the first electric truck to complete the grueling Trans-America Trail off-road route."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my company name and trades on the NASDAQ exchange.",
+          "My R1T was named 2022 MotorTrend Truck of the Year, the first electric vehicle to win this award.",
+          "I equipped my trucks with an innovative camp kitchen that slides out from the gear tunnel between cab and bed.",
+          "My vehicles feature a distinctive stadium-style LED headlight design that's become my signature styling element across models.",
+          "I'm building a second US manufacturing facility in Georgia that will eventually produce 400,000 vehicles per year."
+        ]
+      }
+    },
+    {
+      "ticker": "LCID",
+      "company": "Lucid Group, Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm an American electric vehicle manufacturer creating luxury sedans with industry-leading range and advanced technology features.",
+          "I design and produce high-performance electric cars targeting the premium luxury sedan market with exceptional efficiency ratings.",
+          "I'm an EV startup building luxury electric vehicles that compete directly with premium brands in performance and elegance.",
+          "I manufacture all-electric luxury sedans emphasizing efficiency, performance, and sophisticated California-inspired design aesthetic throughout.",
+          "I'm challenging established luxury automakers by creating electric vehicles with record-breaking range and cutting-edge powertrains."
+        ],
+        "level_2": [
+          "My first production vehicle is a luxury sedan offering over 500 miles of EPA-estimated range on a single charge.",
+          "I'm producing electric vehicles with up to 1,111 horsepower in my top-trim performance models for incredible acceleration.",
+          "My business strategy focuses on the luxury segment first before eventually expanding into more affordable mass-market electric vehicles.",
+          "I built a state-of-the-art manufacturing facility in Arizona capable of producing hundreds of thousands of vehicles annually.",
+          "My vehicles feature a minimalist interior design with a massive curved display screen and premium materials throughout the cabin."
+        ],
+        "level_3": [
+          "I was founded in 2007 initially as Atieva, focusing on electric vehicle battery technology before pivoting to cars.",
+          "My CEO Peter Rawlinson previously served as chief engineer on a luxury electric sedan for another pioneering EV company.",
+          "I'm headquartered in Newark, California, in the heart of Silicon Valley's technology and innovation ecosystem.",
+          "I received a $1 billion investment from Saudi Arabia's Public Investment Fund, my largest backer to date.",
+          "My company name was inspired by the concept of clarity and clear thinking in both design and engineering."
+        ],
+        "level_4": [
+          "I went public through a SPAC merger in July 2021, raising billions to fund my manufacturing expansion plans.",
+          "My Air sedan achieved an EPA-estimated 520 miles of range, setting a new record for electric vehicles.",
+          "I was named MotorTrend Car of the Year in 2022, beating out combustion and electric competitors alike.",
+          "I've faced production delays, cash burn concerns, and questions about whether I can achieve profitability while scaling manufacturing.",
+          "My luxury sedan starts around $87,000 with top models exceeding $180,000 for performance variants with maximum specifications."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my company name and trades on the NASDAQ exchange.",
+          "My Air sedan features a distinctive curved roofline and full-width rear light bar design element.",
+          "I'm building a factory in Saudi Arabia expected to produce 150,000 vehicles annually by 2026 for international markets.",
+          "My Dream Edition performance model accelerates from 0-60 mph in just 2.5 seconds despite being a luxury sedan.",
+          "I achieved 4.5 miles per kilowatt-hour efficiency, the highest of any electric vehicle tested by the EPA."
+        ]
+      }
+    },
+    {
+      "ticker": "RBLX",
+      "company": "Roblox Corporation",
+      "sector": "Communication Services",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm an online entertainment platform where users can create, share, and play games built by the community.",
+          "I operate a virtual universe where millions of people gather daily to play, create, and socialize together online.",
+          "I'm a gaming platform allowing users to both play millions of user-generated games and build their own experiences.",
+          "I created a digital world where players can explore endless virtual experiences created by other users worldwide.",
+          "I'm a social gaming platform popular with children and teens where creativity and imagination drive the experience."
+        ],
+        "level_2": [
+          "My platform has over 70 million daily active users spending billions of hours playing user-created games each month.",
+          "I generate revenue through my virtual currency that players purchase to buy avatar items, accessories, and game passes.",
+          "My business model splits revenue with creators who build popular games, creating an economy where developers earn real money.",
+          "I offer a free-to-play experience where users can access millions of games but can purchase premium items and features.",
+          "My platform features social elements allowing friends to chat, join parties, and play together across different games seamlessly."
+        ],
+        "level_3": [
+          "I was founded in 2004 by David Baszucki and Erik Cassel, launching publicly in 2006 to the world.",
+          "My company is headquartered in San Mateo, California, in the San Francisco Bay Area technology hub.",
+          "My name combines 'robots' and 'blocks' reflecting the building-block nature of creation on my platform originally.",
+          "I started as an educational physics simulator before evolving into a social gaming platform for millions worldwide.",
+          "My iconic blocky avatar style became my signature aesthetic, instantly recognizable to players around the world today."
+        ],
+        "level_4": [
+          "I went public through a direct listing in March 2021, achieving a valuation over $45 billion on day one.",
+          "My platform paid out over $500 million to creators in 2021, establishing a thriving developer economy ecosystem.",
+          "I've expanded beyond gaming into virtual concerts, brand experiences, and educational content for diverse audiences globally.",
+          "My growth exploded during the 2020 pandemic when children stuck at home flocked to my platform for entertainment.",
+          "I've partnered with major brands including Nike, Gucci, and music artists to create virtual experiences and items."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my platform name and trades on the New York Stock Exchange.",
+          "My virtual currency is called Robux, which players can purchase and spend within games and on avatar customization.",
+          "My most popular games include Adopt Me, Brookhaven, and Tower of Hell with billions of visits each from players.",
+          "I introduced voice chat and spatial audio features to make communication more natural and immersive for older players.",
+          "My platform processes over 5 billion cross-platform friend connections, making me one of the largest social networks."
+        ]
+      }
+    },
+    {
+      "ticker": "PTON",
+      "company": "Peloton Interactive, Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I sell connected fitness equipment including stationary bikes and treadmills with live and on-demand workout classes.",
+          "I'm an exercise equipment company offering interactive workout experiences streamed live directly to your home equipment.",
+          "I manufacture premium fitness bikes and treadmills combined with subscription-based virtual fitness classes from instructors worldwide.",
+          "I created an at-home fitness ecosystem combining hardware, software, and content for immersive workout experiences daily.",
+          "I revolutionized home fitness by bringing boutique studio cycling classes directly into people's homes through technology."
+        ],
+        "level_2": [
+          "My signature product is a stationary bike with a large touchscreen displaying live classes where you compete on leaderboards.",
+          "I generate revenue from both equipment sales and monthly subscription fees for access to my content library and classes.",
+          "My business model combines hardware sales with recurring subscription revenue from members taking classes on my platform.",
+          "I offer thousands of on-demand classes across cycling, running, strength training, yoga, and meditation led by celebrity instructors.",
+          "My platform features real-time performance metrics, leaderboards, and social features creating community among members working out together."
+        ],
+        "level_3": [
+          "I was founded in 2012 by John Foley, who wanted to bring boutique cycling classes home conveniently.",
+          "My company is headquartered in New York City, the fitness and wellness capital with strong boutique studio culture.",
+          "My name combines 'peloton' (a cycling group) with the French word suggesting togetherness during rides worldwide.",
+          "I launched through a successful Kickstarter campaign that raised over $300,000 in 2013 to fund initial production.",
+          "My first bike was delivered in 2014 after years of development creating the connected fitness category essentially."
+        ],
+        "level_4": [
+          "I went public in September 2019 at $29 per share, reaching a peak market cap exceeding $50 billion.",
+          "My growth exploded during COVID-19 lockdowns when gyms closed and people sought home workout solutions desperately.",
+          "I faced a major crisis when my treadmill was recalled after injuries and a child death led to safety concerns.",
+          "My stock crashed over 80% from pandemic highs as gyms reopened and demand normalized post-lockdown dramatically.",
+          "I've undergone restructuring including layoffs, factory closures, and CEO changes to reduce costs and return to growth."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation matching my brand name and trades on the NASDAQ exchange.",
+          "My controversial 2019 holiday commercial showing a husband gifting his wife a bike sparked backlash and went viral.",
+          "I acquired Precor, a commercial fitness equipment maker, for $420 million to expand manufacturing capabilities in 2021.",
+          "My instructors like Cody Rigsby and Robin Arzón have become fitness celebrities with massive social media followings.",
+          "I introduced a cheaper bike option and digital-only membership to expand my addressable market beyond premium customers."
+        ]
+      }
+    },
+    {
+      "ticker": "SOFI",
+      "company": "SoFi Technologies, Inc.",
+      "sector": "Financial Services",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm a financial technology company offering student loan refinancing, personal loans, and a range of banking services.",
+          "I provide digital financial services including lending, banking, investing, and insurance through a mobile-first platform approach.",
+          "I started as a student loan refinancing company and expanded into a comprehensive digital financial services ecosystem.",
+          "I'm a fintech company offering loans, banking accounts, investment products, and credit cards through one integrated app.",
+          "I aim to help people achieve financial independence by providing modern alternatives to traditional banking and lending services."
+        ],
+        "level_2": [
+          "My platform offers student loan refinancing, personal loans, home loans, credit cards, and investment accounts in one place.",
+          "I generate revenue through loan origination fees, net interest margin, and financial services subscription fees from members.",
+          "My business model focuses on cross-selling multiple products to members, increasing lifetime value significantly over time.",
+          "I acquired a bank charter allowing me to hold deposits and offer FDIC-insured accounts while lending more profitably.",
+          "My services target millennials and younger professionals seeking modern financial products without traditional bank bureaucracy and fees."
+        ],
+        "level_3": [
+          "I was founded in 2011 by Stanford Business School students who wanted to help alumni refinance student debt.",
+          "My name originally stood for 'Social Finance' reflecting my community-focused approach to lending and member benefits.",
+          "I'm headquartered in San Francisco, California, operating as a technology company rather than a traditional financial institution.",
+          "I started by connecting student borrowers with alumni investors willing to refinance loans at better rates mutually.",
+          "My early funding came from notable investors including Peter Thiel and hedge fund manager Dan Loeb through Social Capital."
+        ],
+        "level_4": [
+          "I went public through a SPAC merger in June 2021, valuing my company at approximately $8.65 billion.",
+          "I purchased naming rights to a Los Angeles stadium in 2019, home to NFL teams in a 20-year deal.",
+          "I acquired Galileo Financial Technologies for $1.2 billion to provide payment processing infrastructure and technology platform services.",
+          "I received a national bank charter in 2022, becoming one of few fintech companies to achieve this regulatory milestone.",
+          "My growth strategy focuses on becoming a one-stop financial services provider capturing more of each member's financial life."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my brand name and trades on the NASDAQ exchange.",
+          "I sponsor a massive stadium in Inglewood, California, that hosts the Super Bowl and major entertainment events regularly.",
+          "My CEO Anthony Noto previously served as COO at Twitter and was an investment banker at Goldman Sachs.",
+          "I've refinanced over $60 billion in student loans since my founding, helping hundreds of thousands of borrowers nationwide.",
+          "My logo features a red and teal color scheme designed to feel modern and approachable versus traditional bank branding."
+        ]
+      }
+    },
+    {
+      "ticker": "WBD",
+      "company": "Warner Bros. Discovery, Inc.",
+      "sector": "Communication Services",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm a global media and entertainment company producing movies, television shows, and streaming content for worldwide audiences.",
+          "I operate cable television networks, produce blockbuster films, and run streaming services with vast content libraries available globally.",
+          "I'm a major entertainment conglomerate owning film studios, television networks, and digital streaming platforms across multiple brands.",
+          "I create and distribute entertainment content across film, television, and streaming reaching billions of viewers worldwide annually.",
+          "I'm one of the largest media companies controlling iconic entertainment brands, franchises, and content creation studios globally."
+        ],
+        "level_2": [
+          "My portfolio includes CNN, HBO, HGTV, Food Network, Animal Planet, TLC, and numerous other cable television channels.",
+          "I produce major film franchises including DC superhero movies and own one of Hollywood's most historic movie studios.",
+          "My streaming service combines HBO premium content with reality shows, documentaries, and live sports programming in one platform.",
+          "I generate revenue through advertising, subscription fees, content licensing, and theatrical film releases across global markets worldwide.",
+          "My content library includes beloved shows like Friends, Game of Thrones, Fixer Upper, and thousands of reality programs."
+        ],
+        "level_3": [
+          "I was formed in 2022 through a merger combining a legendary Hollywood studio with a cable television powerhouse.",
+          "My company resulted from AT&T spinning off its media assets and merging them with a cable network giant.",
+          "I'm headquartered in New York City, operating as one of the largest media companies in the world today.",
+          "My name reflects the combination of a historic film studio founded in 1923 and a factual programming pioneer.",
+          "I inherited assets including Cartoon Network, Adult Swim, TCM, and Turner Sports from the merged cable networks division."
+        ],
+        "level_4": [
+          "I completed one of the largest media mergers in history worth approximately $43 billion in April 2022.",
+          "My CEO David Zaslav led aggressive cost-cutting including canceling completed films and removing content from streaming platforms.",
+          "I carry over $50 billion in debt following the merger, leading to major restructuring and strategic content decisions.",
+          "I shut down CNN+ streaming service just weeks after launch, taking a massive write-down on the investment.",
+          "My stock price fell dramatically post-merger as investors worried about debt levels, cord-cutting, and streaming losses mounting."
+        ],
+        "level_5": [
+          "My ticker symbol is a three-letter abbreviation combining both legacy companies and trades on the NASDAQ exchange.",
+          "I own the film studio that produced the Harry Potter franchise, Batman films, and countless other blockbuster hits.",
+          "My streaming platform Max (formerly HBO Max) competes directly with Netflix, Disney+, and other subscription services globally.",
+          "I'm restructuring into three divisions: Studios, Networks, and Direct-to-Consumer for better operational focus and transparency.",
+          "My DC superhero universe is being rebooted under James Gunn and Peter Safran to compete with Marvel Studios."
+        ]
+      }
+    },
+    {
+      "ticker": "LYV",
+      "company": "Live Nation Entertainment, Inc.",
+      "sector": "Communication Services",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm the world's largest live entertainment company promoting concerts, selling tickets, and operating music venues globally.",
+          "I dominate the live music industry through concert promotion, ticketing services, and venue operations across multiple continents.",
+          "I produce and promote thousands of live music events annually while operating ticketing platforms and entertainment venues worldwide.",
+          "I'm a live entertainment company connecting millions of fans with artists through concerts, festivals, and ticketing services.",
+          "I operate in the concert and live event industry, controlling promotion, ticketing, and venue management from start to finish."
+        ],
+        "level_2": [
+          "My business includes promoting concerts for major artists, operating music venues, and selling tickets through my ticketing platform.",
+          "I generate revenue from ticket sales, service fees, venue concessions, advertising, and sponsorship deals with major brands worldwide.",
+          "My company promotes over 40,000 shows annually across 40 countries, selling hundreds of millions of tickets each year.",
+          "I operate hundreds of entertainment venues including amphitheaters, theaters, clubs, and festival sites across North America and internationally.",
+          "My vertically integrated model controls the entire live event experience from artist booking to ticket sales to venue operations."
+        ],
+        "level_3": [
+          "I was formed in 2010 through the merger of a major concert promoter and a dominant ticketing company.",
+          "My company merged Live Nation concert promotion business with a ticketing giant despite significant antitrust concerns from regulators.",
+          "I'm headquartered in Beverly Hills, California, operating as the largest live entertainment company in the world today.",
+          "My formation created controversy as critics argued the merger gave me monopolistic control over the live music industry.",
+          "I acquired dozens of regional concert promoters and independent venues worldwide to expand my market reach significantly."
+        ],
+        "level_4": [
+          "I faced a Department of Justice antitrust investigation and agreed to a consent decree limiting certain business practices.",
+          "My business collapsed during COVID-19 lockdowns when concerts were canceled globally, but rebounded strongly as venues reopened.",
+          "I've been criticized for high service fees, limited ticket availability, and anti-competitive practices favoring my own venues.",
+          "I promoted Taylor Swift's Eras Tour, one of the highest-grossing concert tours in history generating billions in revenue.",
+          "My ticketing platform crashed during Taylor Swift presale events in 2022, leading to Congressional hearings about monopoly power."
+        ],
+        "level_5": [
+          "My ticker symbol is a three-letter abbreviation referencing 'live' events and trades on the New York Stock Exchange.",
+          "I own a ticketing subsidiary that controls roughly 70% of the primary ticketing market for major venues nationwide.",
+          "My CEO Michael Rapino has led the company since 2005, overseeing the merger and expansion strategy globally.",
+          "I operate iconic venues like Red Rocks Amphitheatre, Hollywood Bowl, and hundreds of clubs through my venue division.",
+          "I partner exclusively with major artists and venues, making it nearly impossible for competitors to access premium content."
+        ]
+      }
+    }
 ]
 }
 
