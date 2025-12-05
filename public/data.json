@@ -7211,6 +7211,485 @@
           "I partner exclusively with major artists and venues, making it nearly impossible for competitors to access premium content."
         ]
       }
+    },
+      {
+      "ticker": "DAL",
+      "company": "Delta Air Lines, Inc.",
+      "sector": "Industrials",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm one of the largest passenger airlines in the United States operating thousands of daily flights worldwide.",
+          "I operate a major airline flying millions of passengers annually to destinations across six continents with extensive route networks.",
+          "I'm a legacy carrier providing domestic and international air travel with hubs in major cities across America.",
+          "I fly passengers and cargo globally, operating one of the world's largest and most reliable airline networks.",
+          "I'm a major U.S. airline offering flights, loyalty programs, and premium travel experiences to millions of customers yearly."
+        ],
+        "level_2": [
+          "My route network includes over 300 destinations in more than 50 countries across North America, Europe, Asia, and beyond.",
+          "I generate revenue from passenger ticket sales, cargo services, credit card partnerships, and loyalty program memberships worldwide.",
+          "My business model focuses on premium travel experiences, operational reliability, and customer service excellence to command higher fares.",
+          "I operate major hubs in Atlanta, Detroit, Minneapolis, Salt Lake City, Seattle, and New York serving as connection points.",
+          "My fleet includes over 900 aircraft ranging from regional jets to wide-body international planes like the Airbus A350."
+        ],
+        "level_3": [
+          "I was founded in 1924 as a crop-dusting operation in the southern United States before transitioning to passenger service.",
+          "My name originally came from the Mississippi Delta region where my agricultural aviation service was first established.",
+          "I'm headquartered in Atlanta, Georgia, which houses the world's busiest airport and my largest hub operation.",
+          "I merged with Northwest Airlines in 2008, creating one of the world's largest airlines with an expanded global reach.",
+          "My distinctive logo features a triangle design that has become one of the most recognizable symbols in aviation."
+        ],
+        "level_4": [
+          "I filed for bankruptcy protection in 2005 but emerged successfully in 2007 after restructuring operations and costs.",
+          "I've consistently ranked as the most on-time airline among major U.S. carriers with industry-leading operational performance.",
+          "I acquired a 49% stake in Virgin Atlantic and formed a joint venture with Air France-KLM for transatlantic routes.",
+          "I invested billions in fleet modernization, airport facilities, and technology to enhance customer experience and operational efficiency.",
+          "My co-branded American Express credit cards generate billions in annual revenue through spending and cardholder fees annually."
+        ],
+        "level_5": [
+          "My ticker symbol is a three-letter abbreviation of my airline name and trades on the New York Stock Exchange.",
+          "I'm a founding member of the SkyTeam alliance, partnering with airlines like Air France, KLM, and Korean Air.",
+          "My SkyMiles loyalty program has over 100 million members, one of the largest frequent flyer programs globally.",
+          "I operate the world's largest airline hub in Atlanta's Hartsfield-Jackson International Airport handling 1,000+ daily flights.",
+          "My distinctive red, white, and blue livery with a triangular logo appears on aircraft flying worldwide every day."
+        ]
+      }
+    },
+    {
+      "ticker": "UAL",
+      "company": "United Airlines Holdings, Inc.",
+      "sector": "Industrials",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm one of the largest airlines in the world operating extensive domestic and international route networks globally.",
+          "I operate a major U.S. passenger airline flying to hundreds of destinations across six continents with modern aircraft.",
+          "I'm a legacy carrier providing air travel services with major hubs strategically located across the United States.",
+          "I fly millions of passengers annually on thousands of daily flights connecting cities worldwide through my network.",
+          "I'm a global airline offering passenger flights, cargo services, and loyalty programs to customers in dozens of countries."
+        ],
+        "level_2": [
+          "My route network includes over 350 destinations across more than 50 countries worldwide with strong Asia-Pacific presence.",
+          "I generate revenue through passenger ticket sales, cargo operations, MileagePlus loyalty program, and premium cabin services.",
+          "My business operates major hubs in Chicago, Denver, Houston, Los Angeles, Newark, San Francisco, and Washington D.C.",
+          "I fly the most daily flights across the Pacific Ocean of any airline, connecting U.S. cities with Asia.",
+          "My fleet consists of over 800 aircraft including Boeing 787 Dreamliners and new fuel-efficient narrow-body planes."
+        ],
+        "level_3": [
+          "I was founded in 1926 making me one of the oldest airlines still operating under my original name today.",
+          "My company is headquartered in Chicago, Illinois, where I operate a massive hub at O'Hare International Airport.",
+          "I pioneered international air travel routes and was the first airline to fly to all six inhabited continents.",
+          "My logo features a distinctive globe design symbolizing my worldwide reach and international aviation heritage since founding.",
+          "I merged with Continental Airlines in 2010, creating the world's largest airline at that time by passenger traffic."
+        ],
+        "level_4": [
+          "I filed for bankruptcy protection twice, first in 2002 and again in 2006, before emerging and merging successfully.",
+          "I've faced numerous public relations crises including forcibly removing a passenger in 2017, causing global outrage online.",
+          "I'm a founding member of Star Alliance, the world's largest airline alliance with 26 member carriers globally.",
+          "I've invested heavily in new aircraft orders including 270 Boeing and Airbus planes to modernize my aging fleet.",
+          "My MileagePlus loyalty program generates billions through credit card partnerships and selling miles to partners annually."
+        ],
+        "level_5": [
+          "My ticker symbol is a three-letter abbreviation of my airline name and trades on the NASDAQ exchange.",
+          "I operate the largest route network across the Pacific Ocean with major hubs in San Francisco and Guam.",
+          "My CEO Scott Kirby has led efforts to make me carbon-neutral by 2050 through sustainable aviation fuel.",
+          "I introduced 'Basic Economy' fares with restricted benefits to compete with low-cost carriers on pricing effectively.",
+          "My purple and blue livery colors appear on aircraft worldwide with a redesigned look introduced after the Continental merger."
+        ]
+      }
+    },
+    {
+      "ticker": "AAL",
+      "company": "American Airlines Group Inc.",
+      "sector": "Industrials",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm the largest airline in the world by fleet size and passengers carried annually across my network.",
+          "I operate a major U.S. passenger airline with extensive domestic routes and significant international service to many countries.",
+          "I'm a legacy carrier flying millions of passengers each year with hubs strategically positioned throughout the United States.",
+          "I provide air travel services globally with one of the most comprehensive route networks in the airline industry.",
+          "I'm a major airline operating thousands of daily flights connecting cities across the Americas, Europe, Asia, and beyond."
+        ],
+        "level_2": [
+          "My route network serves nearly 350 destinations in more than 50 countries worldwide with comprehensive Latin America coverage.",
+          "I generate revenue from passenger fares, cargo operations, loyalty programs, and credit card partnerships with major banks.",
+          "My business operates major hubs in Dallas, Charlotte, Chicago, Philadelphia, Phoenix, Miami, Los Angeles, and Washington D.C.",
+          "I own the largest fleet of aircraft in the world with over 900 planes including Boeing 787s and Airbus A321s.",
+          "My network includes more flights to Latin America than any other U.S. airline with strong Caribbean presence."
+        ],
+        "level_3": [
+          "I was formed through the 2013 merger of legacy carriers, combining two of the oldest airlines in history.",
+          "My corporate headquarters is located in Fort Worth, Texas, near my largest hub at Dallas/Fort Worth International Airport.",
+          "I trace my origins back to 1926 when my predecessor began operations as a mail carrier in the Midwest.",
+          "My name reflects my heritage as one of America's pioneering airlines with roots in early commercial aviation.",
+          "I emerged from bankruptcy in 2013 after merging with another major carrier, creating the world's largest airline."
+        ],
+        "level_4": [
+          "I filed for bankruptcy protection in 2011, the last major U.S. carrier to do so during industry consolidation.",
+          "I'm a founding member of the Oneworld alliance, partnering with British Airways, Qantas, and other international carriers.",
+          "I retired the iconic MD-80 fleet in 2019, ending an era of narrow-body jets that defined my service.",
+          "My AAdvantage loyalty program is one of the largest in aviation with over 115 million members worldwide today.",
+          "I've faced criticism for fleet age, operational challenges, and labor disputes while working to improve reliability metrics."
+        ],
+        "level_5": [
+          "My ticker symbol is a three-letter abbreviation of my airline name and trades on the NASDAQ exchange.",
+          "I operate the largest hub at Dallas/Fort Worth Airport with nearly 900 daily departures from the Texas facility.",
+          "My silver, blue, and red livery with polished fuselage has become iconic, recently updated with modern design elements.",
+          "I was the launch customer for the Boeing 787-8 Dreamliner and the McDonnell Douglas MD-80 in decades past.",
+          "My partnership with British Airways creates one of the most profitable transatlantic joint ventures in aviation history."
+        ]
+      }
+    },
+    {
+      "ticker": "ABNB",
+      "company": "Airbnb, Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "easy"
+    },
+    {
+      "ticker": "ETSY",
+      "company": "Etsy, Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm an online marketplace connecting independent creators with buyers seeking unique handmade and vintage goods worldwide.",
+          "I operate a global e-commerce platform specializing in handcrafted items, vintage products, and creative craft supplies exclusively.",
+          "I'm a two-sided marketplace where artisans and crafters sell original handmade goods directly to consumers online.",
+          "I provide a digital marketplace focused on unique, creative items that you typically can't find in mass-market retail stores.",
+          "I connect millions of creative entrepreneurs with buyers looking for personalized, one-of-a-kind, and handmade products globally."
+        ],
+        "level_2": [
+          "My marketplace features over 100 million items across categories like jewelry, home décor, art, clothing, and wedding supplies.",
+          "I generate revenue by charging sellers listing fees, transaction fees, and optional advertising and payment processing services.",
+          "My business model takes a percentage of each sale while providing sellers with tools for managing shops and marketing.",
+          "I offer features like personalization options, direct messaging between buyers and sellers, and seller rating systems for trust.",
+          "My platform emphasizes supporting small businesses and independent creators rather than mass-produced corporate merchandise from factories."
+        ],
+        "level_3": [
+          "I was founded in 2005 by Rob Kalin, Chris Maguire, and Haim Schoppik in a Brooklyn apartment.",
+          "My name doesn't have a specific meaning; the founder wanted a meaningless word that could take on its own identity.",
+          "I'm headquartered in Brooklyn, New York, staying true to my creative and artisan-focused community roots since founding.",
+          "I started as a small website for crafters and grew into a global marketplace supporting millions of creative entrepreneurs.",
+          "My early community rallied around supporting handmade goods during the 2008 recession when people sought affordable unique items."
+        ],
+        "level_4": [
+          "I went public in April 2015 with an IPO price of $16 per share on the NASDAQ exchange.",
+          "I acquired Reverb (musical instruments marketplace) in 2019 and Depop (fashion resale app) in 2021 for $1.6 billion.",
+          "I've faced criticism over rising fees for sellers and concerns about mass-produced items being sold as handmade.",
+          "My gross merchandise sales exceeded $13 billion in 2021 as COVID-19 drove people to shop online more frequently.",
+          "I removed my CEO in 2017 and brought in Josh Silverman, who refocused the company on profitability and growth."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my brand name and trades on the NASDAQ exchange.",
+          "I have over 7 million active sellers and 90 million active buyers on my platform as of recent reports.",
+          "My orange and white logo features a stylized letter that also resembles a shop storefront and community symbol.",
+          "I introduced Etsy Payments as a mandatory payment processing system, generating significant additional revenue from transaction processing.",
+          "I'm a certified B-Corporation, meeting social sustainability and environmental performance standards beyond traditional corporate requirements."
+        ]
+      }
+    },
+    {
+      "ticker": "BYND",
+      "company": "Beyond Meat, Inc.",
+      "sector": "Consumer Defensive",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm a food company producing plant-based meat substitutes designed to look, cook, and taste like real meat.",
+          "I manufacture alternative protein products made entirely from plants to replace traditional animal-based meat in diets.",
+          "I create plant-based burgers, sausages, and other meat alternatives targeting both vegetarians and flexitarian consumers worldwide.",
+          "I'm revolutionizing the food industry by developing plant-based proteins that mimic the taste and texture of beef.",
+          "I produce meat substitutes from pea protein and other plants for consumers seeking sustainable protein options."
+        ],
+        "level_2": [
+          "My products include plant-based burgers, sausages, ground beef, chicken strips, and meatballs sold in grocery stores and restaurants.",
+          "I generate revenue by selling my products to retail chains, foodservice operators, and restaurants like McDonald's globally.",
+          "My flagship burger product uses pea protein, beet juice, and coconut oil to replicate the appearance and taste.",
+          "I partner with major fast-food chains and restaurants to offer plant-based menu options as alternatives to meat.",
+          "My business focuses on environmental sustainability, promoting plant-based eating to reduce greenhouse gas emissions from livestock."
+        ],
+        "level_3": [
+          "I was founded in 2009 by Ethan Brown, who wanted to address climate change through plant-based meat alternatives.",
+          "My company is headquartered in El Segundo, California, near Los Angeles in the heart of innovation culture.",
+          "My name reflects the mission of going beyond traditional animal agriculture to create sustainable food solutions for humanity.",
+          "I received early investments from Bill Gates, Leonardo DiCaprio, and Twitter co-founders Biz Stone and Ev Williams.",
+          "I launched my first product in Whole Foods in 2013, initially focusing on plant-based chicken strips."
+        ],
+        "level_4": [
+          "I went public in May 2019 with a successful IPO that saw my stock price surge 163% on the first day.",
+          "My market cap briefly exceeded $10 billion during peak hype around plant-based meat alternatives in 2019-2020.",
+          "I faced growing competition from Impossible Foods and traditional meat companies launching their own plant-based products nationwide.",
+          "I've struggled with profitability, declining sales, and concerns about ultra-processed ingredients despite initial momentum and excitement.",
+          "I partnered with McDonald's to develop the McPlant burger and with KFC for plant-based chicken offerings in testing."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation referencing going 'beyond' meat and trades on the NASDAQ exchange.",
+          "My products are sold at over 30,000 retail locations and restaurants worldwide including Walmart, Target, and Kroger.",
+          "I became the first plant-based meat company to go public, paving the way for the alternative protein industry.",
+          "My COO was fired in 2022 after allegedly biting a man's nose in a road rage incident outside a football game.",
+          "I use pea protein isolate as my primary protein source combined with rice protein and mung bean protein."
+        ]
+      }
+    },
+    {
+      "ticker": "TSN",
+      "company": "Tyson Foods, Inc.",
+      "sector": "Consumer Defensive",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm one of the world's largest food companies producing meat products including chicken, beef, and pork for consumers.",
+          "I operate in the protein industry processing and selling chicken, beef, pork, and prepared foods to retailers globally.",
+          "I'm a major food producer and processor supplying meat products to grocery stores, restaurants, and food manufacturers worldwide.",
+          "I produce and market chicken, beef, pork, and prepared foods to foodservice operators and retail customers across America.",
+          "I'm a leading protein company operating processing plants and farms producing billions of pounds of meat products annually."
+        ],
+        "level_2": [
+          "My brands include my namesake brand plus Jimmy Dean, Hillshire Farm, Ball Park, and Wright Brand sold in stores.",
+          "I generate revenue from selling fresh meat, frozen products, and prepared foods to retail, foodservice, and industrial customers.",
+          "My business segments include chicken, beef, pork, and prepared foods with operations spanning from farm to consumer plate.",
+          "I operate one of the largest chicken processing operations in the world, producing billions of pounds annually for consumption.",
+          "My products range from raw chicken breasts and ground beef to hot dogs, lunch meats, and frozen prepared meals."
+        ],
+        "level_3": [
+          "I was founded in 1935 by John W. Tyson, who started by hauling chickens to markets in the Midwest.",
+          "My company is headquartered in Springdale, Arkansas, where the Tyson family still maintains significant ownership and control.",
+          "My name comes from my founder who built a poultry empire from a single delivery truck during the Great Depression.",
+          "I grew through acquisitions including IBP (beef and pork) in 2001 for $3.2 billion, expanding beyond chicken.",
+          "I went public in 1963 and remain partially controlled by the founding Tyson family after four generations."
+        ],
+        "level_4": [
+          "I produce approximately 20% of all beef, pork, and chicken consumed in the United States annually today.",
+          "I've faced workplace safety controversies including COVID-19 outbreaks at processing facilities and manager misconduct allegations throughout history.",
+          "I've invested in alternative proteins including acquiring a stake in Memphis Meats and launching plant-based products recently.",
+          "I operate over 120 food processing facilities and employ approximately 120,000 people across the United States alone.",
+          "I supply chicken to major fast-food chains like McDonald's, Taco Bell, KFC, and other restaurant operators nationwide."
+        ],
+        "level_5": [
+          "My ticker symbol is a three-letter abbreviation matching my company founder's last name, trading on NYSE.",
+          "My slogan 'Powered by Tyson' appears on retail packaging across multiple product lines in grocery stores nationwide.",
+          "I'm the world's second-largest processor and marketer of chicken, beef, and pork after a Brazil-based competitor.",
+          "My chairman John Tyson, great-grandson of the founder, was arrested in 2022 for public intoxication after entering a stranger's home.",
+          "I acquired Hillshire Brands for $8.5 billion in 2014, adding Jimmy Dean sausages and Ball Park hot dogs."
+        ]
+      }
+    },
+    {
+      "ticker": "ALLY",
+      "company": "Ally Financial Inc.",
+      "sector": "Financial Services",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm a financial services company specializing in automotive financing, online banking, and consumer lending products in America.",
+          "I provide auto loans, online banking services, home loans, and credit cards primarily through digital channels for consumers.",
+          "I'm a digital financial services company offering car loans, high-yield savings accounts, and mortgage lending services nationwide.",
+          "I operate as an online bank and auto finance company without physical branch locations serving millions of customers.",
+          "I'm a consumer bank focusing on auto financing, deposits, mortgages, and credit products delivered entirely through digital platforms."
+        ],
+        "level_2": [
+          "My business includes automotive dealer financing, direct consumer banking, corporate finance, and insurance operations across segments.",
+          "I generate revenue through interest on auto loans, net interest margin on deposits, and fees from insurance products.",
+          "My auto finance business provides loans and leases to car dealerships and consumers purchasing vehicles from dealers nationwide.",
+          "I offer high-yield savings accounts, CDs, and money market accounts with competitive rates compared to traditional banks.",
+          "My dealer financial services support over 18,000 auto dealerships with wholesale financing, loans, and lease options for customers."
+        ],
+        "level_3": [
+          "I was originally founded as the financing arm of a major American automotive manufacturer in 1919.",
+          "My company was spun off from an auto company during the 2008 financial crisis when the government intervened.",
+          "I'm headquartered in Detroit, Michigan, maintaining ties to my automotive industry origins and customer base in the region.",
+          "My name was changed in 2009 after the financial crisis to distance myself from the struggling automaker parent.",
+          "I was renamed to project a friendly, supportive image as an independent consumer-focused financial services company."
+        ],
+        "level_4": [
+          "I received a government bailout during the 2008 financial crisis and was majority-owned by the Treasury Department.",
+          "I went public in 2014 after the government fully divested its ownership stake acquired during the financial crisis.",
+          "I originated as GMAC (General Motors Acceptance Corporation) providing financing for GM car buyers for decades previously.",
+          "I've transformed from a captive auto finance company to a diversified digital bank competing with traditional financial institutions.",
+          "I acquired TradeKing in 2016 and rebranded it as Ally Invest, entering the online brokerage and investment space."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation of my brand name and trades on the New York Stock Exchange.",
+          "I'm one of the largest auto finance companies in America with over $180 billion in assets under management.",
+          "My purple and magenta branding features prominently in my advertising campaigns promoting 'Do It Right' messaging nationwide.",
+          "I sponsor the NASCAR Cup Series race at Charlotte Motor Speedway known as the Ally 400 annually.",
+          "I have no physical branch locations, operating entirely as a digital bank with customer service via phone and online."
+        ]
+      }
+    },
+    {
+      "ticker": "RDFN",
+      "company": "Redfin Corporation",
+      "sector": "Real Estate",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm a technology-powered real estate brokerage offering home buying and selling services with lower commission fees.",
+          "I operate a real estate company combining online tools with salaried agents to help people buy and sell homes.",
+          "I'm a residential real estate brokerage using technology to provide better service at lower costs than traditional agents.",
+          "I disrupt the traditional real estate industry by offering home listings, virtual tours, and agent services through technology.",
+          "I provide real estate brokerage services, mortgage lending, and home-buying tools through an integrated digital platform nationwide."
+        ],
+        "level_2": [
+          "My platform allows users to search homes, schedule tours, and work with salaried agents who earn bonuses for customer satisfaction.",
+          "I generate revenue from real estate commissions, mortgage origination fees, title services, and selling market data to clients.",
+          "My business model charges sellers a 1% to 1.5% listing fee compared to traditional 2.5% to 3% rates.",
+          "I offer services including brokerage, iBuying (instant offers), mortgage lending, title insurance, and renovation financing for customers.",
+          "My salaried agent model differs from traditional commission-only agents, aiming to reduce conflicts of interest in transactions."
+        ],
+        "level_3": [
+          "I was founded in 2004 by Glenn Kelman, David Eraker, and Michael Dougherty in Seattle, Washington.",
+          "My name combines 'red' from my logo color and 'fin' suggesting financial services in real estate markets.",
+          "I'm headquartered in Seattle, Washington, where the company launched using technology to transform real estate brokerage operations.",
+          "I started as a consumer-facing website providing home valuations and market data before launching brokerage services in 2006.",
+          "My founders wanted to use technology to make real estate more transparent and affordable for home buyers and sellers."
+        ],
+        "level_4": [
+          "I went public in July 2017 with an IPO price of $15 per share on the NASDAQ exchange.",
+          "I launched RedfinNow, an iBuying program making instant cash offers on homes, competing with Zillow and Opendoor directly.",
+          "I shut down my iBuying business in 2022 after losing hundreds of millions on homes bought during the market peak.",
+          "I've expanded to over 100 markets across the United States and Canada, serving millions of home buyers annually.",
+          "I acquired RentPath for $608 million in 2021 to enter the rental listings market with Rent.com and ApartmentGuide.com."
+        ],
+        "level_5": [
+          "My ticker symbol is a five-letter abbreviation of my brand name and trades on the NASDAQ exchange.",
+          "My CEO Glenn Kelman has led the company since 2005, becoming one of tech's most outspoken real estate executives.",
+          "I offer home buyers a commission refund at closing, giving back a portion of the buyer's agent commission.",
+          "My website and mobile app are among the most visited real estate platforms with hundreds of millions of visits.",
+          "I use a 'Redfin Hot Homes' feature highlighting properties likely to sell quickly based on user activity data."
+        ]
+      }
+    },
+    {
+      "ticker": "GPS",
+      "company": "The Gap, Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm a major American clothing retailer operating multiple apparel brands selling casual wear through stores and online.",
+          "I operate a family of clothing brands including denim, casual wear, and children's apparel sold in malls worldwide.",
+          "I'm a global apparel company with iconic brand names selling jeans, khakis, and casual clothing for all ages.",
+          "I own several well-known clothing brands offering affordable fashion from baby clothes to adult casual wear nationwide.",
+          "I'm a specialty retailer providing American-style casual clothing through multiple brand names in retail stores and online."
+        ],
+        "level_2": [
+          "My portfolio includes my namesake brand plus Old Navy, Banana Republic, and Athleta serving different customer segments.",
+          "I generate revenue from selling apparel and accessories through company-operated stores, franchise locations, and e-commerce platforms worldwide.",
+          "My business operates over 3,000 stores globally with the majority located in North America and online sales growing.",
+          "I offer products ranging from baby clothing at babyGap to athletic wear at Athleta and professional attire at Banana Republic.",
+          "My largest brand Old Navy focuses on affordable family clothing while Banana Republic targets premium casual and workwear customers."
+        ],
+        "level_3": [
+          "I was founded in 1969 by Donald Fisher and Doris Fisher who opened a single store in San Francisco.",
+          "My name comes from the 'generation gap' and my founders' goal of making it easier to find jeans.",
+          "I'm headquartered in San Francisco, California, where my first store opened on Ocean Avenue near San Francisco State.",
+          "I went public in 1976 and expanded rapidly in the 1980s and 1990s becoming a mall staple across America.",
+          "I created Old Navy in 1994 as a value brand and acquired Banana Republic in 1983 to move upmarket."
+        ],
+        "level_4": [
+          "I peaked in the 1990s with my khaki pants campaigns but struggled with changing fashion trends and increased competition.",
+          "I've closed hundreds of stores in recent years while investing heavily in e-commerce and omnichannel capabilities for survival.",
+          "I spun off my Old Navy brand into a separate company in 2019 but reversed the decision before completion.",
+          "I've faced leadership turnover with multiple CEOs in the past decade trying to revitalize struggling brands and sales.",
+          "I partnered with Kanye West to launch Yeezy Gap in 2020, though the partnership ended controversially in 2022."
+        ],
+        "level_5": [
+          "My ticker symbol is a three-letter abbreviation of my company name and trades on the New York Stock Exchange.",
+          "My iconic blue box logo with white lettering became one of the most recognizable retail symbols in the 1990s.",
+          "I'm considered a pioneer of 'fast fashion' in America, introducing new styles quickly to compete with changing trends.",
+          "My 1998 'Khakis Swing' television commercial became an iconic cultural moment featuring swing dancing in khaki pants.",
+          "I operate outlet stores selling discounted merchandise from prior seasons at over 300 locations across North America."
+        ]
+      }
+    },
+    {
+      "ticker": "FL",
+      "company": "Foot Locker, Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "medium",
+      "questions": {
+        "level_1": [
+          "I'm a leading athletic footwear and apparel retailer operating stores in malls and shopping centers globally.",
+          "I specialize in selling athletic shoes, clothing, and accessories from major sportswear brands in my retail locations.",
+          "I'm a specialty retailer focused on sneakers and athletic lifestyle products from Nike, Adidas, and other brands.",
+          "I operate athletic shoe stores selling premium sneakers and sportswear targeting sneaker enthusiasts and athletes worldwide.",
+          "I'm a footwear retail chain known for carrying the latest releases from top athletic shoe brands and exclusive collaborations."
+        ],
+        "level_2": [
+          "My stores carry basketball shoes, running shoes, lifestyle sneakers, and athletic apparel from top brands like Nike and Adidas.",
+          "I generate revenue by selling athletic footwear and apparel with profit margins depending on brand relationships and inventory management.",
+          "My business operates over 2,700 stores across North America, Europe, Asia, and Australia under multiple retail banners.",
+          "I offer exclusive sneaker releases, limited editions, and launch events attracting sneaker collectors and enthusiasts to my stores.",
+          "My portfolio includes my flagship brand plus Kids, Champs Sports, and other specialty athletic retail concepts serving different customers."
+        ],
+        "level_3": [
+          "I was founded in 1974 in California as a small chain before expanding nationally into malls across America.",
+          "My name and referee-striped employee uniforms reference basketball courts where officials make calls during games.",
+          "I'm headquartered in New York City after moving from California, overseeing my global retail operations from Manhattan.",
+          "I grew rapidly in the 1980s and 1990s coinciding with basketball culture and the rise of sneaker collecting culture.",
+          "I went public in 1982 and became the dominant athletic footwear specialty retailer in American shopping malls."
+        ],
+        "level_4": [
+          "I acquired Eastbay in 1997, Champs Sports in 2001, and Runners Point Group in 2018 to expand my portfolio.",
+          "I've struggled with declining mall traffic, competition from online retailers, and challenges with Nike reducing wholesale partnerships recently.",
+          "I depend heavily on Nike for inventory, making me vulnerable to changes in brand's direct-to-consumer strategy and allocation.",
+          "I launched loyalty programs and invested in digital transformation to compete with online sneaker retailers and brand websites.",
+          "I've closed hundreds of underperforming stores while testing smaller format locations and experiential retail concepts for the future."
+        ],
+        "level_5": [
+          "My ticker symbol is a two-letter abbreviation of my retail banner name and trades on the New York Stock Exchange.",
+          "My iconic black and white striped referee uniforms worn by employees are instantly recognizable in malls nationwide.",
+          "I'm the exclusive retailer for certain Nike collaborations and limited-edition releases driving foot traffic to stores.",
+          "My Eastbay catalog was iconic in the 1990s and 2000s, allowing customers to order sneakers via mail nationwide.",
+          "I operate house brands including FILA stores in Europe and recently expanded into sneaker resale with acquisitions."
+        ]
+      }
+    },
+    {
+      "ticker": "BBWI",
+      "company": "Bath & Body Works, Inc.",
+      "sector": "Consumer Cyclical",
+      "difficulty": "easy",
+      "questions": {
+        "level_1": [
+          "I'm a specialty retailer selling personal care and home fragrance products through stores in malls and shopping centers.",
+          "I operate retail stores offering body care products, soaps, lotions, candles, and home fragrances with seasonal scents nationwide.",
+          "I'm famous for my scented candles, hand soaps, body lotions, and seasonal fragrance collections sold in my stores.",
+          "I specialize in bath, body, and home fragrance products with signature scents that customers collect and gift year-round.",
+          "I'm a beauty and personal care retailer known for heavily scented products and frequent promotional sales events drawing crowds."
+        ],
+        "level_2": [
+          "My products include body lotions, shower gels, hand soaps, candles, wallflower plug-ins, and fragrance mists in hundreds of scents.",
+          "I generate revenue from retail sales with heavy promotional activity including semi-annual sales and frequent buy-more-save-more offers regularly.",
+          "My business operates over 1,750 stores across North America plus international locations and a growing e-commerce platform online.",
+          "I release seasonal collections with scents like Warm Vanilla Sugar, Japanese Cherry Blossom, and Pumpkin Spice attracting loyal fans.",
+          "My stores feature open layouts encouraging customers to smell products, with employees offering samples and helping with fragrance selection."
+        ],
+        "level_3": [
+          "I was founded in 1990 in New Albany, Ohio, originally as a subsidiary of a larger retail corporation.",
+          "My company is headquartered in Columbus, Ohio, where I maintain my corporate offices and distribution operations today.",
+          "I was spun off as an independent public company in 2021 after being part of a lingerie retailer's portfolio.",
+          "My stores initially focused on bath products before expanding into body care, home fragrance, and seasonal gift collections.",
+          "I built a loyal customer base through the 1990s and 2000s with signature scents and mall-based retail locations."
+        ],
+        "level_4": [
+          "I separated from Victoria's Secret in 2021, becoming an independent pure-play home and body care company on my own.",
+          "I've maintained strong sales and profitability compared to many mall-based retailers by focusing on affordable luxuries and gifts.",
+          "I expanded internationally into Canada, the Middle East, and other markets through franchise partnerships and company-owned stores.",
+          "I pioneered the concept of seasonal product rotations with holiday scents driving significant sales during key shopping periods.",
+          "My semi-annual sale events generate massive store traffic with customers lining up for discounts on candles and body care."
+        ],
+        "level_5": [
+          "My ticker symbol is a four-letter abbreviation combining bath, body, works, and indicates my NYSE listing status.",
+          "My three-wick candles priced around $25 regularly are among my most popular products with cult-like following from fans.",
+          "I'm known for my signature scents including Warm Vanilla Sugar, A Thousand Wishes, and Into the Night fragrances.",
+          "My store associates frequently offer coupons and samples, and my rewards program provides exclusive member discounts regularly.",
+          "I operate White Barn stores as an upscale home fragrance concept separate from my core brand positioning strategy."
+        ]
+      }
     }
 ]
 }
