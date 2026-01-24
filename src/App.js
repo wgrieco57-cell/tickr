@@ -813,7 +813,7 @@ function App() {
         </div>
 
         {gameOver && gameMode === 'daily' && (
-          <div style={{ background: 'rgba(34, 197, 94, 0.1)', border: `1px solid #22c55e`, borderRadius: '1rem', padding: '1rem', marginBottom: '1.5rem', textAlign: 'center' }}>
+          <div style={{ background: 'rgba(59, 130, 246, 0.1)', border: `1px solid rgba(59, 130, 246, 0.3)`, borderRadius: '1rem', padding: '1rem', marginBottom: '1.5rem', textAlign: 'center', color: theme.textColor }}>
             You already completed today's puzzle! Come back tomorrow for a new one. 🎯
           </div>
         )}
@@ -895,6 +895,7 @@ function App() {
                   justifyContent: 'center',
                   borderRadius: '50%',
                   zIndex: 10,
+                  lineHeight: '1'
                 }}
                 aria-label="Close Statistics"
               >
@@ -1124,6 +1125,7 @@ function App() {
                   justifyContent: 'center',
                   borderRadius: '50%',
                   zIndex: 10,
+                  lineHeight: '1'
                 }}
                 aria-label="Close How to Play"
               >
@@ -1378,6 +1380,29 @@ function App() {
           0%, 100% { transform: translateX(0); }
           25% { transform: translateX(-10px); }
           75% { transform: translateX(10px); }
+        }
+        
+        /* Hide scrollbar but keep functionality */
+        *::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+        }
+        *::-webkit-scrollbar-track {
+          background: rgba(15, 23, 42, 0.3);
+          border-radius: 10px;
+        }
+        *::-webkit-scrollbar-thumb {
+          background: rgba(148, 163, 184, 0.3);
+          border-radius: 10px;
+        }
+        *::-webkit-scrollbar-thumb:hover {
+          background: rgba(148, 163, 184, 0.5);
+        }
+        
+        /* Firefox scrollbar */
+        * {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(148, 163, 184, 0.3) rgba(15, 23, 42, 0.3);
         }
       `}</style>
     </div>
