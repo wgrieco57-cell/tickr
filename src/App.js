@@ -73,7 +73,6 @@ function App() {
   const [quotes, setQuotes] = useState([]);
   const [showStats, setShowStats] = useState(false);
   const [showHowToPlay, setShowHowToPlay] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
   const [startTime, setStartTime] = useState(null);
   const [shake, setShake] = useState(false);
   const [activeModeTab, setActiveModeTab] = useState('daily');
@@ -101,13 +100,13 @@ function App() {
   const inputRef = useRef(null);
 
   const theme = useMemo(() => {
-    const bgColor = darkMode ? 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' : 'linear-gradient(135deg,#f8fafc 0%,#e2e8f0 50%,#cbd5e1 100%)';
-    const textColor = darkMode ? '#e2e8f0' : '#1e293b';
-    const mutedColor = darkMode ? '#94a3b8' : '#64748b';
-    const cardBg = darkMode ? 'rgba(15,23,42,0.7)' : 'rgba(255,255,255,0.8)';
-    const borderColor = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+    const bgColor = 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)';
+    const textColor = '#e2e8f0';
+    const mutedColor = '#94a3b8';
+    const cardBg = 'rgba(15,23,42,0.7)';
+    const borderColor = 'rgba(255,255,255,0.1)';
     return { bgColor, textColor, mutedColor, cardBg, borderColor };
-  }, [darkMode]);
+  }, []);
 
   // Load stats + dark mode once
   useEffect(() => {
@@ -121,13 +120,6 @@ function App() {
       console.error('Failed to load stats:', e);
       localStorage.removeItem('tickrDailyStats');
     }
-
-    try {
-      const savedDark = localStorage.getItem('tickrDailyDarkMode');
-      if (savedDark !== null) {
-        setDarkMode(JSON.parse(savedDark));
-      }
-    } catch (e) {}
 
     if (!localStorage.getItem('tickrDailyVisited')) {
       setShowHowToPlay(true);
@@ -550,12 +542,6 @@ function App() {
     setAvailableOptions([]);
   }, []);
 
-  const toggleDarkMode = useCallback(() => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    localStorage.setItem('tickrDailyDarkMode', JSON.stringify(newMode));
-  }, [darkMode]);
-
   const nextPuzzle = useCallback(() => {
     setGameOver(false);
     setCurrentLevel(0);
@@ -729,7 +715,7 @@ function App() {
   ), [theme]);
 
   const ModeSelector = useCallback(() => (
-    <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '1rem', alignItems: 'center', marginBottom: '1.5rem' }}>
+    <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '1rem', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
       <button
         onClick={() => setGameMode('daily')}
         style={{
@@ -796,9 +782,9 @@ function App() {
   return (
     <div style={{ minHeight: '100vh', background: theme.bgColor, color: theme.textColor, fontFamily: 'system-ui, -apple-system, sans-serif', transition: 'all 0.3s ease' }}>
       {/* Quotron */}
-      <div style={{ background: 'linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)', borderBottom: `1px solid ${theme.borderColor}`, padding: '0.75rem 0', overflow: 'hidden' }}>
+      <div style={{ background: theme.bgColor, borderBottom: `1px solid ${theme.borderColor}`, padding: '0.75rem 0', overflow: 'hidden' }}>
         {quotes.length > 0 ? (
-          <div style={{ display: 'flex', animation: 'scroll 120s linear infinite', gap: '2rem', whiteSpace: 'nowrap' }}>
+          <div style={{ display: 'flex', animation: 'scroll 90s linear infinite', gap: '2rem', whiteSpace: 'nowrap' }}>
             {[...quotes, ...quotes].map((q, i) => (
               <div key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem' }}>
                 <span style={{ fontWeight: '700', color: theme.textColor }}>{q.symbol}</span>
@@ -816,12 +802,7 @@ function App() {
 
       {/* Header */}
       <div style={{ maxWidth: '900px', margin: '0 auto', padding: isMobile ? '1rem' : '2rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-          {!isMobile && (
-            <button onClick={toggleDarkMode} style={{ background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer' }} aria-label="Toggle Dark Mode">
-              {darkMode ? '☀️' : '🌙'}
-            </button>
-          )}
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
           <div style={{ flex: 1, textAlign: 'center' }}>
             <h1 style={{ fontSize: isMobile ? '2rem' : '3rem', fontWeight: '800', margin: '0', background: 'linear-gradient(135deg, #22c55e, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>TickrDaily</h1>
             <p style={{ color: theme.mutedColor, margin: '0.5rem 0 0 0', fontSize: '0.875rem' }}>{todayDate}</p>
