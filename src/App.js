@@ -357,23 +357,6 @@ function App() {
     }
   }, [shake]);
 
-  function isMarketHours() {
-    const now = new Date();
-    const etDate = new Date(
-      now.toLocaleString("en-US", { timeZone: "America/New_York", hour12: false })
-    );
-    const day = etDate.getDay();
-    if (day === 0 || day === 6) return false;
-
-    const hours = etDate.getHours();
-    const minutes = etDate.getMinutes();
-    const currentMins = hours * 60 + minutes;
-    const marketOpen = 9 * 60 + 30;
-    const marketClose = 16 * 60 + 0;
-
-    return currentMins >= marketOpen && currentMins < marketClose;
-  }
-
   // NEW: Load quotes from backend API
   useEffect(() => {
     let interval = null;
