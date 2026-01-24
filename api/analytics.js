@@ -1,5 +1,18 @@
 // api/analytics.js
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
+
+let redis = null;
+if (process.env.REDIS_URL) {
+  try {
+    const url = new URL(process.env.REDIS_URL);
+    redis = new Redis({
+      url: process.env.REDIS_URL,
+      token: url.password || ''
+    });
+  } catch (e) {
+    console.error('Redis connection error:', e);
+  }
+}
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -29,15 +42,19 @@ export default async function handler(req, res) {
       userAgent: req.headers['user-agent']
     };
 
-    if (event === 'game_complete') {
-      const today = new Date().toISOString().split('T')[0];
-      const counterKey = `stats:${today}`;
-      
-      await Promise.all([
-        kv.hincrby(counterKey, 'total_games', 1),
-        data.won ? kv.hincrby(counterKey, 'total_wins', 1) : Promise.resolve(),
-        kv.expire(counterKey, 86400 * 30)
-      ]);
+    if (event === 'game_complete' && redis) {
+      try {
+        const today = new Date().toISOString().split('T')[0];
+        const counterKey = `stats:${today}`;
+        
+        await Promise.all([
+          redis.hincrby(counterKey, 'total_games', 1),
+          data.won ? redis.hincrby(counterKey, 'total_wins', 1) : Promise.resolve(),
+          redis.expire(counterKey, 86400 * 30)
+        ]);
+      } catch (e) {
+        console.log('Redis error in analytics:', e);
+      }
     }
 
     console.log(JSON.stringify(logEntry));
