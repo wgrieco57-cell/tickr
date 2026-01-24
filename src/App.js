@@ -784,7 +784,7 @@ function App() {
       {/* Quotron */}
       <div style={{ background: theme.bgColor, borderBottom: `1px solid ${theme.borderColor}`, padding: '0.75rem 0', overflow: 'hidden' }}>
         {quotes.length > 0 ? (
-          <div style={{ display: 'flex', animation: 'scroll 90s linear infinite', gap: '2rem', whiteSpace: 'nowrap' }}>
+          <div style={{ display: 'flex', animation: 'scroll 60s linear infinite', gap: '2rem', whiteSpace: 'nowrap' }}>
             {[...quotes, ...quotes].map((q, i) => (
               <div key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem' }}>
                 <span style={{ fontWeight: '700', color: theme.textColor }}>{q.symbol}</span>
