@@ -4,13 +4,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { getAnalytics, logEvent } from "firebase/analytics";
 
-// REMOVED: const FINNHUB_API_KEY - now handled by backend
-
-const QUOTRON_TICKERS = [
-  '^GSPC','^DJI','^IXIC',
-  'AAPL','MSFT','GOOGL','AMZN','META','TSLA','NVDA',
-  'BRK.B','JPM','JNJ','V','PG','DIS','MA','HD','UNH','BAC'
-];
+// REMOVED: QUOTRON_TICKERS - now handled by backend
 
 const FALLBACK_QUOTES = [
   { symbol: 'AAPL', current: '150.00', change: '1.50' },
