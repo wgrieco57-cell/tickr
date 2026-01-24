@@ -796,9 +796,9 @@ function App() {
   return (
     <div style={{ minHeight: '100vh', background: theme.bgColor, color: theme.textColor, fontFamily: 'system-ui, -apple-system, sans-serif', transition: 'all 0.3s ease' }}>
       {/* Quotron */}
-      <div style={{ background: 'rgba(0,0,0,0.3)', borderBottom: `1px solid ${theme.borderColor}`, padding: '0.75rem 0', overflow: 'hidden' }}>
+      <div style={{ background: 'linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)', borderBottom: `1px solid ${theme.borderColor}`, padding: '0.75rem 0', overflow: 'hidden' }}>
         {quotes.length > 0 ? (
-          <div style={{ display: 'flex', animation: 'scroll 60s linear infinite', gap: '2rem', whiteSpace: 'nowrap' }}>
+          <div style={{ display: 'flex', animation: 'scroll 120s linear infinite', gap: '2rem', whiteSpace: 'nowrap' }}>
             {[...quotes, ...quotes].map((q, i) => (
               <div key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem' }}>
                 <span style={{ fontWeight: '700', color: theme.textColor }}>{q.symbol}</span>
@@ -849,7 +849,7 @@ function App() {
         <ModeSelector />
 
         {/* Buttons */}
-        <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <button
             onClick={() => setShowStats(!showStats)}
             style={{
