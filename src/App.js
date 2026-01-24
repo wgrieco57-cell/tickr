@@ -105,7 +105,6 @@ function App() {
   const [puzzleSeed, setPuzzleSeed] = useState(0);
 
   const inputRef = useRef(null);
-  let quoteIntervalRef = useRef(null);
 
   const theme = useMemo(() => {
     const bgColor = darkMode ? 'linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)' : 'linear-gradient(135deg,#f8fafc 0%,#e2e8f0 50%,#cbd5e1 100%)';
@@ -173,6 +172,7 @@ function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [input, gameOver, gameMode]);
 
   // Load local JSON data
@@ -198,8 +198,8 @@ function App() {
       });
   }, []);
 
-  const auth = getAuth();
   useEffect(() => {
+    const auth = getAuth();
     signInAnonymously(auth)
       .then(() => {
         console.log("Signed in anonymously");
@@ -548,6 +548,7 @@ function App() {
     }
 
     setCurrentLevel(currentLevel + 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameOver, input, allTickers, questions, currentLevel, submittedAnswers, startTime]);
 
   const handleOptionClick = useCallback((option) => {
@@ -568,11 +569,6 @@ function App() {
     setInput("");
     setAvailableOptions([]);
     setPuzzleSeed(prev => prev + 1);
-  }, []);
-
-  const resetGame = useCallback(() => {
-    localStorage.removeItem('dailyProgress');
-    window.location.reload();
   }, []);
 
   const shareResults = useCallback(() => {
@@ -694,7 +690,6 @@ function App() {
 
   const getAchievements = useCallback(() => {
     const achievements = [];
-    const dailyDist = stats.dailyGuessDistribution;
     const unlimitedDist = stats.unlimitedGuessDistribution;
 
     if (stats.dailyCurrentStreak >= 5) achievements.push({ icon: '🔥', name: 'Daily 5 Streak', desc: 'Win 5 daily puzzles in a row' });
