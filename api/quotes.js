@@ -23,6 +23,21 @@ const FALLBACK_QUOTES = [
   { symbol: '^IXIC', current: '15000.00', change: '50.00' }
 ];
 
+// Initialize Redis from URL
+let redis = null;
+if (process.env.REDIS_URL) {
+  try {
+    // Parse Redis URL
+    const url = new URL(process.env.REDIS_URL);
+    redis = new Redis({
+      url: process.env.REDIS_URL,
+      token: url.password || ''
+    });
+  } catch (e) {
+    console.error('Redis connection error:', e);
+  }
+}
+
 function isMarketHours() {
   const now = new Date();
   const etDate = new Date(
@@ -78,15 +93,26 @@ export default async function handler(req, res) {
 
   try {
     const cacheKey = isMarketHours() ? 'quotes:live' : 'quotes:closing';
-    const cached = await kv.get(cacheKey);
     
-    if (cached) {
-      return res.status(200).json({
-        quotes: cached,
-        cached: true,
-        timestamp: Date.now()
-      });
+    // Try to get from cache if Redis is available
+    let cached = null;
+    if (redis) {
+      try {
+        cached = await redis.get(cacheKey);
+        if (cached) {
+          console.log('Cache hit');
+          return res.status(200).json({
+            quotes: typeof cached === 'string' ? JSON.parse(cached) : cached,
+            cached: true,
+            timestamp: Date.now()
+          });
+        }
+      } catch (e) {
+        console.log('Redis error, continuing without cache:', e);
+      }
     }
+
+    console.log('Cache miss - fetching fresh data');
 
     const quotes = await Promise.all(
       TICKERS.map(ticker => fetchQuoteFromFinnhub(ticker))
@@ -95,7 +121,14 @@ export default async function handler(req, res) {
     const validQuotes = quotes.filter(Boolean);
 
     if (validQuotes.length > 0) {
-      await kv.set(cacheKey, validQuotes, { ex: CACHE_TTL });
+      // Try to cache if Redis is available
+      if (redis) {
+        try {
+          await redis.set(cacheKey, JSON.stringify(validQuotes), { ex: CACHE_TTL });
+        } catch (e) {
+          console.log('Redis set error:', e);
+        }
+      }
       
       return res.status(200).json({
         quotes: validQuotes,
