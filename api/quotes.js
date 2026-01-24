@@ -1,5 +1,5 @@
 // api/quotes.js
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
 
 const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY;
 const CACHE_TTL = 300; // 5 minutes
