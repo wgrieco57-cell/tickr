@@ -381,14 +381,20 @@ function App() {
     const loadQuotes = async () => {
       try {
         // Call our new backend API
-        const response = await fetch('/api/quotes');
+        const response = await fetch('/api/quotes', {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+          },
+          credentials: 'same-origin'
+        });
         
         if (!response.ok) throw new Error('API error');
         
-        const { quotes } = await response.json();
+        const data = await response.json();
         
-        if (quotes && quotes.length > 0) {
-          setQuotes(window.innerWidth <= 768 ? quotes.slice(0, 10) : quotes);
+        if (data.quotes && data.quotes.length > 0) {
+          setQuotes(window.innerWidth <= 768 ? data.quotes.slice(0, 10) : data.quotes);
         } else {
           setQuotes(FALLBACK_QUOTES);
         }
@@ -402,10 +408,8 @@ function App() {
     // Load immediately
     loadQuotes();
 
-    // Only poll during market hours
-    if (isMarketHours()) {
-      interval = setInterval(loadQuotes, 300000); // 5 minutes
-    }
+    // Poll every 5 minutes regardless of market hours (API has cache)
+    interval = setInterval(loadQuotes, 300000);
 
     return () => {
       if (interval) clearInterval(interval);
@@ -876,26 +880,32 @@ function App() {
         {/* Stats Modal */}
         {showStats && (
           <div onClick={() => setShowStats(false)} style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '1rem' }}>
-            <div onClick={(e) => e.stopPropagation()} style={{ background: theme.cardBg, borderRadius: '1.5rem', padding: '2rem', maxWidth: '600px', width: '100%', maxHeight: '90vh', overflowY: 'auto', position: 'relative', border: `1px solid ${theme.borderColor}` }}>
+            <div onClick={(e) => e.stopPropagation()} style={{ background: theme.cardBg, borderRadius: '1.5rem', padding: '2rem', maxWidth: '600px', width: '100%', maxHeight: '90vh', overflowY: 'auto', position: 'relative', border: `1px solid ${theme.borderColor}`, paddingTop: '3rem' }}>
               <button
                 onClick={() => setShowStats(false)}
                 style={{
                   position: 'absolute',
-                  top: '1rem',
-                  right: '1rem',
-                  background: 'transparent',
+                  top: '0.5rem',
+                  right: '0.5rem',
+                  background: 'rgba(148, 163, 184, 0.2)',
                   border: 'none',
                   color: '#94a3b8',
                   fontSize: '2rem',
                   cursor: 'pointer',
-                  width: '44px',
-                  height: '44px',
+                  padding: '0',
+                  margin: '0',
+                  width: '40px',
+                  height: '40px',
+                  minWidth: '40px',
+                  minHeight: '40px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   borderRadius: '50%',
-                  zIndex: 10,
-                  lineHeight: '1'
+                  zIndex: 999,
+                  lineHeight: '1',
+                  WebkitTapHighlightColor: 'transparent',
+                  flexShrink: 0
                 }}
                 aria-label="Close Statistics"
               >
@@ -1105,27 +1115,33 @@ function App() {
         {/* How to Play Modal */}
         {showHowToPlay && (
           <div onClick={() => setShowHowToPlay(false)} style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '1rem' }} role="dialog" aria-modal="true" aria-labelledby="how-to-play-title">
-            <div onClick={(e) => e.stopPropagation()} style={{ background: '#0f172a', borderRadius: '1.5rem', padding: isMobile ? '1.5rem' : '2rem', maxWidth: '600px', width: '100%', maxHeight: '90vh', overflowY: 'auto', position: 'relative', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <div onClick={(e) => e.stopPropagation()} style={{ background: '#0f172a', borderRadius: '1.5rem', padding: isMobile ? '1.5rem' : '2rem', maxWidth: '600px', width: '100%', maxHeight: '90vh', overflowY: 'auto', position: 'relative', border: '1px solid rgba(255,255,255,0.1)', paddingTop: isMobile ? '3rem' : '2rem' }}>
               <button
                 onClick={() => setShowHowToPlay(false)}
                 style={{
                   position: 'absolute',
-                  top: '.5rem',
-                  right: '.5rem',
-                  background: 'transparent',
+                  top: '0.5rem',
+                  right: '0.5rem',
+                  background: 'rgba(148, 163, 184, 0.2)',
                   border: 'none',
                   color: '#94a3b8',
                   fontSize: '1.5rem',
                   fontWeight: '300',
                   cursor: 'pointer',
-                  width: '36px',
-                  height: '36px',
+                  padding: '0',
+                  margin: '0',
+                  width: '40px',
+                  height: '40px',
+                  minWidth: '40px',
+                  minHeight: '40px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   borderRadius: '50%',
-                  zIndex: 10,
-                  lineHeight: '1'
+                  zIndex: 999,
+                  lineHeight: '1',
+                  WebkitTapHighlightColor: 'transparent',
+                  flexShrink: 0
                 }}
                 aria-label="Close How to Play"
               >
