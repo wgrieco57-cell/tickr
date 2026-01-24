@@ -1,8 +1,8 @@
-// api/analytics.js - Production-ready with validation and sampled logging
+// api/analytics.js - BULLETPROOF for 10k+ users
 import { Redis } from '@upstash/redis';
 
-const MAX_PAYLOAD_SIZE = 10000; // 10KB limit
-const LOG_SAMPLE_RATE = 0.01; // Log 1% of events (adjust as needed)
+const MAX_PAYLOAD_SIZE = 10000;
+const LOG_SAMPLE_RATE = 0.01;
 
 const ALLOWED_EVENTS = new Set([
   'game_complete',
@@ -18,6 +18,9 @@ const ALLOWED_DATA_FIELDS = new Set([
   'difficulty'
 ]);
 
+const ALLOWED_MODES = new Set(['daily', 'unlimited']);
+const ALLOWED_DIFFICULTIES = new Set(['easy', 'medium', 'hard']);
+
 // Initialize Redis
 let redis = null;
 if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
@@ -29,31 +32,18 @@ if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) 
   } catch (e) {
     console.error('Redis init error:', e);
   }
-} else if (process.env.REDIS_URL) {
-  try {
-    const url = new URL(process.env.REDIS_URL);
-    redis = new Redis({
-      url: process.env.REDIS_URL,
-      token: url.password || ''
-    });
-  } catch (e) {
-    console.error('Redis init error (fallback):', e);
-  }
 }
 
 function validatePayload(body) {
-  // Check size
   const bodySize = JSON.stringify(body).length;
   if (bodySize > MAX_PAYLOAD_SIZE) {
     return { valid: false, error: 'Payload too large' };
   }
 
-  // Check event type
   if (!body.event || !ALLOWED_EVENTS.has(body.event)) {
     return { valid: false, error: 'Invalid event type' };
   }
 
-  // Validate data fields if present
   if (body.data && typeof body.data === 'object') {
     const dataKeys = Object.keys(body.data);
     const invalidFields = dataKeys.filter(k => !ALLOWED_DATA_FIELDS.has(k));
@@ -61,7 +51,7 @@ function validatePayload(body) {
       return { valid: false, error: `Invalid data fields: ${invalidFields.join(', ')}` };
     }
 
-    // Validate data types
+    // Type validation
     if (body.data.won !== undefined && typeof body.data.won !== 'boolean') {
       return { valid: false, error: 'won must be boolean' };
     }
@@ -70,6 +60,26 @@ function validatePayload(body) {
     }
     if (body.data.time !== undefined && typeof body.data.time !== 'number') {
       return { valid: false, error: 'time must be number' };
+    }
+
+    // FIX: Validate mode values
+    if (body.data.mode !== undefined && !ALLOWED_MODES.has(body.data.mode)) {
+      return { valid: false, error: 'mode must be daily or unlimited' };
+    }
+
+    // FIX: Validate difficulty values
+    if (body.data.difficulty !== undefined && 
+        body.data.difficulty !== null && 
+        !ALLOWED_DIFFICULTIES.has(body.data.difficulty)) {
+      return { valid: false, error: 'difficulty must be easy, medium, or hard' };
+    }
+
+    // FIX: Clamp values to reasonable ranges
+    if (body.data.cluesUsed !== undefined) {
+      body.data.cluesUsed = Math.max(1, Math.min(5, body.data.cluesUsed));
+    }
+    if (body.data.time !== undefined) {
+      body.data.time = Math.max(0, Math.min(36000, body.data.time)); // 0-10 hours max
     }
   }
 
@@ -92,41 +102,38 @@ export default async function handler(req, res) {
   try {
     const { event, data, userId } = req.body;
 
-    // Validate payload
     const validation = validatePayload(req.body);
     if (!validation.valid) {
-      // Log validation errors (always log errors)
       console.error('Analytics validation error:', validation.error, { event, userId });
       return res.status(400).json({ error: validation.error });
     }
 
-    // Sample logging (only log 1% to reduce costs)
+    // Sample logging
     if (Math.random() < LOG_SAMPLE_RATE) {
       const logEntry = {
         event,
         data,
         userId: userId || 'anonymous',
         timestamp: Date.now(),
-        userAgent: req.headers['user-agent']?.substring(0, 200) // Truncate
+        userAgent: req.headers['user-agent']?.substring(0, 200)
       };
       console.log(JSON.stringify(logEntry));
     }
 
-    // Update Redis counters (non-blocking)
+    // FIX: AWAIT Redis work instead of fire-and-forget
+    // This ensures increments aren't dropped in serverless environments
     if (event === 'game_complete' && redis) {
-      // Fire and forget - don't await
-      updateRedisCounters(data).catch(e => {
-        // Only log errors
+      try {
+        await updateRedisCounters(data);
+      } catch (e) {
         console.error('Redis counter update error:', e.message);
-      });
+      }
     }
 
     return res.status(204).end();
 
   } catch (error) {
-    // Always log errors
     console.error('Analytics error:', error.message);
-    // Don't fail the user's request
     return res.status(204).end();
   }
 }
@@ -137,16 +144,10 @@ async function updateRedisCounters(data) {
   const today = new Date().toISOString().split('T')[0];
   const counterKey = `stats:${today}`;
   
-  const pipeline = [
-    redis.hincrby(counterKey, 'total_games', 1)
-  ];
-
-  if (data?.won) {
-    pipeline.push(redis.hincrby(counterKey, 'total_wins', 1));
-  }
-
-  // Set expiration
-  pipeline.push(redis.expire(counterKey, 86400 * 30)); // 30 days
-
-  await Promise.all(pipeline);
+  // FIX: Use proper Promise.all with await (don't fire-and-forget)
+  await Promise.all([
+    redis.hincrby(counterKey, 'total_games', 1),
+    data?.won ? redis.hincrby(counterKey, 'total_wins', 1) : Promise.resolve(),
+    redis.expire(counterKey, 86400 * 30)
+  ]);
 }
