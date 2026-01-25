@@ -849,7 +849,7 @@ function App() {
       {/* Quotron */}
       <div style={{ background: theme.bgColor, borderBottom: `1px solid ${theme.borderColor}`, padding: '0.75rem 0', overflow: 'hidden' }}>
         {quotes.length > 0 ? (
-          <div style={{ display: 'flex', animation: 'scroll 90s linear infinite', gap: '2rem', whiteSpace: 'nowrap' }}>
+          <div style={{ display: 'flex', animation: 'scroll 30s linear infinite', gap: '2rem', whiteSpace: 'nowrap' }}>
             {[...quotes, ...quotes].map((q, i) => (
               <div key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem' }}>
                 <span style={{ fontWeight: '700', color: theme.textColor }}>{q.symbol}</span>
@@ -901,43 +901,45 @@ function App() {
           </div>
         )}
 
-        {/* Progress Bar - Wordle Style */}
-        <div style={{ marginBottom: '1.5rem' }}>
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
-            {questions.map((q, i) => {
-              let barColor = theme.borderColor; // Gray = not attempted
-              
-              // Check if this question has been answered
-              const hasAnswer = q.answers && q.answers.length > 0;
-              
-              if (hasAnswer) {
-                // Check if any answer was correct
-                const isCorrect = q.answers.some(a => a.isCorrect);
-                barColor = isCorrect ? '#22c55e' : '#ef4444'; // Green if correct, Red if wrong
-              } else if (i === currentLevel && !gameOver) {
-                barColor = '#3b82f6'; // Blue = current question
-              }
-              
-              return (
-                <div 
-                  key={i} 
-                  style={{ 
-                    flex: 1, 
-                    height: '0.5rem', 
-                    background: barColor, 
-                    borderRadius: '0.25rem', 
-                    transition: 'all 0.3s ease' 
-                  }}
-                ></div>
-              );
-            })}
+        {/* Progress Bar - Wordle Style (Hidden on Mobile) */}
+        {!isMobile && (
+          <div style={{ marginBottom: '1.5rem' }}>
+            <div style={{ display: 'flex', gap: '0.5rem' }}>
+              {questions.map((q, i) => {
+                let barColor = theme.borderColor; // Gray = not attempted
+                
+                // Check if this question has been answered
+                const hasAnswer = q.answers && q.answers.length > 0;
+                
+                if (hasAnswer) {
+                  // Check if any answer was correct
+                  const isCorrect = q.answers.some(a => a.isCorrect);
+                  barColor = isCorrect ? '#22c55e' : '#ef4444'; // Green if correct, Red if wrong
+                } else if (i === currentLevel && !gameOver) {
+                  barColor = '#3b82f6'; // Blue = current question
+                }
+                
+                return (
+                  <div 
+                    key={i} 
+                    style={{ 
+                      flex: 1, 
+                      height: '0.5rem', 
+                      background: barColor, 
+                      borderRadius: '0.25rem', 
+                      transition: 'all 0.3s ease' 
+                    }}
+                  ></div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
 
         <ModeSelector />
 
         {/* Buttons */}
-        <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
           <button
             onClick={() => setShowStats(!showStats)}
             style={{
@@ -952,7 +954,9 @@ function App() {
               transition: 'all 0.3s ease',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.5rem'
+              justifyContent: 'center',
+              gap: '0.5rem',
+              minWidth: isMobile ? '140px' : 'auto'
             }}
             aria-label="View Statistics"
           >
@@ -972,7 +976,9 @@ function App() {
               transition: 'all 0.3s ease',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.5rem'
+              justifyContent: 'center',
+              gap: '0.5rem',
+              minWidth: isMobile ? '140px' : 'auto'
             }}
             aria-label="How to Play"
           >
@@ -988,28 +994,25 @@ function App() {
                 onClick={() => setShowStats(false)}
                 style={{
                   position: 'absolute',
-                  top: '0.5rem',
-                  right: '0.5rem',
-                  background: 'rgba(148, 163, 184, 0.2)',
+                  top: '1rem',
+                  right: '1rem',
+                  background: 'transparent',
                   border: 'none',
                   color: '#94a3b8',
-                  fontSize: '2rem',
+                  fontSize: '1.5rem',
                   cursor: 'pointer',
                   padding: '0',
-                  margin: '0',
-                  width: '40px',
-                  height: '40px',
-                  minWidth: '40px',
-                  minHeight: '40px',
+                  width: '32px',
+                  height: '32px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   borderRadius: '50%',
-                  zIndex: 999,
-                  lineHeight: '1',
-                  WebkitTapHighlightColor: 'transparent',
-                  flexShrink: 0
+                  transition: 'background 0.2s',
+                  zIndex: 999
                 }}
+                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(148, 163, 184, 0.2)'}
+                onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                 aria-label="Close Statistics"
               >
                 ×
@@ -1223,29 +1226,25 @@ function App() {
                 onClick={() => setShowHowToPlay(false)}
                 style={{
                   position: 'absolute',
-                  top: '0.5rem',
-                  right: '0.5rem',
-                  background: 'rgba(148, 163, 184, 0.2)',
+                  top: '1rem',
+                  right: '1rem',
+                  background: 'transparent',
                   border: 'none',
                   color: '#94a3b8',
                   fontSize: '1.5rem',
-                  fontWeight: '300',
                   cursor: 'pointer',
                   padding: '0',
-                  margin: '0',
-                  width: '40px',
-                  height: '40px',
-                  minWidth: '40px',
-                  minHeight: '40px',
+                  width: '32px',
+                  height: '32px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   borderRadius: '50%',
-                  zIndex: 999,
-                  lineHeight: '1',
-                  WebkitTapHighlightColor: 'transparent',
-                  flexShrink: 0
+                  transition: 'background 0.2s',
+                  zIndex: 999
                 }}
+                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(148, 163, 184, 0.2)'}
+                onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                 aria-label="Close How to Play"
               >
                 ×
