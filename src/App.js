@@ -77,6 +77,7 @@ function App() {
   const [shake, setShake] = useState(false);
   const [activeModeTab, setActiveModeTab] = useState('daily');
   const [isMobile, setIsMobile] = useState(false);
+  const [todayStats, setTodayStats] = useState(null); // NEW: Social proof stats
   const [stats, setStats] = useState({
     dailyGamesPlayed: 0,
     dailyGamesWon: 0,
@@ -357,19 +358,31 @@ function App() {
     }
   }, [shake]);
 
-  // NEW: Load quotes from backend API
+  // UPDATED: Load quotes from backend API with visibility API and jitter
   useEffect(() => {
     let interval = null;
+    let abortController = null;
 
     const loadQuotes = async () => {
+      // Don't fetch if tab is hidden (saves API calls)
+      if (document.visibilityState === 'hidden') {
+        return;
+      }
+
+      // Abort previous request if still running
+      if (abortController) {
+        abortController.abort();
+      }
+      abortController = new AbortController();
+
       try {
-        // Call our new backend API
+        // Only fetch if online
+        if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+          return;
+        }
+
         const response = await fetch('/api/quotes', {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-          },
-          credentials: 'same-origin'
+          signal: abortController.signal
         });
         
         if (!response.ok) throw new Error('API error');
@@ -383,6 +396,9 @@ function App() {
         }
         
       } catch (error) {
+        if (error.name === 'AbortError') {
+          return;
+        }
         console.error('Failed to load quotes:', error);
         setQuotes(FALLBACK_QUOTES);
       }
@@ -391,12 +407,41 @@ function App() {
     // Load immediately
     loadQuotes();
 
-    // Poll every 5 minutes regardless of market hours (API has cache)
-    interval = setInterval(loadQuotes, 300000);
+    // Add random jitter to prevent stampede (5min ± 15sec)
+    const baseInterval = 300000;
+    const jitter = Math.random() * 15000;
+    const intervalWithJitter = baseInterval + jitter;
+
+    interval = setInterval(loadQuotes, intervalWithJitter);
+
+    // Pause polling when tab is hidden, resume when visible
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        loadQuotes();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
       if (interval) clearInterval(interval);
+      if (abortController) abortController.abort();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
+  }, []);
+
+  // NEW: Fetch today's stats for social proof
+  useEffect(() => {
+    fetch('/api/stats/daily')
+      .then(res => res.json())
+      .then(data => {
+        if (data.total_games > 0) {
+          setTodayStats(data);
+        }
+      })
+      .catch(() => {
+        // Silent fail - stats are nice-to-have
+      });
   }, []);
 
   // Focus input
@@ -538,35 +583,67 @@ function App() {
     setPuzzleSeed(prev => prev + 1);
   }, []);
 
+  // UPDATED: Share results with new /api/share endpoint
   const shareResults = useCallback(() => {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
     const won = submittedAnswers.some(a => a.isCorrect);
     const cluesUsed = won ? submittedAnswers.length : questions.length;
+    const timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
     const now = new Date();
     const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
-    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${window.location.href}`;
-
+    
+    // Build share URL with query params for OG image
+    const shareParams = new URLSearchParams({
+      date: now.toISOString().split('T')[0],
+      clues: cluesUsed.toString(),
+      time: timeElapsed.toString(),
+      streak: stats.dailyCurrentStreak.toString(),
+      grid: emoji,
+      mode: gameMode
+    });
+    
+    const shareUrl = `${window.location.origin}/api/share?${shareParams.toString()}`;
+    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${shareUrl}`;
+    
     if (navigator.share) {
-      navigator.share({ text }).catch(() => {
+      navigator.share({
+        title: 'TickrDaily',
+        text: `I solved TickrDaily in ${cluesUsed}/${questions.length} clues!`,
+        url: shareUrl
+      }).catch(() => {
         navigator.clipboard.writeText(text);
-        alert('Results copied to clipboard!');
+        alert('Share link copied to clipboard!');
       });
     } else {
       navigator.clipboard.writeText(text);
-      alert('Results copied to clipboard!');
+      alert('Share link copied to clipboard!');
     }
-  }, [submittedAnswers, questions]);
+  }, [submittedAnswers, questions, startTime, stats.dailyCurrentStreak, gameMode]);
 
+  // UPDATED: Share to Twitter with new /api/share endpoint
   const shareToTwitter = useCallback(() => {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
     const won = submittedAnswers.some(a => a.isCorrect);
     const cluesUsed = won ? submittedAnswers.length : questions.length;
+    const timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
     const now = new Date();
     const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
-    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${window.location.href}`;
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+    
+    const shareParams = new URLSearchParams({
+      date: now.toISOString().split('T')[0],
+      clues: cluesUsed.toString(),
+      time: timeElapsed.toString(),
+      streak: stats.dailyCurrentStreak.toString(),
+      grid: emoji,
+      mode: gameMode
+    });
+    
+    const shareUrl = `${window.location.origin}/api/share?${shareParams.toString()}`;
+    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}`;
+    
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`;
     window.open(twitterUrl, '_blank');
-  }, [submittedAnswers, questions]);
+  }, [submittedAnswers, questions, startTime, stats.dailyCurrentStreak, gameMode]);
 
   useEffect(() => {
     const track = async () => {
@@ -580,7 +657,7 @@ function App() {
     track();
   }, [gameMode]);
 
-  // NEW: Updated stats function with backend logging
+  // UPDATED: Stats function with online check
   const updateStats = useCallback((won, cluesUsed, timeElapsed = null) => {
     if (gameMode === 'daily') {
       const saved = localStorage.getItem('dailyProgress');
@@ -625,27 +702,28 @@ function App() {
       };
     });
 
-    // OLD: Firebase call (removed)
     if (gameMode === 'daily') {
       updateDailyStats({ won }).catch(() => {});
     }
 
-    // NEW: Log to our backend analytics
-    fetch('/api/analytics', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        event: 'game_complete',
-        data: {
-          won,
-          cluesUsed,
-          time,
-          mode: gameMode,
-          difficulty: gameMode === 'unlimited' ? difficulty : null
-        },
-        userId: localStorage.getItem('userId') || 'anonymous'
-      })
-    }).catch(() => {}); // Fire and forget
+    // UPDATED: Only log analytics if online
+    if (typeof navigator !== 'undefined' && navigator.onLine !== false) {
+      fetch('/api/analytics', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event: 'game_complete',
+          data: {
+            won,
+            cluesUsed,
+            time,
+            mode: gameMode,
+            difficulty: gameMode === 'unlimited' ? difficulty : null
+          },
+          userId: localStorage.getItem('userId') || 'anonymous'
+        })
+      }).catch(() => {});
+    }
 
   }, [gameMode, startTime, difficulty]);
 
@@ -815,6 +893,24 @@ function App() {
         </div>
 
         <ModeSelector />
+
+        {/* NEW: Social Proof Stats */}
+        {todayStats && (
+          <div style={{ 
+            textAlign: 'center', 
+            color: theme.mutedColor, 
+            fontSize: '0.875rem', 
+            marginTop: '0.5rem',
+            marginBottom: '1rem',
+            padding: '0.75rem',
+            background: 'rgba(34, 197, 94, 0.1)',
+            borderRadius: '0.75rem',
+            border: `1px solid rgba(34, 197, 94, 0.2)`
+          }}>
+            🎯 {todayStats.total_games.toLocaleString()} players today • {todayStats.win_rate}% win rate
+            {todayStats.avg_time_win && ` • ${Math.floor(todayStats.avg_time_win)}s avg`}
+          </div>
+        )}
 
         {/* Buttons */}
         <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
