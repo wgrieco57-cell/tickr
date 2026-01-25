@@ -432,7 +432,7 @@ function App() {
 
   // NEW: Fetch today's stats for social proof
   useEffect(() => {
-    fetch('/api/stats-daily')
+    fetch('/api/stats/daily')
       .then(res => res.json())
       .then(data => {
         if (data.total_games > 0) {
@@ -583,65 +583,68 @@ function App() {
     setPuzzleSeed(prev => prev + 1);
   }, []);
 
- const shareResults = useCallback(() => {
-  const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
-  const won = submittedAnswers.some(a => a.isCorrect);
-  const cluesUsed = won ? submittedAnswers.length : questions.length;
-  const timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
-  const now = new Date();
-  const dateStr = (now.getMonth() + 1).toString().padStart(2, '0') + '/' + now.getDate().toString().padStart(2, '0') + '/' + now.getFullYear();
-  
-  const shareParams = new URLSearchParams({
-    date: now.toISOString().split('T')[0],
-    clues: cluesUsed.toString(),
-    time: timeElapsed.toString(),
-    streak: stats.dailyCurrentStreak.toString(),
-    grid: emoji,
-    mode: gameMode
-  });
-  
-  const shareUrl = window.location.origin + '/api/share?' + shareParams.toString();
-  const text = 'TickrDaily ' + dateStr + ' ' + cluesUsed + '/' + questions.length + '\n\n' + emoji + '\n\n' + shareUrl;
-  
-  if (navigator.share) {
-    navigator.share({
-      title: 'TickrDaily',
-      text: 'I solved TickrDaily in ' + cluesUsed + '/' + questions.length + ' clues!',
-      url: shareUrl
-    }).catch(() => {
+  // UPDATED: Share results with new /api/share endpoint
+  const shareResults = useCallback(() => {
+    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
+    const won = submittedAnswers.some(a => a.isCorrect);
+    const cluesUsed = won ? submittedAnswers.length : questions.length;
+    const timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
+    const now = new Date();
+    const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
+    
+    // Build share URL with query params for OG image
+    const shareParams = new URLSearchParams({
+      date: now.toISOString().split('T')[0],
+      clues: cluesUsed.toString(),
+      time: timeElapsed.toString(),
+      streak: stats.dailyCurrentStreak.toString(),
+      grid: emoji,
+      mode: gameMode
+    });
+    
+    const shareUrl = `${window.location.origin}/api/share?${shareParams.toString()}`;
+    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${shareUrl}`;
+    
+    if (navigator.share) {
+      navigator.share({
+        title: 'TickrDaily',
+        text: `I solved TickrDaily in ${cluesUsed}/${questions.length} clues!`,
+        url: shareUrl
+      }).catch(() => {
+        navigator.clipboard.writeText(text);
+        alert('Share link copied to clipboard!');
+      });
+    } else {
       navigator.clipboard.writeText(text);
       alert('Share link copied to clipboard!');
-    });
-  } else {
-    navigator.clipboard.writeText(text);
-    alert('Share link copied to clipboard!');
-  }
-}, [submittedAnswers, questions, startTime, stats.dailyCurrentStreak, gameMode]);
+    }
+  }, [submittedAnswers, questions, startTime, stats.dailyCurrentStreak, gameMode]);
 
+  // UPDATED: Share to Twitter with new /api/share endpoint
   const shareToTwitter = useCallback(() => {
-  const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
-  const won = submittedAnswers.some(a => a.isCorrect);
-  const cluesUsed = won ? submittedAnswers.length : questions.length;
-  const timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
-  const now = new Date();
-  const dateStr = (now.getMonth() + 1).toString().padStart(2, '0') + '/' + now.getDate().toString().padStart(2, '0') + '/' + now.getFullYear();
-  
-  const shareParams = new URLSearchParams({
-    date: now.toISOString().split('T')[0],
-    clues: cluesUsed.toString(),
-    time: timeElapsed.toString(),
-    streak: stats.dailyCurrentStreak.toString(),
-    grid: emoji,
-    mode: gameMode
-  });
-  
-  const shareUrl = window.location.origin + '/api/share?' + shareParams.toString();
-  const text = 'TickrDaily ' + dateStr + ' ' + cluesUsed + '/' + questions.length + '\n\n' + emoji;
-  
-  const twitterUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(shareUrl);
-  window.open(twitterUrl, '_blank');
-}, [submittedAnswers, questions, startTime, stats.dailyCurrentStreak, gameMode]);
- 
+    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
+    const won = submittedAnswers.some(a => a.isCorrect);
+    const cluesUsed = won ? submittedAnswers.length : questions.length;
+    const timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
+    const now = new Date();
+    const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
+    
+    const shareParams = new URLSearchParams({
+      date: now.toISOString().split('T')[0],
+      clues: cluesUsed.toString(),
+      time: timeElapsed.toString(),
+      streak: stats.dailyCurrentStreak.toString(),
+      grid: emoji,
+      mode: gameMode
+    });
+    
+    const shareUrl = `${window.location.origin}/api/share?${shareParams.toString()}`;
+    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}`;
+    
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`;
+    window.open(twitterUrl, '_blank');
+  }, [submittedAnswers, questions, startTime, stats.dailyCurrentStreak, gameMode]);
+
   useEffect(() => {
     const track = async () => {
       try {
@@ -868,6 +871,24 @@ function App() {
           <div style={{ flex: 1, textAlign: 'center' }}>
             <h1 style={{ fontSize: isMobile ? '2rem' : '3rem', fontWeight: '800', margin: '0', background: 'linear-gradient(135deg, #22c55e, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>TickrDaily</h1>
             <p style={{ color: theme.mutedColor, margin: '0.5rem 0 0 0', fontSize: '0.875rem' }}>{todayDate}</p>
+            
+            {/* Social Proof Stats - Below Date */}
+            {todayStats && (
+              <div style={{ 
+                display: 'inline-block',
+                color: theme.mutedColor, 
+                fontSize: '0.875rem', 
+                margin: '0.5rem 0',
+                padding: '0.5rem 1rem',
+                background: 'rgba(34, 197, 94, 0.1)',
+                borderRadius: '0.5rem',
+                border: `1px solid rgba(34, 197, 94, 0.2)`
+              }}>
+                🎯 {todayStats.total_games.toLocaleString()} players today • {todayStats.win_rate}% win rate
+                {todayStats.avg_time_win && ` • ${Math.floor(todayStats.avg_time_win)}s avg`}
+              </div>
+            )}
+            
             <p style={{ color: theme.mutedColor, margin: '0.25rem 0 0 0', fontSize: '0.875rem' }}>
               {gameMode === 'daily' ? 'Guess the stock from 5 clues' : `Guess the stock from 5 clues (${difficulty} stocks)`}
             </p>
@@ -890,24 +911,6 @@ function App() {
         </div>
 
         <ModeSelector />
-
-        {/* NEW: Social Proof Stats */}
-        {todayStats && (
-          <div style={{ 
-            textAlign: 'center', 
-            color: theme.mutedColor, 
-            fontSize: '0.875rem', 
-            marginTop: '0.5rem',
-            marginBottom: '1rem',
-            padding: '0.75rem',
-            background: 'rgba(34, 197, 94, 0.1)',
-            borderRadius: '0.75rem',
-            border: `1px solid rgba(34, 197, 94, 0.2)`
-          }}>
-            🎯 {todayStats.total_games.toLocaleString()} players today • {todayStats.win_rate}% win rate
-            {todayStats.avg_time_win && ` • ${Math.floor(todayStats.avg_time_win)}s avg`}
-          </div>
-        )}
 
         {/* Buttons */}
         <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
