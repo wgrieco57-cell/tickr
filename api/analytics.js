@@ -1,4 +1,4 @@
-// api/analytics.js - BULLETPROOF for 10k+ users
+// api/analytics.js - ENHANCED with social proof counters
 import { Redis } from '@upstash/redis';
 
 const MAX_PAYLOAD_SIZE = 10000;
@@ -34,6 +34,23 @@ if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) 
   }
 }
 
+// Get current ET date
+function getETDateISO(dateObj = new Date()) {
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  });
+  
+  const parts = formatter.formatToParts(dateObj);
+  const year = parts.find(p => p.type === 'year').value;
+  const month = parts.find(p => p.type === 'month').value;
+  const day = parts.find(p => p.type === 'day').value;
+  
+  return `${year}-${month}-${day}`;
+}
+
 function validatePayload(body) {
   const bodySize = JSON.stringify(body).length;
   if (bodySize > MAX_PAYLOAD_SIZE) {
@@ -62,24 +79,23 @@ function validatePayload(body) {
       return { valid: false, error: 'time must be number' };
     }
 
-    // FIX: Validate mode values
+    // Value validation
     if (body.data.mode !== undefined && !ALLOWED_MODES.has(body.data.mode)) {
       return { valid: false, error: 'mode must be daily or unlimited' };
     }
 
-    // FIX: Validate difficulty values
     if (body.data.difficulty !== undefined && 
         body.data.difficulty !== null && 
         !ALLOWED_DIFFICULTIES.has(body.data.difficulty)) {
       return { valid: false, error: 'difficulty must be easy, medium, or hard' };
     }
 
-    // FIX: Clamp values to reasonable ranges
+    // Clamp values
     if (body.data.cluesUsed !== undefined) {
-      body.data.cluesUsed = Math.max(1, Math.min(5, body.data.cluesUsed));
+      body.data.cluesUsed = Math.max(1, Math.min(5, Math.floor(body.data.cluesUsed)));
     }
     if (body.data.time !== undefined) {
-      body.data.time = Math.max(0, Math.min(36000, body.data.time)); // 0-10 hours max
+      body.data.time = Math.max(0, Math.min(36000, Math.floor(body.data.time)));
     }
   }
 
@@ -108,7 +124,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: validation.error });
     }
 
-    // Sample logging
+    // Sample logging (1%)
     if (Math.random() < LOG_SAMPLE_RATE) {
       const logEntry = {
         event,
@@ -120,8 +136,7 @@ export default async function handler(req, res) {
       console.log(JSON.stringify(logEntry));
     }
 
-    // FIX: AWAIT Redis work instead of fire-and-forget
-    // This ensures increments aren't dropped in serverless environments
+    // ENHANCED: Update Redis counters with new fields
     if (event === 'game_complete' && redis) {
       try {
         await updateRedisCounters(data);
@@ -141,13 +156,44 @@ export default async function handler(req, res) {
 async function updateRedisCounters(data) {
   if (!redis) return;
 
-  const today = new Date().toISOString().split('T')[0];
-  const counterKey = `stats:${today}`;
+  // CRITICAL: Use ET date, not UTC
+  const today = getETDateISO();
+  const statsKey = `stats:${today}`;
+  const cluesKey = `stats:${today}:clues`;
   
-  // FIX: Use proper Promise.all with await (don't fire-and-forget)
-  await Promise.all([
-    redis.hincrby(counterKey, 'total_games', 1),
-    data?.won ? redis.hincrby(counterKey, 'total_wins', 1) : Promise.resolve(),
-    redis.expire(counterKey, 86400 * 30)
-  ]);
+  const promises = [];
+
+  // Basic counters
+  promises.push(redis.hincrby(statsKey, 'total_games', 1));
+  
+  if (data?.won) {
+    promises.push(redis.hincrby(statsKey, 'total_wins', 1));
+    
+    // NEW: Track total time for wins (for avg calculation)
+    if (data.time != null && data.time > 0) {
+      promises.push(redis.hincrby(statsKey, 'total_time_wins', data.time));
+      promises.push(redis.hincrby(statsKey, 'total_win_completions', 1));
+    }
+  }
+
+  // NEW: Clue distribution tracking
+  if (data?.cluesUsed != null) {
+    if (data.won) {
+      // Track which clue number led to win
+      promises.push(redis.hincrby(cluesKey, data.cluesUsed.toString(), 1));
+    } else {
+      // Track failure
+      promises.push(redis.hincrby(cluesKey, 'fail', 1));
+    }
+  } else if (!data?.won) {
+    // No cluesUsed but failed = still count as fail
+    promises.push(redis.hincrby(cluesKey, 'fail', 1));
+  }
+
+  // Set TTL (30 days) for both keys
+  promises.push(redis.expire(statsKey, 86400 * 30));
+  promises.push(redis.expire(cluesKey, 86400 * 30));
+
+  // CRITICAL: Await all writes (serverless requirement)
+  await Promise.all(promises);
 }
