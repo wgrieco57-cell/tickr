@@ -432,7 +432,7 @@ function App() {
 
   // NEW: Fetch today's stats for social proof
   useEffect(() => {
-    fetch('/api/stats-daily')
+    fetch('/api/stats/daily')
       .then(res => res.json())
       .then(data => {
         if (data.total_games > 0) {
@@ -901,12 +901,36 @@ function App() {
           </div>
         )}
 
-        {/* Progress Bar */}
+        {/* Progress Bar - Wordle Style */}
         <div style={{ marginBottom: '1.5rem' }}>
           <div style={{ display: 'flex', gap: '0.5rem' }}>
-            {questions.map((_, i) => (
-              <div key={i} style={{ flex: 1, height: '0.5rem', background: i < currentLevel ? '#22c55e' : i === currentLevel ? '#3b82f6' : theme.borderColor, borderRadius: '0.25rem', transition: 'all 0.3s ease' }}></div>
-            ))}
+            {questions.map((q, i) => {
+              let barColor = theme.borderColor; // Gray = not attempted
+              
+              // Check if this question has been answered
+              const hasAnswer = q.answers && q.answers.length > 0;
+              
+              if (hasAnswer) {
+                // Check if any answer was correct
+                const isCorrect = q.answers.some(a => a.isCorrect);
+                barColor = isCorrect ? '#22c55e' : '#ef4444'; // Green if correct, Red if wrong
+              } else if (i === currentLevel && !gameOver) {
+                barColor = '#3b82f6'; // Blue = current question
+              }
+              
+              return (
+                <div 
+                  key={i} 
+                  style={{ 
+                    flex: 1, 
+                    height: '0.5rem', 
+                    background: barColor, 
+                    borderRadius: '0.25rem', 
+                    transition: 'all 0.3s ease' 
+                  }}
+                ></div>
+              );
+            })}
           </div>
         </div>
 
