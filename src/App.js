@@ -583,68 +583,65 @@ function App() {
     setPuzzleSeed(prev => prev + 1);
   }, []);
 
-  // UPDATED: Share results with new /api/share endpoint
-  const shareResults = useCallback(() => {
-    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
-    const won = submittedAnswers.some(a => a.isCorrect);
-    const cluesUsed = won ? submittedAnswers.length : questions.length;
-    const timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
-    const now = new Date();
-    const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
-    
-    // Build share URL with query params for OG image
-    const shareParams = new URLSearchParams({
-      date: now.toISOString().split('T')[0],
-      clues: cluesUsed.toString(),
-      time: timeElapsed.toString(),
-      streak: stats.dailyCurrentStreak.toString(),
-      grid: emoji,
-      mode: gameMode
-    });
-    
-    const shareUrl = `${window.location.origin}/api/share?${shareParams.toString()}`;
-    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${shareUrl}`;
-    
-    if (navigator.share) {
-      navigator.share({
-        title: 'TickrDaily',
-        text: `I solved TickrDaily in ${cluesUsed}/${questions.length} clues!`,
-        url: shareUrl
-      }).catch(() => {
-        navigator.clipboard.writeText(text);
-        alert('Share link copied to clipboard!');
-      });
-    } else {
+ const shareResults = useCallback(() => {
+  const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
+  const won = submittedAnswers.some(a => a.isCorrect);
+  const cluesUsed = won ? submittedAnswers.length : questions.length;
+  const timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
+  const now = new Date();
+  const dateStr = (now.getMonth() + 1).toString().padStart(2, '0') + '/' + now.getDate().toString().padStart(2, '0') + '/' + now.getFullYear();
+  
+  const shareParams = new URLSearchParams({
+    date: now.toISOString().split('T')[0],
+    clues: cluesUsed.toString(),
+    time: timeElapsed.toString(),
+    streak: stats.dailyCurrentStreak.toString(),
+    grid: emoji,
+    mode: gameMode
+  });
+  
+  const shareUrl = window.location.origin + '/api/share?' + shareParams.toString();
+  const text = 'TickrDaily ' + dateStr + ' ' + cluesUsed + '/' + questions.length + '\n\n' + emoji + '\n\n' + shareUrl;
+  
+  if (navigator.share) {
+    navigator.share({
+      title: 'TickrDaily',
+      text: 'I solved TickrDaily in ' + cluesUsed + '/' + questions.length + ' clues!',
+      url: shareUrl
+    }).catch(() => {
       navigator.clipboard.writeText(text);
       alert('Share link copied to clipboard!');
-    }
-  }, [submittedAnswers, questions, startTime, stats.dailyCurrentStreak, gameMode]);
-
-  // UPDATED: Share to Twitter with new /api/share endpoint
-  const shareToTwitter = useCallback(() => {
-    const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
-    const won = submittedAnswers.some(a => a.isCorrect);
-    const cluesUsed = won ? submittedAnswers.length : questions.length;
-    const timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
-    const now = new Date();
-    const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
-    
-    const shareParams = new URLSearchParams({
-      date: now.toISOString().split('T')[0],
-      clues: cluesUsed.toString(),
-      time: timeElapsed.toString(),
-      streak: stats.dailyCurrentStreak.toString(),
-      grid: emoji,
-      mode: gameMode
     });
-    
-    const shareUrl = `${window.location.origin}/api/share?${shareParams.toString()}`;
-    const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}`;
-    
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`;
-    window.open(twitterUrl, '_blank');
-  }, [submittedAnswers, questions, startTime, stats.dailyCurrentStreak, gameMode]);
+  } else {
+    navigator.clipboard.writeText(text);
+    alert('Share link copied to clipboard!');
+  }
+}, [submittedAnswers, questions, startTime, stats.dailyCurrentStreak, gameMode]);
 
+  const shareToTwitter = useCallback(() => {
+  const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
+  const won = submittedAnswers.some(a => a.isCorrect);
+  const cluesUsed = won ? submittedAnswers.length : questions.length;
+  const timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
+  const now = new Date();
+  const dateStr = (now.getMonth() + 1).toString().padStart(2, '0') + '/' + now.getDate().toString().padStart(2, '0') + '/' + now.getFullYear();
+  
+  const shareParams = new URLSearchParams({
+    date: now.toISOString().split('T')[0],
+    clues: cluesUsed.toString(),
+    time: timeElapsed.toString(),
+    streak: stats.dailyCurrentStreak.toString(),
+    grid: emoji,
+    mode: gameMode
+  });
+  
+  const shareUrl = window.location.origin + '/api/share?' + shareParams.toString();
+  const text = 'TickrDaily ' + dateStr + ' ' + cluesUsed + '/' + questions.length + '\n\n' + emoji;
+  
+  const twitterUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(shareUrl);
+  window.open(twitterUrl, '_blank');
+}, [submittedAnswers, questions, startTime, stats.dailyCurrentStreak, gameMode]);
+ 
   useEffect(() => {
     const track = async () => {
       try {
@@ -708,7 +705,7 @@ function App() {
 
     // UPDATED: Only log analytics if online
     if (typeof navigator !== 'undefined' && navigator.onLine !== false) {
-      api/analytics', {
+      fetch('/api/analytics', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
