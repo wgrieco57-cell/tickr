@@ -7,7 +7,7 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 // REMOVED: QUOTRON_TICKERS - now handled by backend
 
 const FALLBACK_QUOTES = [
-  { symbol: 'AAPL', current: '150.00', change: '2.50' },
+  { symbol: 'AAPL', current: '150.00', change: '1.50' },
   { symbol: 'TSLA', current: '250.00', change: '-2.00' },
   { symbol: 'GOOGL', current: '140.00', change: '0.75' },
   { symbol: 'MSFT', current: '320.00', change: '3.20' },
@@ -780,7 +780,7 @@ function App() {
   ), [theme]);
 
   const ModeSelector = useCallback(() => (
-    <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '1rem', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+    <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '0.75rem' : '1rem', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
       <button
         onClick={() => setGameMode('daily')}
         style={{
@@ -791,7 +791,9 @@ function App() {
           borderRadius: '1rem',
           fontWeight: '600',
           cursor: 'pointer',
-          transition: 'all 0.3s ease'
+          transition: 'all 0.3s ease',
+          width: isMobile ? '100%' : 'auto',
+          maxWidth: isMobile ? '280px' : 'none'
         }}
         aria-label="Switch to Daily Mode"
       >
@@ -807,7 +809,9 @@ function App() {
           borderRadius: '1rem',
           fontWeight: '600',
           cursor: 'pointer',
-          transition: 'all 0.3s ease'
+          transition: 'all 0.3s ease',
+          width: isMobile ? '100%' : 'auto',
+          maxWidth: isMobile ? '280px' : 'none'
         }}
         aria-label="Switch to Unlimited Mode"
       >
@@ -824,7 +828,9 @@ function App() {
             border: `1px solid ${theme.borderColor}`,
             borderRadius: '1rem',
             fontWeight: '600',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            width: isMobile ? '100%' : 'auto',
+            maxWidth: isMobile ? '280px' : 'none'
           }}
           aria-label="Select Difficulty Level"
         >
@@ -939,7 +945,7 @@ function App() {
         <ModeSelector />
 
         {/* Buttons */}
-        <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: isMobile ? '0.75rem' : '1rem', marginBottom: '2rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', flexDirection: isMobile ? 'column' : 'row', width: '100%' }}>
           <button
             onClick={() => setShowStats(!showStats)}
             style={{
@@ -956,7 +962,8 @@ function App() {
               alignItems: 'center',
               justifyContent: 'center',
               gap: '0.5rem',
-              minWidth: isMobile ? '140px' : 'auto'
+              width: isMobile ? '100%' : 'auto',
+              maxWidth: isMobile ? '280px' : 'none'
             }}
             aria-label="View Statistics"
           >
@@ -978,7 +985,8 @@ function App() {
               alignItems: 'center',
               justifyContent: 'center',
               gap: '0.5rem',
-              minWidth: isMobile ? '140px' : 'auto'
+              width: isMobile ? '100%' : 'auto',
+              maxWidth: isMobile ? '280px' : 'none'
             }}
             aria-label="How to Play"
           >
