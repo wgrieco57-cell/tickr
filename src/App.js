@@ -432,7 +432,7 @@ function App() {
 
   // NEW: Fetch today's stats for social proof
   useEffect(() => {
-    fetch('/api/stats/daily')
+    fetch('/api/stats-daily')
       .then(res => res.json())
       .then(data => {
         if (data.total_games > 0) {
