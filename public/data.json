@@ -1992,7 +1992,6 @@
           "I operate over 870 warehouses worldwide as of 2024."
         ],
         "level_5": [
-          "My ticker symbol COST has been on NASDAQ since my IPO in 1985.",
           "I was added to the S&P 500 index in 1993 and to the Nasdaq-100 in 2001.",
           "My private label Kirkland Signature brand was introduced in 1995 and generates over $70 billion annually.",
           "I executed a 2-for-1 stock split in January 2000, one of several splits in my history.",
@@ -2035,7 +2034,6 @@
           "I've increased my dividend every year since my founding, maintaining Abbott's dividend aristocrat legacy."
         ],
         "level_5": [
-          "My ticker symbol ABBV was chosen as an abbreviation of Abbott and began trading on January 2, 2013.",
           "I'm one of only a few companies to join the S&P 500 on their first day of trading.",
           "My Humira drug generated over $20 billion in annual revenue at its peak.",
           "I executed a 4-for-1 stock split in June 2024, my first split since spinning off.",
@@ -2087,49 +2085,6 @@
       }
     },
     {
-      "ticker": "MCD",
-      "company": "McDonald's Corporation",
-      "sector": "Consumer Discretionary",
-      "difficulty": "easy",
-      "questions": {
-        "level_1": [
-          "I'm a global fast-food chain serving billions of affordable burgers, fries, and meals through drive-thrus in over 100 countries worldwide.",
-          "I specialize in quick-service dining with family-friendly options, consistent quality, and value meals for customers on the go every day.",
-          "My restaurants provide convenient hot food prepared with standardized recipes, ensuring the same great taste and experience everywhere I operate.",
-          "I'm known for drive-thru efficiency, all-day breakfast, and kids' meals with toys, catering to diverse tastes while prioritizing customer satisfaction.",
-          "I operate mainly through franchise partners, leveraging a global supply chain and marketing to attract millions of daily visitors worldwide."
-        ],
-        "level_2": [
-          "My core menu includes hamburgers, cheeseburgers, and signature sandwiches like the Quarter Pounder, paired with world-famous french fries and apple pies.",
-          "I offer breakfast favorites such as McMuffins, sausage patties, and hash browns available all day, plus bundled value meals for families.",
-          "My sides feature classic french fries and desserts, alongside kids' options with toys, all designed for quick and satisfying meals.",
-          "I provide a range of beverages from soft drinks to McCafé coffees, complementing my value meals and drive-thru convenience for busy lifestyles.",
-          "My menu emphasizes affordability with value meals, kids' bundles including toys, and drive-thru service for on-the-go families and late-night cravings."
-        ],
-        "level_3": [
-          "I was founded in 1940 by brothers Richard and Maurice McDonald in San Bernardino, California, starting as a barbecue restaurant with carhop service.",
-          "In 1955, Ray Kroc became my franchise agent after discovering the small burger spot, leading to rapid national expansion through franchising.",
-          "My Golden Arches logo was introduced in 1953, symbolizing the welcoming drive-in experience that became a global icon of quick dining.",
-          "I pioneered the Speedee Service System in 1948 for assembly-line food preparation, revolutionizing fast service and efficiency in restaurants.",
-          "By 1961, Ray Kroc bought out the founding brothers for $2.7 million, taking full control and steering me toward worldwide dominance."
-        ],
-        "level_4": [
-          "I acquired the Boston Market chain in 2000 to diversify into home-style meals, though later divested to focus on core quick-service operations.",
-          "In 2016, I purchased the intellectual property rights to develop CosMc's, a new beverage-focused concept inspired by my 1980s mascot.",
-          "I invested $300 million in Dynamic Yield AI in 2019 to personalize digital menus based on weather, time, and customer preferences.",
-          "My McDonald's All-American Games, started in 1977, showcase top high school basketball talent and have launched NBA careers like Kobe Bryant.",
-          "I launched the McDonald's Mobile app in 2015, enabling ordering ahead, rewards earning, and exclusive deals to enhance customer loyalty."
-        ],
-        "level_5": [
-          "My Big Mac, introduced in 1967 as a three-decker special, has become a global menu icon with two all-beef patties and special sauce.",
-          "I serve over 69 million customers daily across my vast network, making me the world's largest quick-service restaurant by systemwide sales.",
-          "My market capitalization surpassed $200 billion in 2021, reflecting resilience amid economic shifts and ongoing global expansion efforts.",
-          "Ronald McDonald, my cheerful clown mascot, first appeared in 1963 and has since become a beloved figure in children's charity work.",
-          "I was among the first restaurants to install microwaves in 1947, speeding up food preparation and setting trends in kitchen technology."
-        ]
-      }
-    },
-    {
       "ticker": "LOW",
       "company": "Lowe's Companies, Inc.",
       "sector": "Consumer Discretionary",
@@ -2150,7 +2105,7 @@
           "My online platform integrates with in-store pickup, delivery options, and virtual design consultations for seamless shopping experiences."
         ],
         "level_3": [
-          "I was founded in 1946 as Lowe's North Wilkesboro Hardware in North Carolina by Luther Lowe, starting as a small neighborhood store.",
+          "I was founded in 1946 in North Wilkesboro, North Carolina, as a small neighborhood hardware store.",
           "In 1952, I became the first hardware chain to offer stock to the public, raising capital for expansion beyond regional limits.",
           "My orange logo and color scheme were established in the 1970s, symbolizing energy and reliability in the home improvement space.",
           "I went public on the New York Stock Exchange in 1961, funding growth into a national chain of warehouse-style superstores.",
@@ -2194,7 +2149,7 @@
         ],
         "level_3": [
           "I was founded in 1971 at Seattle's Pike Place Market by three partners inspired by Italian coffee culture and local roasters.",
-          "My name draws from Starbuck, the first mate in Herman Melville's Moby-Dick, evoking adventure and the sea's vastness.",
+          "My name draws from a character in Herman Melville's Moby-Dick, a first mate who evoked adventure.",
           "In 1987, Howard Schultz acquired the company after working as marketing director, transforming it into a global phenomenon.",
           "My green siren logo, a two-tailed mermaid, is rooted in 16th-century Norse woodcuts, symbolizing allure and seafaring lore.",
           "By 1992, I opened my first drive-thru, adapting to American preferences while expanding beyond Seattle's coffee scene."
@@ -2216,49 +2171,6 @@
       }
     },
     {
-  "ticker": "TJX",
-  "company": "The TJX Companies, Inc.",
-  "sector": "Consumer Discretionary",
-  "difficulty": "medium",
-  "questions": {
-    "level_1": [
-      "I am an off-price retailer sourcing brand-name apparel, home goods, and accessories at deep discounts for value-savvy shoppers nationwide.",
-      "My treasure-hunt model delivers ever-changing inventory of fashion and furnishings, appealing to bargain hunters seeking quality deals.",
-      "I operate multiple store formats under one umbrella, blending casual discovery with reliable savings on everyday essentials.",
-      "My buying strategy focuses on opportunistic purchases of overstock and closeouts, passing savings to customers consistently.",
-      "I am dedicated to sustainable practices, donating unsold items and supporting communities through foundation initiatives."
-    ],
-    "level_2": [
-      "One banner offers women's, men's, and kids' clothing alongside home decor and seasonal accents for versatile wardrobes.",
-      "Another provides family apparel, shoes, and gifts in a similar off-price format, emphasizing everyday value and variety.",
-      "My home-focused stores specialize in furniture, rugs, lighting, and tabletop items, curating stylish spaces at fraction-of-full prices.",
-      "I carry jewelry, handbags, beauty products, and outerwear, sourcing from top designers for accessible luxury touches.",
-      "My assortment rotates weekly, featuring up to 60% off department store prices on popular name brands."
-    ],
-    "level_3": [
-      "I was founded in 1976 as the off-price division of a department store, pioneering the treasure-hunt retail concept.",
-      "In 1987, I became an independent public company after acquiring a key chain from former assets.",
-      "My headquarters in Framingham, Massachusetts, oversees operations for a network spanning the U.S. and internationally.",
-      "I launched my initial public offering in 1987, fueling expansion into new markets and store formats rapidly.",
-      "By the 1990s, I introduced a home goods division, diversifying beyond apparel into home furnishings successfully."
-    ],
-    "level_4": [
-      "I acquired a major Canadian chain in 1990, establishing a strong international presence in off-price retail.",
-      "In 2003, I purchased a sporting goods chain, though later divested to focus on my core banners.",
-      "My European expansion began in 1994, adapting the off-price model for U.K. and continental markets.",
-      "During economic downturns like 2008, my sales surged as consumers sought value, proving the model's resilience.",
-      "I launched an outdoor and activewear outlet in 2018, targeting adventure enthusiasts with curated deals."
-    ],
-    "level_5": [
-      "My ticker honors my roots in off-price apparel innovation since inception.",
-      "I operate over 4,800 stores globally, serving millions with a commitment to responsible sourcing and community giving.",
-      "My market capitalization exceeds $100 billion, positioning me as a leading off-price retailer by revenue worldwide.",
-      "My CEO since 2014 has overseen digital growth and sustainable supply chain initiatives.",
-      "My 'Maxx Life' philosophy celebrates the joy of discovery, with stores designed for eclectic, personalized shopping adventures."
-    ]
-  }
-},
-    {
       "ticker": "BKNG",
       "company": "Booking Holdings Inc.",
       "sector": "Consumer Discretionary",
@@ -2279,7 +2191,6 @@
           "OpenTable facilitates restaurant reservations and dining discovery through its vast network of eateries."
         ],
         "level_3": [
-          "I originated in 1996 as the online arm of IAC, starting with hotel reservations under the name Preview Travel.",
           "In 2005, I spun off from IAC as an independent entity, accelerating growth in digital travel bookings.",
           "My corporate name changed to Booking Holdings in 2018 to reflect my diverse portfolio of travel brands.",
           "I completed my initial public offering in 1999, raising capital for early expansion into European markets.",
@@ -2323,7 +2234,6 @@
         ],
         "level_3": [
           "I was established in 1957 in Springfield, Missouri, by the O'Reilly family as a single auto parts store.",
-          "My name honors founder Charles F. O'Reilly, who built the business on customer service and parts expertise.",
           "I completed my initial public offering in 1993, enabling expansion across the Midwest and beyond regionally.",
           "My first store outside Missouri opened in 1975, marking the start of national growth in auto retailing.",
           "By the 2000s, I diversified into Mexico with over 600 stores, adapting to local vehicle needs."
@@ -2344,49 +2254,6 @@
         ]
       }
     },
-    {
-  "ticker": "MAR",
-  "company": "Marriott International, Inc.",
-  "sector": "Consumer Discretionary",
-  "difficulty": "medium",
-  "questions": {
-    "level_1": [
-      "I am a global hospitality leader managing luxury hotels, resorts, and branded residences for business and leisure travelers.",
-      "My portfolio spans over 30 brands, from upscale full-service properties to select-service accommodations in key destinations.",
-      "I deliver exceptional guest experiences through personalized service, loyalty rewards, and innovative amenities worldwide.",
-      "I focus on sustainable operations, community engagement, and technology to make every stay seamless.",
-      "I am committed to diversity and inclusion, operating in over 140 countries to serve a wide range of guest needs."
-    ],
-    "level_2": [
-      "My full-service hotels offer accommodations for conferences and family vacations with extensive facilities.",
-      "Ultra-luxury brands under my management provide world-class spas, fine dining, and bespoke concierge services.",
-      "Upscale properties blend local culture with consistent global standards for comfort and relaxation.",
-      "Extended-stay options like Residence Inn cater to longer visits with kitchenettes and home-like comforts.",
-      "My loyalty program lets members earn points across stays, flights, and experiences for future redemptions."
-    ],
-    "level_3": [
-      "I trace my roots to 1927 when my founder opened a root beer stand in Washington, D.C., evolving into hospitality.",
-      "In 1957, I opened my first hotel, the Twin Bridges Motor Hotel in Arlington, Virginia, near the capital.",
-      "My name originates from the founder who expanded from A&W franchises into full-service lodging.",
-      "I completed a public offering in 1953 as Hot Shoppes, funding early growth in roadside eateries and motels.",
-      "By the 1960s, I expanded internationally with a flagship property, the Key Bridge hotel in Rosslyn, Virginia."
-    ],
-    "level_4": [
-      "I acquired Promus Hotel Corporation in 1999 for $2.5 billion, adding brands like Embassy Suites and Hampton.",
-      "In 2015, I purchased Delta Hotels, bolstering my midscale offerings in Canada and North America.",
-      "I launched a stylish boutique brand in 2010 with Ian Schrager, focusing on design-focused experiences.",
-      "During the 2020 pandemic, I introduced flexible booking policies and enhanced cleaning protocols for guest safety.",
-      "I expanded my timeshare business with the 2012 acquisition of ILG, later rebranded as my vacation ownership arm."
-    ],
-    "level_5": [
-      "My market capitalization surpassed $50 billion in 2021, fueled by recovery and portfolio diversification efforts.",
-      "Anthony Capuano has led as CEO since 2020, steering post-pandemic growth and digital transformation initiatives.",
-      "I manage over 8,000 properties, welcoming millions annually with a focus on experiential hospitality.",
-      "My eagle logo symbolizes soaring aspirations and excellence in guest service since the 1960s.",
-      "My loyalty program boasts over 190 million members, the largest in the hospitality industry."
-    ]
-  }
-},
     {
       "ticker": "ROST",
       "company": "Ross Stores, Inc.",
@@ -2946,92 +2813,6 @@
       }
     },
     {
-      "ticker": "RCL",
-      "company": "Royal Caribbean Group",
-      "sector": "Consumer Discretionary",
-      "difficulty": "medium",
-      "questions": {
-        "level_1": [
-          "I'm a company known for taking travelers on vacations across oceans.",
-          "I operate leisure trips where customers stay in floating resorts.",
-          "My business depends heavily on tourism and travel demand.",
-          "I provide entertainment, dining, and lodging all in one experience.",
-          "I am one of the largest operators in my industry worldwide."
-        ],
-        "level_2": [
-          "I run multiple brands that cater to different types of cruise travelers.",
-          "I operate some of the biggest ships ever built.",
-          "My business includes Caribbean, European, and global itineraries.",
-          "I rely on port agreements around the world to operate.",
-          "I compete with Carnival and Norwegian in a concentrated industry."
-        ],
-        "level_3": [
-          "I was founded in Norway in 1968.",
-          "My headquarters is located in Miami, Florida.",
-          "I launched several record-breaking mega-ships over the past decade.",
-          "I survived a major downturn during the COVID-19 pandemic.",
-          "I introduced private island destinations for guests."
-        ],
-        "level_4": [
-          "I operate the Oasis-class vessels, among the largest passenger ships ever built.",
-          "I developed Perfect Day at CocoCay, a private island with a waterpark.",
-          "I pioneered the use of LNG-powered cruise ships in my fleet.",
-          "I built the Icon-class, redefining modern cruise ship design.",
-          "I implemented strict health protocols after 2020 to revive operations."
-        ],
-        "level_5": [
-          "I launched my first ship, the Song of Norway, in 1970.",
-          "I carried over 6 million guests annually before the pandemic.",
-          "I partnered with DreamWorks for onboard entertainment in the 2010s.",
-          "I once operated a class of ships named after famous explorers.",
-          "I was originally called Royal Caribbean Cruise Line."
-        ]
-      }
-    },
-    {
-      "ticker": "SBUX",
-      "company": "Starbucks Corporation",
-      "sector": "Consumer Discretionary",
-      "difficulty": "easy",
-      "questions": {
-        "level_1": [
-          "I'm a company known for serving beverages enjoyed globally.",
-          "I operate retail locations where customers gather socially.",
-          "My brand is heavily associated with coffee culture.",
-          "I provide a consistent café experience across countries.",
-          "I'm one of the most recognizable food and beverage brands worldwide."
-        ],
-        "level_2": [
-          "I sell handcrafted drinks, pastries, and seasonal offerings.",
-          "I operate company-owned stores and licensed locations.",
-          "I have a strong loyalty rewards program with millions of members.",
-          "I pioneered the mainstream specialty coffee movement.",
-          "My stores often serve as community study and meeting spots."
-        ],
-        "level_3": [
-          "I was founded in Seattle in 1971.",
-          "My former CEO became known for his influence on company culture.",
-          "I expanded rapidly in the 2000s across Asia and Europe.",
-          "I once owned a music label and sold CDs in stores.",
-          "I introduced Frappuccino blended beverages in the 1990s."
-        ],
-        "level_4": [
-          "I once acquired Teavana to expand my tea offerings.",
-          "I rolled out Nitro Cold Brew nationwide in the late 2010s.",
-          "I created the iconic holiday cups that customers anticipate yearly.",
-          "I launched the 'third place' concept: home, work, and my stores.",
-          "I briefly owned the Seattle SuperSonics basketball team."
-        ],
-        "level_5": [
-          "I opened my first international store in Tokyo in 1996.",
-          "I originally started as a retailer of whole coffee beans and equipment.",
-          "My founders were influenced by Italian espresso bars.",
-          "I use a siren as my corporate logo.",
-          "My early stores sold beans sourced from Peet's Coffee."
-        ]
-      }
-    },
-    {
       "ticker": "ULTA",
       "company": "Ulta Beauty",
       "sector": "Consumer Discretionary",
@@ -3053,7 +2834,7 @@
         ],
         "level_3": [
           "I was founded in 1990 in Illinois.",
-          "I originally launched under the name Ulta3.",
+          "I originally launched under a different name before rebranding in the 1990s.",
           "I expanded rapidly during the 2010s through new store formats.",
           "I grew significantly by combining beauty retail and salon services.",
           "I reached over 1,300 store locations nationwide."
@@ -3106,7 +2887,6 @@
         "I introduced new proteins like carne asada and barbacoa as limited-time items.",
         "I incorporated AI and robotics to automate food preparation.",
         "I opened a 'Farmers Market' virtual restaurant concept during lockdowns.",
-        "I was one of the first fast-casual chains to adopt digital ordering at scale."
       ],
       "level_5": [
         "My founder Steve Ells trained as a classically-trained chef.",
@@ -3196,7 +2976,7 @@
       ],
       "level_5": [
         "I publish Dungeons & Dragons through my subsidiary.",
-        "One of my best-known games is Monopoly.",
+        "One of my best-known games involves real estate trading and has been played for nearly a century.",
         "I once partnered with Discovery to launch The Hub network.",
         "My founders were the Hassenfeld brothers.",
         "I began as a textile remnants company before moving into toys."
