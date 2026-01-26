@@ -592,17 +592,7 @@ function App() {
     const now = new Date();
     const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
     
-    // Build share URL with query params for OG image
-    const shareParams = new URLSearchParams({
-      date: now.toISOString().split('T')[0],
-      clues: cluesUsed.toString(),
-      time: timeElapsed.toString(),
-      streak: stats.dailyCurrentStreak.toString(),
-      grid: emoji,
-      mode: gameMode
-    });
-    
-    const shareUrl = `${window.location.origin}/api/share?${shareParams.toString()}`;
+    const shareUrl = window.location.origin; // Clean homepage link
     const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}\n\n${shareUrl}`;
     
     if (navigator.share) {
@@ -618,9 +608,9 @@ function App() {
       navigator.clipboard.writeText(text);
       alert('Share link copied to clipboard!');
     }
-  }, [submittedAnswers, questions, startTime, stats.dailyCurrentStreak, gameMode]);
+  }, [submittedAnswers, questions, startTime]);
 
-  // UPDATED: Share to Twitter with new /api/share endpoint
+  // UPDATED: Share to Twitter with clean homepage link
   const shareToTwitter = useCallback(() => {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
     const won = submittedAnswers.some(a => a.isCorrect);
@@ -629,21 +619,12 @@ function App() {
     const now = new Date();
     const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
     
-    const shareParams = new URLSearchParams({
-      date: now.toISOString().split('T')[0],
-      clues: cluesUsed.toString(),
-      time: timeElapsed.toString(),
-      streak: stats.dailyCurrentStreak.toString(),
-      grid: emoji,
-      mode: gameMode
-    });
-    
-    const shareUrl = `${window.location.origin}/api/share?${shareParams.toString()}`;
+    const shareUrl = window.location.origin; // Clean homepage link
     const text = `TickrDaily ${dateStr} ${cluesUsed}/${questions.length}\n\n${emoji}`;
     
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`;
     window.open(twitterUrl, '_blank');
-  }, [submittedAnswers, questions, startTime, stats.dailyCurrentStreak, gameMode]);
+  }, [submittedAnswers, questions, startTime]);
 
   useEffect(() => {
     const track = async () => {
