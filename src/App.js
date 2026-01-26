@@ -7,7 +7,7 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 // REMOVED: QUOTRON_TICKERS - now handled by backend
 
 const FALLBACK_QUOTES = [
-  { symbol: 'AAPL', current: '150.00', change: '1.50' },
+  { symbol: 'AAPL', current: '150.00', change: '2.50' },
   { symbol: 'TSLA', current: '250.00', change: '-2.00' },
   { symbol: 'GOOGL', current: '140.00', change: '0.75' },
   { symbol: 'MSFT', current: '320.00', change: '3.20' },
