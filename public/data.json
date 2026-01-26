@@ -38,7 +38,7 @@
           "I executed a 2-for-1 stock split in June 1997, one of several in my history.",
           "My 707 jet launched in 1958 ushered in the modern jet age for commercial aviation.",
           "I employed over 170,000 people worldwide at my peak before recent workforce reductions.",
-          "My founder built his first airplane, the B&W Seaplane, in 1916 near Seattle."
+          "My founder built his first seaplane in 1916 near Seattle."
         ]
       }
     },
@@ -65,7 +65,7 @@
         "level_3": [
           "I was formed through the merger of Holt Manufacturing and C. L. Best Tractor in 1925.",
           "I'm headquartered in Irving, Texas, after moving from Peoria, Illinois, in 2022.",
-          "My name comes from the 'Caterpillar' tread design invented by Benjamin Holt in 1904.",
+          "My name comes from the tracked tread design invented by Benjamin Holt in 1904.",
           "I went public on the New York Stock Exchange in 1929, shortly before the Great Depression.",
           "My distinctive yellow color scheme became standard in the 1930s."
         ],
@@ -95,7 +95,7 @@
           "I'm an industrial conglomerate focusing on aviation, healthcare, and power.",
           "I manufacture jet engines, medical imaging equipment, and power generation systems.",
           "I'm one of America's most iconic industrial companies with over 130 years of history.",
-          "I was once the world's most valuable company before splitting into separate businesses.",
+          "I'm one of America's most iconic industrial companies with over 130 years of history."
           "I've undergone massive restructuring, divesting financial services and multiple divisions."
         ],
         "level_2": [
@@ -281,7 +281,7 @@
           "I was founded as Minnesota Mining and Manufacturing Company in Two Harbors, Minnesota, in 1902.",
           "I'm headquartered in St. Paul, Minnesota, where I've been based for over a century.",
           "My Post-it Notes were invented accidentally in 1968 and commercialized in 1980.",
-          "I changed my legal name from Minnesota Mining and Manufacturing to 3M Company in 2002.",
+          "I changed my legal name from Minnesota Mining and Manufacturing to my current three-letter abbreviation in 2002.",
           "I've been paying dividends for over 100 consecutive years."
         ],
         "level_4": [
@@ -368,7 +368,7 @@
           "My founder wrote his business plan as a Yale University undergraduate thesis.",
           "I'm headquartered in Memphis, Tennessee, where my largest sorting hub is located.",
           "I went public in April 1978 on the New York Stock Exchange.",
-          "My name combines 'Federal' and 'Express,' originally targeting Federal Reserve bank shipments."
+          "My name was chosen to reflect express delivery services, originally targeting Federal Reserve bank shipments."
         ],
         "level_4": [
           "I acquired TNT Express for $4.8 billion in 2016, expanding European operations.",
@@ -539,7 +539,7 @@
           "I was founded by Bill Bowerman and Phil Knight as Blue Ribbon Sports in 1964.",
           "My company adopted my current name in 1971, inspired by the Greek goddess of victory.",
           "I'm headquartered in Beaverton, Oregon, near Portland.",
-          "My Swoosh logo was designed by a Portland State University student for $35 in 1971.",
+          "My iconic curved logo was designed by a Portland State University student for $35 in 1971.",
           "I went public in December 1980 with an IPO price of $18 per share."
         ],
         "level_4": [
@@ -851,8 +851,7 @@
           "I was added to the Dow Jones Industrial Average in June 2024."
         ],
         "level_5": [
-          "My ticker symbol ORCL is listed on the New York Stock Exchange.",
-          "I was named after a CIA project that my founders worked on called 'Oracle.'",
+          "I was named after a CIA project that my founders worked on in the 1970s.",
           "I executed a 2-for-1 stock split in March 2000 during the tech boom.",
           "My database software captured over 40% of the global relational database market.",
           "I moved my headquarters to Austin, Texas, in December 2020, following my founder's relocation."
@@ -1008,10 +1007,9 @@
           "I focus on connectivity services after divesting entertainment assets."
         ],
         "level_3": [
-          "I was formed through the merger of SBC Communications and the original AT&T in 2005.",
           "I'm headquartered in Dallas, Texas, at the Whitacre Tower.",
           "My roots trace back to the Bell Telephone Company founded by Alexander Graham Bell.",
-          "I adopted the iconic AT&T name and logo after acquiring the original company.",
+          "I adopted an iconic telecommunications name and logo after acquiring the origin",
           "I'm a direct descendant of Southwestern Bell, one of the Baby Bells."
         ],
         "level_4": [
@@ -1053,11 +1051,9 @@
           "I was formed through the merger of Bell Atlantic and GTE in 2000.",
           "My name is a portmanteau of 'veritas' (Latin for truth) and 'horizon.'",
           "I'm headquartered in New York City at 1095 Avenue of the Americas.",
-          "I went public as Verizon in 2000, though my predecessor companies were public earlier.",
           "I'm descended from NYNEX and Bell Atlantic, Baby Bell companies."
         ],
         "level_4": [
-          "I acquired Vodafone's 45% stake in Verizon Wireless for $130 billion in 2014.",
           "I purchased Yahoo for $4.5 billion in 2017, later writing down most of its value.",
           "I acquired AOL for $4.4 billion in 2015, entering digital media and advertising.",
           "I sold my media division including Yahoo and AOL to Apollo Global Management in 2021.",
@@ -1095,7 +1091,6 @@
           "My flagship products include a smartphone line that launched in 2007 and completely changed the mobile industry.",
           "I'm headquartered in Cupertino, California, and my campus is known as one of the most innovative workspaces in the world.",
           "My co-founder Steve Jobs returned to save me from near bankruptcy in 1997 and transformed me into the world's most valuable company.",
-          "I acquired Beats Electronics for $3 billion in 2014, my largest acquisition at the time.",
           "My CEO Tim Cook took over in 2011 and has expanded my services business dramatically."
         ],
         "level_4": [
@@ -1180,21 +1175,19 @@
           "I was founded by two Stanford Ph.D. students in a garage in Menlo Park, California, in 1998.",
           "My founders Larry Page and Sergey Brin created my original search algorithm called PageRank.",
           "I restructured in 2015, creating a parent company to separate my core search business from experimental ventures.",
-          "My headquarters in Mountain View, California, is known as the Googleplex.",
           "I went public in August 2004 with an unusual Dutch auction IPO priced at $85 per share."
         ],
         "level_4": [
           "I acquired YouTube for $1.65 billion in 2006, one of my most successful purchases.",
           "My self-driving car project Waymo began in 2009 and is now valued at over $30 billion.",
           "I launched my Chrome web browser in 2008, which now commands over 60% global market share.",
-          "My Android operating system was acquired in 2005 for $50 million before the first iPhone launched.",
-          "I discontinued my Google+ social network in 2019 after it failed to compete with Facebook."
+          "My Android operating system was acquired in 2005 for $50 million before the first iPhone launched."
         ],
         "level_5": [
           "I conducted a stock split creating Class C shares in April 2014 to maintain founder control.",
           "My corporate motto 'Don't be evil' was part of my code of conduct until my 2015 restructuring.",
           "I paid $12.5 billion to acquire Motorola Mobility in 2012, then sold it two years later for $2.9 billion.",
-          "My name comes from 'googol,' a mathematical term for the number 1 followed by 100 zeros."
+          "My name comes from a mathematical term for an extremely large number, modified slightly for uniqueness."
         ]
       }
     },
@@ -1233,7 +1226,6 @@
           "I executed a 20-for-1 stock split in June 2022, my first split since 1999."
         ],
         "level_5": [
-          "I went public on May 15, 1997, at $18 per share under the ticker AMZN on NASDAQ.",
           "My original company name was 'Cadabra,' but my founder changed it before launching.",
           "I reported my first annual profit in 2003, nine years after founding.",
           "My founder chose my name because it started with 'A' and referenced the world's largest river.",
@@ -1393,7 +1385,6 @@
         "level_3": [
           "I was founded by Reed Hastings and Marc Randolph in Scotts Valley, California, in 1997.",
           "My co-founder claimed the idea came from a $40 late fee at a video rental store, though this story is disputed.",
-          "I went public in May 2002 at $15 per share on NASDAQ under the ticker NFLX.",
           "My first original series, 'House of Cards,' premiered in 2013 and won multiple Emmy awards.",
           "I'm headquartered in Los Gatos, California, though I maintain production facilities worldwide."
         ],
@@ -1434,14 +1425,13 @@
           "My brand is synonymous with magic, imagination, and wholesome family entertainment."
         ],
         "level_3": [
-          "I was founded by Walt Disney and his brother Roy in 1923 in Los Angeles.",
+          "I was founded by two brothers in 1923 in Los Angeles, named after the older brother who was the creative visionary.",
           "My founder created an iconic cartoon mouse character in 1928 that remains my symbol.",
           "I acquired Pixar Animation Studios for $7.4 billion in 2006, reuniting Steve Jobs with my board.",
           "I purchased Marvel Entertainment for $4 billion in 2009, gaining the rights to thousands of characters.",
           "I bought Lucasfilm for $4.05 billion in 2012, acquiring Star Wars and Indiana Jones franchises."
         ],
         "level_4": [
-          "I launched Disney+ streaming service in November 2019, reaching 100 million subscribers in just 16 months.",
           "I acquired 21st Century Fox assets for $71.3 billion in 2019, my largest acquisition ever.",
           "My first full-length animated film, 'Snow White and the Seven Dwarfs,' premiered in 1937.",
           "I opened my first theme park in Anaheim, California, in 1955, revolutionizing entertainment.",
@@ -1449,7 +1439,6 @@
         ],
         "level_5": [
           "I went public in 1957 and joined the Dow Jones Industrial Average in 1991.",
-          "My original company name was Disney Brothers Cartoon Studio before changing in 1926.",
           "I executed a 3-for-1 stock split in July 1998, my most recent split.",
           "My theme park in Orlando, Florida, opened on October 1, 1971, and is now the world's most visited.",
           "I survived near-bankruptcy in the 1980s before Michael Eisner and Frank Wells turned me around."
@@ -1488,12 +1477,10 @@
           "I purchased Washington Mutual's assets in September 2008 from the FDIC after its failure.",
           "I formed through the merger of J.P. Morgan & Co. and Chase Manhattan Corporation in 2000.",
           "I was fined $13 billion in 2013 for mortgage-backed securities violations during the financial crisis.",
-          "I launched my own cryptocurrency, JPM Coin, in 2019 for institutional payment transfers."
         ],
         "level_5": [
           "My predecessor institution The Manhattan Company was founded by Aaron Burr in 1799.",
           "I'm the only bank that operates in all 48 contiguous U.S. states with physical branches.",
-          "My ticker symbol JPM has been listed on the New York Stock Exchange since 1969.",
           "I acquired First Republic Bank in May 2023 after its failure during the regional banking crisis.",
           "My assets exceeded $4 trillion in 2024, making me the largest bank in the United States."
         ]
@@ -1915,7 +1902,7 @@
         ],
         "level_4": [
           "I acquired Costa Coffee for $5.1 billion in 2019, entering the coffeehouse market.",
-          "I launched New Coke in 1985, one of the most infamous product launches in business history.",
+          "I launched a reformulated version of my flagship product in 1985, one of the most infamous product launches in business history."
           "I've been a sponsor of the Olympic Games since 1928, one of the longest partnerships.",
           "I purchased Vitaminwater's parent company Glacéau for $4.1 billion in 2007.",
           "I was added to the Dow Jones Industrial Average in 1987 and remain a member."
@@ -1924,8 +1911,7 @@
           "My original formula allegedly contained cocaine from coca leaves until 1903.",
           "I sold my first glass of Coca-Cola for 5 cents at Jacob's Pharmacy in Atlanta on May 8, 1886.",
           "My distinctive contour bottle shape was introduced in 1915 and trademarked in 1977.",
-          "I executed a 2-for-1 stock split in August 2012, one of many splits in my history.",
-          "My ticker symbol KO is listed on the New York Stock Exchange."
+          "I executed a 2-for-1 stock split in August 2012, one of many splits in my history."
         ]
       }
     },
@@ -1964,10 +1950,9 @@
           "I was added to the Dow Jones Industrial Average in 1935, replacing General Foods."
         ],
         "level_5": [
-          "My original drink was called 'Brad's Drink' before being renamed Pepsi-Cola in 1898.",
+          "My original drink was called 'Brad's Drink' before being renamed to my current name in 1898.",
           "I filed for bankruptcy twice in the early 20th century before becoming successful.",
-          "My ticker symbol PEP is listed on the NASDAQ stock exchange.",
-          "I launched the 'Pepsi Challenge' marketing campaign in 1975, directly comparing my taste to Coca-Cola.",
+          "I launched a blind taste-test marketing campaign in 1975, directly comparing my cola to my main competitor.",
           "My Frito-Lay subsidiary controls over 60% of the U.S. salty snack market."
         ]
       }
