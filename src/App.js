@@ -432,7 +432,7 @@ function App() {
 
   // NEW: Fetch today's stats for social proof
   useEffect(() => {
-    fetch('/api/stats-daily')
+    fetch('/api/stats/daily')
       .then(res => res.json())
       .then(data => {
         if (data.total_games > 0) {
@@ -780,7 +780,7 @@ function App() {
   ), [theme]);
 
   const ModeSelector = useCallback(() => (
-    <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '0.75rem' : '1rem', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+    <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '0.5rem' : '1rem', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? '0.75rem' : '1.5rem' }}>
       <button
         onClick={() => setGameMode('daily')}
         style={{
@@ -945,7 +945,7 @@ function App() {
         <ModeSelector />
 
         {/* Buttons */}
-        <div style={{ display: 'flex', gap: isMobile ? '0.75rem' : '1rem', marginBottom: '2rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', flexDirection: isMobile ? 'column' : 'row', width: '100%' }}>
+        <div style={{ display: 'flex', gap: isMobile ? '0.5rem' : '1rem', marginBottom: isMobile ? '1.5rem' : '2rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', flexDirection: isMobile ? 'column' : 'row', width: '100%' }}>
           <button
             onClick={() => setShowStats(!showStats)}
             style={{
