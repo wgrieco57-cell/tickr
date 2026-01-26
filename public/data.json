@@ -4021,221 +4021,6 @@
       ]
     }
   },
-{
-  "ticker": "ISRG",
-  "company": "Intuitive Surgical Inc.",
-  "sector": "Health Care",
-  "difficulty": "hard",
-  "questions": {
-    "level_1": [
-      "I am the robotic surgery pioneer enabling precise, minimally invasive procedures worldwide.",
-      "Da Vinci’s 3D visualization and wristed instruments enhance surgeons’ dexterity limits.",
-      "Remote telesurgery and simulation training democratize advanced techniques globally.",
-      "Urology, gynecology, and general operations benefit from reduced recovery and complications.",
-      "As a medtech innovator, I bridge human skill with machine precision for better outcomes."
-    ],
-    "level_2": [
-      "EndoWrist tools mimic hand motions in confined spaces with tremor filtration.",
-      "Ion’s bronchoscopic platform navigates lungs for early cancer biopsies accurately.",
-      "Single-port access minimizes incisions for cosmetic and functional advantages.",
-      "Global servicing fleets keep systems operational with 99% uptime commitments.",
-      "Procedure-based leasing and instrument sales align with utilization growth."
-    ],
-    "level_3": [
-      "I began in California in 1995, capitalizing on laparoscopy’s robotic augmentation.",
-      "From Sunnyvale labs, I refine da Vinci generations with haptic and AI enhancements.",
-      "My 2000 Nasdaq IPO funded single-port system rollouts globally.",
-      "Millions of cases logged affirm safety across diverse surgical specialties.",
-      "The Orpheus acquisition pioneered flexible endoscopy robotics."
-    ],
-    "level_4": [
-      "Da Vinci 5’s force feedback simulates tissue resistance for intuitive control.",
-      "IP skirmishes with rivals protected my core technology in multi-billion settlements.",
-      "General surgery expansions now include hernia repairs and cholecystectomies.",
-      "Micro instruments enable microsurgery in ENT and ophthalmology niches.",
-      "Tactile tech investments restore ‘touch’ in remote robotic interventions."
-    ],
-    "level_5": [
-      "My articulated arms operate in 10,000 operating rooms worldwide.",
-      "A $150B market cap crowns my legacy from the first robotic cholecystectomy in 1999.",
-      "Co-founders’ vision automated gallbladder removal, sparking the minimally invasive surgery revolution.",
-      "Quarter-century milestones track my journey from prototype to global ubiquity.",
-      "5,000-strong teams iterate annually, sustaining da Vinci’s dominance in surgical robotics."
-    ]
-  }
-},
- {
-    "ticker": "REGN",
-    "company": "Regeneron Pharmaceuticals Inc.",
-    "sector": "Health Care",
-    "difficulty": "hard",
-    "questions": {
-      "level_1": [
-        "I am the antibody engineering biotech harnessing genetics for transformative therapies.",
-        "My eye and allergy blockbusters restore vision and breathe easier for millions.",
-        "Oncology and neuro pipelines target unmet needs with bispecific innovations.",
-        "The Regeneron Genetics Center sequences genomes to uncover disease insights.",
-        "Precision medicine alliances accelerate discoveries from lab hypotheses to clinical realities."
-      ],
-      "level_2": [
-        "Eylea’s VEGF trap preserves macular health in aging populations.",
-        "Dupixent, developed with Sanofi, dominates atopicals for atopic dermatitis flares.",
-        "My bispecific T-cell engagers rally immunity against solid tumor strongholds.",
-        "Inflammatory cascades yield to IL inhibitors in asthma and COPD trials.",
-        "Royalties and milestones from partners amplify my R&D firepower."
-      ],
-      "level_3": [
-        "I began in New York in 1988, betting on monoclonal factories for rapid scaling.",
-        "From Tarrytown’s verdant campus, I foster antibody discovery in collaborative bliss.",
-        "Sanofi’s early collaboration launched my commercial presence swiftly.",
-        "VelociSuite’s humanization technology earned Nobel recognition for antibody engineering.",
-        "The Checkmate acquisition diversified me beyond ophthalmology into immuno-oncology."
-      ],
-      "level_4": [
-        "My COVID antibody cocktail’s emergency nod showcased efficacy at pandemic scale.",
-        "Libtayo’s PD-1 approval cleared hurdles in basal and squamous skin cancers.",
-        "VelocImmune mouse-to-human swaps slashed development timelines dramatically.",
-        "Biosimilar encroachments prompted pipeline accelerations in my core franchises.",
-        "Cardio ventures explore PCSK9’s cholesterol-lowering potential beyond lipid realms."
-      ],
-      "level_5": [
-        "I employ 12,000 experts advancing antibody sciences worldwide.",
-        "My $100B market cap reflects evolution from cytokine factories to genomic goldmines.",
-        "Founders’ vision built Westchester’s biotech hub from scratch ambitions.",
-        "Interleukin research in the 1990s paved therapeutic trails in immuno-modulation.",
-        "Annual breakthroughs cascade from Tarrytown’s TRAP platform wizardry."
-      ]
-    }
-  },
-  {
-    "ticker": "VRTX",
-    "company": "Vertex Pharmaceuticals Incorporated",
-    "sector": "Health Care",
-    "difficulty": "hard",
-    "questions": {
-      "level_1": [
-        "I am the cystic fibrosis modulator maestro turning genetic defects into manageable lives.",
-        "Small-molecule correctors and potentiators restore protein function at the cell level.",
-        "My pipelines in pain, diabetes, and sickle cell extend beyond lungs to broader genetics.",
-        "Rare disease focus yields orphan designations and accelerated approvals routinely.",
-        "Collaborative trials span continents, prioritizing patient voices in design."
-      ],
-      "level_2": [
-        "Trikafta’s triple combo slashes exacerbations for most CFTR mutations.",
-        "CRISPR edits via partnerships cure blood disorders at the DNA source.",
-        "Hemoglobin stabilizers target vaso-occlusive crises in sickle cell patients.",
-        "Global registries track long-term outcomes in the modulator era of CF care.",
-        "CF royalties fund bold bets in non-respiratory modalities."
-      ],
-      "level_3": [
-        "I began in Boston in 1989, betting on CFTR defects and winning approvals.",
-        "From Seaport’s Fan Pier HQ, I oversee pipelines where dreams dock daily.",
-        "My 1991 Nasdaq debut predated genomics’ boom, funding foundational screens.",
-        "The Semma acquisition unlocked type 1 diabetes reversal through stem cell therapies.",
-        "Marketing voids in key markets sharpened my global trial acuity."
-      ],
-      "level_4": [
-        "Casgevy’s CRISPR nod heralded ex vivo editing’s curative sickle cell era.",
-        "VX-548’s NaV1.8 blocker promises breakthroughs in non-opioid pain relief.",
-        "Patent thickets defend my CF franchise amid generic erosion threats.",
-        "Islet cell implants from Semma restore insulin independence in trials.",
-        "mRNA alliances with Moderna explore cystic fibrosis delivery innovations."
-      ],
-      "level_5": [
-        "I vitalize 5,000 employees in gene therapy quests worldwide.",
-        "Three billion in R&D fueled Kalydeco in 2012, sparking the modulator movement.",
-        "Co-founders’ chemistry roots birthed protein folding fixes masterfully.",
-        "My first CFTR approval in 2012 unlocked a decade of combo evolutions.",
-        "Pipeline breadth from lungs to liver mirrors my genomic ambitions unbound."
-      ]
-    }
-  },
-  {
-    "ticker": "ZS",
-    "company": "Zscaler Inc.",
-    "sector": "Technology",
-    "difficulty": "hard",
-    "questions": {
-      "level_1": [
-        "I am the zero-trust cloud security pioneer proxying traffic to inspect threats inline.",
-        "My global proxy mesh routes users securely, bypassing legacy appliances entirely.",
-        "Application segmentation enforces least-privilege access in distributed architectures.",
-        "DLP policies guard sensitive data across SaaS, email, and web channels.",
-        "As a SASE trailblazer, I consolidate security stacks for agile enterprises."
-      ],
-      "level_2": [
-        "ZIA filters malicious URLs with machine learning categorization.",
-        "ZPA tunnels replace VPNs with identity-based micro-perimeters.",
-        "SAML and OIDC integrations federate authentication seamlessly with IdPs.",
-        "Behavioral analytics flag insider risks via anomaly baselines.",
-        "My SaaS ARR escalates through module bundles and organic user expansions."
-      ],
-      "level_3": [
-        "I began in San Jose in 2007 with a cloud proxy vision pre-dating zero-trust’s rise.",
-        "My 2018 Nasdaq IPO timed perfectly with cloud migration accelerations.",
-        "From the same campus, I evolve fabrics for 5G and edge computing.",
-        "Trustdome’s acquisition fortified my east-west network segmentation defenses.",
-        "50% CAGR underscores my proxy model’s scalability in hyperscale clouds."
-      ],
-      "level_4": [
-        "Workload security postures containers against runtime exploits proactively.",
-        "Cloud DLP extensions redact PII in transit across multi-cloud footprints.",
-        "Pandemic scale validated my elastic proxying for remote work surges.",
-        "Digital experience metrics correlate security with user productivity gains.",
-        "Azure native services embed my controls directly into Microsoft’s ecosystem."
-      ],
-      "level_5": [
-        "I secure more than 5,000 enterprises worldwide with my zero-trust shield.",
-        "1.5B ARR proxies petabytes, embodying trust’s cloud-native shift.",
-        "My CEO’s Check Point tenure infused proxy expertise into zero-trust tenets.",
-        "SafeChannel origins cloaked traffic before SASE’s mainstream arrival.",
-        "Global POPs weave a stealthy web, evading adversaries’ geographic guesses."
-      ]
-    }
-  },
-{
-    "ticker": "DDOG",
-    "company": "Datadog Inc.",
-    "sector": "Technology",
-    "difficulty": "hard",
-    "questions": {
-      "level_1": [
-        "I am the observability platform illuminating cloud-native apps from infrastructure to user experience.",
-        "Unified metrics, traces, and logs help me correlate outages across distributed systems.",
-        "My dashboards visualize chaos in microservices, Kubernetes, and serverless stacks.",
-        "Alerting smarts prioritize incidents with severity scores and on-call integrations.",
-        "As a DevOps unifier, I bridge silos for faster mean-time-to-resolution."
-      ],
-      "level_2": [
-        "APM traces requests end-to-end, pinpointing bottlenecks in code paths.",
-        "I scan logs for security threats and compliance audits.",
-        "Over 500 integrations ingest telemetry from AWS, Azure, and on-prem relics.",
-        "Synthetic monitoring simulates user journeys, catching regressions before production.",
-        "My consumption pricing scales with hosts and events for predictable billing."
-      ],
-      "level_3": [
-        "I began in New York in 2010 as a metrics startup riding the cloud wave.",
-        "My 2019 Nasdaq direct listing valued dashboards at unicorn premiums.",
-        "From Manhattan HQ, I prototype agentless integrations for hybrid environments.",
-        "I layered runtime protections by acquiring Sqreen, an app security firm.",
-        "Early unicorn funding propelled me from SaaS metrics to full-stack visibility."
-      ],
-      "level_4": [
-        "Cloud SIEM unifies logs with ML for automated threat triaging.",
-        "Database observability spans queries to replication lag diagnostics.",
-        "Billing clarifications refined transparency in usage tiers after customer feedback.",
-        "Watchdog’s unsupervised ML surfaces anomalies without rule fatigue.",
-        "Outposts extend my reach to air-gapped and edge compute environments."
-      ],
-      "level_5": [
-        "I guard Fortune 500 digital realms with my observability crest.",
-        "Two billion ARR monitors exabytes, embodying cloud’s observability imperative.",
-        "My French co-founders infused tracing telemetry into APM foundations.",
-        "SaaS metrics origins evolved into proactive synthetic probing.",
-        "20,000 customers navigate microservices’ misty mazes through my dashboards."
-      ]
-    }
-  },
   {
     "ticker": "TXN",
     "company": "Texas Instruments Incorporated",
@@ -4838,92 +4623,6 @@
       ]
     }
   },
-  {
-    "ticker": "SNPS",
-    "company": "Synopsys Inc.",
-    "sector": "Technology",
-    "difficulty": "hard",
-    "questions": {
-      "level_1": [
-        "I lead EDA software, simulating chips from RTL to GDSII tapeout.",
-        "My design compilers synthesize Verilog into optimized netlists for ASICs.",
-        "Verification suites catch bugs with UVM testbenches and formal proofs.",
-        "Optical proximity correction shapes masks for sub-3nm lithography.",
-        "As a silicon lifecycle partner, I accelerate tapeouts for hyperscalers."
-      ],
-      "level_2": [
-        "Fusion Compiler’s place-and-route flows yield PPA gains in 2nm blocks.",
-        "VC SpyGlass lints RTL for synthesizability and power intent compliance.",
-        "ZeBu emulates SoCs at 1GHz for pre-silicon software bring-up.",
-        "Sentaurus TCAD models devices at atomic scales for FinFET tuning.",
-        "Recurring revenues compound through IP licensing and cloud EDA subscriptions."
-      ],
-      "level_3": [
-        "I began in California in 1986 with a bet on logic synthesis, scaling into EDA’s duopoly.",
-        "From Sunnyvale, I prototype AI-driven place-and-route evolutions.",
-        "My 2024 merger with Ansys layered multiphysics into chip-package co-design.",
-        "PrimeTime static timing in the 1990s became the golden standard for signoff.",
-        "My stock appreciation tracks exponential climbs in semiconductor design complexity."
-      ],
-      "level_4": [
-        "DSO.ai’s machine learning auto-tunes designs for 10% better power efficiency.",
-        "TestMAX generates ATPG patterns with coverage exceeding 99%.",
-        "SiliconSmart libraries characterize cells for low-voltage IoT nodes.",
-        "3DIC Compiler stacks chiplets with TSV planning and thermal analysis.",
-        "Formal verification proves assertions in safety-critical automotive SoCs."
-      ],
-      "level_5": [
-        "I spark 90% of the world’s chips through my design flows.",
-        "20,000 engineers process 10 million gates daily in my virtual fabs.",
-        "Logic compilers in 1986 automated ASIC’s manual netlist drudgery.",
-        "Kundert’s vision fused verification with synthesis for full-flow EDA.",
-        "Global centers in India and China accelerate tapeouts around the clock."
-      ]
-    }
-  },
-{
-  "ticker": "CDNS",
-  "company": "Cadence Design Systems Inc.",
-  "sector": "Technology",
-  "difficulty": "hard",
-  "questions": {
-    "level_1": [
-      "I orchestrate IC design from concept to silicon success as an EDA maestro.",
-      "Genus synthesis optimizes RTL for area, timing, and power in advanced nodes.",
-      "Innovus placer routes blocks with pin access optimization for 3D stacks.",
-      "JasperGold formal verification exhaustively checks protocols in SoC interconnects.",
-      "As an IP and tools provider, I enable 5nm tapeouts for mobile and automotive chips."
-    ],
-    "level_2": [
-      "Palladium emulates billion-gate designs at RTL speeds for firmware debugging.",
-      "Tempus timing signs off OCV corners with statistical STA flows.",
-      "Celsius thermal analysis co-simulates power maps for 3DIC hotspots.",
-      "Tensilica cores configure DSPs for efficient edge AI inferencing.",
-      "Cloud bursting and SaaS models scale compute for peak design loads."
-    ],
-    "level_3": [
-      "I began in California in 1988 as a verification startup conquering EDA’s fragmented landscape.",
-      "From San Jose HQ, I innovate Cerebrus AI for autonomous design closures.",
-      "My 2020 Mentor acquisition integrated PCB and systems analysis.",
-      "Specman constrained-random testing in the 1990s revolutionized coverage.",
-      "Recurring royalty streams from IP outpace semiconductor growth."
-    ],
-    "level_4": [
-      "Cerebrus ML explores PPA tradeoffs, converging 2x faster than engineers.",
-      "Modus DFT inserts scan chains with minimal area overheads.",
-      "Legato reliability models EM and IR drop for automotive qualification.",
-      "Clarity 3D-IC extracts parasitics across multi-die interconnects.",
-      "Verisium platform unifies emulation, prototyping, and silicon debug."
-    ],
-    "level_5": [
-      "I drive 85% of advanced node designs with my EDA engines.",
-      "11,000 architects route quadrillions of transistors in my virtual design realms.",
-      "My 1988 origins birthed constrained-random verification paradigms for chip design.",
-      "Sangiovanni’s vision synthesized gates into full-chip ecosystems under my banner.",
-      "Centers in Austin and Hyderabad pulse with AI-driven design accelerations."
-    ]
-  }
-},
  {
     "ticker": "CPRT",
     "company": "Copart Inc.",
@@ -5310,54 +5009,18 @@
   }
 },
     {
-      "ticker": "CL",
-      "company": "Colgate-Palmolive Company",
-      "sector": "Consumer Staples",
-      "difficulty": "easy",
-      "questions": {
-        "level_1": [
-          "I create everyday personal care items used by families during their morning routines.",
-          "People around the world trust my gentle products for maintaining daily hygiene habits.",
-          "My essentials are commonly found in nearly every household bathroom cabinet.",
-          "I focus on simple, reliable items that help people feel clean and refreshed.",
-          "My brand identity revolves strongly around cleanliness and consistent personal care."
-        ],
-        "level_3": [
-          "My long history dates back to the early nineteenth century in America.",
-          "I distribute products in more than two hundred countries around the world.",
-          "My earliest versions of a signature product were once sold inside small jars.",
-          "Generations of families have used my items without thinking twice about them.",
-          "I am considered one of the most established global brands in personal care."
-        ],
-        "level_4": [
-          "One of my divisions focuses heavily on scientifically developed pet nutrition products.",
-          "A long-standing brand of mine is highly recognized for dish soap and body cleansers.",
-          "A large share of my revenue comes from oral care solutions and related items.",
-          "I have maintained headquarters in a major American city for many decades.",
-          "My operations span personal care, home care, and companion animal wellness solutions."
-        ],
-        "level_5": [
-          "I am the global leader in toothpaste and manual toothbrush market share worldwide.",
-          "My pet-oriented business is respected for its science-backed formulas and research approach.",
-          "I helped popularize collapsible toothpaste tubes near the end of the nineteenth century.",
-          "My global presence reinforces an identity centered around clean teeth, homes, and pets.",
-          "I am widely recognized as one of the oldest continuously expanding hygiene brands."
-        ]
-      }
-    },
-    {
       "ticker": "KMB",
       "company": "Kimberly-Clark Corporation",
       "sector": "Consumer Staples",
       "difficulty": "easy",
       "questions": {
         "level_1": [
-          "I produce essential paper products used in bathrooms around the entire world.",
-          "Families rely on my items for comfort, convenience, and everyday household needs.",
-          "My products are used by both parents and children during daily personal routines.",
-          "I create soft disposable goods that people purchase regularly without much thought.",
-          "My focus is providing comfort-oriented items that support simple daily living."
-        ],
+  "I produce essential paper products used in bathrooms, including facial tissues and toilet paper worldwide.",
+  "Families rely on my disposable diapers, training pants, and baby wipes for infant care needs.",
+  "My products are recognized by distinctive brand names that have become synonymous with their categories.",
+  "I create soft, disposable goods for personal care that people purchase regularly without much thought.",
+  "My focus is providing comfort-oriented items that support hygiene and convenience in daily living."
+],
         "level_2": [
           "I manufacture tissues, diapers, and several popular hygiene-related paper goods.",
           "My items are frequently purchased in bulk because families need them constantly.",
@@ -5373,19 +5036,19 @@
           "My disposable goods are widely known for convenience and time-saving benefits."
         ],
         "level_4": [
-          "I helped introduce disposable diaper technology that reshaped the parenting landscape.",
-          "A significant portion of my materials originates from processed wood pulp fibers.",
-          "My products are considered staples in both commercial and residential environments.",
-          "I maintain a broad portfolio serving family care, personal care, and professional sectors.",
-          "One of my brands revolutionized the facial tissue category with recognizable packaging."
-        ],
-        "level_5": [
-          "I pioneered innovations that deeply influenced modern disposable hygiene industries globally.",
-          "My advanced diaper designs became essential tools for millions of new parents worldwide.",
-          "Large organizations rely on my commercial paper systems for efficient restroom management.",
-          "My product families consistently hold leading shares across multiple household categories.",
-          "I remain one of the most dependable providers of high-volume hygiene essentials worldwide."
-        ]
+  "I helped introduce disposable diaper technology that reshaped the parenting landscape globally.",
+  "A significant portion of my materials originates from processed wood pulp fibers for softness.",
+  "My Kleenex brand revolutionized the facial tissue category and became a household name.",
+  "I maintain a broad portfolio serving family care with Huggies diapers and Pull-Ups training pants.",
+  "One of my brands became so synonymous with facial tissues that people use it generically."
+],
+       "level_5": [
+  "I pioneered innovations that deeply influenced modern disposable hygiene industries globally.",
+  "My Huggies diaper brand became an essential tool for millions of new parents worldwide.",
+  "Large organizations rely on my Scott and Cottonelle commercial paper systems for restroom management.",
+  "My product families including Kleenex, Huggies, and Scott hold leading market shares across categories.",
+  "I remain one of the most dependable providers of high-volume tissue and diaper essentials worldwide."
+]
       }
     },
     {
@@ -5402,12 +5065,13 @@
           "My products appeal to people who enjoy quick, affordable, and consistent foods."
         ],
         "level_2": [
-          "I make well-known breakfast items often seen at the center of grocery aisles.",
-          "Several of my brands feature colorful packaging designed to attract younger consumers.",
-          "I also create snacks that families enjoy during school, work, and weekend activities.",
-          "My products are designed for convenience and long shelf stability in every home.",
-          "I maintain a strong presence in both cereal and packaged food categories."
-        ],
+  "I make well-known breakfast cereals like Cheerios, Lucky Charms, and Trix seen in grocery aisles.",
+  "Several of my cereal brands feature colorful mascots designed to attract younger consumers nationwide.",
+  "I also create Betty Crocker baking mixes and Pillsbury products families use for cooking.",
+  "My products are designed for convenience and long shelf stability in every American home.",
+  "I maintain a strong presence in both cereal and packaged food categories with trusted brands."
+],
+        
         "level_3": [
           "I expanded significantly during the twentieth century through popular household brands.",
           "Many of my products have become nostalgic favorites for multiple generations.",
@@ -5415,20 +5079,20 @@
           "I also produce baking mixes and meal helpers used in countless home kitchens.",
           "My long-standing presence has made me a leader in the packaged food industry."
         ],
-        "level_4": [
-          "I own several iconic cereal characters recognizable throughout American culture.",
-          "Some of my brands are endorsed by athletes and marketed toward active lifestyles.",
-          "I also operate major snack and yogurt brands sold internationally at large scale.",
-          "My various acquisitions expanded my reach beyond cereal into many food categories.",
-          "My business focuses on breakfast, snacks, baking, and convenient prepared foods."
-        ],
-        "level_5": [
-          "I am behind some of the highest-selling boxed cereals ever produced globally.",
-          "My mascot-driven brands have become permanent fixtures in advertising history.",
-          "I expanded into natural and organic foods through strategic twenty-first-century acquisitions.",
-          "My products consistently dominate their segments in the packaged food market.",
-          "I remain one of the world’s most trusted producers of family-oriented food items."
-        ]
+       "level_4": [
+  "I own several iconic cereal characters like Lucky the Leprechaun and the Trix Rabbit recognizable throughout American culture.",
+  "Some of my Wheaties cereal boxes feature athletes and are marketed toward active lifestyles famously.",
+  "I also operate major brands including Yoplait yogurt and Nature Valley snacks sold internationally at large scale.",
+  "My various acquisitions including Annie's Organic expanded my reach beyond cereal into many food categories.",
+  "My business focuses on breakfast cereals, snacks like Fruit Roll-Ups, baking mixes, and convenient prepared foods."
+],
+      "level_5": [
+  "I am behind some of the highest-selling boxed cereals including Cheerios ever produced globally.",
+  "My mascot-driven brands like the Lucky Charms leprechaun have become permanent fixtures in advertising history.",
+  "I expanded into natural and organic foods through strategic acquisitions of Annie's and Cascadian Farm.",
+  "My Cheerios, Lucky Charms, and Cinnamon Toast Crunch consistently dominate their segments in packaged food.",
+  "I remain one of the world's most trusted producers of family-oriented breakfast and snack items."
+] 
       }
     },
     {
@@ -5437,13 +5101,13 @@
       "sector": "Consumer Staples",
       "difficulty": "easy",
       "questions": {
-        "level_1": [
-          "I produce snacks enjoyed by people looking for convenient sweet or savory treats.",
-          "My items are often enjoyed during school breaks, workdays, and weekend gatherings.",
-          "Families purchase my snacks frequently because they are easy to store and share.",
-          "Shoppers recognize many of my products instantly when browsing snack aisles.",
-          "I focus on treats that bring moments of enjoyment throughout everyday life."
-        ],
+       "level_1": [
+  "I produce snacks including Oreo cookies, Cadbury chocolate, and other treats enjoyed worldwide daily.",
+  "My items like Ritz crackers and Triscuits are enjoyed during school breaks, workdays, and weekend gatherings.",
+  "Families purchase my snacks including Chips Ahoy and belVita frequently because they're easy to store.",
+  "Shoppers recognize Oreo, Cadbury, and my other products instantly when browsing snack aisles globally.",
+  "I focus on treats that bring moments of enjoyment throughout everyday life around the world."
+],
         "level_2": [
           "I produce cookies, crackers, chocolates, and other highly recognizable snack items.",
           "My brands are sold worldwide and appeal strongly to both children and adults.",
@@ -5459,19 +5123,19 @@
           "My portfolio contains some of the most frequently purchased treats in the world."
         ],
         "level_4": [
-          "I oversee beloved chocolate brands that hold strong global market positions.",
-          "I acquired several international snack makers to strengthen my geographic reach.",
-          "My company focuses heavily on the indulgence and convenience categories combined.",
-          "I operate one of the largest biscuit businesses anywhere across the global market.",
-          "I continue expanding into emerging markets where snacking demand is rapidly rising."
-        ],
-        "level_5": [
-          "I control some of the world’s best-selling chocolate and cookie brands globally.",
-          "My international biscuit business is among the largest and most influential worldwide.",
-          "I have deeply integrated production networks serving dozens of global regions.",
-          "My products dominate snack aisles in both developed and rapidly growing markets.",
-          "I remain one of the most powerful leaders in worldwide snack manufacturing."
-        ]
+  "I oversee beloved chocolate brands including Cadbury, Milka, and Toblerone that hold strong global positions.",
+  "I acquired several international snack makers like Cadbury in 2010 to strengthen my geographic reach significantly.",
+  "My company focuses heavily on the indulgence and convenience categories with Oreo and Ritz combined.",
+  "I operate one of the largest biscuit businesses with Oreo as the world's best-selling cookie brand.",
+  "I continue expanding into emerging markets where snacking demand for Oreo and Cadbury is rapidly rising."
+],
+       "level_5": [
+  "I control some of the world's best-selling chocolate and cookie brands including Oreo and Cadbury globally.",
+  "My international biscuit business led by Oreo is among the largest and most influential worldwide.",
+  "I have deeply integrated production networks serving dozens of global regions with Oreo and Cadbury.",
+  "My Oreo cookies and Cadbury chocolate dominate snack aisles in both developed and rapidly growing markets.",
+  "I remain one of the most powerful leaders in worldwide snack manufacturing with iconic billion-dollar brands."
+]
       }
     },
     {
@@ -5494,13 +5158,13 @@
           "Customers appreciate my loyalty programs and digital coupon offerings.",
           "I sell items ranging from fresh vegetables to packaged meals and household necessities."
         ],
-        "level_3": [
-          "I was founded in the nineteenth century and grew steadily through store expansions.",
-          "I maintain one of the largest store footprints among American grocery chains today.",
-          "My operations include supermarkets, hypermarkets, and specialty-format stores.",
-          "I manage large logistics networks designed to keep fresh food circulating efficiently.",
-          "My longstanding presence makes me a familiar name across many American regions."
-        ],
+       "level_3": [
+  "I was founded in Cincinnati in 1883 by Barney Kroger and grew steadily through store expansions.",
+  "I maintain one of the largest store footprints with over 2,700 stores among American grocery chains today.",
+  "My operations include supermarkets under names like Ralphs, Fred Meyer, and King Soopers nationwide.",
+  "I manage large logistics networks designed to keep fresh food circulating efficiently to my stores.",
+  "My longstanding presence makes me a familiar name across many American regions under various banners."
+],
         "level_4": [
           "I partner with various suppliers to develop high-quality private-label food lines.",
           "I also operate manufacturing facilities that produce many of my store-brand items.",
@@ -5508,13 +5172,13 @@
           "I acquired multiple regional chains over the years to expand my geographic coverage.",
           "I emphasize food safety, freshness, and consistent value throughout my product offerings."
         ],
-        "level_5": [
-          "I am one of the largest grocery retailers in the entire United States marketplace.",
-          "My private-label programs produce billions in revenue across numerous food categories.",
-          "I maintain one of the most advanced fulfillment networks among U.S. grocers today.",
-          "My presence significantly shapes regional food distribution across the country.",
-          "I stand as a dominant force in the American supermarket industry overall."
-        ]
+       "level_5": [
+  "I am one of the largest supermarket chains by revenue in the entire United States marketplace.",
+  "My Simple Truth and Private Selection store brands produce billions in revenue across numerous food categories.",
+  "I maintain one of the most advanced online ordering and delivery fulfillment networks among U.S. grocers.",
+  "My presence significantly shapes regional food distribution with chains like Fred Meyer and Harris Teeter.",
+  "I stand as a dominant force in the American supermarket industry with my family of store brands."
+]
       }
     },
     {
@@ -5954,12 +5618,12 @@
     "difficulty": "medium",
     "questions": {
       "level_1": [
-        "I make beverages that people enjoy at social events, celebrations, and casual gatherings with friends and family.",
-        "My products are available in grocery stores, bars, and restaurants around the world.",
-        "People often consume my drinks chilled, especially during warm weather or sporting events.",
-        "Fans of sports may recognize my name from advertisements displayed at stadiums and arenas.",
-        "I have been part of the beverage industry for over a century and have a long-standing global presence."
-      ],
+  "I make beer and other beverages that people enjoy at social events, celebrations, and casual gatherings.",
+  "My beer brands including Coors, Miller, and Blue Moon are available in stores and bars worldwide.",
+  "People often consume my beers chilled, especially during warm weather, sporting events, and parties.",
+  "Fans of sports recognize my Coors and Miller brands from advertisements at stadiums and arenas.",
+  "I have been part of the brewing industry for over a century with a long-standing global presence."
+],
       "level_2": [
         "I produce both alcoholic beverages, such as beer, and some non-alcoholic drink options.",
         "Several of my brands have become iconic and are recognized across multiple generations.",
@@ -5968,12 +5632,12 @@
         "I merged with another major company to significantly expand my international market reach."
       ],
       "level_3": [
-        "My headquarters are in North America, but my products are sold in almost every region of the world.",
-        "I own multiple well-known brands, including craft and specialty beers in addition to mainstream products.",
-        "My flagship beverages are instantly recognizable by their unique packaging and branding.",
-        "I am considered one of the leading companies in the global beer and beverage industry.",
-        "I focus on both producing high-volume popular products and developing premium, specialty brands."
-      ],
+  "My headquarters are in North America, but my Coors and Miller brands are sold worldwide.",
+  "I own multiple well-known beer brands including Coors Light, Miller Lite, and Blue Moon craft beers.",
+  "My flagship Coors Light and Miller Lite beverages are instantly recognizable by their unique packaging.",
+  "I am considered one of the leading companies in the global beer and beverage brewing industry.",
+  "I focus on producing high-volume Coors and Miller products plus developing premium Blue Moon specialty brands."
+],
       "level_4": [
         "I am publicly traded on a major stock exchange and included in the S&P 500 index.",
         "Investors closely track my earnings, especially during the summer when beverage consumption peaks.",
@@ -5982,12 +5646,12 @@
         "Marketing campaigns, sponsorships, and strong brand recognition are key strategies I use to maintain growth."
       ],
       "level_5": [
-        "I have a long global history dating back over a century and have grown through strategic mergers and acquisitions.",
-        "People enjoy my beverages at celebrations, sports events, and social gatherings around the world.",
-        "My portfolio includes both mainstream high-volume products and smaller premium specialty brands.",
-        "I am one of the largest beverage producers globally with extensive distribution across multiple countries.",
-        "My name and logo are instantly recognizable on bottles and cans sold in stores worldwide."
-      ]
+  "I have a long global brewing history and grew through the Molson-Coors merger and MillerCoors joint venture.",
+  "People enjoy my Coors Light, Miller Lite, and Blue Moon beers at celebrations and sports events worldwide.",
+  "My portfolio includes mainstream Miller and Coors products plus smaller Blue Moon craft specialty brands.",
+  "I am one of the largest beer producers globally with Coors and Miller extensive distribution channels.",
+  "My Coors Light and Miller Lite names and logos are instantly recognizable on cans sold globally."
+]
     }
   },
   {
@@ -6004,19 +5668,19 @@
         "I have been operating for over a century and have become a household name."
       ],
       "level_2": [
-        "I am best known for producing a variety of breakfast cereals enjoyed globally.",
-        "In addition to cereals, I also produce snack bars, crackers, and other convenient food items.",
-        "My products are marketed to both children and adults through mascots, packaging, and advertising.",
-        "I am headquartered in the United States but sell my products in multiple countries.",
-        "My company frequently invests in marketing campaigns to maintain brand recognition across generations."
-      ],
-      "level_3": [
-        "I focus on grain-based foods and snack products that are often part of daily routines.",
-        "Over the years, I have acquired other well-known food brands to expand my product portfolio.",
-        "People recognize my cereals by their distinctive names, mascots, and colorful packaging.",
-        "I aim to provide both indulgent treats and healthier options to meet consumer demand.",
-        "My products are commonly served at home, in schools, and sometimes in quick-service restaurants."
-      ],
+  "I am best known for producing Corn Flakes, Frosted Flakes, and other breakfast cereals enjoyed globally.",
+  "In addition to cereals like Special K and Froot Loops, I produce Pop-Tarts and Eggo waffles conveniently.",
+  "My Frosted Flakes mascot Tony the Tiger and other characters are marketed through packaging and advertising.",
+  "I am headquartered in Battle Creek, Michigan, but sell Frosted Flakes and Corn Flakes in multiple countries.",
+  "My company invests in marketing campaigns for Frosted Flakes to maintain brand recognition across generations."
+],
+     "level_3": [
+  "I focus on grain-based foods including Corn Flakes and snack products like Cheez-It that are daily staples.",
+  "Over the years, I acquired Pringles chips and other well-known food brands to expand beyond cereals.",
+  "People recognize my Frosted Flakes with Tony the Tiger and Corn Flakes by their distinctive boxes and mascots.",
+  "I aim to provide both indulgent treats like Pop-Tarts and healthier Special K options to meet consumer demand.",
+  "My Frosted Flakes and Pop-Tarts are commonly served at home, in schools, and in quick breakfast settings."
+],
       "level_4": [
         "I am publicly traded on a major stock exchange and closely watched by investors.",
         "Quarterly earnings and new product launches often impact my stock performance.",
@@ -6025,12 +5689,12 @@
         "Marketing and advertising play a significant role in my continued brand loyalty and recognition."
       ],
       "level_5": [
-        "I am one of the largest global cereal and snack food companies with a century-long history.",
-        "Consumers worldwide recognize my products, mascots, and packaging instantly.",
-        "I balance classic products with innovative offerings to stay relevant in changing markets.",
-        "My acquisitions have expanded my reach in both domestic and international markets.",
-        "I have successfully maintained brand loyalty across multiple generations of consumers."
-      ]
+  "I am one of the largest global cereal companies with brands like Frosted Flakes and Corn Flakes worldwide.",
+  "Consumers worldwide recognize my Frosted Flakes Tony the Tiger mascot, packaging, and taste instantly.",
+  "I balance classic products like Corn Flakes with innovative Pop-Tarts flavors to stay relevant in markets.",
+  "My acquisitions of Pringles and other brands expanded my reach beyond breakfast cereals into snacks.",
+  "I have successfully maintained Frosted Flakes and Froot Loops brand loyalty across multiple generations of consumers."
+]
     }
   },
   {
@@ -7107,12 +6771,6 @@
           "My partnership with British Airways creates one of the most profitable transatlantic joint ventures in aviation history."
         ]
       }
-    },
-    {
-      "ticker": "ABNB",
-      "company": "Airbnb, Inc.",
-      "sector": "Consumer Cyclical",
-      "difficulty": "easy"
     },
     {
       "ticker": "ETSY",
