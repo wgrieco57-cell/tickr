@@ -607,7 +607,7 @@ function App() {
       navigator.clipboard.writeText(text);
       alert('Share link copied to clipboard!');
     }
-  }, [submittedAnswers, questions, startTime]);
+  }, [submittedAnswers, questions]);
 
   // UPDATED: Share to Twitter with clean homepage link
   const shareToTwitter = useCallback(() => {
@@ -622,7 +622,7 @@ function App() {
     
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`;
     window.open(twitterUrl, '_blank');
-  }, [submittedAnswers, questions, startTime]);
+  }, [submittedAnswers, questions]);
 
   useEffect(() => {
     const track = async () => {
