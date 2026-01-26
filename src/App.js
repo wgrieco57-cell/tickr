@@ -588,7 +588,6 @@ function App() {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
     const won = submittedAnswers.some(a => a.isCorrect);
     const cluesUsed = won ? submittedAnswers.length : questions.length;
-    const timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
     const now = new Date();
     const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
     
@@ -615,7 +614,6 @@ function App() {
     const emoji = submittedAnswers.map(a => a.isCorrect ? '🟩' : '🟥').join('');
     const won = submittedAnswers.some(a => a.isCorrect);
     const cluesUsed = won ? submittedAnswers.length : questions.length;
-    const timeElapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
     const now = new Date();
     const dateStr = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${now.getFullYear()}`;
     
