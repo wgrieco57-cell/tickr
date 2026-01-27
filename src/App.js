@@ -1006,7 +1006,7 @@ function App() {
                 ×
               </button>
 
-              <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+              <div style={{ textAlign: 'center', marginBottom: '2rem', paddingRight: '3rem' }}>
                 <h2 style={{ fontSize: '2rem', fontWeight: '700', margin: '0' }}>📊 Your Statistics</h2>
               </div>
 
@@ -1239,7 +1239,7 @@ function App() {
                 ×
               </button>
 
-              <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+              <div style={{ textAlign: 'center', marginBottom: '2rem', paddingRight: '3rem' }}>
                 <h2 id="how-to-play-title" style={{ fontSize: '2rem', fontWeight: '700', margin: '0', color: '#e2e8f0' }}>❓ How to Play</h2>
               </div>
 
