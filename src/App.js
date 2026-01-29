@@ -19,6 +19,25 @@ const FALLBACK_QUOTES = [
   { symbol: '^IXIC', current: '15000.00', change: '50.00' }
 ];
 
+// STEP 2: Theme weeks configuration (themes with 5+ tickers)
+const THEME_WEEKS = [
+  "Consumer Brands",
+  "Tech Titans",
+  "Enterprise Tech",
+  "Travel & Leisure",
+  "Retail Giants",
+  "Pharma & Biotech",
+  "Asset Managers",
+  "Auto & Mobility",
+  "Marketplaces",
+  "Fintech",
+  "Cybersecurity",
+  "Defense & Aerospace",
+  "Telecom",
+  "Energy",
+  "Restaurants"
+];
+
 const firebaseConfig = {
   apiKey: "AIzaSyAdgvuwk-0gU7Tucj87ny2dmFn8qIJ0xsE",
   authDomain: "tickr-2b042.firebaseapp.com",
@@ -57,6 +76,31 @@ function createSeededRandom(initialSeed) {
     seed = (seed * 16807) % 2147483647;
     return seed / 2147483647;
   };
+}
+
+// STEP 2: Helper function to get ISO week number
+function getISOWeek(date) {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+  const yearStart = new Date(d.getFullYear(), 0, 1);
+  return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+}
+
+// STEP 2: Get current theme based on week and day
+function getCurrentTheme() {
+  const now = new Date();
+  const dayOfWeek = now.getDay(); // 0 = Sunday, 6 = Saturday
+  
+  // Weekend = no theme (wildcard)
+  if (dayOfWeek === 0 || dayOfWeek === 6) {
+    return null;
+  }
+  
+  // Weekday = use theme
+  const weekNumber = getISOWeek(now);
+  const themeIndex = weekNumber % THEME_WEEKS.length;
+  return THEME_WEEKS[themeIndex];
 }
 
 function App() {
@@ -196,7 +240,7 @@ function App() {
       });
   }, []);
 
-  // Select daily ticker and questions
+  // STEP 2: Select daily ticker with theme filtering
   useEffect(() => {
     if (!data || data.length === 0) return;
 
@@ -214,7 +258,23 @@ function App() {
     const sortedData = [...data].sort((a, b) => a.ticker.localeCompare(b.ticker));
 
     let filteredData = sortedData;
-    if (gameMode === 'unlimited') {
+    
+    // STEP 2: Apply theme filtering for daily mode
+    if (gameMode === 'daily') {
+      const currentTheme = getCurrentTheme();
+      
+      if (currentTheme) {
+        // Weekday: filter by theme
+        const themeFiltered = sortedData.filter(company => 
+          company.themes && company.themes.includes(currentTheme)
+        );
+        
+        // Fallback: if theme pool too small, use full dataset
+        filteredData = themeFiltered.length >= 10 ? themeFiltered : sortedData;
+      }
+      // Weekend: use full dataset (no filtering)
+    } else {
+      // Unlimited mode: filter by difficulty
       filteredData = sortedData.filter(t => (t.difficulty || 'medium') === difficulty);
     }
 
@@ -452,6 +512,29 @@ function App() {
       }, 100);
     }
   }, [currentLevel, gameOver]);
+
+  // STEP 3: Get rotating fact for display
+  const getDisplayFact = useCallback((ticker) => {
+    if (!dailyTicker || !dailyTicker.facts || dailyTicker.facts.length === 0) {
+      return null;
+    }
+    
+    const storageKey = `fact_index_${ticker}`;
+    let factIndex = parseInt(localStorage.getItem(storageKey) || '0', 10);
+    
+    // Wrap around if index exceeds array length
+    if (factIndex >= dailyTicker.facts.length) {
+      factIndex = 0;
+    }
+    
+    const fact = dailyTicker.facts[factIndex];
+    
+    // Increment for next time
+    const nextIndex = (factIndex + 1) % dailyTicker.facts.length;
+    localStorage.setItem(storageKey, nextIndex.toString());
+    
+    return fact;
+  }, [dailyTicker]);
 
   const handleSubmit = useCallback((e) => {
     if (e) e.preventDefault();
@@ -828,6 +911,10 @@ function App() {
   const todayDate = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
   const isWinner = submittedAnswers.some(a => a.isCorrect);
   const numClues = questions.length;
+  
+  // STEP 2: Get theme label for display
+  const currentTheme = gameMode === 'daily' ? getCurrentTheme() : null;
+  const themeLabel = currentTheme ? `Theme of the Week: ${currentTheme}` : 'Wildcard Weekend';
 
   return (
     <div style={{ minHeight: '100vh', background: theme.bgColor, color: theme.textColor, fontFamily: 'system-ui, -apple-system, sans-serif', transition: 'all 0.3s ease' }}>
@@ -972,6 +1059,23 @@ function App() {
             ❓ How to Play
           </button>
         </div>
+        
+        {/* STEP 2: Theme Week Display - Only show in daily mode */}
+        {gameMode === 'daily' && (
+          <div style={{ 
+            textAlign: 'center', 
+            marginBottom: '1.5rem',
+            padding: '0.75rem 1rem',
+            background: currentTheme ? 'rgba(34, 197, 94, 0.1)' : 'rgba(59, 130, 246, 0.1)',
+            border: `1px solid ${currentTheme ? 'rgba(34, 197, 94, 0.3)' : 'rgba(59, 130, 246, 0.3)'}`,
+            borderRadius: '1rem',
+            fontSize: '0.9rem',
+            fontWeight: '600',
+            color: theme.textColor
+          }}>
+            {currentTheme ? '🎯' : '🎲'} {themeLabel}
+          </div>
+        )}
 
         {/* Stats Modal */}
         {showStats && (
@@ -1392,6 +1496,27 @@ function App() {
             <p style={{ fontSize: '1.125rem', color: theme.mutedColor, marginBottom: '1.5rem' }}>The Answer Was</p>
             <div style={{ fontSize: '2.5rem', fontWeight: '800', color: '#22c55e', marginBottom: '0.5rem' }}>{dailyTicker.ticker}</div>
             <div style={{ fontSize: '1.25rem', color: theme.mutedColor, marginBottom: '2rem' }}>{dailyTicker.company}</div>
+            
+            {/* STEP 3: Display rotating fact */}
+            {(() => {
+              const fact = getDisplayFact(dailyTicker.ticker);
+              return fact ? (
+                <div style={{ 
+                  marginBottom: '2rem', 
+                  padding: '1rem 1.5rem', 
+                  background: 'rgba(59, 130, 246, 0.1)', 
+                  border: '1px solid rgba(59, 130, 246, 0.3)', 
+                  borderRadius: '1rem',
+                  fontSize: '0.95rem',
+                  lineHeight: '1.6',
+                  color: theme.textColor
+                }}>
+                  <div style={{ fontWeight: '700', marginBottom: '0.5rem', color: '#3b82f6' }}>💡 Did you know?</div>
+                  {fact}
+                </div>
+              ) : null;
+            })()}
+            
             <p style={{ fontSize: '1rem', color: theme.mutedColor, marginBottom: '2rem' }}>
               {gameMode === 'daily' ? 'Come back tomorrow for a new challenge!' : 'Keep going!'}
             </p>
