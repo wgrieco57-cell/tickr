@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo, useReducer } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import confetti from "canvas-confetti";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInAnonymously } from "firebase/auth";
@@ -46,54 +46,6 @@ const firebaseConfig = {
   messagingSenderId: "866254338816",
   appId: "1:866254338816:web:85b7cf91fee6225ebe91e5",
   measurementId: "G-WF8Q9HBVJN"
-};
-
-// Custom debounce hook
-const useDebounce = (value, delay) => {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-  
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-    
-    return () => clearTimeout(handler);
-  }, [value, delay]);
-  
-  return debouncedValue;
-};
-
-// Questions reducer for better state management
-const questionsReducer = (state, action) => {
-  switch (action.type) {
-    case 'SET_QUESTIONS':
-      return action.questions;
-    
-    case 'ADD_ANSWER':
-      return state.map((q, idx) => 
-        idx === action.level 
-          ? { ...q, answers: [...q.answers, action.answer] }
-          : q
-      );
-    
-    case 'LOAD_PROGRESS':
-      return action.questions.map((q, idx) => {
-        const progressAnswers = action.progressAnswers.filter(a => a.level === idx + 1);
-        return {
-          ...q,
-          answers: progressAnswers.map(a => ({
-            guess: a.guess,
-            isCorrect: a.isCorrect
-          }))
-        };
-      });
-    
-    case 'RESET':
-      return [];
-    
-    default:
-      return state;
-  }
 };
 
 const app = initializeApp(firebaseConfig);
@@ -155,10 +107,9 @@ function App() {
   const [data, setData] = useState([]);
   const [allTickers, setAllTickers] = useState([]);
   const [dailyTicker, setDailyTicker] = useState(null);
-  const [questions, dispatchQuestions] = useReducer(questionsReducer, []);
+  const [questions, setQuestions] = useState([]);
   const [currentLevel, setCurrentLevel] = useState(0);
   const [input, setInput] = useState("");
-  const debouncedInput = useDebounce(input, 150); // Debounce input for autocomplete
   const [submittedAnswers, setSubmittedAnswers] = useState([]);
   const [availableOptions, setAvailableOptions] = useState([]);
   const [gameOver, setGameOver] = useState(false);
@@ -368,7 +319,8 @@ function App() {
     }
 
     setDailyTicker(selectedTicker);
-    
+    setQuestions(pickedQuestions);
+
     if (gameMode === 'daily') {
       try {
         const progressStr = localStorage.getItem('dailyProgress');
@@ -381,11 +333,17 @@ function App() {
               setSubmittedAnswers(progress.submittedAnswers);
               setGameOver(progress.gameOver);
 
-              dispatchQuestions({
-                type: 'LOAD_PROGRESS',
-                questions: pickedQuestions,
-                progressAnswers: progress.submittedAnswers
+              const updatedQuestions = [...pickedQuestions];
+              progress.submittedAnswers.forEach(answer => {
+                const level = answer.level;
+                if (updatedQuestions[level - 1]) {
+                  updatedQuestions[level - 1].answers.push({
+                    guess: answer.guess,
+                    isCorrect: answer.isCorrect
+                  });
+                }
               });
+              setQuestions(updatedQuestions);
               setStartTime(progress.startTime);
               return;
             }
@@ -397,13 +355,12 @@ function App() {
       }
     }
 
-    dispatchQuestions({ type: 'SET_QUESTIONS', questions: pickedQuestions });
     setStartTime(Date.now());
   }, [data, gameMode, difficulty, puzzleSeed]);
 
-  // Update available options with debounced input
+  // Update available options
   useEffect(() => {
-    if (!debouncedInput) {
+    if (!input) {
       setAvailableOptions([]);
       return;
     }
@@ -418,22 +375,22 @@ function App() {
 
     const filtered = allTickers
       .filter(t => {
-        const matchesSearch = t.symbol.toLowerCase().includes(debouncedInput.toLowerCase()) ||
-          t.company.toLowerCase().includes(debouncedInput.toLowerCase());
+        const matchesSearch = t.symbol.toLowerCase().includes(input.toLowerCase()) ||
+          t.company.toLowerCase().includes(input.toLowerCase());
         const notGuessed = !alreadyGuessed.includes(t.symbol.toLowerCase());
         return matchesSearch && notGuessed;
       })
       .sort((a, b) => {
-        if (a.symbol.toLowerCase() === debouncedInput.toLowerCase()) return -1;
-        if (b.symbol.toLowerCase() === debouncedInput.toLowerCase()) return 1;
-        if (a.symbol.toLowerCase().startsWith(debouncedInput.toLowerCase())) return -1;
-        if (b.symbol.toLowerCase().startsWith(debouncedInput.toLowerCase())) return 1;
+        if (a.symbol.toLowerCase() === input.toLowerCase()) return -1;
+        if (b.symbol.toLowerCase() === input.toLowerCase()) return 1;
+        if (a.symbol.toLowerCase().startsWith(input.toLowerCase())) return -1;
+        if (b.symbol.toLowerCase().startsWith(input.toLowerCase())) return 1;
         return 0;
       })
       .slice(0, 8);
 
     setAvailableOptions(filtered);
-  }, [debouncedInput, allTickers, submittedAnswers]);
+  }, [input, allTickers, submittedAnswers]);
 
   // Auto-save progress
   useEffect(() => {
@@ -606,12 +563,13 @@ function App() {
       const correctTicker = questions[currentLevel].correct;
       const isCorrect = matchedTicker.symbol.toUpperCase() === correctTicker.toUpperCase();
 
-      dispatchQuestions({
-        type: 'ADD_ANSWER',
-        level: currentLevel,
-        answer: { guess: formattedGuess, isCorrect }
+      const updatedQuestions = [...questions];
+      updatedQuestions[currentLevel].answers.push({
+        guess: formattedGuess,
+        isCorrect
       });
 
+      setQuestions(updatedQuestions);
       setSubmittedAnswers(prev => [...prev, {
         level: currentLevel + 1,
         guess: formattedGuess,
@@ -661,12 +619,13 @@ function App() {
     const correctTicker = questions[currentLevel].correct;
     const isCorrect = tickerToCheck.toUpperCase() === correctTicker.toUpperCase();
 
-    dispatchQuestions({
-      type: 'ADD_ANSWER',
-      level: currentLevel,
-      answer: { guess: input.trim(), isCorrect }
+    const updatedQuestions = [...questions];
+    updatedQuestions[currentLevel].answers.push({
+      guess: input.trim(),
+      isCorrect
     });
 
+    setQuestions(updatedQuestions);
     setSubmittedAnswers(prev => [...prev, {
       level: currentLevel + 1,
       guess: input.trim(),
@@ -851,124 +810,95 @@ function App() {
     return achievements;
   }, [stats]);
 
-  const GuessDistChart = useMemo(() => {
-    return ({ dist, maxClues }) => {
-      const maxCount = Math.max(...Object.values(dist));
-      
-      return (
-        <>
-          {Array.from({ length: maxClues }, (_, i) => {
-            const clue = i + 1;
-            const count = dist[clue];
-            const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
-            return (
-              <div key={clue} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                <div style={{ width: '80px', color: theme.mutedColor, fontSize: '0.875rem' }}>
-                  {clue} clue{clue > 1 ? 's' : ''}
-                </div>
-                <div style={{ flex: 1, background: theme.borderColor, borderRadius: '0.5rem', height: '2rem', position: 'relative', overflow: 'hidden' }}>
-                  <div style={{ width: `${percentage}%`, height: '100%', background: 'linear-gradient(135deg, #22c55e, #16a34a)', transition: 'width 0.3s ease', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '0.5rem' }}>
-                    <span style={{ color: 'white', fontWeight: '700', fontSize: '0.875rem' }}>{count}</span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.5rem' }}>
-            <div style={{ width: '80px', color: theme.mutedColor, fontSize: '0.875rem' }}>Failed</div>
+  const GuessDistChart = useCallback(({ dist, maxClues }) => (
+    <>
+      {Array.from({ length: maxClues }, (_, i) => {
+        const clue = i + 1;
+        const count = dist[clue];
+        const maxCount = Math.max(...Object.values(dist));
+        const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
+        return (
+          <div key={clue} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+            <div style={{ width: '80px', color: theme.mutedColor, fontSize: '0.875rem' }}>
+              {clue} clue{clue > 1 ? 's' : ''}
+            </div>
             <div style={{ flex: 1, background: theme.borderColor, borderRadius: '0.5rem', height: '2rem', position: 'relative', overflow: 'hidden' }}>
-              <div style={{ width: `${maxCount > 0 ? (dist.fail / maxCount) * 100 : 0}%`, height: '100%', background: 'linear-gradient(135deg, #ef4444, #dc2626)', transition: 'width 0.3s ease', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '0.5rem' }}>
-                <span style={{ color: 'white', fontWeight: '700', fontSize: '0.875rem' }}>{dist.fail}</span>
+              <div style={{ width: `${percentage}%`, height: '100%', background: 'linear-gradient(135deg, #22c55e, #16a34a)', transition: 'width 0.3s ease', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '0.5rem' }}>
+                <span style={{ color: 'white', fontWeight: '700', fontSize: '0.875rem' }}>{count}</span>
               </div>
             </div>
           </div>
-        </>
-      );
-    };
-  }, [theme]);
-
-  // IMPROVED: Cleaner mode selector with toggle switch
-  const ModeSelector = useCallback(() => (
-    <div style={{ 
-      display: 'flex', 
-      flexDirection: isMobile ? 'column' : 'row', 
-      gap: '0.75rem', 
-      alignItems: 'center', 
-      justifyContent: 'center', 
-      marginBottom: isMobile ? '1rem' : '1.5rem' 
-    }}>
-      {/* Mode Toggle Switch */}
-      <div style={{
-        display: 'flex',
-        background: theme.cardBg,
-        border: `1px solid ${theme.borderColor}`,
-        borderRadius: '0.75rem',
-        padding: '0.2rem',
-        width: isMobile ? '100%' : 'auto',
-        maxWidth: isMobile ? '280px' : 'none'
-      }}>
-        <button
-          onClick={() => setGameMode('daily')}
-          style={{
-            flex: 1,
-            padding: isMobile ? '0.625rem 1.25rem' : '0.625rem 1.25rem',
-            background: gameMode === 'daily' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : 'transparent',
-            color: gameMode === 'daily' ? 'white' : theme.textColor,
-            border: 'none',
-            borderRadius: '0.625rem',
-            fontWeight: '600',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            whiteSpace: 'nowrap',
-            fontSize: isMobile ? '0.875rem' : '1rem'
-          }}
-          aria-label="Switch to Daily Mode"
-        >
-          🗓️ Daily
-        </button>
-        <button
-          onClick={() => setGameMode('unlimited')}
-          style={{
-            flex: 1,
-            padding: isMobile ? '0.625rem 1.25rem' : '0.625rem 1.25rem',
-            background: gameMode === 'unlimited' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : 'transparent',
-            color: gameMode === 'unlimited' ? 'white' : theme.textColor,
-            border: 'none',
-            borderRadius: '0.625rem',
-            fontWeight: '600',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            whiteSpace: 'nowrap',
-            fontSize: isMobile ? '0.875rem' : '1rem'
-          }}
-          aria-label="Switch to Unlimited Mode"
-        >
-          ♾️ Unlimited
-        </button>
+        );
+      })}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.5rem' }}>
+        <div style={{ width: '80px', color: theme.mutedColor, fontSize: '0.875rem' }}>Failed</div>
+        <div style={{ flex: 1, background: theme.borderColor, borderRadius: '0.5rem', height: '2rem', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ width: `${Math.max(...Object.values(dist)) > 0 ? (dist.fail / Math.max(...Object.values(dist))) * 100 : 0}%`, height: '100%', background: 'linear-gradient(135deg, #ef4444, #dc2626)', transition: 'width 0.3s ease', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '0.5rem' }}>
+            <span style={{ color: 'white', fontWeight: '700', fontSize: '0.875rem' }}>{dist.fail}</span>
+          </div>
+        </div>
       </div>
-      
-      {/* Difficulty Selector (only shown in unlimited mode) */}
+    </>
+  ), [theme]);
+
+  const ModeSelector = useCallback(() => (
+    <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '0.5rem' : '1rem', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? '0.75rem' : '1.5rem' }}>
+      <button
+        onClick={() => setGameMode('daily')}
+        style={{
+          padding: '0.75rem 1.5rem',
+          background: gameMode === 'daily' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : theme.cardBg,
+          color: gameMode === 'daily' ? 'white' : theme.textColor,
+          border: `1px solid ${theme.borderColor}`,
+          borderRadius: '1rem',
+          fontWeight: '600',
+          cursor: 'pointer',
+          transition: 'all 0.3s ease',
+          width: isMobile ? '100%' : 'auto',
+          maxWidth: isMobile ? '280px' : 'none'
+        }}
+        aria-label="Switch to Daily Mode"
+      >
+        🗓️ Daily Mode
+      </button>
+      <button
+        onClick={() => setGameMode('unlimited')}
+        style={{
+          padding: '0.75rem 1.5rem',
+          background: gameMode === 'unlimited' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : theme.cardBg,
+          color: gameMode === 'unlimited' ? 'white' : theme.textColor,
+          border: `1px solid ${theme.borderColor}`,
+          borderRadius: '1rem',
+          fontWeight: '600',
+          cursor: 'pointer',
+          transition: 'all 0.3s ease',
+          width: isMobile ? '100%' : 'auto',
+          maxWidth: isMobile ? '280px' : 'none'
+        }}
+        aria-label="Switch to Unlimited Mode"
+      >
+        ♾️ Unlimited Mode
+      </button>
       {gameMode === 'unlimited' && (
         <select
           value={difficulty}
           onChange={(e) => setDifficulty(e.target.value)}
           style={{
-            padding: isMobile ? '0.625rem 0.875rem' : '0.625rem 1rem',
+            padding: '0.75rem 1rem',
             background: theme.cardBg,
             color: theme.textColor,
             border: `1px solid ${theme.borderColor}`,
-            borderRadius: '0.75rem',
+            borderRadius: '1rem',
             fontWeight: '600',
             cursor: 'pointer',
             width: isMobile ? '100%' : 'auto',
-            maxWidth: isMobile ? '280px' : 'none',
-            fontSize: isMobile ? '0.875rem' : '1rem'
+            maxWidth: isMobile ? '280px' : 'none'
           }}
           aria-label="Select Difficulty Level"
         >
-          <option value="easy">😊 Easy</option>
-          <option value="medium">⚖️ Medium</option>
-          <option value="hard">🔥 Hard</option>
+          <option value="easy">😊 Easy Stocks</option>
+          <option value="medium">⚖️ Medium Stocks</option>
+          <option value="hard">🔥 Hard Stocks</option>
         </select>
       )}
     </div>
@@ -1007,146 +937,8 @@ function App() {
         )}
       </div>
 
-      {/* Header with Icon Buttons */}
-      <div style={{ maxWidth: '900px', margin: '0 auto', padding: isMobile ? '1rem' : '2rem', position: 'relative' }}>
-        {/* Icon Buttons - Desktop: both on right, Mobile: split left/right */}
-        {isMobile ? (
-          <>
-            {/* Stats Button - Top Left (Mobile only) */}
-            <div style={{ 
-              position: 'absolute',
-              top: '0rem', 
-              left: '0rem',
-              zIndex: 10
-            }}>
-              <button
-                onClick={() => setShowStats(!showStats)}
-                style={{
-                  width: '1.5rem',
-                  height: '1.5rem',
-                  background: theme.cardBg,
-                  border: `1px solid ${theme.borderColor}`,
-                  borderRadius: '50%',
-                  color: theme.textColor,
-                  cursor: 'pointer',
-                  fontSize: '0.75rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transition: 'all 0.2s ease',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
-                }}
-                title="Statistics"
-                aria-label="View Statistics"
-              >
-                📊
-              </button>
-            </div>
-            
-            {/* How to Play Button - Top Right (Mobile only) */}
-            <div style={{ 
-              position: 'absolute',
-              top: '0rem', 
-              right: '0rem',
-              zIndex: 10
-            }}>
-              <button
-                onClick={() => setShowHowToPlay(true)}
-                style={{
-                  width: '1.5rem',
-                  height: '1.5rem',
-                  background: theme.cardBg,
-                  border: `1px solid ${theme.borderColor}`,
-                  borderRadius: '50%',
-                  color: theme.textColor,
-                  cursor: 'pointer',
-                  fontSize: '0.75rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transition: 'all 0.2s ease',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
-                }}
-                title="How to Play"
-                aria-label="How to Play"
-              >
-                ❓
-              </button>
-            </div>
-          </>
-        ) : (
-          /* Desktop: Both buttons on right side */
-          <div style={{ 
-            position: 'absolute',
-            top: '2rem', 
-            right: '2rem',
-            display: 'flex',
-            gap: '0.5rem',
-            zIndex: 10
-          }}>
-            <button
-              onClick={() => setShowStats(!showStats)}
-              style={{
-                width: '2.5rem',
-                height: '2.5rem',
-                background: theme.cardBg,
-                border: `1px solid ${theme.borderColor}`,
-                borderRadius: '50%',
-                color: theme.textColor,
-                cursor: 'pointer',
-                fontSize: '1.25rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.2s ease',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(34, 197, 94, 0.1)';
-                e.currentTarget.style.transform = 'scale(1.05)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = theme.cardBg;
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-              title="Statistics"
-              aria-label="View Statistics"
-            >
-              📊
-            </button>
-            <button
-              onClick={() => setShowHowToPlay(true)}
-              style={{
-                width: '2.5rem',
-                height: '2.5rem',
-                background: theme.cardBg,
-                border: `1px solid ${theme.borderColor}`,
-                borderRadius: '50%',
-                color: theme.textColor,
-                cursor: 'pointer',
-                fontSize: '1.25rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.2s ease',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
-                e.currentTarget.style.transform = 'scale(1.05)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = theme.cardBg;
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-              title="How to Play"
-              aria-label="How to Play"
-            >
-              ❓
-            </button>
-          </div>
-        )}
-
+      {/* Header */}
+      <div style={{ maxWidth: '900px', margin: '0 auto', padding: isMobile ? '1rem' : '2rem' }}>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
           <div style={{ flex: 1, textAlign: 'center' }}>
             <h1 style={{ fontSize: isMobile ? '2rem' : '3rem', fontWeight: '800', margin: '0', background: 'linear-gradient(135deg, #22c55e, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>TickrDaily</h1>
@@ -1165,6 +957,7 @@ function App() {
                 border: `1px solid rgba(34, 197, 94, 0.2)`
               }}>
                 🎯 {todayStats.total_games.toLocaleString()} players today • {todayStats.win_rate}% win rate
+                {todayStats.avg_time_win && ` • ${Math.floor(todayStats.avg_time_win)}s avg`}
               </div>
             )}
             
@@ -1175,23 +968,13 @@ function App() {
         </div>
 
         {gameOver && gameMode === 'daily' && (
-          <div style={{ 
-            background: 'rgba(59, 130, 246, 0.1)', 
-            border: `1px solid rgba(59, 130, 246, 0.3)`, 
-            borderRadius: '0.75rem', 
-            padding: isMobile ? '0.75rem 1rem' : '1rem 1.5rem', 
-            marginBottom: '1.5rem', 
-            textAlign: 'center', 
-            color: theme.textColor,
-            fontSize: isMobile ? '0.875rem' : '1rem',
-            display: 'none' // Hide this on mobile when game over
-          }}>
+          <div style={{ background: 'rgba(59, 130, 246, 0.1)', border: `1px solid rgba(59, 130, 246, 0.3)`, borderRadius: '1rem', padding: '1rem', marginBottom: '1.5rem', textAlign: 'center', color: theme.textColor }}>
             You already completed today's puzzle! Come back tomorrow for a new one. 🎯
           </div>
         )}
 
-        {/* Progress Bar - Wordle Style (Hidden on Mobile or when game over) */}
-        {!isMobile && !gameOver && (
+        {/* Progress Bar - Wordle Style (Hidden on Mobile) */}
+        {!isMobile && (
           <div style={{ marginBottom: '1.5rem' }}>
             <div style={{ display: 'flex', gap: '0.5rem' }}>
               {questions.map((q, i) => {
@@ -1226,25 +1009,71 @@ function App() {
         )}
 
         <ModeSelector />
+
+        {/* Buttons */}
+        <div style={{ display: 'flex', gap: isMobile ? '0.5rem' : '1rem', marginBottom: isMobile ? '1.5rem' : '2rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', flexDirection: isMobile ? 'column' : 'row', width: '100%' }}>
+          <button
+            onClick={() => setShowStats(!showStats)}
+            style={{
+              padding: '0.75rem 1.75rem',
+              background: theme.cardBg,
+              border: `1px solid ${theme.borderColor}`,
+              borderRadius: '1rem',
+              color: theme.textColor,
+              cursor: 'pointer',
+              fontWeight: '600',
+              fontSize: '0.875rem',
+              transition: 'all 0.3s ease',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              width: isMobile ? '100%' : 'auto',
+              maxWidth: isMobile ? '280px' : 'none'
+            }}
+            aria-label="View Statistics"
+          >
+            📊 Statistics
+          </button>
+          <button
+            onClick={() => setShowHowToPlay(true)}
+            style={{
+              padding: '0.75rem 1.75rem',
+              background: theme.cardBg,
+              border: `1px solid ${theme.borderColor}`,
+              borderRadius: '1rem',
+              color: theme.textColor,
+              cursor: 'pointer',
+              fontWeight: '600',
+              fontSize: '0.875rem',
+              transition: 'all 0.3s ease',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              width: isMobile ? '100%' : 'auto',
+              maxWidth: isMobile ? '280px' : 'none'
+            }}
+            aria-label="How to Play"
+          >
+            ❓ How to Play
+          </button>
+        </div>
         
-        {/* STEP 2: Theme Week Display - Only show in daily mode and when game is NOT over */}
-        {gameMode === 'daily' && !gameOver && (
+        {/* STEP 2: Theme Week Display - Only show in daily mode */}
+        {gameMode === 'daily' && (
           <div style={{ 
             textAlign: 'center', 
-            marginBottom: '1.5rem'
+            marginBottom: '1.5rem',
+            padding: '0.75rem 1rem',
+            background: currentTheme ? 'rgba(34, 197, 94, 0.1)' : 'rgba(59, 130, 246, 0.1)',
+            border: `1px solid ${currentTheme ? 'rgba(34, 197, 94, 0.3)' : 'rgba(59, 130, 246, 0.3)'}`,
+            borderRadius: '1rem',
+            fontSize: '0.9rem',
+            fontWeight: '600',
+            color: theme.textColor
           }}>
-            <span style={{ 
-              display: 'inline-block',
-              padding: isMobile ? '0.5rem 0.75rem' : '0.625rem 1rem',
-              background: currentTheme ? 'rgba(34, 197, 94, 0.1)' : 'rgba(59, 130, 246, 0.1)',
-              border: `1px solid ${currentTheme ? 'rgba(34, 197, 94, 0.3)' : 'rgba(59, 130, 246, 0.3)'}`,
-              borderRadius: '0.75rem',
-              fontSize: isMobile ? '0.8rem' : '0.875rem',
-              fontWeight: '600',
-              color: theme.textColor
-            }}>
-              {currentTheme ? '🎯' : '🎲'} {themeLabel}
-            </span>
+            {currentTheme ? '🎯' : '🎲'} {themeLabel}
           </div>
         )}
 
@@ -1637,7 +1466,7 @@ function App() {
                       animation: shake ? 'shake 0.5s' : 'none'
                     }}
                     onMouseEnter={(e) => {
-                      if (!shake && input.trim()) {
+                      if (!shake) {
                         e.currentTarget.style.transform = 'translateY(-2px)';
                         e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(34, 197, 94, 0.5)';
                       }
@@ -1645,7 +1474,7 @@ function App() {
                     onMouseLeave={(e) => {
                       if (!shake) {
                         e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = input.trim() ? '0 10px 25px -5px rgba(34, 197, 94, 0.4)' : 'none';
+                        e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(34, 197, 94, 0.4)';
                       }
                     }}
                   >
@@ -1660,6 +1489,7 @@ function App() {
         {/* Game Over */}
         {gameOver && (
           <div style={{ background: theme.cardBg, borderRadius: '1.5rem', padding: '2rem', marginBottom: '2rem', border: `1px solid ${theme.borderColor}`, textAlign: 'center' }}>
+            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>{isWinner ? '🎉' : '😔'}</div>
             <h2 style={{ fontSize: '2rem', fontWeight: '700', marginBottom: '1rem', color: theme.textColor }}>
               {isWinner ? 'Congratulations!' : 'Game Over'}
             </h2>
