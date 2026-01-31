@@ -841,44 +841,65 @@ function App() {
     </>
   ), [theme]);
 
+  // IMPROVED: Cleaner mode selector with toggle switch
   const ModeSelector = useCallback(() => (
-    <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '0.5rem' : '1rem', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? '0.75rem' : '1.5rem' }}>
-      <button
-        onClick={() => setGameMode('daily')}
-        style={{
-          padding: '0.75rem 1.5rem',
-          background: gameMode === 'daily' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : theme.cardBg,
-          color: gameMode === 'daily' ? 'white' : theme.textColor,
-          border: `1px solid ${theme.borderColor}`,
-          borderRadius: '1rem',
-          fontWeight: '600',
-          cursor: 'pointer',
-          transition: 'all 0.3s ease',
-          width: isMobile ? '100%' : 'auto',
-          maxWidth: isMobile ? '280px' : 'none'
-        }}
-        aria-label="Switch to Daily Mode"
-      >
-        🗓️ Daily Mode
-      </button>
-      <button
-        onClick={() => setGameMode('unlimited')}
-        style={{
-          padding: '0.75rem 1.5rem',
-          background: gameMode === 'unlimited' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : theme.cardBg,
-          color: gameMode === 'unlimited' ? 'white' : theme.textColor,
-          border: `1px solid ${theme.borderColor}`,
-          borderRadius: '1rem',
-          fontWeight: '600',
-          cursor: 'pointer',
-          transition: 'all 0.3s ease',
-          width: isMobile ? '100%' : 'auto',
-          maxWidth: isMobile ? '280px' : 'none'
-        }}
-        aria-label="Switch to Unlimited Mode"
-      >
-        ♾️ Unlimited Mode
-      </button>
+    <div style={{ 
+      display: 'flex', 
+      flexDirection: isMobile ? 'column' : 'row', 
+      gap: '1rem', 
+      alignItems: 'center', 
+      justifyContent: 'center', 
+      marginBottom: isMobile ? '1rem' : '1.5rem' 
+    }}>
+      {/* Mode Toggle Switch */}
+      <div style={{
+        display: 'flex',
+        background: theme.cardBg,
+        border: `1px solid ${theme.borderColor}`,
+        borderRadius: '1rem',
+        padding: '0.25rem',
+        width: isMobile ? '100%' : 'auto',
+        maxWidth: isMobile ? '320px' : 'none'
+      }}>
+        <button
+          onClick={() => setGameMode('daily')}
+          style={{
+            flex: 1,
+            padding: '0.75rem 1.5rem',
+            background: gameMode === 'daily' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : 'transparent',
+            color: gameMode === 'daily' ? 'white' : theme.textColor,
+            border: 'none',
+            borderRadius: '0.75rem',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            whiteSpace: 'nowrap'
+          }}
+          aria-label="Switch to Daily Mode"
+        >
+          🗓️ Daily
+        </button>
+        <button
+          onClick={() => setGameMode('unlimited')}
+          style={{
+            flex: 1,
+            padding: '0.75rem 1.5rem',
+            background: gameMode === 'unlimited' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : 'transparent',
+            color: gameMode === 'unlimited' ? 'white' : theme.textColor,
+            border: 'none',
+            borderRadius: '0.75rem',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            whiteSpace: 'nowrap'
+          }}
+          aria-label="Switch to Unlimited Mode"
+        >
+          ♾️ Unlimited
+        </button>
+      </div>
+      
+      {/* Difficulty Selector (only shown in unlimited mode) */}
       {gameMode === 'unlimited' && (
         <select
           value={difficulty}
@@ -892,13 +913,13 @@ function App() {
             fontWeight: '600',
             cursor: 'pointer',
             width: isMobile ? '100%' : 'auto',
-            maxWidth: isMobile ? '280px' : 'none'
+            maxWidth: isMobile ? '320px' : 'none'
           }}
           aria-label="Select Difficulty Level"
         >
-          <option value="easy">😊 Easy Stocks</option>
-          <option value="medium">⚖️ Medium Stocks</option>
-          <option value="hard">🔥 Hard Stocks</option>
+          <option value="easy">😊 Easy</option>
+          <option value="medium">⚖️ Medium</option>
+          <option value="hard">🔥 Hard</option>
         </select>
       )}
     </div>
@@ -937,8 +958,77 @@ function App() {
         )}
       </div>
 
-      {/* Header */}
-      <div style={{ maxWidth: '900px', margin: '0 auto', padding: isMobile ? '1rem' : '2rem' }}>
+      {/* Header with Icon Buttons */}
+      <div style={{ maxWidth: '900px', margin: '0 auto', padding: isMobile ? '1rem' : '2rem', position: 'relative' }}>
+        {/* Icon Buttons - Top Right */}
+        <div style={{ 
+          position: 'absolute', 
+          top: isMobile ? '1rem' : '2rem', 
+          right: isMobile ? '1rem' : '2rem',
+          display: 'flex',
+          gap: '0.5rem',
+          zIndex: 10
+        }}>
+          <button
+            onClick={() => setShowStats(!showStats)}
+            style={{
+              width: '2.5rem',
+              height: '2.5rem',
+              background: theme.cardBg,
+              border: `1px solid ${theme.borderColor}`,
+              borderRadius: '50%',
+              color: theme.textColor,
+              cursor: 'pointer',
+              fontSize: '1.25rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(34, 197, 94, 0.1)';
+              e.currentTarget.style.transform = 'scale(1.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = theme.cardBg;
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
+            title="Statistics"
+            aria-label="View Statistics"
+          >
+            📊
+          </button>
+          <button
+            onClick={() => setShowHowToPlay(true)}
+            style={{
+              width: '2.5rem',
+              height: '2.5rem',
+              background: theme.cardBg,
+              border: `1px solid ${theme.borderColor}`,
+              borderRadius: '50%',
+              color: theme.textColor,
+              cursor: 'pointer',
+              fontSize: '1.25rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
+              e.currentTarget.style.transform = 'scale(1.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = theme.cardBg;
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
+            title="How to Play"
+            aria-label="How to Play"
+          >
+            ❓
+          </button>
+        </div>
+
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
           <div style={{ flex: 1, textAlign: 'center' }}>
             <h1 style={{ fontSize: isMobile ? '2rem' : '3rem', fontWeight: '800', margin: '0', background: 'linear-gradient(135deg, #22c55e, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>TickrDaily</h1>
@@ -1009,56 +1099,6 @@ function App() {
         )}
 
         <ModeSelector />
-
-        {/* Buttons */}
-        <div style={{ display: 'flex', gap: isMobile ? '0.5rem' : '1rem', marginBottom: isMobile ? '1.5rem' : '2rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', flexDirection: isMobile ? 'column' : 'row', width: '100%' }}>
-          <button
-            onClick={() => setShowStats(!showStats)}
-            style={{
-              padding: '0.75rem 1.75rem',
-              background: theme.cardBg,
-              border: `1px solid ${theme.borderColor}`,
-              borderRadius: '1rem',
-              color: theme.textColor,
-              cursor: 'pointer',
-              fontWeight: '600',
-              fontSize: '0.875rem',
-              transition: 'all 0.3s ease',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.5rem',
-              width: isMobile ? '100%' : 'auto',
-              maxWidth: isMobile ? '280px' : 'none'
-            }}
-            aria-label="View Statistics"
-          >
-            📊 Statistics
-          </button>
-          <button
-            onClick={() => setShowHowToPlay(true)}
-            style={{
-              padding: '0.75rem 1.75rem',
-              background: theme.cardBg,
-              border: `1px solid ${theme.borderColor}`,
-              borderRadius: '1rem',
-              color: theme.textColor,
-              cursor: 'pointer',
-              fontWeight: '600',
-              fontSize: '0.875rem',
-              transition: 'all 0.3s ease',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.5rem',
-              width: isMobile ? '100%' : 'auto',
-              maxWidth: isMobile ? '280px' : 'none'
-            }}
-            aria-label="How to Play"
-          >
-            ❓ How to Play
-          </button>
-        </div>
         
         {/* STEP 2: Theme Week Display - Only show in daily mode */}
         {gameMode === 'daily' && (
@@ -1466,7 +1506,7 @@ function App() {
                       animation: shake ? 'shake 0.5s' : 'none'
                     }}
                     onMouseEnter={(e) => {
-                      if (!shake) {
+                      if (!shake && input.trim()) {
                         e.currentTarget.style.transform = 'translateY(-2px)';
                         e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(34, 197, 94, 0.5)';
                       }
@@ -1474,7 +1514,7 @@ function App() {
                     onMouseLeave={(e) => {
                       if (!shake) {
                         e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(34, 197, 94, 0.4)';
+                        e.currentTarget.style.boxShadow = input.trim() ? '0 10px 25px -5px rgba(34, 197, 94, 0.4)' : 'none';
                       }
                     }}
                   >
