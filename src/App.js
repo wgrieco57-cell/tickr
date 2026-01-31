@@ -963,8 +963,8 @@ function App() {
         {/* Icon Buttons - Top Right */}
         <div style={{ 
           position: 'absolute', 
-          top: isMobile ? '0.5rem' : '2rem', 
-          right: isMobile ? '0.5rem' : '2rem',
+          top: isMobile ? '0.25rem' : '2rem', 
+          right: isMobile ? '0.25rem' : '2rem',
           display: 'flex',
           gap: '0.5rem',
           zIndex: 10
@@ -1107,11 +1107,11 @@ function App() {
           <div style={{ 
             textAlign: 'center', 
             marginBottom: '1.5rem',
-            padding: '0.75rem 1rem',
+            padding: isMobile ? '0.5rem 0.75rem' : '0.625rem 1rem',
             background: currentTheme ? 'rgba(34, 197, 94, 0.1)' : 'rgba(59, 130, 246, 0.1)',
             border: `1px solid ${currentTheme ? 'rgba(34, 197, 94, 0.3)' : 'rgba(59, 130, 246, 0.3)'}`,
-            borderRadius: '1rem',
-            fontSize: '0.9rem',
+            borderRadius: '0.75rem',
+            fontSize: isMobile ? '0.8rem' : '0.875rem',
             fontWeight: '600',
             color: theme.textColor
           }}>
