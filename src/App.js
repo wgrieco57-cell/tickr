@@ -963,8 +963,8 @@ function App() {
         {/* Icon Buttons - Top Right */}
         <div style={{ 
           position: 'absolute', 
-          top: isMobile ? '-0.5rem' : '2rem', 
-          right: isMobile ? '-0.5rem' : '2rem',
+          top: isMobile ? '-0.75rem' : '2rem', 
+          right: isMobile ? '-0.75rem' : '2rem',
           display: 'flex',
           gap: isMobile ? '0.25rem' : '0.5rem',
           zIndex: 10
@@ -972,14 +972,14 @@ function App() {
           <button
             onClick={() => setShowStats(!showStats)}
             style={{
-              width: isMobile ? '1.75rem' : '2.5rem',
-              height: isMobile ? '1.75rem' : '2.5rem',
+              width: isMobile ? '1.5rem' : '2.5rem',
+              height: isMobile ? '1.5rem' : '2.5rem',
               background: theme.cardBg,
               border: `1px solid ${theme.borderColor}`,
               borderRadius: '50%',
               color: theme.textColor,
               cursor: 'pointer',
-              fontSize: isMobile ? '0.875rem' : '1.25rem',
+              fontSize: isMobile ? '0.75rem' : '1.25rem',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -1002,14 +1002,14 @@ function App() {
           <button
             onClick={() => setShowHowToPlay(true)}
             style={{
-              width: isMobile ? '1.75rem' : '2.5rem',
-              height: isMobile ? '1.75rem' : '2.5rem',
+              width: isMobile ? '1.5rem' : '2.5rem',
+              height: isMobile ? '1.5rem' : '2.5rem',
               background: theme.cardBg,
               border: `1px solid ${theme.borderColor}`,
               borderRadius: '50%',
               color: theme.textColor,
               cursor: 'pointer',
-              fontSize: isMobile ? '0.875rem' : '1.25rem',
+              fontSize: isMobile ? '0.75rem' : '1.25rem',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
