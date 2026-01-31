@@ -1225,7 +1225,7 @@ function App() {
           </div>
         )}
 
-        {!gameOver && <ModeSelector />}
+        <ModeSelector />
         
         {/* STEP 2: Theme Week Display - Only show in daily mode and when game is NOT over */}
         {gameMode === 'daily' && !gameOver && (
@@ -1233,7 +1233,7 @@ function App() {
             textAlign: 'center', 
             marginBottom: '1.5rem'
           }}>
-            <div style={{ 
+            <span style={{ 
               display: 'inline-block',
               padding: isMobile ? '0.5rem 0.75rem' : '0.625rem 1rem',
               background: currentTheme ? 'rgba(34, 197, 94, 0.1)' : 'rgba(59, 130, 246, 0.1)',
@@ -1244,7 +1244,7 @@ function App() {
               color: theme.textColor
             }}>
               {currentTheme ? '🎯' : '🎲'} {themeLabel}
-            </div>
+            </span>
           </div>
         )}
 
@@ -1660,7 +1660,6 @@ function App() {
         {/* Game Over */}
         {gameOver && (
           <div style={{ background: theme.cardBg, borderRadius: '1.5rem', padding: '2rem', marginBottom: '2rem', border: `1px solid ${theme.borderColor}`, textAlign: 'center' }}>
-            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>{isWinner ? '🎉' : '😔'}</div>
             <h2 style={{ fontSize: '2rem', fontWeight: '700', marginBottom: '1rem', color: theme.textColor }}>
               {isWinner ? 'Congratulations!' : 'Game Over'}
             </h2>
