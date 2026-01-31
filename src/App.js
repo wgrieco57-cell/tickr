@@ -1097,7 +1097,6 @@ function App() {
             </button>
           </div>
         )}
-        )}
 
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
           <div style={{ flex: 1, textAlign: 'center' }}>
