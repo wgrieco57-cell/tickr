@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo, useReducer, lazy, Suspense } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo, useReducer } from "react";
 import confetti from "canvas-confetti";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInAnonymously } from "firebase/auth";
