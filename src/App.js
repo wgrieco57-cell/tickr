@@ -962,12 +962,12 @@ function App() {
       <div style={{ maxWidth: '900px', margin: '0 auto', padding: isMobile ? '1rem' : '2rem', position: 'relative' }}>
         {/* Icon Buttons - Top Right */}
         <div style={{ 
-          position: 'absolute', 
-          top: isMobile ? '-0.75rem' : '2rem', 
-          right: isMobile ? '-1rem' : '2rem',
+          position: isMobile ? 'fixed' : 'absolute',
+          top: isMobile ? '3.5rem' : '2rem', 
+          right: isMobile ? '0.5rem' : '2rem',
           display: 'flex',
           gap: isMobile ? '0.25rem' : '0.5rem',
-          zIndex: 10
+          zIndex: 100
         }}>
           <button
             onClick={() => setShowStats(!showStats)}
