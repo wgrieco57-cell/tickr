@@ -960,76 +960,144 @@ function App() {
 
       {/* Header with Icon Buttons */}
       <div style={{ maxWidth: '900px', margin: '0 auto', padding: isMobile ? '1rem' : '2rem', position: 'relative' }}>
-        {/* Icon Buttons - Top Right */}
-        <div style={{ 
-          position: isMobile ? 'fixed' : 'absolute',
-          top: isMobile ? '3.5rem' : '2rem', 
-          right: isMobile ? '0.5rem' : '2rem',
-          display: 'flex',
-          gap: isMobile ? '0.25rem' : '0.5rem',
-          zIndex: 100
-        }}>
-          <button
-            onClick={() => setShowStats(!showStats)}
-            style={{
-              width: isMobile ? '1.5rem' : '2.5rem',
-              height: isMobile ? '1.5rem' : '2.5rem',
-              background: theme.cardBg,
-              border: `1px solid ${theme.borderColor}`,
-              borderRadius: '50%',
-              color: theme.textColor,
-              cursor: 'pointer',
-              fontSize: isMobile ? '0.75rem' : '1.25rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.2s ease',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(34, 197, 94, 0.1)';
-              e.currentTarget.style.transform = 'scale(1.05)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = theme.cardBg;
-              e.currentTarget.style.transform = 'scale(1)';
-            }}
-            title="Statistics"
-            aria-label="View Statistics"
-          >
-            📊
-          </button>
-          <button
-            onClick={() => setShowHowToPlay(true)}
-            style={{
-              width: isMobile ? '1.5rem' : '2.5rem',
-              height: isMobile ? '1.5rem' : '2.5rem',
-              background: theme.cardBg,
-              border: `1px solid ${theme.borderColor}`,
-              borderRadius: '50%',
-              color: theme.textColor,
-              cursor: 'pointer',
-              fontSize: isMobile ? '0.75rem' : '1.25rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.2s ease',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
-              e.currentTarget.style.transform = 'scale(1.05)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = theme.cardBg;
-              e.currentTarget.style.transform = 'scale(1)';
-            }}
-            title="How to Play"
-            aria-label="How to Play"
-          >
-            ❓
-          </button>
-        </div>
+        {/* Icon Buttons - Desktop: both on right, Mobile: split left/right */}
+        {isMobile ? (
+          <>
+            {/* Stats Button - Top Left (Mobile only) */}
+            <div style={{ 
+              position: 'absolute',
+              top: '0rem', 
+              left: '0rem',
+              zIndex: 10
+            }}>
+              <button
+                onClick={() => setShowStats(!showStats)}
+                style={{
+                  width: '1.5rem',
+                  height: '1.5rem',
+                  background: theme.cardBg,
+                  border: `1px solid ${theme.borderColor}`,
+                  borderRadius: '50%',
+                  color: theme.textColor,
+                  cursor: 'pointer',
+                  fontSize: '0.75rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'all 0.2s ease',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
+                }}
+                title="Statistics"
+                aria-label="View Statistics"
+              >
+                📊
+              </button>
+            </div>
+            
+            {/* How to Play Button - Top Right (Mobile only) */}
+            <div style={{ 
+              position: 'absolute',
+              top: '0rem', 
+              right: '0rem',
+              zIndex: 10
+            }}>
+              <button
+                onClick={() => setShowHowToPlay(true)}
+                style={{
+                  width: '1.5rem',
+                  height: '1.5rem',
+                  background: theme.cardBg,
+                  border: `1px solid ${theme.borderColor}`,
+                  borderRadius: '50%',
+                  color: theme.textColor,
+                  cursor: 'pointer',
+                  fontSize: '0.75rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'all 0.2s ease',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
+                }}
+                title="How to Play"
+                aria-label="How to Play"
+              >
+                ❓
+              </button>
+            </div>
+          </>
+        ) : (
+          /* Desktop: Both buttons on right side */
+          <div style={{ 
+            position: 'absolute',
+            top: '2rem', 
+            right: '2rem',
+            display: 'flex',
+            gap: '0.5rem',
+            zIndex: 10
+          }}>
+            <button
+              onClick={() => setShowStats(!showStats)}
+              style={{
+                width: '2.5rem',
+                height: '2.5rem',
+                background: theme.cardBg,
+                border: `1px solid ${theme.borderColor}`,
+                borderRadius: '50%',
+                color: theme.textColor,
+                cursor: 'pointer',
+                fontSize: '1.25rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.2s ease',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(34, 197, 94, 0.1)';
+                e.currentTarget.style.transform = 'scale(1.05)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = theme.cardBg;
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+              title="Statistics"
+              aria-label="View Statistics"
+            >
+              📊
+            </button>
+            <button
+              onClick={() => setShowHowToPlay(true)}
+              style={{
+                width: '2.5rem',
+                height: '2.5rem',
+                background: theme.cardBg,
+                border: `1px solid ${theme.borderColor}`,
+                borderRadius: '50%',
+                color: theme.textColor,
+                cursor: 'pointer',
+                fontSize: '1.25rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.2s ease',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
+                e.currentTarget.style.transform = 'scale(1.05)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = theme.cardBg;
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+              title="How to Play"
+              aria-label="How to Play"
+            >
+              ❓
+            </button>
+          </div>
+        )}
+        )}
 
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
           <div style={{ flex: 1, textAlign: 'center' }}>
