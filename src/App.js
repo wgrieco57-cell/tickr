@@ -846,7 +846,7 @@ function App() {
     <div style={{ 
       display: 'flex', 
       flexDirection: isMobile ? 'column' : 'row', 
-      gap: '1rem', 
+      gap: '0.75rem', 
       alignItems: 'center', 
       justifyContent: 'center', 
       marginBottom: isMobile ? '1rem' : '1.5rem' 
@@ -856,24 +856,25 @@ function App() {
         display: 'flex',
         background: theme.cardBg,
         border: `1px solid ${theme.borderColor}`,
-        borderRadius: '1rem',
-        padding: '0.25rem',
+        borderRadius: '0.75rem',
+        padding: '0.2rem',
         width: isMobile ? '100%' : 'auto',
-        maxWidth: isMobile ? '320px' : 'none'
+        maxWidth: isMobile ? '280px' : 'none'
       }}>
         <button
           onClick={() => setGameMode('daily')}
           style={{
             flex: 1,
-            padding: '0.75rem 1.5rem',
+            padding: isMobile ? '0.625rem 1.25rem' : '0.625rem 1.25rem',
             background: gameMode === 'daily' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : 'transparent',
             color: gameMode === 'daily' ? 'white' : theme.textColor,
             border: 'none',
-            borderRadius: '0.75rem',
+            borderRadius: '0.625rem',
             fontWeight: '600',
             cursor: 'pointer',
             transition: 'all 0.3s ease',
-            whiteSpace: 'nowrap'
+            whiteSpace: 'nowrap',
+            fontSize: isMobile ? '0.875rem' : '1rem'
           }}
           aria-label="Switch to Daily Mode"
         >
@@ -883,15 +884,16 @@ function App() {
           onClick={() => setGameMode('unlimited')}
           style={{
             flex: 1,
-            padding: '0.75rem 1.5rem',
+            padding: isMobile ? '0.625rem 1.25rem' : '0.625rem 1.25rem',
             background: gameMode === 'unlimited' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : 'transparent',
             color: gameMode === 'unlimited' ? 'white' : theme.textColor,
             border: 'none',
-            borderRadius: '0.75rem',
+            borderRadius: '0.625rem',
             fontWeight: '600',
             cursor: 'pointer',
             transition: 'all 0.3s ease',
-            whiteSpace: 'nowrap'
+            whiteSpace: 'nowrap',
+            fontSize: isMobile ? '0.875rem' : '1rem'
           }}
           aria-label="Switch to Unlimited Mode"
         >
@@ -905,15 +907,16 @@ function App() {
           value={difficulty}
           onChange={(e) => setDifficulty(e.target.value)}
           style={{
-            padding: '0.75rem 1rem',
+            padding: isMobile ? '0.625rem 0.875rem' : '0.625rem 1rem',
             background: theme.cardBg,
             color: theme.textColor,
             border: `1px solid ${theme.borderColor}`,
-            borderRadius: '1rem',
+            borderRadius: '0.75rem',
             fontWeight: '600',
             cursor: 'pointer',
             width: isMobile ? '100%' : 'auto',
-            maxWidth: isMobile ? '320px' : 'none'
+            maxWidth: isMobile ? '280px' : 'none',
+            fontSize: isMobile ? '0.875rem' : '1rem'
           }}
           aria-label="Select Difficulty Level"
         >
@@ -1127,7 +1130,16 @@ function App() {
         </div>
 
         {gameOver && gameMode === 'daily' && (
-          <div style={{ background: 'rgba(59, 130, 246, 0.1)', border: `1px solid rgba(59, 130, 246, 0.3)`, borderRadius: '1rem', padding: '1rem', marginBottom: '1.5rem', textAlign: 'center', color: theme.textColor }}>
+          <div style={{ 
+            background: 'rgba(59, 130, 246, 0.1)', 
+            border: `1px solid rgba(59, 130, 246, 0.3)`, 
+            borderRadius: '0.75rem', 
+            padding: isMobile ? '0.75rem 1rem' : '1rem 1.5rem', 
+            marginBottom: '1.5rem', 
+            textAlign: 'center', 
+            color: theme.textColor,
+            fontSize: isMobile ? '0.875rem' : '1rem'
+          }}>
             You already completed today's puzzle! Come back tomorrow for a new one. 🎯
           </div>
         )}
