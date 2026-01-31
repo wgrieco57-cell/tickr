@@ -964,7 +964,7 @@ function App() {
         <div style={{ 
           position: 'absolute', 
           top: isMobile ? '-0.75rem' : '2rem', 
-          right: isMobile ? '-0.75rem' : '2rem',
+          right: isMobile ? '-1rem' : '2rem',
           display: 'flex',
           gap: isMobile ? '0.25rem' : '0.5rem',
           zIndex: 10
