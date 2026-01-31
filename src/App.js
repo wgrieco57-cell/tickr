@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo, useReducer, lazy, Suspense } from "react";
 import confetti from "canvas-confetti";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInAnonymously } from "firebase/auth";
@@ -46,6 +46,54 @@ const firebaseConfig = {
   messagingSenderId: "866254338816",
   appId: "1:866254338816:web:85b7cf91fee6225ebe91e5",
   measurementId: "G-WF8Q9HBVJN"
+};
+
+// Custom debounce hook
+const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    
+    return () => clearTimeout(handler);
+  }, [value, delay]);
+  
+  return debouncedValue;
+};
+
+// Questions reducer for better state management
+const questionsReducer = (state, action) => {
+  switch (action.type) {
+    case 'SET_QUESTIONS':
+      return action.questions;
+    
+    case 'ADD_ANSWER':
+      return state.map((q, idx) => 
+        idx === action.level 
+          ? { ...q, answers: [...q.answers, action.answer] }
+          : q
+      );
+    
+    case 'LOAD_PROGRESS':
+      return action.questions.map((q, idx) => {
+        const progressAnswers = action.progressAnswers.filter(a => a.level === idx + 1);
+        return {
+          ...q,
+          answers: progressAnswers.map(a => ({
+            guess: a.guess,
+            isCorrect: a.isCorrect
+          }))
+        };
+      });
+    
+    case 'RESET':
+      return [];
+    
+    default:
+      return state;
+  }
 };
 
 const app = initializeApp(firebaseConfig);
@@ -107,9 +155,10 @@ function App() {
   const [data, setData] = useState([]);
   const [allTickers, setAllTickers] = useState([]);
   const [dailyTicker, setDailyTicker] = useState(null);
-  const [questions, setQuestions] = useState([]);
+  const [questions, dispatchQuestions] = useReducer(questionsReducer, []);
   const [currentLevel, setCurrentLevel] = useState(0);
   const [input, setInput] = useState("");
+  const debouncedInput = useDebounce(input, 150); // Debounce input for autocomplete
   const [submittedAnswers, setSubmittedAnswers] = useState([]);
   const [availableOptions, setAvailableOptions] = useState([]);
   const [gameOver, setGameOver] = useState(false);
@@ -319,8 +368,7 @@ function App() {
     }
 
     setDailyTicker(selectedTicker);
-    setQuestions(pickedQuestions);
-
+    
     if (gameMode === 'daily') {
       try {
         const progressStr = localStorage.getItem('dailyProgress');
@@ -333,17 +381,11 @@ function App() {
               setSubmittedAnswers(progress.submittedAnswers);
               setGameOver(progress.gameOver);
 
-              const updatedQuestions = [...pickedQuestions];
-              progress.submittedAnswers.forEach(answer => {
-                const level = answer.level;
-                if (updatedQuestions[level - 1]) {
-                  updatedQuestions[level - 1].answers.push({
-                    guess: answer.guess,
-                    isCorrect: answer.isCorrect
-                  });
-                }
+              dispatchQuestions({
+                type: 'LOAD_PROGRESS',
+                questions: pickedQuestions,
+                progressAnswers: progress.submittedAnswers
               });
-              setQuestions(updatedQuestions);
               setStartTime(progress.startTime);
               return;
             }
@@ -355,12 +397,13 @@ function App() {
       }
     }
 
+    dispatchQuestions({ type: 'SET_QUESTIONS', questions: pickedQuestions });
     setStartTime(Date.now());
   }, [data, gameMode, difficulty, puzzleSeed]);
 
-  // Update available options
+  // Update available options with debounced input
   useEffect(() => {
-    if (!input) {
+    if (!debouncedInput) {
       setAvailableOptions([]);
       return;
     }
@@ -375,22 +418,22 @@ function App() {
 
     const filtered = allTickers
       .filter(t => {
-        const matchesSearch = t.symbol.toLowerCase().includes(input.toLowerCase()) ||
-          t.company.toLowerCase().includes(input.toLowerCase());
+        const matchesSearch = t.symbol.toLowerCase().includes(debouncedInput.toLowerCase()) ||
+          t.company.toLowerCase().includes(debouncedInput.toLowerCase());
         const notGuessed = !alreadyGuessed.includes(t.symbol.toLowerCase());
         return matchesSearch && notGuessed;
       })
       .sort((a, b) => {
-        if (a.symbol.toLowerCase() === input.toLowerCase()) return -1;
-        if (b.symbol.toLowerCase() === input.toLowerCase()) return 1;
-        if (a.symbol.toLowerCase().startsWith(input.toLowerCase())) return -1;
-        if (b.symbol.toLowerCase().startsWith(input.toLowerCase())) return 1;
+        if (a.symbol.toLowerCase() === debouncedInput.toLowerCase()) return -1;
+        if (b.symbol.toLowerCase() === debouncedInput.toLowerCase()) return 1;
+        if (a.symbol.toLowerCase().startsWith(debouncedInput.toLowerCase())) return -1;
+        if (b.symbol.toLowerCase().startsWith(debouncedInput.toLowerCase())) return 1;
         return 0;
       })
       .slice(0, 8);
 
     setAvailableOptions(filtered);
-  }, [input, allTickers, submittedAnswers]);
+  }, [debouncedInput, allTickers, submittedAnswers]);
 
   // Auto-save progress
   useEffect(() => {
@@ -563,13 +606,12 @@ function App() {
       const correctTicker = questions[currentLevel].correct;
       const isCorrect = matchedTicker.symbol.toUpperCase() === correctTicker.toUpperCase();
 
-      const updatedQuestions = [...questions];
-      updatedQuestions[currentLevel].answers.push({
-        guess: formattedGuess,
-        isCorrect
+      dispatchQuestions({
+        type: 'ADD_ANSWER',
+        level: currentLevel,
+        answer: { guess: formattedGuess, isCorrect }
       });
 
-      setQuestions(updatedQuestions);
       setSubmittedAnswers(prev => [...prev, {
         level: currentLevel + 1,
         guess: formattedGuess,
@@ -619,13 +661,12 @@ function App() {
     const correctTicker = questions[currentLevel].correct;
     const isCorrect = tickerToCheck.toUpperCase() === correctTicker.toUpperCase();
 
-    const updatedQuestions = [...questions];
-    updatedQuestions[currentLevel].answers.push({
-      guess: input.trim(),
-      isCorrect
+    dispatchQuestions({
+      type: 'ADD_ANSWER',
+      level: currentLevel,
+      answer: { guess: input.trim(), isCorrect }
     });
 
-    setQuestions(updatedQuestions);
     setSubmittedAnswers(prev => [...prev, {
       level: currentLevel + 1,
       guess: input.trim(),
@@ -810,36 +851,41 @@ function App() {
     return achievements;
   }, [stats]);
 
-  const GuessDistChart = useCallback(({ dist, maxClues }) => (
-    <>
-      {Array.from({ length: maxClues }, (_, i) => {
-        const clue = i + 1;
-        const count = dist[clue];
-        const maxCount = Math.max(...Object.values(dist));
-        const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
-        return (
-          <div key={clue} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-            <div style={{ width: '80px', color: theme.mutedColor, fontSize: '0.875rem' }}>
-              {clue} clue{clue > 1 ? 's' : ''}
-            </div>
+  const GuessDistChart = useMemo(() => {
+    return ({ dist, maxClues }) => {
+      const maxCount = Math.max(...Object.values(dist));
+      
+      return (
+        <>
+          {Array.from({ length: maxClues }, (_, i) => {
+            const clue = i + 1;
+            const count = dist[clue];
+            const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
+            return (
+              <div key={clue} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                <div style={{ width: '80px', color: theme.mutedColor, fontSize: '0.875rem' }}>
+                  {clue} clue{clue > 1 ? 's' : ''}
+                </div>
+                <div style={{ flex: 1, background: theme.borderColor, borderRadius: '0.5rem', height: '2rem', position: 'relative', overflow: 'hidden' }}>
+                  <div style={{ width: `${percentage}%`, height: '100%', background: 'linear-gradient(135deg, #22c55e, #16a34a)', transition: 'width 0.3s ease', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '0.5rem' }}>
+                    <span style={{ color: 'white', fontWeight: '700', fontSize: '0.875rem' }}>{count}</span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.5rem' }}>
+            <div style={{ width: '80px', color: theme.mutedColor, fontSize: '0.875rem' }}>Failed</div>
             <div style={{ flex: 1, background: theme.borderColor, borderRadius: '0.5rem', height: '2rem', position: 'relative', overflow: 'hidden' }}>
-              <div style={{ width: `${percentage}%`, height: '100%', background: 'linear-gradient(135deg, #22c55e, #16a34a)', transition: 'width 0.3s ease', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '0.5rem' }}>
-                <span style={{ color: 'white', fontWeight: '700', fontSize: '0.875rem' }}>{count}</span>
+              <div style={{ width: `${maxCount > 0 ? (dist.fail / maxCount) * 100 : 0}%`, height: '100%', background: 'linear-gradient(135deg, #ef4444, #dc2626)', transition: 'width 0.3s ease', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '0.5rem' }}>
+                <span style={{ color: 'white', fontWeight: '700', fontSize: '0.875rem' }}>{dist.fail}</span>
               </div>
             </div>
           </div>
-        );
-      })}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.5rem' }}>
-        <div style={{ width: '80px', color: theme.mutedColor, fontSize: '0.875rem' }}>Failed</div>
-        <div style={{ flex: 1, background: theme.borderColor, borderRadius: '0.5rem', height: '2rem', position: 'relative', overflow: 'hidden' }}>
-          <div style={{ width: `${Math.max(...Object.values(dist)) > 0 ? (dist.fail / Math.max(...Object.values(dist))) * 100 : 0}%`, height: '100%', background: 'linear-gradient(135deg, #ef4444, #dc2626)', transition: 'width 0.3s ease', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '0.5rem' }}>
-            <span style={{ color: 'white', fontWeight: '700', fontSize: '0.875rem' }}>{dist.fail}</span>
-          </div>
-        </div>
-      </div>
-    </>
-  ), [theme]);
+        </>
+      );
+    };
+  }, [theme]);
 
   // IMPROVED: Cleaner mode selector with toggle switch
   const ModeSelector = useCallback(() => (
