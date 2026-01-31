@@ -1165,7 +1165,6 @@ function App() {
                 border: `1px solid rgba(34, 197, 94, 0.2)`
               }}>
                 🎯 {todayStats.total_games.toLocaleString()} players today • {todayStats.win_rate}% win rate
-                {todayStats.avg_time_win && ` • ${Math.floor(todayStats.avg_time_win)}s avg`}
               </div>
             )}
             
@@ -1184,14 +1183,15 @@ function App() {
             marginBottom: '1.5rem', 
             textAlign: 'center', 
             color: theme.textColor,
-            fontSize: isMobile ? '0.875rem' : '1rem'
+            fontSize: isMobile ? '0.875rem' : '1rem',
+            display: 'none' // Hide this on mobile when game over
           }}>
             You already completed today's puzzle! Come back tomorrow for a new one. 🎯
           </div>
         )}
 
-        {/* Progress Bar - Wordle Style (Hidden on Mobile) */}
-        {!isMobile && (
+        {/* Progress Bar - Wordle Style (Hidden on Mobile or when game over) */}
+        {!isMobile && !gameOver && (
           <div style={{ marginBottom: '1.5rem' }}>
             <div style={{ display: 'flex', gap: '0.5rem' }}>
               {questions.map((q, i) => {
@@ -1225,22 +1225,26 @@ function App() {
           </div>
         )}
 
-        <ModeSelector />
+        {!gameOver && <ModeSelector />}
         
-        {/* STEP 2: Theme Week Display - Only show in daily mode */}
-        {gameMode === 'daily' && (
+        {/* STEP 2: Theme Week Display - Only show in daily mode and when game is NOT over */}
+        {gameMode === 'daily' && !gameOver && (
           <div style={{ 
             textAlign: 'center', 
-            marginBottom: '1.5rem',
-            padding: isMobile ? '0.5rem 0.75rem' : '0.625rem 1rem',
-            background: currentTheme ? 'rgba(34, 197, 94, 0.1)' : 'rgba(59, 130, 246, 0.1)',
-            border: `1px solid ${currentTheme ? 'rgba(34, 197, 94, 0.3)' : 'rgba(59, 130, 246, 0.3)'}`,
-            borderRadius: '0.75rem',
-            fontSize: isMobile ? '0.8rem' : '0.875rem',
-            fontWeight: '600',
-            color: theme.textColor
+            marginBottom: '1.5rem'
           }}>
-            {currentTheme ? '🎯' : '🎲'} {themeLabel}
+            <div style={{ 
+              display: 'inline-block',
+              padding: isMobile ? '0.5rem 0.75rem' : '0.625rem 1rem',
+              background: currentTheme ? 'rgba(34, 197, 94, 0.1)' : 'rgba(59, 130, 246, 0.1)',
+              border: `1px solid ${currentTheme ? 'rgba(34, 197, 94, 0.3)' : 'rgba(59, 130, 246, 0.3)'}`,
+              borderRadius: '0.75rem',
+              fontSize: isMobile ? '0.8rem' : '0.875rem',
+              fontWeight: '600',
+              color: theme.textColor
+            }}>
+              {currentTheme ? '🎯' : '🎲'} {themeLabel}
+            </div>
           </div>
         )}
 
