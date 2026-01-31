@@ -963,8 +963,8 @@ function App() {
         {/* Icon Buttons - Top Right */}
         <div style={{ 
           position: 'absolute', 
-          top: isMobile ? '0rem' : '2rem', 
-          right: isMobile ? '0rem' : '2rem',
+          top: isMobile ? '-0.5rem' : '2rem', 
+          right: isMobile ? '-0.5rem' : '2rem',
           display: 'flex',
           gap: isMobile ? '0.25rem' : '0.5rem',
           zIndex: 10
